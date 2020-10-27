@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send('welcome to travel help!');
+  res.send('welcome to the travel help!');
 })
 
 app.listen(port, () => {
