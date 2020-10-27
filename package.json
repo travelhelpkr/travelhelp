@@ -1,0 +1,19 @@
+{
+  "name": "travelhelp",
+  "version": "1.0.0",
+  "description": "This is sort of concierge service for the foreign travelers in Korea.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imbrok/travelhelp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imbrok/travelhelp/issues"
+  },
+  "homepage": "https://github.com/imbrok/travelhelp#readme"
+}
