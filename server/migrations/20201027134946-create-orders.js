@@ -9,7 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       is_cart: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
       },
       purchased_at: {
         type: Sequelize.DATE
