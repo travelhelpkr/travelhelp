@@ -4,6 +4,7 @@ const mysqlStore = require('express-mysql-session')(session);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const userRouter = require('./router/userRouter');
 const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -25,6 +26,9 @@ const sessionStorage = new mysqlStore(options);
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
+
+// routing
+app.use('/users', userRouter);
 
 // mysql session managing
 app.use(

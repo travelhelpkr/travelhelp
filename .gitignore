@@ -1,3 +1,9 @@
+# Private information
+config/config.json
+
+# Backup folder
+backup
+
 # Logs
 logs
 *.log
