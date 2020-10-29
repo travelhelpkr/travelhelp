@@ -16,35 +16,29 @@ module.exports = {
 
     const { email, password, name, contact, is_email_verified, is_policy_agreed, last_visited_at, language } = req.body;
     const hash_password = await bcrypt.hash(password, 10);
-    console.log("User:", User)
     
     // db에서 req.body.email이 존재하는지 확인
-    await User.findOne({
+    const user = await User.findOne({
       where: {
         email: email
       }
     })
-    .then(user => {
-      if (user !== null) {
-        res.status(409).send("User already existed.");
-      }
-      else {
-        async function createUser() {
-          await User.create({
-            email: email,
-            password: hash_password,
-            name: name,
-            contact: contact,
-            is_email_verified: is_email_verified,
-            is_policy_agreed: is_policy_agreed,
-            last_visited_at: last_visited_at,
-            language: language
-          })
-          .then(data => res.status(201).send("completely signed up"));
-        }
-        createUser();
-      }
-    })
-    .catch(err => console.log(err));
+    if (user !== null) {
+      res.status(409).send("User already existed.");
+    }
+    else {
+      await User.create({
+        email: email,
+        password: hash_password,
+        name: name,
+        contact: contact,
+        is_email_verified: is_email_verified,
+        is_policy_agreed: is_policy_agreed,
+        last_visited_at: last_visited_at,
+        language: language
+      })
+      .then(data => res.status(201).send("completely signed up"));
+    }
+    
   }
 };
