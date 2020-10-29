@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon app.js",
     "dev": "nodemon app.js",
-    "test": "nodemon app.js",
-    "prod": "nodemon app.js",
+    "test": "NODE_ENV=test nodemon app.js",
+    "prod": "NODE_ENV=production nodemon app.js",
     "test_default": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
