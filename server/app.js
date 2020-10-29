@@ -4,6 +4,7 @@ const mysqlStore = require('express-mysql-session')(session);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const userRouter = require('./router/userRouter');
 const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -39,6 +40,9 @@ app.use(
     }
   })
 );
+
+// routing
+app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
   res.send('welcome to the travel help!');
