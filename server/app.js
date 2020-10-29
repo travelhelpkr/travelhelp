@@ -27,6 +27,9 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
+// routing
+app.use('/users', userRouter);
+
 // mysql session managing
 app.use(
   session({
@@ -40,9 +43,6 @@ app.use(
     }
   })
 );
-
-// routing
-app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
   res.send('welcome to the travel help!');

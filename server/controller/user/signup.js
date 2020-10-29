@@ -1,4 +1,4 @@
-const { users } = require('../../models/users');
+const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
 /*
@@ -14,34 +14,30 @@ const bcrypt = require('bcrypt');
 module.exports = {
   post: async (req, res) => {
 
-    const { email, password, name, contact, privacy_agreement, language } = req.body;
+    const { email, password, name, contact, is_email_verified, is_policy_agreed, last_visited_at, language } = req.body;
     const hash_password = await bcrypt.hash(password, 10);
-
-
+    console.log("User:", User)
     
     // db에서 req.body.email이 존재하는지 확인
-    await users.findOne({
+    await User.findOne({
       where: {
         email: email
       }
     })
     .then(user => {
-      console.log("user:", user)
-      process.on('unhandledRejection', (error, p) => {
-        console.log('=== UNHANDLED REJECTION ===');
-        console.dir(error.stack);
-      });
       if (user !== null) {
         res.status(409).send("User already existed.");
       }
       else {
         async function createUser() {
-          await users.create({
+          await User.create({
             email: email,
             password: hash_password,
             name: name,
             contact: contact,
-            privacy_agreement: privacy_agreement,
+            is_email_verified: is_email_verified,
+            is_policy_agreed: is_policy_agreed,
+            last_visited_at: last_visited_at,
             language: language
           })
           .then(data => res.status(201).send("completely signed up"));
@@ -52,4 +48,3 @@ module.exports = {
     .catch(err => console.log(err));
   }
 };
-
