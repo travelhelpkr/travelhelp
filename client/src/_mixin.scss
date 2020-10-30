@@ -7,13 +7,19 @@
 }
 
 @mixin tablet {
-  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop-small - 1px}) {
     @content;
   }
 }
 
-@mixin desktop {
-  @media (min-width: #{$breakpoint-desktop}) {
+@mixin desktop-small {
+  @media (min-width: #{$breakpoint-desktop-small}) and (max-width: #{$breakpoint-desktop-large - 1px}){
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @media (min-width: #{$breakpoint-desktop-large}) {
     @content;
   }
 }
