@@ -1,4 +1,5 @@
 {
-  "message.hello": "Hello",
-  "n.selected": "{{n}} selected."
+  "home.signin": "Sign In",
+  "signup.signup": "Sign Up",
+  "signup.email": "Email Address *"
 }
