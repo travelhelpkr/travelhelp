@@ -13,22 +13,14 @@ dotenv.config();
 const env = process.env;
 
 const options = {
-  username: env.username,
-  password: env.password,
-  database: env.database,
   host: env.host,
   port: env.port,
-  dialect: env.dialect
+  user: env.username,
+  password: env.password,
+  database: env.database
 }
 
 const sessionStorage = new mysqlStore(options);
-
-app.use(cors());
-app.use(cookieParser());
-app.use(bodyParser.json());
-
-// routing
-app.use('/users', userRouter);
 
 // mysql session managing
 app.use(
@@ -43,6 +35,14 @@ app.use(
     }
   })
 );
+
+app.use(cors());
+app.use(cookieParser());
+app.use(bodyParser.json());
+
+
+// routing
+app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
   res.send('welcome to the travel help!');

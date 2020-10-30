@@ -2,67 +2,61 @@ const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
 /*
-1. 입력받은 email과 password를 db에서 확인
-  1. email이 없는 경우
-    1. res 회원가입 안되었다는 err
-  2. email이 있고
-    1. password만 없는 경우
-      1. res 비밀번호 틀렸다는 err
-    2. password도 맞으면
-      1. res 로그인 성공
-        1. home 화면으로 redirect (client에서 처리)
+1. check req.email & password from the db
+  1. if no email matches
+    1. res err, 401 sign up first
+  2. if email exists on db
+    1. but the password does not match from the db
+      1. res err, 401 wrong password
+    2. & password matches
+      1. update last visitsed time
+      2. store sign in information(user ID) on session
+      3. Succeed sign in! res 200
+        1. redirect to Home page(handle from client side)
 */
 
 module.exports = {
   post: async (req, res) => {
 
-    const { email, password, last_visited_at } = req.body;
+    const { email, password } = req.body;
     
-    // db에서 req.body.email이 존재하는지 확인
-    const userEmail = await User.findOne({
+    // bring the user information with req.body.email
+    const userData = await User.findOne({
       where: {
         email: email
       }
     });
-
-    if (!userEmail) {
+    
+    // check req.body.email exists on db
+    if (!userData) {
       res.status(401).send("You need to sign up first.");
     }
     else {
-      // db에 존재하던 hashed password 가져오기
-      const hashed_password = await User.findOne({
-        attributes: [ "password" ]
-      }, {
-        where: {
-          email: email
+      // compare req.body.password && hashed password from db
+      bcrypt.compare(password, userData.dataValues.password, (err, result) => {
+        // catch err or wrong password, 
+        if (err || !result) { 
+          console.log('Error from password: ', err);
+          res.status(401).send("Wrong password.");
         }
-      })
-
-      console.log("hashed_password:", hashed_password.dataValues.password)
-
-      // req.body.password와 db의 hashed password 비교 후, callback function 실행
-      const comparePassword = async () => {
-        await bcrypt.compare(password, hashed_password.dataValues.password, (err, result) => {
-          if (err || !result) { 
-            console.log(err);
-            res.status(401).send("Wrong password.");
-          }
-          else {
-            const updateVisitTime = async () => {
-              await User.update({
-                last_visited_at: last_visited_at
-              }, {
-                where: {
-                  email: email
-                }
-              })
-              .then(data => res.status(200).send("successfully signed in"));
+        else {
+          // update last visited time of the user
+          User.update({
+            last_visited_at: new Date()
+          }, {  
+            where: {
+              id: userData.dataValues.id
             }
-            updateVisitTime();
-          }
-        });
-      }
-      comparePassword();
+          })
+          .then(data => {
+            // store user id on session
+            req.session.user_id = userData.dataValues.id;
+            req.session.save(() => {
+              res.status(200).send("successfully signed in")
+            });
+          });
+        }
+      });
     }
     
   }
