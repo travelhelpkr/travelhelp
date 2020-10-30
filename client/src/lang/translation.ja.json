@@ -1,5 +1,9 @@
 {
   "home.signin": "ログイン",
+  "home.foodDelivery": "食べ物の出前",
+  "home.luggage": "荷物預かり",
+  "home.taxi": "予約タクシー",
+  "home.rental": "旅行用品レンタル",
   "signup.signup": "サインアップ",
   "signup.email": "Eメールアドレス *"
 }

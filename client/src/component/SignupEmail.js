@@ -56,7 +56,7 @@ function SignupEmail() {
       <button onClick={changelanguageToJa}>Japanese</button>
       <h1>{t('Sign Up')}</h1>
       <form>
-        <input name="email" onChange={onChangeHandler} placeholder={t("Email Address")} label="Email Address" />
+        <input name="email" onChange={onChangeHandler} placeholder={t("signup.email")} label="Email Address" />
         <input name="password" onChange={onChangeHandler} placeholder="Password *" label="Password" />
         <input name="confirmPassword" onChange={onChangeHandler} placeholder="Confirm Password *" label="Confirm Password" />
         <input name="name" onChange={onChangeHandler} placeholder="Name *" label="Name" />

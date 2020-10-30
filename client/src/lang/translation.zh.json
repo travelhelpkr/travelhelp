@@ -1,5 +1,9 @@
 {
-  "home.signin": "登入",
+  "home.signin": "登录",
+  "home.foodDelivery": "食品配送<",
+  "home.luggage": "存放行李",
+  "home.taxi": "预订出租车",
+  "home.rental": "旅游用品",
   "signup.signup": "报名参加",
   "signup.email": "电邮地址 *"
 }

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
-import SignupEmail from './SignupEmail';
+import Nav from "./Nav";
+
 
 function Signup() {
 
   return(
     <div>
+      <Nav />
       <h1>Sign Up</h1>
       <div>
         <a href="/signupwithemail">Sign Up with an Email</a>
@@ -17,7 +19,7 @@ function Signup() {
         <a href="/signupwithemail">Sign Up with WeChat</a>
       </div>
       <div>
-        <a href="/signupwithemail">Sign Up with WeChat</a>
+        <a href="/signupwithemail">Sign Up with Line</a>
       </div>
       <div>
         <a href="/signin">You already have ID?</a>

@@ -1,0 +1,171 @@
+@import "../mixin";
+
+@include desktop {
+  .background {
+    width: 100%;
+    position: relative;
+    text-align: center;
+      .nav {
+        height: 6em;
+        border-bottom: 0.01rem solid rgba(1, 1, 37, 0.1);
+        margin-bottom: 1.5em;
+        .homeTitle {
+          display: inline-block;
+          font-size: 2.3em;
+          font-weight: bolder;
+          text-decoration: none;
+          line-height: 2.5em;
+          color:  rgb(1, 1, 37);
+        }
+      .signInBtn {
+        font-size: 0.8em;
+        position: relative;
+        left: 79%;
+        top: 35%;
+        float: left;
+        text-decoration: none;
+        color: rgb(1, 1, 37);
+        width: 4em;
+        padding: 10px;
+        text-align: center;
+        border: 0.01rem solid rgba(1, 1, 37, 0.5);
+        border-radius: 0.5em;
+        &:hover {
+          cursor: pointer;
+          width: 4em;
+          background-color: rgb(1, 1, 37);
+          color: white;
+          border-radius: 0.5em;
+          text-align: center;
+        }
+      }
+      .languageBtn {
+        font-size: 0.8em;
+        position: relative;
+        left: 29%;
+        top: -2%;
+        clear: both;
+        text-align: center;
+        width: 6.6em;
+        padding: 9px;
+        text-align: center;
+        border: 0.01rem solid rgba(1, 1, 37, 0.5);
+        border-radius: 0.5em;
+        &:hover {
+          cursor: pointer;
+          width: 6.6em;
+          background-color: rgb(1, 1, 37);
+          color: white;
+          border-radius: 0.5em;
+          text-align: center;
+        }
+      }
+    }
+    .helpMenu {
+      text-align: center;
+      line-height: 30em;
+      display: inline-block;
+      .foodDelivery {
+        background-image: url('../img/delivery.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 30em;
+        height: 30em;
+        margin: 0.5em;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          a {
+            font-size: 1.8em;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+      .luggage {
+        background-image: url('../img/suitcase.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 30em;
+        height: 30em;
+        margin: 0.5em;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          a {
+            font-size: 1.8em;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+      .taxi {
+        background-image: url('../img/airtaxi.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 30em;
+        clear: both;
+        height: 30em;
+        margin: 0.5em;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          a {
+            font-size: 1.8em;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+      .rental {
+        background-image: url('../img/travelpackage.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 30em;
+        height: 30em;
+        margin: 0.5em;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          a {
+            font-size: 1.8em;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include tablet {
+  .homeTitle {
+    font-size: 2em;
+    width: 100%;
+    margin: 0.5em auto;
+  }
+}
+
+@include mobile {
+
+}

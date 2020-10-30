@@ -1,5 +1,9 @@
 {
   "home.signin": "Sign In",
+  "home.foodDelivery": "Food Delivery",
+  "home.luggage": "Luggage Keeping",
+  "home.taxi": "Booking Taxi",
+  "home.rental": "Rental Goods",
   "signup.signup": "Sign Up",
   "signup.email": "Email Address *"
 }

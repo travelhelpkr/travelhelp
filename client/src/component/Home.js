@@ -1,27 +1,54 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import { useTranslation, withTranslation } from 'react-i18next';
-import Nav from "./Nav";
-
+import './Home.scss';
 
 function Home() {
 
+  // change language handler
   const { t, i18n } = useTranslation();
 
-  const changelanguageToEn = () => i18n.changeLanguage('en')
-  const changelanguageToZh = () => i18n.changeLanguage('zh')
-  const changelanguageToJa = () => i18n.changeLanguage('ja')
-
   return(
-    <div>
-      <a href="/signin">{t('home.signin')}</a>
-      <select>
-      <option value="" disabled selected>Language</option>
-        <option value="English" onClick={changelanguageToEn}>English</option>
-        <option value="Chinese" onClick={changelanguageToZh}>Chinese</option>
-        <option value="Japanese" onClick={changelanguageToJa}>Japanese</option>
-      </select>
-      <h1>Travel Help</h1>
+    <div className="background">
+      <div className="nav">
+        {/* title */}
+        <a href="/" className="homeTitle">Travel Help</a>
+
+        {/* nav-sign in btn */}
+        <a href="/user/signin" className="signInBtn">{t('home.signin')}</a>
+
+        {/* nav-select language btn */}
+        <select className="languageBtn" onChange={(e) => i18n.changeLanguage(e.target.value)} >
+          <option value="" disabled>Language</option>
+          <option value="en">English</option>
+          <option value="zh">Chinese</option>
+          <option value="ja">Japanese</option>
+        </select>
+      </div>
+
+      {/* Body - travel help menu */}
+      <div className="helpMenu">
+        <div className="foodDelivery">
+          <div className="overlay">
+            <a href="/help/fooddelivery">{t('home.foodDelivery')}</a>
+          </div>
+        </div>
+        <div className="luggage">
+          <div className="overlay">
+            <a href="/help/luggage">{t('home.luggage')}</a>
+          </div>
+        </div>
+        <div className="taxi">
+          <div className="overlay">
+            <a href="/help/taxi">{t('home.taxi')}</a>
+          </div>
+        </div>
+        <div className="rental">
+          <div className="overlay">
+            <a href="/help/rental">{t('home.rental')}</a>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
