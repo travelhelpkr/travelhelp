@@ -1,6 +1,6 @@
 @import "../mixin";
 
-@include desktop {
+@include desktop-small {
   .background {
     width: 100%;
     position: relative;
@@ -17,6 +17,29 @@
         text-decoration: none;
         line-height: 2.5em;
         color:  rgb(1, 1, 37);
+      }
+      .signInBtn {
+        font-size: 0.8em;
+        position: absolute;
+        right: 10em;
+        top: 35%;
+        float: left;
+        text-decoration: none;
+        color: rgb(1, 1, 37);
+        width: 4em;
+        height: 1.18em;
+        padding: 10px;
+        text-align: center;
+        border: 0.01rem solid rgba(1, 1, 37, 0.5);
+        border-radius: 0.5em;
+        &:hover {
+          cursor: pointer;
+          width: 4em;
+          background-color: rgb(1, 1, 37);
+          color: white;
+          border-radius: 0.5em;
+          text-align: center;
+        }
       }
     }
   }
