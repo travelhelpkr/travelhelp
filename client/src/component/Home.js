@@ -10,21 +10,14 @@ function Home() {
 
   return(
     <div className="background">
-      <div className="nav">
-        {/* title */}
-        <a href="/" className="homeTitle">Travel Help</a>
-
-        {/* nav-sign in btn */}
-        <a href="/user/signin" className="signInBtn">{t('home.signin')}</a>
-
-        {/* nav-select language btn */}
-        <select className="languageBtn" onChange={(e) => i18n.changeLanguage(e.target.value)} >
-          <option value="" disabled>Language</option>
-          <option value="en">English</option>
-          <option value="zh">Chinese</option>
-          <option value="ja">Japanese</option>
-        </select>
-      </div>
+      
+      {/* nav-select language btn */}
+      <select className="languageBtn" onChange={(e) => i18n.changeLanguage(e.target.value)} >
+        <option value="" disabled>Language</option>
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="ja">日本語</option>
+      </select>
 
       {/* Body - travel help menu */}
       <div className="helpMenu">
