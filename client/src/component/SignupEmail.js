@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import { useTranslation, withTranslation } from 'react-i18next';
 
 function SignupEmail() {
+
+  const { t, i18n } = useTranslation();
+
+  const changelanguageToEn = () => i18n.changeLanguage('en')
+  const changelanguageToZh = () => i18n.changeLanguage('zh')
+  const changelanguageToJa = () => i18n.changeLanguage('ja')
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -43,9 +51,12 @@ function SignupEmail() {
 
   return(
     <div>
-      <h1>Sign Up</h1>
+      <button onClick={changelanguageToEn}>English</button>
+      <button onClick={changelanguageToZh}>Chinese</button>
+      <button onClick={changelanguageToJa}>Japanese</button>
+      <h1>{t('Sign Up')}</h1>
       <form>
-        <input name="email" onChange={onChangeHandler} placeholder="Email Address *" label="Email Address" />
+        <input name="email" onChange={onChangeHandler} placeholder={t("Email Address")} label="Email Address" />
         <input name="password" onChange={onChangeHandler} placeholder="Password *" label="Password" />
         <input name="confirmPassword" onChange={onChangeHandler} placeholder="Confirm Password *" label="Confirm Password" />
         <input name="name" onChange={onChangeHandler} placeholder="Name *" label="Name" />

@@ -1,4 +1,5 @@
 {
-  "message.hello": "やあ",
-  "n.selected": "{{n}} 選択されています。"
+  "home.signin": "ログイン",
+  "signup.signup": "サインアップ",
+  "signup.email": "Eメールアドレス *"
 }

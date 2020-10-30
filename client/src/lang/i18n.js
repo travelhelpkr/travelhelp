@@ -1,5 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import detector from "i18next-browser-languagedetector";
+import Cache from 'i18next-localstorage-cache';
 
 import translationEn from './translation.en';
 import translationZh from './translation.zh';
@@ -17,14 +19,24 @@ const resources = {
   }
 };
 
-i18n.use(initReactI18next) // passes i18n down to react-i18next
+i18n
+    .use(initReactI18next)
+    .use(detector)
+    .use(Cache)
     .init({
         resources,
-        lng: "en",
+        // lng: "en",
         fallbackLng: 'en',
-        keySeparator: false, // we do not use keys in form messages.welcome
+        keySeparator: false, 
         interpolation: {
-            escapeValue: false // react already safes from xss
+            escapeValue: false
+        },
+        Cache: {
+          enabled: false,
+          prefix: 'translation_',
+          expirationTime: Infinity,
+          Version: {},
+          // defaultVersion: '',
         }
     });
 

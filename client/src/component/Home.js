@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import { useTranslation, withTranslation } from 'react-i18next';
+import Nav from "./Nav";
 
 
 function Home() {
@@ -13,14 +14,14 @@ function Home() {
 
   return(
     <div>
-      <span>language : {i18n.language}</span>
-      <div>{t('message.hello')}</div>
-      <div>{t('n.selected', {n: 5})}</div>
-      <div>
-          <button onClick={changelanguageToEn}>English</button>
-          <button onClick={changelanguageToZh}>Chinese</button>
-          <button onClick={changelanguageToJa}>Japanese</button>
-      </div>
+      <a href="/signin">{t('home.signin')}</a>
+      <select>
+      <option value="" disabled selected>Language</option>
+        <option value="English" onClick={changelanguageToEn}>English</option>
+        <option value="Chinese" onClick={changelanguageToZh}>Chinese</option>
+        <option value="Japanese" onClick={changelanguageToJa}>Japanese</option>
+      </select>
+      <h1>Travel Help</h1>
     </div>
   )
 }
