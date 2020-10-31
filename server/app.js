@@ -9,9 +9,12 @@ const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
-// declare env variable
-const env = process.env;
+app.use(cors());
+app.use(cookieParser());
+app.use(bodyParser.json());
 
+// declare env variable for managing session
+const env = process.env;
 const options = {
   host: env.host,
   port: env.port,
@@ -19,7 +22,6 @@ const options = {
   password: env.password,
   database: env.database
 }
-
 const sessionStorage = new mysqlStore(options);
 
 // mysql session managing
@@ -35,11 +37,6 @@ app.use(
     }
   })
 );
-
-app.use(cors());
-app.use(cookieParser());
-app.use(bodyParser.json());
-
 
 // routing
 app.use('/users', userRouter);
