@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Address_book.init({
     address: DataTypes.STRING,
     postal_code: DataTypes.INTEGER,
+    contact: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER
   }, {
     sequelize,
