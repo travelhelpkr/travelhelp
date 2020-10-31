@@ -5,7 +5,109 @@
 }
 
 @include desktop-small {
-  
+  .background {
+    .h1 {
+      font-size: 2em;
+      margin: 1.5em;
+    }
+    .signupBtn {
+      width: 100%;
+      .btn {
+        text-decoration: none;
+        font-size: 1em;
+        vertical-align: baseline;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        display: inline-block;
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(207, 207, 207, 0.2);
+          font-weight: 700;
+        }
+      }
+      .googleBtn {
+        margin-bottom: 0.5em;
+        padding: 10px 90px;
+        color: black;
+        position: relative;
+        background-color: white;
+        background-image: url('../img/google_logo.png');
+        background-size: 20px;
+        background-position: 20px 50%;
+        background-repeat: no-repeat;
+      }
+      .wechatBtn {
+        margin-bottom: 0.5em;
+        padding: 10px 87px;
+        color: black;
+        position: relative;
+        background-color: white;
+        background-image: url('../img/wechat_logo.png');
+        background-size: 26px;
+        background-position: 20px 50%;
+        background-repeat: no-repeat;
+      }
+      .lineBtn {
+        margin-bottom: 0.5em;
+        padding: 10px 101px;
+        color: black;
+        position: relative;
+        background-color: white;
+        background-image: url('../img/line_logo.png');
+        background-size: 22px;
+        background-position: 20px 50%;
+        background-repeat: no-repeat;
+      }
+    }
+    .signupOR {
+      font-size: 1em;
+      margin: 1em auto 1.5em;
+    }
+    .signupForm {
+      width: 100%;
+      .signupInput {
+        display: block;
+        margin: 0.5em auto;
+        padding: 10px 173px 10px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .alert {
+        color: rgb(190, 23, 11);
+        font-size: 0.7em;
+        margin-bottom: 1em;
+      }
+      .none {
+        display: none;
+      }
+      .signupCheckBox {
+        font-size: 0.9em;
+        input {
+          margin: 0.5em 0.5em 0.5em 0;
+        }
+      }
+    }
+    .signupSubmitBtn {
+      margin: 2em 1em 1em;
+      padding: 10px 135px;
+      border-radius: 4px;
+      font-size: 1em;
+      color: white;
+      background-color:  rgb(1, 1, 37);
+      &:hover {
+        cursor: pointer;
+        opacity: 85%;
+        font-weight: 700;
+      }
+    }
+    .gotoSignIn {
+      margin-bottom: 4em;
+      a {
+        color: rgb(1, 1, 37);
+      }
+    }
+  }
 }
 
 @include tablet {
