@@ -4,20 +4,27 @@ import axios from "axios";
 import { useTranslation } from 'react-i18next';
 import '../scss/Signup.scss';
 
-function SignupEmail() {
+function SignupEmail({ history }) {
 
+  // change language handler
   const { t } = useTranslation();
 
+  // state of user information
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
-  const [contact, setContact] = useState('');
   const [policy, setPolicy] = useState('');
-  const [language, setLanguage] = useState('');
   const [verification, setVerification] = useState('');
-  const [lastVisit, setLastVisit] = useState('');
 
+  // failure of signup
+  const [wrongEmail, setWrongEmail] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const [wrongName, setWrongName] = useState(false);
+  const [wrongPolicy, setWrongPolicy] = useState(false);
+
+
+  // form input change handler
   const onChangeHandler = (e) => {
     if(e.target.name === "email") {
       setEmail(e.target.value);
@@ -27,52 +34,91 @@ function SignupEmail() {
       setConfirmPassword(e.target.value);
     } else if(e.target.name === "name") {
       setName(e.target.value);
-    } else if(e.target.name === "contact") {
-      setContact(e.target.value);
     } else if(e.target.name === "policy") {
       setPolicy("true");
     }
   }
 
+
+  // validateEmail handler
+  const validateEmail = (text) => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(text) === false) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  // signup btn handler
   const signUpBtnHandler = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3355/users/signup', {
-      email: email,
-      password: password,
-      name: name,
-      contact: contact,
-      is_policy_agreed: policy,
-      language: window.localStorage.getItem("i18nextLng")
-    })
-    .then(res => console.log(res));
+    if (validateEmail(email) && (password === confirmPassword) && (name !== "") && (policy !== "")) {
+      axios.post('http://localhost:3355/users/signup', {
+        email: email,
+        password: password,
+        name: name,
+        is_policy_agreed: policy,
+        language: window.localStorage.getItem("i18nextLng")
+      })
+      .then(res => console.log(res));
+    }
+    else {
+      validateEmail(email) ? setWrongEmail(false) : setWrongEmail(true);
+      ((password === confirmPassword) && password !== "") ? setWrongPassword(false) : setWrongPassword(true);
+      (name !== "") ? setWrongName(false) : setWrongName(true);
+      (policy !== "") ? setWrongPolicy(false) : setWrongPolicy(true);
+    }
   }
 
 
   return(
-    <div>
-      <h1>{t('signup.signup')}</h1>
-      <div>
-        <a href="/user/signupwithemail">{t('signup.google')}</a>
+    <div className="background">
+
+      {/* social signup */}
+      <h1 className="h1">{t('signup.signup')}</h1>
+      <div className="signupBtn">
+        <a href="/user/signupwithemail" className="btn googleBtn">{t('signup.google')}</a>
       </div>
-      <div>
-        <a href="/user/signupwithemail">{t('signup.wechat')}</a>
+      <div className="signupBtn">
+        <a href="/user/signupwithemail" className="btn wechatBtn">{t('signup.wechat')}</a>
       </div>
-      <div>
-        <a href="/user/signupwithemail">{t('signup.line')}</a>
+      <div className="signupBtn">
+        <a href="/user/signupwithemail" className="btn lineBtn">{t('signup.line')}</a>
       </div>
-      <div>
+
+      {/* or */}
+      <div className="signupOR">
+        <span>{t('signin.or')}</span>
+      </div>
+
+      {/* email signup */}
+      <form className="signupForm">
+        <input className="signupInput" type="text" name="email" onChange={onChangeHandler} placeholder={t("signup.email")} label="Email Address" />
+        <div className={wrongEmail ? "alert" : "none"}>유효하지 않은 이메일 형식입니다.</div>
+
+        <input className="signupInput" type="password" name="password" onChange={onChangeHandler} placeholder={t("signup.password")} label="Password" />
+
+        <input className="signupInput" type="password" name="confirmPassword" onChange={onChangeHandler} placeholder={t("signup.confirmPassword")} label="Confirm Password" />
+        <div className={wrongPassword ? "alert" : "none"}>비밀번호가 일치하지 않습니다.</div>
+        
+        <input className="signupInput" type="text" name="name" onChange={onChangeHandler} placeholder={t("signup.name")} label="Name" />
+        <div className={wrongName ? "alert" : "none"}>이름을 입력해주세요.</div>
+        
+        <div className="signupCheckBox">
+          <input name="policy" onChange={onChangeHandler} type="checkbox"></input>
+          <label htmlFor="policy">{t("signup.policy")}</label>
+        </div>
+        <div className={wrongPolicy ? "alert" : "none"}>개인정보 수집동의를 체크해주세요.</div>
+      </form>
+
+      {/* signup btn */}
+      <button className="signupSubmitBtn" onClick={signUpBtnHandler}>{t('signup.signup')}</button>
+      
+      {/* go to signin */}
+      <div className="gotoSignIn">
         <a href="/user/signin">{t('signup.already')}</a>
       </div>
-      <form>
-        <input type="text" name="email" onChange={onChangeHandler} placeholder={t("signup.email")} label="Email Address" />
-        <input type="password" name="password" onChange={onChangeHandler} placeholder={t("signup.password")} label="Password" />
-        <input type="password" name="confirmPassword" onChange={onChangeHandler} placeholder={t("signup.confirmPassword")} label="Confirm Password" />
-        <input type="text" name="name" onChange={onChangeHandler} placeholder={t("signup.name")} label="Name" />
-        <input type="number" name="contact" onChange={onChangeHandler} placeholder={t("signup.contact")} label="Phone Number" />
-        <input name="policy" onChange={onChangeHandler} type="checkbox"></input>
-           <label htmlFor="policy">{t("signup.policy")}</label>
-      </form>
-      <button onClick={signUpBtnHandler}>{t('signup.signup')}</button>
     </div>
   )
 }
