@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
-import '../scss/Signup.scss';
+import '../scss/Form.scss';
 
 function SignupEmail({ history }) {
 
   // change language handler
   const { t } = useTranslation();
 
-  // state of user information
+  // state of user information for signup
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -61,7 +61,7 @@ function SignupEmail({ history }) {
         is_policy_agreed: policy,
         language: window.localStorage.getItem("i18nextLng")
       })
-      .then(res => console.log(res));
+      .then(res => { history.push('/user/signin') });
     }
     else {
       validateEmail(email) ? setWrongEmail(false) : setWrongEmail(true);
@@ -95,21 +95,21 @@ function SignupEmail({ history }) {
       {/* email signup */}
       <form className="signupForm">
         <input className="signupInput" type="text" name="email" onChange={onChangeHandler} placeholder={t("signup.email")} label="Email Address" />
-        <div className={wrongEmail ? "alert" : "none"}>유효하지 않은 이메일 형식입니다.</div>
+        <div className={wrongEmail ? "alert" : "none"}>{t('signup.wrongEmail')}</div>
 
         <input className="signupInput" type="password" name="password" onChange={onChangeHandler} placeholder={t("signup.password")} label="Password" />
 
         <input className="signupInput" type="password" name="confirmPassword" onChange={onChangeHandler} placeholder={t("signup.confirmPassword")} label="Confirm Password" />
-        <div className={wrongPassword ? "alert" : "none"}>비밀번호가 일치하지 않습니다.</div>
+        <div className={wrongPassword ? "alert" : "none"}>{t('signup.wrongPassword')}</div>
         
         <input className="signupInput" type="text" name="name" onChange={onChangeHandler} placeholder={t("signup.name")} label="Name" />
-        <div className={wrongName ? "alert" : "none"}>이름을 입력해주세요.</div>
+        <div className={wrongName ? "alert" : "none"}>{t('signup.wrongName')}</div>
         
         <div className="signupCheckBox">
           <input name="policy" onChange={onChangeHandler} type="checkbox"></input>
           <label htmlFor="policy">{t("signup.policy")}</label>
         </div>
-        <div className={wrongPolicy ? "alert" : "none"}>개인정보 수집동의를 체크해주세요.</div>
+        <div className={wrongPolicy ? "alert" : "none"}>{t('signup.wrongPolicy')}</div>
       </form>
 
       {/* signup btn */}

@@ -15,6 +15,10 @@
   "signup.name": "名 *",
   "signup.contact": "電話番号 *",
   "signup.policy": "プライバシーポリシー *",
+  "signup.wrongEmail": "Eメール形式が無効です。",
+  "signup.wrongPassword": "パスワードが一致しません。",
+  "signup.wrongName": "名前は必須の情報です。",
+  "signup.wrongPolicy": "プライバシーポリシーアグリーメントを確認してください。",
   "signin.signin": "ログイン",
   "signin.google": "Googleでログインする",
   "signin.wechat": "WeChatでログインする",
@@ -24,5 +28,6 @@
   "signin.forgotPassword": "パスワードをお忘れですか?",
   "signin.gotoSignUp": "まだ身分証明書をお持ちでない方は",
   "signin.or": "または",
+  "signin.wrongInfo": "Eメールアドレスまたはパスワードが一致しません。",
   "nav.mypage": "私の"
 }
