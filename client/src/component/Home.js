@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from "react-router-dom";
-import { useTranslation, withTranslation } from 'react-i18next';
-import './Home.scss';
+import { useTranslation } from 'react-i18next';
+import '../scss/Home.scss';
 
 function Home() {
 

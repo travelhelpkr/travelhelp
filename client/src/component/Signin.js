@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
-import { useTranslation, withTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 function Signin(props) {
 
   const { setIsLogin } = props;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

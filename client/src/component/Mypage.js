@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter } from "react-router-dom";
-import { useTranslation, withTranslation } from 'react-i18next';
-import './Mypage.scss';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import '../scss/Mypage.scss';
 
 function Mypage(props) {
 
   const { setIsLogin, history } = props;
   // change language handler
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const signoutHandler = () => {
-    axios.post('http://localhost:3355/users/signout', {})
+    axios.post('http://localhost:3355/users/signout', {
+      language: window.localStorage.getItem('i18nextLng')
+    })
       .then(res => {
         setIsLogin(false);
         window.sessionStorage.clear();
