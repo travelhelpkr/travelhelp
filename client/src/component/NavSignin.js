@@ -1,11 +1,10 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { useTranslation, withTranslation } from 'react-i18next';
-import './Nav.scss';
+import { useTranslation } from 'react-i18next';
+import '../scss/Nav.scss';
 
-function Nav_signin(props) {
+function NavSignin(props) {
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return(
     <div className="background">
@@ -21,4 +20,4 @@ function Nav_signin(props) {
   )
 }
 
-export default Nav_signin; 
+export default NavSignin; 

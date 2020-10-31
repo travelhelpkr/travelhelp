@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import { useTranslation, withTranslation } from 'react-i18next';
-import Nav from "./Nav_signin";
+import { useTranslation } from 'react-i18next';
+import '../scss/Signup.scss';
 
 function SignupEmail() {
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

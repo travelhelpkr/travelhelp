@@ -1,5 +1,9 @@
 @import "../mixin";
 
+@include desktop-large {
+  
+}
+
 @include desktop-small {
   .background {
     width: 100%;

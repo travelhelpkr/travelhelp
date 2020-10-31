@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 // import Nav from "./component/Nav";
 import Home from "./component/Home";
 import Signin from "./component/Signin";
@@ -9,8 +9,8 @@ import FoodDelivery from "./component/FoodDelivery";
 import Luggage from "./component/Luggage";
 import Taxi from "./component/Taxi";
 import Rental from "./component/Rental";
-import Nav_mypage from "./component/Nav_mypage";
-import Nav_signin from "./component/Nav_signin";
+import NavMypage from "./component/NavMypage";
+import NavSignin from "./component/NavSignin";
 import './App.scss';
 
 function App(props) {
@@ -25,9 +25,9 @@ function App(props) {
 
   const Nav = () => {
     if(window.sessionStorage.getItem('id')) {
-      return <Nav_mypage />
+      return <NavMypage />
     } else {
-      return <Nav_signin />
+      return <NavSignin />
     }
   }
 
