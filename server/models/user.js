@@ -26,10 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    contact: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     is_email_verified: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

@@ -14,6 +14,9 @@ module.exports = {
       postal_code: {
         type: Sequelize.INTEGER
       },
+      contact: {
+        type: Sequelize.INTEGER
+      },
       user_id: {
         type: Sequelize.INTEGER,
         references: {

@@ -20,10 +20,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      contact: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       is_email_verified: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
