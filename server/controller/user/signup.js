@@ -14,7 +14,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
   post: async (req, res) => {
 
-    const { email, password, name, contact, is_email_verified, is_policy_agreed, language } = req.body;
+    const { email, password, name, is_email_verified, is_policy_agreed, language } = req.body;
     const hash_password = await bcrypt.hash(password, 10);
     
     // check db has req.body.email
@@ -32,7 +32,6 @@ module.exports = {
         email: email,
         password: hash_password,
         name: name,
-        contact: contact,
         is_email_verified: is_email_verified,
         is_policy_agreed: is_policy_agreed,
         last_visited_at: new Date(),
