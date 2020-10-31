@@ -15,6 +15,10 @@
   "signup.name": "Name *",
   "signup.contact": "Phone Number *",
   "signup.policy": "Privacy Policy *",
+  "signup.wrongEmail": "Invalid email format.",
+  "signup.wrongPassword": "Passwords do not match.",
+  "signup.wrongName": "Name is required information.",
+  "signip.wrongPolicy": "Please check the Privacy Policy Agreement.",
   "signin.signin": "Sign In",
   "signin.google": "Sign In with Google",
   "signin.wechat": "Sign In with WeChat",
@@ -24,5 +28,6 @@
   "signin.forgotPassword": "forgot your password?",
   "signin.gotoSignUp": "If you don't have an ID yet",
   "signin.or": "OR",
+  "signin.wrongInfo": "The email address or password is not match.",
   "nav.mypage": "my"
 }

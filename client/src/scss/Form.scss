@@ -105,7 +105,13 @@
       margin-bottom: 4em;
       a {
         color: rgb(1, 1, 37);
+        &:hover {
+          font-weight: 700;
+        }
       }
+    }
+    .forgotPassword {
+      margin-bottom: 1em;
     }
   }
 }
