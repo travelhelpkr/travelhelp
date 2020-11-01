@@ -29,5 +29,10 @@
   "signin.gotoSignUp": "まだ身分証明書をお持ちでない方は",
   "signin.or": "または",
   "signin.wrongInfo": "Eメールアドレスまたはパスワードが一致しません。",
-  "nav.mypage": "私の"
+  "nav.mypage": "私の",
+  "mypage.title": "マイページ",
+  "mypage.userInfoTitle": "ユーザー情報",
+  "mypage.changePassword": "更改密码",
+  "mypage.signout": "ログアウト",
+  "mypage.orderHistoryTitle": "注文履歴"
 }

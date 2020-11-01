@@ -29,5 +29,10 @@
   "signin.gotoSignUp": "If you don't have an ID yet",
   "signin.or": "OR",
   "signin.wrongInfo": "The email address or password is not match.",
-  "nav.mypage": "my"
+  "nav.mypage": "my",
+  "mypage.title": "My Page",
+  "mypage.userInfoTitle": "User Information",
+  "mypage.changePassword": "Change Password",
+  "mypage.signout": "Sign Out",
+  "mypage.orderHistoryTitle": "Order History"
 }
