@@ -1,11 +1,46 @@
 @import "../mixin";
 
 @include desktop-large {
-  
+ 
 }
 
 @include desktop-small {
-  
+  .background {
+    .h1 {
+      font-size: 2em;
+      margin: 1.5em;
+      color: rgb(1, 1, 37);
+    }
+    .content_userInfo {
+      background-color: #f6f6f8;
+      width: 45%;
+      margin: auto;
+      padding: 40px 0;
+      border: 1px solid #ebebeb;
+      color: rgb(1, 1, 37);
+      .userInfo {
+        text-align: left;
+        padding-left: 40px;
+        .userInfoIcon {
+          color: rgb(1, 1, 37);
+          height: 2em;
+          .MuiSvgIcon-root {
+            font-size: 1.3em;
+          }
+        }
+        .userInfoText {
+          color: rgb(1, 1, 37);
+        }
+      }
+    }
+    .content_orderInfo {
+      background-color: #f6f6f8;
+      width: 45%;
+      margin: 1em auto;
+      padding: 40px 0;
+      border: 1px solid #ebebeb;
+    }
+  } 
 }
 
 @include tablet {
