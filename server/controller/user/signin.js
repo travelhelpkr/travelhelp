@@ -40,20 +40,18 @@ module.exports = {
           res.status(401).send("Wrong password.");
         }
         else {
-          // update last visited time of the user
-          User.update({
-            last_visited_at: new Date()
-          }, {  
-            where: {
-              id: userData.dataValues.id
-            }
-          })
-          .then(data => {
-            // store user id on session
-            req.session.user_id = userData.dataValues.id;
-            req.session.save(() => {
-              res.status(200).send("successfully signed in")
-            });
+          // store user id on the session
+          req.session.user_id = userData.dataValues.id;
+          req.session.save(() => {
+            // update last visited time of the user
+            User.update({
+              last_visited_at: new Date()
+            }, {  
+              where: {
+                id: userData.dataValues.id
+              }
+            })
+            res.status(200).send({id: userData.dataValues.id, name: userData.dataValues.name});
           });
         }
       });

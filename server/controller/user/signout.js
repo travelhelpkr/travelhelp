@@ -23,7 +23,7 @@ module.exports = {
         console.log('req.session.user_id: ', req.session.user_id);
 
         // update last visited time & language setting of the user
-        await User.update({
+        User.update({
           last_visited_at: new Date(),
           language: language
         }, {  
