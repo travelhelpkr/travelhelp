@@ -26,25 +26,30 @@ function Mypage(props) {
   return(
     <div className="background">
 
-      <h1 className="h1">마이페이지</h1>
+      <h1 className="h1">{t('mypage.title')}</h1>
 
-      <div className="content_userInfo">
+      <div className="contentUserInfo">
+        <div className="userInfoTitle">{t('mypage.userInfoTitle')}</div>
 
         {/* user infomation */}
-        <div className="userInfo">
-          <span className="userInfoIcon"><AccountCircleOutlinedIcon /></span>
-          <span className="userInfoText">chae ryn park</span>
+        <div className="userInfoBox">
+          <div className="userInfo userInfoName">
+            <div className="userInfoIcon"><AccountCircleOutlinedIcon /></div>
+            <div className="userInfoText">chae ryn park</div>
+          </div>
+          <div className="userInfo userInfoEmail">
+            <div className="userInfoIcon"><AlternateEmailOutlinedIcon /></div>
+            <div className="userInfoText">ryn3777@gmail.com</div>
+          </div>
         </div>
-        <div className="userInfo">
-          <span className="userInfoIcon"><AlternateEmailOutlinedIcon /></span>
-          <span className="userInfoText">ryn3777@gmail.com</span>
+        <div className="userInfoBtn">
+          <button className="mypageBtn changePasswordBtn" onClick={signoutHandler}>{t('mypage.changePassword')}</button>
+          <button className="mypageBtn signOutBtn" onClick={signoutHandler}>{t('mypage.signout')}</button>
         </div>
-        <button onClick={signoutHandler}>비밀번호 변경</button>
-        <button onClick={signoutHandler}>로그아웃</button>
       </div>
 
-      <div className="content_orderInfo">
-        <div>주문내역</div>
+      <div className="contentOrderInfo">
+        <div className="orderHistoryTitle">{t('mypage.orderHistoryTitle')}</div>
       </div>
     </div>
   )
