@@ -40,21 +40,24 @@ module.exports = {
           res.status(401).send("Wrong password.");
         }
         else {
-          // store user id & sign in status on the session
-          req.session.cookie.is_signedIn = true;  
-          req.session.cookie.user_id = userData.dataValues.id;
+          // update last visited time of the user
+          User.update({
+            last_visited_at: new Date()
+          }, {  
+            where: {
+              id: userData.dataValues.id
+            }
+          })
           
+          // store user id & sign in status on the session
+          req.session.is_signedIn = true;  
+          req.session.user_id = userData.dataValues.id;
+          req.session.user_name = userData.dataValues.name;
+          req.session.user_email = userData.dataValues.email;
+
           req.session.save(() => {
-            // update last visited time of the user
-            User.update({
-              last_visited_at: new Date()
-            }, {  
-              where: {
-                id: userData.dataValues.id
-              }
-            })
             // send user info to client side as an object
-            res.status(200).send({id: userData.dataValues.id, name: userData.dataValues.name, email: userData.dataValues.email});
+            res.status(200).send({id: req.session.user_id, name: req.session.user_name, email: req.session.user_email});
           });
         }
       });
