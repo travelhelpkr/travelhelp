@@ -3,19 +3,18 @@ import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import '../scss/Form.scss';
-import { Cookies } from 'react-cookie';
 
 function Signin(props) {
 
   // login state props
-  const { setIsLogin } = props;
+  const { setIsLogin, setEmail, setName, setUserId } = props;
 
   // change language handler
   const { t } = useTranslation();
 
-  // state of user information for signin
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // input state of user information for signin
+  const [email, inputEmail] = useState('');
+  const [password, inputPassword] = useState('');
 
   // failure of signin
   const [failAlert, setFailAlert] = useState(false);
@@ -30,11 +29,16 @@ function Signin(props) {
       headers: { "Access-Control-Allow-Origin": "*" }
     })
     .then(res => {
-      console.log("res:", res.data)
-      // const cookie = Cookies.get('connect.sid');
-      // console.log('cookie:', cookie);
-      window.sessionStorage.setItem('id', "id");
+      console.log(res.data.id, res.data.email, res.data.name)
+      window.sessionStorage.setItem('id', res.data.id);
+      window.sessionStorage.setItem('email', res.data.email);
+      window.sessionStorage.setItem('name', res.data.name);
       setIsLogin(true);
+      setUserId(res.data.id);
+      setEmail(res.data.email);
+      setName(res.data.name);
+      inputEmail("");
+      inputPassword("");
     })
     .catch((err) => setFailAlert(true));
   }
@@ -63,8 +67,8 @@ function Signin(props) {
 
         {/* email signin */}
         <form className="signupForm">
-          <input className="signupInput" type="text" name="email" onChange={(e) => setEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
-          <input className="signupInput" type="password" name="password" onChange={(e) => setPassword(e.target.value)} placeholder={t("signin.password")} label="Password" />
+          <input className="signupInput" type="text" name="email" onChange={(e) => inputEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
+          <input className="signupInput" type="password" name="password" onChange={(e) => inputPassword(e.target.value)} placeholder={t("signin.password")} label="Password" />
           <div className={failAlert ? "alert" : "none"}>{t('signin.wrongInfo')}</div>
         </form>
 

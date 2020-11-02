@@ -16,12 +16,20 @@ import './App.scss';
 function App(props) {
 
   const [isLogin, setIsLogin] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     if(window.sessionStorage.getItem('id')) {
       setIsLogin(true);
+      setUserId(window.sessionStorage.getItem('id'));
+      setEmail(window.sessionStorage.getItem('email'));
+      setName(window.sessionStorage.getItem('name'));
     }
   })
+
+  console.log(email, name);
 
   const Nav = () => {
     if(window.sessionStorage.getItem('id')) {
@@ -43,7 +51,7 @@ function App(props) {
             if(window.sessionStorage.getItem("id")){
               return <Redirect to='/' />
             } else {
-              return <Signin setIsLogin={setIsLogin} />
+              return <Signin setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
             }
           }} />
           <Route path="/user/signup" render={() => {
@@ -51,7 +59,7 @@ function App(props) {
           }} />
           <Route path="/user/mypage" render={() => {
             if(window.sessionStorage.getItem("id")){
-              return <Mypage setIsLogin={setIsLogin} />
+              return <Mypage setIsLogin={setIsLogin} name={name} email={email} setEmail={setEmail} setName={setName} />
             } else {
               return <Redirect to='/user/signin' />
             }
