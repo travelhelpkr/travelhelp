@@ -32,9 +32,9 @@ app.use(
     saveUninitialized: true,
     store: sessionStorage,
     cookie: {
-      domain: 'http://localhost:3355',
-      // cookie valid for 2 days
-      maxAge: 172800000
+      // domain: 'http://localhost:3355',
+      // cookie valid for a day
+      maxAge: 6000 * 60 * 24
     }
   })
 );

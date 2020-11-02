@@ -26,6 +26,8 @@ module.exports = {
         email: email
       }
     });
+
+    console.log('session ID1: ', req.session.id);
     
     // check req.body.email exists on db
     if (!userData) {
@@ -48,7 +50,9 @@ module.exports = {
               id: userData.dataValues.id
             }
           })
-          
+
+          console.log('session ID2: ', req.session.id);
+
           // store user id & sign in status on the session
           req.session.is_signedIn = true;  
           req.session.user_id = userData.dataValues.id;
@@ -56,6 +60,7 @@ module.exports = {
           req.session.user_email = userData.dataValues.email;
 
           req.session.save(() => {
+            console.log('session ID3: ', req.session.id);
             // send user info to client side as an object
             res.status(200).send({id: req.session.user_id, name: req.session.user_name, email: req.session.user_email});
           });
