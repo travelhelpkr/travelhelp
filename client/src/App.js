@@ -43,14 +43,18 @@ function App(props) {
             if(window.sessionStorage.getItem("id")){
               return <Redirect to='/' />
             } else {
-              return <Signin setIsLogin={setIsLogin}/>
+              return <Signin setIsLogin={setIsLogin} />
             }
           }} />
           <Route path="/user/signup" render={() => {
             return <Signup />
           }} />
           <Route path="/user/mypage" render={() => {
-            return <Mypage />
+            if(window.sessionStorage.getItem("id")){
+              return <Mypage setIsLogin={setIsLogin} />
+            } else {
+              return <Redirect to='/user/signin' />
+            }
           }} />
           <Route path="/help/foodDelivery" render={() => {
             return <FoodDelivery />
