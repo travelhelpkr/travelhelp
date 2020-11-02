@@ -33,7 +33,8 @@ app.use(
     store: sessionStorage,
     cookie: {
       domain: 'http://localhost:3355',
-      expires: new Date(Date.now() + (20000))
+      // cookie valid for 2 days
+      maxAge: 172800000
     }
   })
 );

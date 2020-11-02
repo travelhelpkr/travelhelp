@@ -30,7 +30,9 @@ function Signin(props) {
       headers: { "Access-Control-Allow-Origin": "*" }
     })
     .then(res => {
+      console.log("res:", res.data)
       // const cookie = Cookies.get('connect.sid');
+      // console.log('cookie:', cookie);
       window.sessionStorage.setItem('id', "id");
       setIsLogin(true);
     })
@@ -40,41 +42,45 @@ function Signin(props) {
   return(
     <div className="background">
 
-      {/* social signin */}
       <h1 className="h1">{t('signin.signin')}</h1>
-      <div className="signupBtn">
-        <a href="/user/signupwithemail" className="btn googleBtn">{t('signin.google')}</a>
-      </div>
-      <div className="signupBtn">
-        <a href="/user/signupwithemail" className="btn wechatBtn">{t('signin.wechat')}</a>
-      </div>
-      <div className="signupBtn">
-        <a href="/user/signupwithemail" className="btn lineBtn">{t('signin.line')}</a>
-      </div>
 
-      {/* or */}
-      <div className="signupOR">
-        <span>{t('signin.or')}</span>
-      </div>
+      <div className="content">
+        {/* social signin */}
+        <div className="signupBtn">
+          <a href="/user/signupwithemail" className="btn googleBtn">{t('signin.google')}</a>
+        </div>
+        <div className="signupBtn">
+          <a href="/user/signupwithemail" className="btn wechatBtn">{t('signin.wechat')}</a>
+        </div>
+        <div className="signupBtn">
+          <a href="/user/signupwithemail" className="btn lineBtn">{t('signin.line')}</a>
+        </div>
 
-      {/* email signin */}
-      <form className="signupForm">
-        <input className="signupInput" type="text" name="email" onChange={(e) => setEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
-        <input className="signupInput" type="password" name="password" onChange={(e) => setPassword(e.target.value)} placeholder={t("signin.password")} label="Password" />
-        <div className={failAlert ? "alert" : "none"}>{t('signin.wrongInfo')}</div>
-      </form>
+        {/* or */}
+        <div className="signupOR">
+          <span>{t('signin.or')}</span>
+        </div>
 
-      {/* signin btn */}
-      <button className="signupSubmitBtn" onClick={handleLoginBtn}>{t('signin.signin')}</button>
-      
-      {/* find password */}
-      <div className="gotoSignIn forgotPassword">
-        <a href="/user/signup">{t('signin.forgotPassword')}</a>
-      </div>
+        {/* email signin */}
+        <form className="signupForm">
+          <input className="signupInput" type="text" name="email" onChange={(e) => setEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
+          <input className="signupInput" type="password" name="password" onChange={(e) => setPassword(e.target.value)} placeholder={t("signin.password")} label="Password" />
+          <div className={failAlert ? "alert" : "none"}>{t('signin.wrongInfo')}</div>
+        </form>
 
-      {/* go to signup */}
-      <div className="gotoSignIn">
-        <a href="/user/signup">{t('signin.gotoSignUp')}</a>
+        {/* signin btn */}
+        <button className="signupSubmitBtn" onClick={handleLoginBtn}>{t('signin.signin')}</button>
+        
+        {/* find password */}
+        <div className="gotoSignIn forgotPassword">
+          <a href="/user/signup">{t('signin.forgotPassword')}</a>
+        </div>
+
+        {/* go to signup */}
+        <div className="gotoSignIn">
+          <a href="/user/signup">{t('signin.gotoSignUp')}</a>
+        </div>
+
       </div>
     </div>
   )

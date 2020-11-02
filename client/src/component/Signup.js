@@ -75,50 +75,54 @@ function SignupEmail({ history }) {
   return(
     <div className="background">
 
-      {/* social signup */}
       <h1 className="h1">{t('signup.signup')}</h1>
-      <div className="signupBtn">
-        <a href="/user/signupwithemail" className="btn googleBtn">{t('signup.google')}</a>
-      </div>
-      <div className="signupBtn">
-        <a href="/user/signupwithemail" className="btn wechatBtn">{t('signup.wechat')}</a>
-      </div>
-      <div className="signupBtn">
-        <a href="/user/signupwithemail" className="btn lineBtn">{t('signup.line')}</a>
-      </div>
 
-      {/* or */}
-      <div className="signupOR">
-        <span>{t('signin.or')}</span>
-      </div>
-
-      {/* email signup */}
-      <form className="signupForm">
-        <input className="signupInput" type="text" name="email" onChange={onChangeHandler} placeholder={t("signup.email")} label="Email Address" />
-        <div className={wrongEmail ? "alert" : "none"}>{t('signup.wrongEmail')}</div>
-
-        <input className="signupInput" type="password" name="password" onChange={onChangeHandler} placeholder={t("signup.password")} label="Password" />
-
-        <input className="signupInput" type="password" name="confirmPassword" onChange={onChangeHandler} placeholder={t("signup.confirmPassword")} label="Confirm Password" />
-        <div className={wrongPassword ? "alert" : "none"}>{t('signup.wrongPassword')}</div>
-        
-        <input className="signupInput" type="text" name="name" onChange={onChangeHandler} placeholder={t("signup.name")} label="Name" />
-        <div className={wrongName ? "alert" : "none"}>{t('signup.wrongName')}</div>
-        
-        <div className="signupCheckBox">
-          <input name="policy" onChange={onChangeHandler} type="checkbox"></input>
-          <label htmlFor="policy">{t("signup.policy")}</label>
+      <div className="content">
+        {/* social signup */}
+        <div className="signupBtn">
+          <a href="/user/signupwithemail" className="btn googleBtn">{t('signup.google')}</a>
         </div>
-        <div className={wrongPolicy ? "alert" : "none"}>{t('signup.wrongPolicy')}</div>
-      </form>
+        <div className="signupBtn">
+          <a href="/user/signupwithemail" className="btn wechatBtn">{t('signup.wechat')}</a>
+        </div>
+        <div className="signupBtn">
+          <a href="/user/signupwithemail" className="btn lineBtn">{t('signup.line')}</a>
+        </div>
 
-      {/* signup btn */}
-      <button className="signupSubmitBtn" onClick={signUpBtnHandler}>{t('signup.signup')}</button>
-      
-      {/* go to signin */}
-      <div className="gotoSignIn">
-        <a href="/user/signin">{t('signup.already')}</a>
+        {/* or */}
+        <div className="signupOR">
+          <span>{t('signin.or')}</span>
+        </div>
+
+        {/* email signup */}
+        <form className="signupForm">
+          <input className="signupInput" type="text" name="email" onChange={onChangeHandler} placeholder={t("signup.email")} label="Email Address" />
+          <div className={wrongEmail ? "alert" : "none"}>{t('signup.wrongEmail')}</div>
+
+          <input className="signupInput" type="password" name="password" onChange={onChangeHandler} placeholder={t("signup.password")} label="Password" />
+
+          <input className="signupInput" type="password" name="confirmPassword" onChange={onChangeHandler} placeholder={t("signup.confirmPassword")} label="Confirm Password" />
+          <div className={wrongPassword ? "alert" : "none"}>{t('signup.wrongPassword')}</div>
+          
+          <input className="signupInput" type="text" name="name" onChange={onChangeHandler} placeholder={t("signup.name")} label="Name" />
+          <div className={wrongName ? "alert" : "none"}>{t('signup.wrongName')}</div>
+          
+          <div className="signupCheckBox">
+            <input name="policy" onChange={onChangeHandler} type="checkbox"></input>
+            <label htmlFor="policy">{t("signup.policy")}</label>
+          </div>
+          <div className={wrongPolicy ? "alert" : "none"}>{t('signup.wrongPolicy')}</div>
+        </form>
+
+        {/* signup btn */}
+        <button className="signupSubmitBtn" onClick={signUpBtnHandler}>{t('signup.signup')}</button>
+        
+        {/* go to signin */}
+        <div className="gotoSignIn">
+          <a href="/user/signin">{t('signup.already')}</a>
+        </div>
       </div>
+
     </div>
   )
 }
