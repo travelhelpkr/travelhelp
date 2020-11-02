@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import '../scss/Form.scss';
+import { Cookies } from 'react-cookie';
 
 function Signin(props) {
 
@@ -29,6 +30,9 @@ function Signin(props) {
       headers: { "Access-Control-Allow-Origin": "*" }
     })
     .then(res => {
+      console.log("res:", res.data)
+      // const cookie = Cookies.get('connect.sid');
+      // console.log('cookie:', cookie);
       window.sessionStorage.setItem('id', "id");
       setIsLogin(true);
     })
