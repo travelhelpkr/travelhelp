@@ -41,8 +41,8 @@ module.exports = {
         }
         else {
           // store user id & sign in status on the session
-          req.session.cookie.is_signedIn = true;  
-          req.session.cookie.user_id = userData.dataValues.id;
+          req.session.is_signedIn = true;  
+          req.session.user_id = userData.dataValues.id;
           
           req.session.save(() => {
             // update last visited time of the user
@@ -54,7 +54,8 @@ module.exports = {
               }
             })
             // send user info to client side as an object
-            res.status(200).send({id: userData.dataValues.id, name: userData.dataValues.name, email: userData.dataValues.email});
+            res.cookie('user', userData.dataValues.id)
+            res.status(200).send({id: userData.dataValues.id, name: userData.dataValues.name, email: userData.dataValues.email });
           });
         }
       });
