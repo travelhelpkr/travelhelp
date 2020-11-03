@@ -10,10 +10,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 app.use(cors(
-//   {
-//   origin: "http://localhost:5533",
-//   credentials: true
-// }
+  {
+  origin: "http://localhost:5533",
+  credentials: true
+}
 ));
 app.use(cookieParser());
 app.use(bodyParser.json());
