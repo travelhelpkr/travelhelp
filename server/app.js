@@ -9,12 +9,19 @@ const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
+<<<<<<< HEAD
 app.use(cors(
   {
   origin: "http://localhost:5533",
   credentials: true
 }
 ));
+=======
+app.use(cors({
+  origin: "http://localhost:5533",
+  credentials: true
+}));
+>>>>>>> dc2ee0e330debb3f7e14ff7a4acc25cd99271ef8
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -34,7 +41,7 @@ app.use(
   session({
     secret: env.secret,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: sessionStorage,
     cookie: {
       // domain: 'http://localhost:5533',
