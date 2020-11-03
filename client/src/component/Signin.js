@@ -25,12 +25,20 @@ function Signin(props) {
     axios.post('http://localhost:3355/users/signin', {
       email: email,
       password: password
+<<<<<<< HEAD
+    },{
+      withCredentials: true
+    },
+    {
+      headers: { "Access-Control-Allow-Origin": "http://localhost:3355" }
+=======
     }, {
       withCredentials: true,
     }, {
       headers: { 
         "Access-Control-Allow-Origin": "http://localhost:3355",
        }
+>>>>>>> dc2ee0e330debb3f7e14ff7a4acc25cd99271ef8
     })
     .then(res => {
       console.log(res.data.id, res.data.email, res.data.name)
