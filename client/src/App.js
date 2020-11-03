@@ -29,8 +29,6 @@ function App(props) {
     }
   })
 
-  console.log(email, name);
-
   const Nav = () => {
     if(window.sessionStorage.getItem('id')) {
       return <NavMypage />
