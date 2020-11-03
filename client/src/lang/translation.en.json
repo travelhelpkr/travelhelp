@@ -32,6 +32,8 @@
   "nav.mypage": "my",
   "mypage.title": "My Page",
   "mypage.userInfoTitle": "User Information",
+  "mypage.userName": "Name",
+  "mypage.userEmail": "Email",
   "mypage.changePassword": "Change Password",
   "mypage.signout": "Sign Out",
   "mypage.orderHistoryTitle": "Order History",

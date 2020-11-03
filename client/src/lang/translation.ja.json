@@ -32,6 +32,8 @@
   "nav.mypage": "私の",
   "mypage.title": "マイページ",
   "mypage.userInfoTitle": "ユーザー情報",
+  "mypage.userName":"名",
+  "mypage.userEmail": "Eメールアドレス",
   "mypage.changePassword": "更改密码",
   "mypage.signout": "ログアウト",
   "mypage.orderHistoryTitle": "注文履歴",

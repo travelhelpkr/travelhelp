@@ -32,6 +32,8 @@
   "nav.mypage": "我的",
   "mypage.title": "我的书页",
   "mypage.userInfoTitle": "用户资料",
+  "mypage.userName": "名称",
+  "mypage.userEmail": "电邮地址",
   "mypage.changePassword": "更改密码",
   "mypage.signout": "签出",
   "mypage.orderHistoryTitle": "秩序历史",
