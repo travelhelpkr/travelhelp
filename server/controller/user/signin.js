@@ -43,6 +43,7 @@ module.exports = {
           // store user information & sign in status & visit times on the session
           req.session.user_name = userData.dataValues.name;
           req.session.user_email = userData.dataValues.email;
+          req.session.user_language = userData.dataValues.language;
           req.session.is_signedIn = true;
           req.session.visit_count = userData.dataValues.visit_count;
           if (req.session.visit_count) {
@@ -66,7 +67,7 @@ module.exports = {
             console.log('current session ID: ', req.session.id);
             console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
             // send user info to client side as an object
-            res.status(200).send({name: userData.dataValues.name, email: userData.dataValues.email});
+            res.status(200).send({name: req.session.user_name, email: req.session.user_email, language: req.session.user_language});
           });
         }
       });
