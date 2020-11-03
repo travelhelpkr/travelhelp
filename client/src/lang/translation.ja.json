@@ -78,5 +78,22 @@
   "taxi.priceInfo3": "韓国では6歳未満の赤ちゃんにはカーシートが法的に義務付けられています。(+5,000KRW)",
   "taxi.priceInfo4": "荷物: 最大 28inch, 最大 23kg",
   "taxi.priceInfo5": "大 荷物: 最大 32kg",
-  "taxi.priceInfo6": "1 大 荷物 = 2 荷物"
+  "taxi.priceInfo6": "1 大 荷物 = 2 荷物",
+  "rental.title": "レンタル旅行用品",
+  "rental.wifi": "ポータブル WiFi",
+  "rental.wifiDetail": "携帯用Wi-Fiエッグをレンタルして、どこでも使えるよ！",
+  "rental.rate": "価格",
+  "rental.data": "データ",
+  "rental.deposit": "預り金",
+  "rental.luggageScale": "手荷物スケール",
+  "rental.luggageDetailTitle": "< 使い方 >",
+  "rental.luggageDetail1": "1. 電源ボタンを2秒間押して、電源を入れます。",
+  "rental.luggageDetail2": "2. 荷物に紐を結びます。",
+  "rental.luggageDetail3": "3. 荷物の重さを確認できます。 （最大50kg）",
+  "rental.adaptor": "アダプタ",
+  "rental.chargingCable": "充電ケーブル",
+  "rental.chargingCableDetailTitle": "< 3 in 1 ケーブル >",
+  "rental.chargingCableDetail1": "- Android用5ピン",
+  "rental.chargingCableDetail2": "- Appple用8ピン",
+  "rental.chargingCableDetail3": "- Huawei / Xiaomi / LG / Galaxy / etcのType-C。"
 }
