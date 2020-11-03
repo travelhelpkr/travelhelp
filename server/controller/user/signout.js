@@ -9,18 +9,21 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
   post: async (req, res) => {
+  
+    const { language } = req.body;
     
+    console.log('sign in status1: ', req.session.is_signedIn);
     // check user has signed in. else case? do nothing.
-    if (req.session.user_id) {
-      
-      // delete only user id from the session data so that it can maintain user's session informaition until it became expired
-      delete req.session.user_id;
+    if (req.session.is_signedIn) {
+      console.log('sign in status2: ', req.session.is_signedIn);
+      // change status into signed out
+      req.session.is_signedIn = false;
+
       // ensure async logic by using save method
       req.session.save(() => {
-        const { language } = req.body;
     
         console.log('User Language:', language);
-        console.log('req.session.user_id: ', req.session.user_id);
+        console.log('req.session.user_id: ', req.session.user_email);
 
         // update last visited time & language setting of the user
         User.update({
@@ -28,7 +31,7 @@ module.exports = {
           language: language
         }, {  
           where: {
-            id: req.session.user_id
+            id: req.session.user_email
           }
         })
         
@@ -46,6 +49,9 @@ module.exports = {
       //   }
       // });
     }
-    
+    else {
+      console.log('sign out is only available when sigend in');
+    } 
+
   }
 };
