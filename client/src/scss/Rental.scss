@@ -27,12 +27,25 @@
         font-size: 1.7em;
         font-weight: 700;
       }
-      .contentTitleAlert {
-        font-size: 1em;
+      .contentImg {
+        img {
+          width: 55%;
+          margin: 25px 0;
+          background-color: rgba(255, 255, 255, 0.8);
+          border: 1px solid #ebebeb;
+        }
+      }
+      .contentDetailList {
+        margin: 20px 40px 0 15px;
         font-weight: 700;
-        color: red;
-        line-height: 1.5em;
-        margin-top: 20px;
+        font-size: 1.1em;
+        li {
+          font-weight: 400;
+          list-style: none;
+          line-height: 1.2em;
+          margin-top: 8px;
+        }
+        margin-bottom: 20px;
       }
       .contentDetail {
         font-size: 1em;
