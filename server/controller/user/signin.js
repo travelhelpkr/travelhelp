@@ -62,7 +62,9 @@ module.exports = {
           req.session.save(() => {
             console.log('session ID3: ', req.session.id);
             // send user info to client side as an object
-            res.status(200).send({id: req.session.user_id, name: req.session.user_name, email: req.session.user_email});
+            // res.redirect(200, '/');
+            // res.send({id: req.session.user_id, name: req.session.user_name, email: req.session.user_email});
+            res.status(200).send({id: userData.dataValues.id, name: userData.dataValues.name, email: userData.dataValues.email});
           });
         }
       });

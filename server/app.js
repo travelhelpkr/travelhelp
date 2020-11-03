@@ -9,7 +9,12 @@ const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
-app.use(cors());
+app.use(cors(
+//   {
+//   origin: "http://localhost:5533",
+//   credentials: true
+// }
+));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -32,9 +37,11 @@ app.use(
     saveUninitialized: true,
     store: sessionStorage,
     cookie: {
-      // domain: 'http://localhost:3355',
+      // domain: 'http://localhost:5533',
       // cookie valid for a day
       maxAge: 6000 * 60 * 24
+      // sameSite: 'none',
+      // secure: true
     }
   })
 );
@@ -43,6 +50,8 @@ app.use(
 app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
+  console.log('session: ', req.session);
+  console.log('cookies: ', req.cookies);
   res.send('welcome to the travel help!');
 })
 
