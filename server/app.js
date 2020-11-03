@@ -9,7 +9,10 @@ const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5533",
+  credentials: true
+}));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -29,7 +32,7 @@ app.use(
   session({
     secret: env.secret,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: sessionStorage,
     cookie: {
       // domain: 'http://localhost:3355',
