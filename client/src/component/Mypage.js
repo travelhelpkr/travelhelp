@@ -38,11 +38,11 @@ function Mypage(props) {
         <div className="userInfoBox">
           <div className="userInfo userInfoName">
             <div className="userInfoIcon"><AccountCircleOutlinedIcon /></div>
-            <div className="userInfoText">{name}</div>
+            <div className="userInfoText"><span>{t('mypage.userName')}</span>{name}</div>
           </div>
           <div className="userInfo userInfoEmail">
             <div className="userInfoIcon"><AlternateEmailOutlinedIcon /></div>
-            <div className="userInfoText">{email}</div>
+            <div className="userInfoText"><span>{t('mypage.userEmail')}</span>{email}</div>
           </div>
         </div>
         <div className="userInfoBtn">

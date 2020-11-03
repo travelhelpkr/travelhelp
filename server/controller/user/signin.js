@@ -26,8 +26,6 @@ module.exports = {
         email: email
       }
     });
-
-    console.log('session ID1: ', req.session.id);
     
     // check req.body.email exists on db
     if (!userData) {
@@ -42,27 +40,33 @@ module.exports = {
           res.status(401).send("Wrong password.");
         }
         else {
-          // update last visited time of the user
+          // store user information & sign in status & visit times on the session
+          req.session.user_name = userData.dataValues.name;
+          req.session.user_email = userData.dataValues.email;
+          req.session.is_signedIn = true;
+          req.session.visit_count = userData.dataValues.visit_count;
+          if (req.session.visit_count) {
+            req.session.visit_count++;
+          } else {
+            req.session.visit_count = 1;
+          }
+
+          // update last visited time & visit count on users table from the db
           User.update({
-            last_visited_at: new Date()
+            last_visited_at: new Date(),
+            visit_count: req.session.visit_count
           }, {  
             where: {
               id: userData.dataValues.id
             }
-          })
-
-          console.log('session ID2: ', req.session.id);
-
-          // store user id & sign in status on the session
-          req.session.is_signedIn = true;  
-          req.session.user_id = userData.dataValues.id;
-          req.session.user_name = userData.dataValues.name;
-          req.session.user_email = userData.dataValues.email;
-
+          });
+          
+          // excutes this callback after saving the session
           req.session.save(() => {
-            console.log('session ID3: ', req.session.id);
+            console.log('current session ID: ', req.session.id);
+            console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
             // send user info to client side as an object
-            res.status(200).send({id: req.session.user_id, name: req.session.user_name, email: req.session.user_email});
+            res.status(200).send({name: userData.dataValues.name, email: userData.dataValues.email});
           });
         }
       });

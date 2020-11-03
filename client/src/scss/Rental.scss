@@ -23,14 +23,50 @@
       border: 1px solid #ebebeb;
       color: rgb(1, 1, 37);
       font-size: 0.9em;
-      .tableTitle {
+      .contentTitle {
         font-size: 1.7em;
         font-weight: 700;
       }
-      .tableTitleDiscounted {
-        font-size: 1.7em;
+      .contentImg {
+        img {
+          width: 55%;
+          margin: 25px 0;
+          background-color: rgba(255, 255, 255, 0.8);
+          border: 1px solid #ebebeb;
+        }
+      }
+      .contentDetailList {
+        margin: 20px 40px 0 15px;
         font-weight: 700;
-        color: red;
+        font-size: 1.1em;
+        li {
+          font-weight: 400;
+          list-style: none;
+          line-height: 1.2em;
+          margin-top: 8px;
+        }
+        margin-bottom: 20px;
+      }
+      .contentDetail {
+        font-size: 1em;
+        line-height: 1.3em;
+      }
+      .bookingList {
+        margin: 20px 40px 0 15px;
+        font-size: 1.1em;
+        li {
+          text-align: left;
+          line-height: 1.5em;
+          margin-top: 8px;
+        }
+      }
+      .tableTitle {
+        font-size: 1.5em;
+        font-weight: 700;
+      }
+      .tableTitleGMP {
+        font-size: 1.5em;
+        font-weight: 700;
         margin-top: 30px;
       }
       .priceTable {
@@ -53,37 +89,13 @@
           font-weight: 700;
         }
       }
-    }
-    .sizeTable {
-      background-color: #f6f6f8;
-      width: 55%;
-      margin: auto;
-      margin-top: 20px;
-      padding: 30px 0;
-      border: 1px solid #ebebeb;
-      color: rgb(1, 1, 37);
-      font-size: 0.9em;
-      .sizeGuidelineTitle {
-        font-size: 1.1em;
-        font-weight: 700;
-      }
-      .sizeGuideline {
-        .sizeImg {
-          width: 90%;
-          margin-top: 10px;
-        }
-      }
-      .sizeDetail {
+      .priceInfo {
         margin: 20px 40px 0 15px;
         font-size: 1.1em;
         li {
           text-align: left;
           line-height: 1.5em;
           margin-top: 8px;
-          li {
-            list-style: none;
-            margin-top: 0px;
-          }
         }
       }
     }
