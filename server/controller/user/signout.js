@@ -18,6 +18,7 @@ module.exports = {
       console.log('sign in status2: ', req.session.is_signedIn);
       // change status into signed out
       req.session.is_signedIn = false;
+      req.session.user_language = language;
 
       // ensure async logic by using save method
       req.session.save(() => {
@@ -31,7 +32,7 @@ module.exports = {
           language: language
         }, {  
           where: {
-            id: req.session.user_email
+            email: req.session.user_email
           }
         })
         
@@ -39,7 +40,7 @@ module.exports = {
       });
       
       // end sesssion. redirection will be done from the client side
-      // this may required when this service does not set the expiration(or maxAge) option from the session setting
+      // this may be required when this service does not set the expiration(or maxAge) option from the session setting
       // await req.session.destroy((err) => {
       //   if (err) {
       //     console.log(err);
