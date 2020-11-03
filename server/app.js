@@ -51,7 +51,15 @@ app.use('/users', userRouter);
 app.get('/', (req, res) => {
   console.log('session: ', req.session);
   console.log('cookies: ', req.cookies);
-  res.send('welcome to the travel help!');
+  if (req.session.is_signedIn) {
+    console.log('current session ID: ', req.session.id);
+    console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
+    // send user info to client side as an object
+    res.send({is_signedIn: req.session.is_signedIn});
+  }
+  else{
+    res.send('welcome to the travel help!');
+  }
 })
 
 app.listen(port, () => {
