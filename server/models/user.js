@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false
     },
     last_visited_at: DataTypes.DATE,
+    visit_count: DataTypes.INTEGER,
     language: DataTypes.STRING
   }, {
     sequelize,
