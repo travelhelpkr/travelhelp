@@ -40,43 +40,32 @@ module.exports = {
           res.status(401).send("Wrong password.");
         }
         else {
-          // update last visited time of the user
-          User.update({
-            last_visited_at: new Date()
-          }, {  
-            where: {
-              id: userData.dataValues.id
-            }
-          })
-
           // store user information & sign in status & visit times on the session
           req.session.user_name = userData.dataValues.name;
           req.session.user_email = userData.dataValues.email;
           req.session.is_signedIn = true;
-          req.session.visit_count = userData.dataValues.visit_count + 1;
-          if (userData.dataValues.visit_count) {
-            userData.dataValues.visit_count++;
-            req.session.visit_count = userData.dataValues.visit_count;
-            console.log(`${req.session.user_name} visited Travel Help ${userData.dataValues.visit_count} times`)
+          req.session.visit_count = userData.dataValues.visit_count;
+          if (req.session.visit_count) {
+            req.session.visit_count++;
           } else {
-            User.update({
-              visit_count: 1
-            }, {  
-              where: {
-                id: userData.dataValues.id
-              }
-            })
-            .then(data => {
-              console.log('data: ', data);
-              req.session.visit_count = data.dataValues.visit_count;
-              console.log('Welcome to the Travel Help!')
-            })
+            req.session.visit_count = 1;
           }
 
+          // update last visited time & visit count on users table from the db
+          User.update({
+            last_visited_at: new Date(),
+            visit_count: req.session.visit_count
+          }, {  
+            where: {
+              id: userData.dataValues.id
+            }
+          });
+          
+          // excutes this callback after saving the session
           req.session.save(() => {
             console.log('current session ID: ', req.session.id);
+            console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
             // send user info to client side as an object
-            // res.send({name: req.session.user_name, email: req.session.user_email});
             res.status(200).send({name: userData.dataValues.name, email: userData.dataValues.email});
           });
         }
