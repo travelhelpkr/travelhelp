@@ -9,19 +9,10 @@ const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
-<<<<<<< HEAD
-app.use(cors(
-  {
-  origin: "http://localhost:5533",
-  credentials: true
-}
-));
-=======
 app.use(cors({
   origin: "http://localhost:5533",
   credentials: true
 }));
->>>>>>> dc2ee0e330debb3f7e14ff7a4acc25cd99271ef8
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -44,11 +35,12 @@ app.use(
     saveUninitialized: false,
     store: sessionStorage,
     cookie: {
-      // domain: 'http://localhost:5533',
-      // cookie valid for a day
+      // cookie availables for a day
       maxAge: 6000 * 60 * 24
+
+      // samesite setting for production level
       // sameSite: 'none',
-      // secure: true
+      // secure: true,
     }
   })
 );
