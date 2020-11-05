@@ -11,6 +11,7 @@ import Taxi from "./component/Taxi";
 import Rental from "./component/Rental";
 import NavMypage from "./component/NavMypage";
 import NavSignin from "./component/NavSignin";
+import EmailVerification from "./component/EmailVerification";
 import './App.scss';
 
 function App(props) {
@@ -60,6 +61,9 @@ function App(props) {
             } else {
               return <Redirect to='/user/signin' />
             }
+          }} />
+          <Route path="/user/emailVerified" render={() => {
+            return <EmailVerification />
           }} />
           <Route path="/help/foodDelivery" render={() => {
             return <FoodDelivery />

@@ -1,0 +1,31 @@
+@import "../mixin";
+
+@include desktop-large {
+ 
+}
+
+@include desktop-small {
+  .background {
+    .h1 {
+      font-size: 2em;
+      margin: 1.5em;
+      color: rgb(1, 1, 37);
+    }
+    .contentUserInfo {
+      background-color: #f6f6f8;
+      width: 45%;
+      margin: auto;
+      padding: 30px 0;
+      border: 1px solid #ebebeb;
+      color: rgb(1, 1, 37);
+    }
+  } 
+}
+
+@include tablet {
+
+}
+
+@include mobile {
+
+}
