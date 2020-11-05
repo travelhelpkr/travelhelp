@@ -33,12 +33,10 @@ function Signin(props) {
        }
     })
     .then(res => {
-      console.log(res.data.id, res.data.email, res.data.name)
-      window.sessionStorage.setItem('id', res.data.id);
       window.sessionStorage.setItem('email', res.data.email);
       window.sessionStorage.setItem('name', res.data.name);
+      window.localStorage.setItem('i18nextLng', res.data.language);
       setIsLogin(true);
-      setUserId(res.data.id);
       setEmail(res.data.email);
       setName(res.data.name);
       inputEmail("");
