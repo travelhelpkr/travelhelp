@@ -16,15 +16,20 @@ import './App.scss';
 function App(props) {
 
   const [isLogin, setIsLogin] = useState(false);
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    if(window.sessionStorage.getItem('id')) {
+    if(window.sessionStorage.getItem('email')) {
       setIsLogin(true);
+      setEmail(window.sessionStorage.getItem('email'));
+      setName(window.sessionStorage.getItem('name'));
     }
   })
 
   const Nav = () => {
-    if(window.sessionStorage.getItem('id')) {
+    if(window.sessionStorage.getItem('email')) {
       return <NavMypage />
     } else {
       return <NavSignin />
@@ -40,18 +45,18 @@ function App(props) {
             return <Home />
           }} />
           <Route path="/user/signin" render={() => {
-            if(window.sessionStorage.getItem("id")){
+            if(window.sessionStorage.getItem("email")){
               return <Redirect to='/' />
             } else {
-              return <Signin setIsLogin={setIsLogin} />
+              return <Signin setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
             }
           }} />
           <Route path="/user/signup" render={() => {
             return <Signup />
           }} />
           <Route path="/user/mypage" render={() => {
-            if(window.sessionStorage.getItem("id")){
-              return <Mypage setIsLogin={setIsLogin} />
+            if(window.sessionStorage.getItem("email")){
+              return <Mypage setIsLogin={setIsLogin} name={name} email={email} setEmail={setEmail} setName={setName} />
             } else {
               return <Redirect to='/user/signin' />
             }

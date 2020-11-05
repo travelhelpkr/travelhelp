@@ -9,7 +9,10 @@ const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5533",
+  credentials: true
+}));
 app.use(cookieParser());
 app.use(bodyParser.json());
 
@@ -29,12 +32,15 @@ app.use(
   session({
     secret: env.secret,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: sessionStorage,
     cookie: {
-      domain: 'http://localhost:5533',
-      // cookie valid for 2 days
-      // maxAge: 172800000
+      // cookie availables for a day
+      maxAge: 6000 * 60 * 24
+
+      // samesite setting for production level
+      // sameSite: 'none',
+      // secure: true,
     }
   })
 );
@@ -43,7 +49,17 @@ app.use(
 app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
-  res.send('welcome to the travel help!');
+  console.log('session: ', req.session);
+  console.log('cookies: ', req.cookies);
+  if (req.session.is_signedIn) {
+    console.log('current session ID: ', req.session.id);
+    console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
+    // send user info to client side as an object
+    res.send({is_signedIn: req.session.is_signedIn});
+  }
+  else{
+    res.send('welcome to the travel help!');
+  }
 })
 
 app.listen(port, () => {

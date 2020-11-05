@@ -8,7 +8,8 @@ import '../scss/Mypage.scss';
 
 function Mypage(props) {
 
-  const { setIsLogin, history } = props;
+  const { email, name, setIsLogin, setEmail, setName, history } = props;
+  console.log("props:", email, name);
   // change language handler
   const { t } = useTranslation();
 
@@ -18,6 +19,8 @@ function Mypage(props) {
     })
       .then(res => {
         setIsLogin(false);
+        setEmail("");
+        setName("");
         window.sessionStorage.clear();
       })
       .then(() => history.push('/'))
@@ -35,11 +38,11 @@ function Mypage(props) {
         <div className="userInfoBox">
           <div className="userInfo userInfoName">
             <div className="userInfoIcon"><AccountCircleOutlinedIcon /></div>
-            <div className="userInfoText">chae ryn park</div>
+            <div className="userInfoText"><span>{t('mypage.userName')}</span>{name}</div>
           </div>
           <div className="userInfo userInfoEmail">
             <div className="userInfoIcon"><AlternateEmailOutlinedIcon /></div>
-            <div className="userInfoText">ryn3777@gmail.com</div>
+            <div className="userInfoText"><span>{t('mypage.userEmail')}</span>{email}</div>
           </div>
         </div>
         <div className="userInfoBtn">

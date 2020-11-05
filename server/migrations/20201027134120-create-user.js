@@ -33,6 +33,10 @@ module.exports = {
       last_visited_at: {
         type: Sequelize.DATE
       },
+      visit_count: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
       language: {
         type: Sequelize.STRING
       },
