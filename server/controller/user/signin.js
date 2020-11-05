@@ -44,7 +44,6 @@ module.exports = {
           req.session.user_name = userData.dataValues.name;
           req.session.user_email = userData.dataValues.email;
           req.session.user_language = userData.dataValues.language;
-          req.session.is_signedIn = true;
           req.session.visit_count = userData.dataValues.visit_count;
           if (req.session.visit_count) {
             req.session.visit_count++;
