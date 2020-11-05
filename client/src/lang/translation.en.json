@@ -97,5 +97,6 @@
   "rental.chargingCableDetailTitle": "< 3 in 1 cable >",
   "rental.chargingCableDetail1": "- 5 pin for Android",
   "rental.chargingCableDetail2": "- 8 pin for Apple",
-  "rental.chargingCableDetail3": "- Type-C for Huawei/Xiaomi/LG/Galaxy/etc."
+  "rental.chargingCableDetail3": "- Type-C for Huawei/Xiaomi/LG/Galaxy/etc.",
+  "email.title": "Email Verification"
 }
