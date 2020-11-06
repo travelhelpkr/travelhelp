@@ -29,11 +29,13 @@ function FoodNoodle(props) {
 
   return(
   <div>
+    {/* cart icon */}
     <div className="cartIconNoodle">
       <img src={cartWhite}/>
     </div>
+
+    {/* choose restaurants btn */}
     <div className="restaurantNoodle">
-      {/* choose restaurants btn */}
       <div className="chicken">
         <a href="/help/foodDelivery/chicken">{t('food.chicken')}</a>
       </div>
@@ -48,6 +50,12 @@ function FoodNoodle(props) {
         <img src={noodleImg}/>
       </div>
 
+      {/* restaurant information */}
+      <div>
+        
+      </div>
+
+      {/* menu list */}
       <ul>
         {
           data && data.map(data => {
