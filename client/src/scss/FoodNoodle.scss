@@ -7,7 +7,7 @@
 @include desktop-small {
   .cartIconNoodle {
     position: absolute;
-    top: -5.7%;
+    top: -5.5em;
     color: white;
     right: 5em;
     font-weight: 100;
@@ -59,6 +59,28 @@
     .banner {
       img {
         width: 53.6em;
+      }
+    }
+    .restaurantInfo {
+      width: 44.5em;
+      display: inline-block;
+      background-color: #f6f6f8;
+      color: rgb(1, 1, 37);
+      font-size: 1.2em;
+      font-weight: 400;
+      padding: 10px 0;
+      border: 1px solid #ebebeb;
+      .Info {
+        font-size: 0.8em;
+        line-height: 1.5em;
+        .InfoDetailTitle {
+          color: rgb(174, 174, 174);
+          font-weight: 500;
+          padding-right: 30px;
+        }
+      }
+      .restaurantDes {
+        padding-bottom: 10px;
       }
     }
     ul {

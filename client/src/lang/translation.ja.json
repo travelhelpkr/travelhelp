@@ -100,5 +100,9 @@
   "rental.chargingCableDetail3": "- Huawei / Xiaomi / LG / Galaxy / etcのType-C。",
   "email.title": "Email Verification",
   "food.chicken": "フライドチキン",
-  "food.noodle": "黒麺"
+  "food.noodle": "黒麺",
+  "food.restaurant": "レストラン",
+  "food.hour": "営業時間",
+  "food.minimum": "最低価格",
+  "food.delivery": "配送料"
 }

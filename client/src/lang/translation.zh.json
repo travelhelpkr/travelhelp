@@ -100,5 +100,9 @@
   "rental.chargingCableDetail3": "- 华为/Xiaomi/LG/Galaxy/等C型。",
   "email.title": "Email Verification",
   "food.chicken": "炸鸡",
-  "food.noodle": "黑面"
+  "food.noodle": "黑面",
+  "food.restaurant": "餐厅",
+  "food.hour": "营业时间",
+  "food.minimum": "最低价格",
+  "food.delivery": "快递费"
 }
