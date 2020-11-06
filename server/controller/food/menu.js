@@ -11,7 +11,7 @@ module.exports = {
     // check restaurant id
     const restaurant_id = req.query.restaurant_id;
 
-    // get all menus matched with restaurant id
+    // get all menus matched with restaurant_id
     await Menu.findAll({
       where: {
         restaurant_id: restaurant_id
