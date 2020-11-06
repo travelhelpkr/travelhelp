@@ -5,6 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const userRouter = require('./router/userRouter');
+const foodRouter = require('./router/foodRouter');
 const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -47,6 +48,7 @@ app.use(
 
 // routing
 app.use('/users', userRouter);
+app.use('/foods', foodRouter);
 
 app.get('/', (req, res) => {
   console.log('session: ', req.session);
