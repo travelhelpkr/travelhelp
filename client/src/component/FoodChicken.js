@@ -29,9 +29,11 @@ function FoodChicken(props) {
 
   return(
   <div>
+    {/* cart icon */}
     <div className="cartIcon">
       <img src={cartWhite}/>
     </div>
+
     {/* choose restaurants btn */}
     <div className="restaurantsChicken">
       <div className="chickenSelected">
@@ -49,6 +51,12 @@ function FoodChicken(props) {
         <img src={chickenImg}/>
       </div>
 
+      {/* restaurant information */}
+      <div>
+        
+      </div>
+
+      {/* menu list */}
       <ul>
         {
           data && data.map(data => {
