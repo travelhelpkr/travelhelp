@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import chickenImg from '../img/new_banner_CK.png';
 import chicken from '../img/chicken.jpg';
+import cartWhite from '../img/cart_white.png';
+import cartNavy from '../img/cart_navy.png';
 import '../scss/FoodChicken.scss';
 
 function FoodChicken(props) {
@@ -27,6 +29,9 @@ function FoodChicken(props) {
 
   return(
   <div>
+    <div className="cartIcon">
+      <img src={cartWhite}/>
+    </div>
     {/* choose restaurants btn */}
     <div className="restaurantsChicken">
       <div className="chickenSelected">
@@ -62,6 +67,7 @@ function FoodChicken(props) {
                     }
                   </div>
                   <div className="menuPrice">{data.price}₩</div>
+                  <button className="addCartBtn"><img src={cartNavy}/></button>
                 </li>
               </div>
             )

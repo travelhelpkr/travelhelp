@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import noodleImg from '../img/new_banner_bn.png';
 import blacknoodle from '../img/blacknoodle.png';
+import cartWhite from '../img/cart_white.png';
+import cartNavy from '../img/cart_navy.png';
 import '../scss/FoodNoodle.scss';
 
 function FoodNoodle(props) {
@@ -27,6 +29,9 @@ function FoodNoodle(props) {
 
   return(
   <div>
+    <div className="cartIconNoodle">
+      <img src={cartWhite}/>
+    </div>
     <div className="restaurantNoodle">
       {/* choose restaurants btn */}
       <div className="chicken">
@@ -61,6 +66,7 @@ function FoodNoodle(props) {
                     }
                   </div>
                   <div className="menuPrice">{data.price}₩</div>
+                  <button className="addCartBtn"><img src={cartNavy}/></button>
                 </li>
               </div>
             )
