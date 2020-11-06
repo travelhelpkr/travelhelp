@@ -100,5 +100,9 @@
   "rental.chargingCableDetail3": "- Type-C for Huawei/Xiaomi/LG/Galaxy/etc.",
   "email.title": "Email Verification",
   "food.chicken": "Chicken",
-  "food.noodle": "Noodle"
+  "food.noodle": "Noodle",
+  "food.restaurant": "Restaurant",
+  "food.hour": "Operation Hour",
+  "food.minimum": "Minimum Price",
+  "food.delivery": "Delivery Fee"
 }
