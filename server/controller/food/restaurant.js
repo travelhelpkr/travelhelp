@@ -18,7 +18,7 @@ module.exports = {
       }
     })
     .then(result => {
-      res.status(200).send({
+      res.status(200).send([{
         "name_en": result.dataValues.name_en,
         "name_zh": result.dataValues.name_zh,
         "name_ja": result.dataValues.name_ja,
@@ -28,7 +28,7 @@ module.exports = {
         "operation_hour": result.dataValues.operation_hour,
         "minimum_price": result.dataValues.minimum_price,
         "delivery_fee": result.dataValues.delivery_fee
-      });
+      }]);
     })
   }
 };
