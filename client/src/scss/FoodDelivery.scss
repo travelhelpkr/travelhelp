@@ -1,0 +1,50 @@
+@import "../mixin";
+
+@include desktop-large {
+  
+}
+
+@include desktop-small {
+  .background {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    .foodLanguageBtn {
+      color: white;
+      background-color: transparent;
+      font-size: 0.8em;
+      position: absolute;
+      right: 3em;
+      top: -8.7%;
+      clear: both;
+      text-align: center;
+      width: 6.6em;
+      padding: 9px;
+      text-align: center;
+      border: 0.01rem solid rgba(255, 255, 255, 0.5);
+      border-radius: 0.5em;
+      &:hover {
+        cursor: pointer;
+        width: 6.6em;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: white;
+        border-radius: 0.5em;
+        text-align: center;
+        font-weight: 700;
+        border: 0.01rem solid rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+
+@include tablet {
+  .homeTitle {
+    font-size: 2em;
+    width: 100%;
+    margin: 0.5em auto;
+  }
+}
+
+@include mobile {
+
+}

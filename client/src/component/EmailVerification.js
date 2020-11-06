@@ -11,7 +11,9 @@ function EmailVerification(props) {
     <div className="background">
       <h1 className="h1">{t('email.title')}</h1>
 
-      <div className="contentUserInfo"></div>
+      <div className="contentUserInfo">
+        
+      </div>
     </div>
   )
 }
