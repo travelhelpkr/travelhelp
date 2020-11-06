@@ -12,6 +12,8 @@ import Rental from "./component/Rental";
 import NavMypage from "./component/NavMypage";
 import NavSignin from "./component/NavSignin";
 import EmailVerification from "./component/EmailVerification";
+import FoodChicken from "./component/FoodChicken";
+import FoodNoodle from "./component/FoodNoodle";
 import './App.scss';
 
 function App(props) {
@@ -67,6 +69,12 @@ function App(props) {
           }} />
           <Route path="/help/foodDelivery" render={() => {
             return <FoodDelivery />
+          }} />
+          <Route path="/help/foodDelivery/chicken" render={() => {
+            return <FoodChicken />
+          }} />
+          <Route path="/help/foodDelivery/noodle" render={() => {
+            return <FoodNoodle />
           }} />
           <Route path="/help/luggage" render={() => {
             return <Luggage />

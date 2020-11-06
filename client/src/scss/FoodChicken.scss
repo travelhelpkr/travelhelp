@@ -1,0 +1,59 @@
+@import "../mixin";
+
+@include desktop-large {
+  
+}
+
+@include desktop-small {
+  .restaurantsChicken {
+    text-align: center;
+    display: inline-block;
+    font-size: 1.5em;
+    .chickenSelected {
+      float: left;
+      a {
+        background-color: rgb(183, 60, 3);
+        padding:  10px 7em;
+        margin-right: 5px;
+        text-decoration: none;
+        color: white;
+        border: 1px solid rgb(183, 60, 3);
+      }
+    }
+    .noodle {
+      float: left;
+      a {
+        background-color: transparent;
+        padding:  10px 7em;
+        margin-left: 5px;
+        text-decoration: none;
+        color:  rgb(183, 60, 3);
+        border: 1px solid rgb(183, 60, 3);
+        &:hover {
+          background-color:  rgb(183, 60, 3);
+          color: white;
+        }
+      }
+    }
+  }
+  .menu {
+    margin-top: 20px;
+    .banner {
+      img {
+        width: 53.6em;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .homeTitle {
+    font-size: 2em;
+    width: 100%;
+    margin: 0.5em auto;
+  }
+}
+
+@include mobile {
+
+}

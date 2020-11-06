@@ -97,5 +97,6 @@
   "rental.chargingCableDetailTitle": "< 一根电缆中的3根 >",
   "rental.chargingCableDetail1": "- Android 5 针",
   "rental.chargingCableDetail2": "- Apple 8 针",
-  "rental.chargingCableDetail3": "- 华为/Xiaomi/LG/Galaxy/等C型。"
+  "rental.chargingCableDetail3": "- 华为/Xiaomi/LG/Galaxy/等C型。",
+  "email.title": "Email Verification"
 }

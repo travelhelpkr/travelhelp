@@ -97,5 +97,6 @@
   "rental.chargingCableDetailTitle": "< 3 in 1 ケーブル >",
   "rental.chargingCableDetail1": "- Android用5ピン",
   "rental.chargingCableDetail2": "- Appple用8ピン",
-  "rental.chargingCableDetail3": "- Huawei / Xiaomi / LG / Galaxy / etcのType-C。"
+  "rental.chargingCableDetail3": "- Huawei / Xiaomi / LG / Galaxy / etcのType-C。",
+  "email.title": "Email Verification"
 }
