@@ -43,6 +43,39 @@
         width: 53.6em;
       }
     }
+    ul {
+      width: 54.1em;
+      text-align: center;
+      display: inline-block;
+      padding-left: 0;
+      .menuLi {
+        width: 17.2em;
+        height: 16em;
+        float: left;
+        margin: 10px 5px;
+        background-color: #f6f6f8;
+        border: 1px solid #ebebeb;
+        li {
+          list-style: none;
+          img {
+            width: 17.2em;
+            height: 11.5em;
+          }
+          .menuName {
+            text-align: left;
+            // width: 16em;
+            font-weight: 600;
+            font-size: 0.9em;
+            padding: 5px 5px 5px 10px;
+          }
+          .menuPrice {
+            text-align: left;
+            font-size: 0.85em;
+            padding: 3px 0 0 10px;
+          }
+        }
+      }
+    }
   } 
 }
 
