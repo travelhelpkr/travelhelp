@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import noodleImg from '../img/new_banner_bn.png';
-import blacknoodle from '../img/blacknoodle.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
 import Modal from './Modal';
@@ -148,7 +147,7 @@ function FoodNoodle(props) {
                 )
               }}>
                 <li key={menu.id}>
-                  <img src={blacknoodle}/>
+                  <img src={menu.image}/>
                   <div className="menuName">
                     {
                       window.localStorage.getItem('i18nextLng') === 'en'
@@ -160,7 +159,7 @@ function FoodNoodle(props) {
                     }
                   </div>
                   <div className="menuPrice">{menu.price}₩</div>
-                  <button className="addCartBtn"><img src={cartNavy}/></button>
+                  <button className="addCartBtn"><img src={cartNavy} /></button>
                 </li>
               </div>
             )

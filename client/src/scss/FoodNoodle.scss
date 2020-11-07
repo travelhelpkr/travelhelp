@@ -105,6 +105,7 @@
           img {
             width: 17.2em;
             height: 11.5em;
+            background-color: white;
           }
           .menuName {
             text-align: left;
@@ -127,6 +128,7 @@
             img {
               width: 1.8em;
               height: auto;
+              background-color: transparent;
             }
             &:hover {
               cursor: pointer;

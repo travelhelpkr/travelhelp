@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import chickenImg from '../img/new_banner_CK.png';
-import chicken from '../img/chicken.jpg';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
 import Modal from './Modal';
@@ -38,7 +37,7 @@ function FoodChicken(props) {
     .then(res => {
       let result = res.data;
       setMenu(result);
-      console.log(menu);
+      console.log("menu:", menu);
     })
   },[])
 
@@ -150,7 +149,7 @@ function FoodChicken(props) {
                 )
               }}>
                 <li key={menu.id}>
-                  <img src={chicken}/>
+                  <img src={menu.image}/>
                   <div className="menuName">
                     {
                       window.localStorage.getItem('i18nextLng') === 'en'
