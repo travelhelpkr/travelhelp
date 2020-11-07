@@ -16,6 +16,12 @@ function Mypage(props) {
   const signoutHandler = () => {
     axios.post('http://localhost:3355/users/signout', {
       language: window.localStorage.getItem('i18nextLng')
+    },{
+      withCredentials: true,
+    }, {
+      headers: { 
+        "Access-Control-Allow-Origin": "http://localhost:3355",
+       }
     })
       .then(res => {
         setIsLogin(false);

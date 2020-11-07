@@ -6,13 +6,26 @@ import noodleImg from '../img/new_banner_bn.png';
 import blacknoodle from '../img/blacknoodle.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
+import Modal from './Modal';
 import '../scss/FoodNoodle.scss';
 
 function FoodNoodle(props) {
 
+  // menu of restaurant
   const [menu, setMenu] = useState(null);
+
+  // information of restaurant
   const [information, setInformation] = useState(null);
 
+  // open modal
+  const [isOpen, setModal] = useState(false);
+
+  // modal information
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+
+  // change language
   const { t } = useTranslation();
 
   // get restaurant menus
@@ -26,7 +39,7 @@ function FoodNoodle(props) {
       let result = res.data;
       setMenu(result)
     })
-  })
+  },[])
 
   // get restaurant information
   useEffect(() => {
@@ -113,7 +126,27 @@ function FoodNoodle(props) {
         {
           menu && menu.map(menu => {
             return(
-              <div className="menuLi">
+              <div className="menuLi" onClick={e => {
+                e.preventDefault();
+                setModal(!isOpen);
+                setName(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.name_en
+                  :
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.name_zh
+                  : menu.name_ja
+                );
+                setPrice(menu.price);
+                setDescription(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.description_en
+                  :
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.description_zh
+                  : menu.description_ja
+                )
+              }}>
                 <li key={menu.id}>
                   <img src={blacknoodle}/>
                   <div className="menuName">
@@ -134,6 +167,7 @@ function FoodNoodle(props) {
           })
         }
       </ul>
+      <Modal isOpen={isOpen} setModal={setModal} infoName={name} infoPrice={price} infoDescription={description} />
     </div>
   </div>
   )

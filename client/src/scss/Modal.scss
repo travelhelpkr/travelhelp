@@ -1,0 +1,75 @@
+@import "../mixin";
+
+@include desktop-large {
+
+}
+
+@include desktop-small {
+  .openModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.5);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 45%;
+      height: 70%;
+      padding: 45px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 3%;
+        top: 3%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.2em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 24em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        width: 24em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.5em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuPrice {
+          padding: 5px 0;
+        }
+      }
+    }
+  }
+  .none {
+    display: none;
+  }
+}
+
+@include tablet {
+
+}
+
+@include mobile {
+
+}
