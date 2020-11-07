@@ -97,6 +97,11 @@
         margin: 10px 5px;
         background-color: #f6f6f8;
         border: 1px solid #ebebeb;
+        &:hover {
+          cursor: pointer;
+          border: 1px solid #cfcfcf;
+          background-color: #e7e7e7;
+        }
         li {
           list-style: none;
           img {
