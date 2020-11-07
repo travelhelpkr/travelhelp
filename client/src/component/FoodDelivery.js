@@ -1,9 +1,9 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import '../scss/FoodChicken.scss';
 import FoodChicken from './FoodChicken';
 import FoodNoodle from './FoodNoodle';
+import '../scss/FoodChicken.scss';
 
 function FoodDelivery(props) {
 
@@ -14,13 +14,11 @@ function FoodDelivery(props) {
     <div className="background">
 
       {/* choose restaurants btn */}
-      {/* <div className="restaurantChicken"> */}
-        {
-          props.location.pathname === "/help/foodDelivery/noodle"
-          ? <FoodNoodle />
-          : <FoodChicken />
-        }
-      {/* </div> */}
+      {
+        props.location.pathname === "/help/foodDelivery/noodle"
+        ? <FoodNoodle />
+        : <FoodChicken />
+      }
     </div>
   )
 }

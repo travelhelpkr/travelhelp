@@ -5,6 +5,24 @@
 }
 
 @include desktop-small {
+  .cartIconNoodle {
+    position: absolute;
+    top: -5.5em;
+    color: white;
+    right: 5em;
+    font-weight: 100;
+    img {
+      width: 2em;
+      height: auto;
+      &:hover {
+        cursor: pointer;
+        width: 1.8em;
+        padding: 5px;
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 0.5em;
+      }
+    }
+  }
   .restaurantNoodle {
     text-align: center;
     display: inline-block;
@@ -41,6 +59,75 @@
     .banner {
       img {
         width: 53.6em;
+      }
+    }
+    .restaurantInfo {
+      width: 44.5em;
+      display: inline-block;
+      background-color: #f6f6f8;
+      color: rgb(1, 1, 37);
+      font-size: 1.2em;
+      font-weight: 400;
+      padding: 10px 0;
+      border: 1px solid #ebebeb;
+      .Info {
+        font-size: 0.8em;
+        line-height: 1.5em;
+        .InfoDetailTitle {
+          color: rgb(174, 174, 174);
+          font-weight: 500;
+          padding-right: 30px;
+        }
+      }
+      .restaurantDes {
+        padding-bottom: 10px;
+      }
+    }
+    ul {
+      width: 54.1em;
+      text-align: center;
+      display: inline-block;
+      padding-left: 0;
+      .menuLi {
+        width: 17.2em;
+        height: 16.5em;
+        float: left;
+        margin: 10px 5px;
+        background-color: #f6f6f8;
+        border: 1px solid #ebebeb;
+        li {
+          list-style: none;
+          img {
+            width: 17.2em;
+            height: 11.5em;
+          }
+          .menuName {
+            text-align: left;
+            // width: 16em;
+            font-weight: 600;
+            font-size: 0.9em;
+            padding: 5px 5px 5px 10px;
+          }
+          .menuPrice {
+            text-align: left;
+            font-size: 0.85em;
+            padding: 3px 0 0 10px;
+          }
+          .addCartBtn {
+            background-color: transparent;
+            border: none;
+            position: relative;
+            left: 41%;
+            top: -1.3em;
+            img {
+              width: 1.8em;
+              height: auto;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
       }
     }
   } 
