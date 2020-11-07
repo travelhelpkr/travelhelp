@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Menu.init({
-    image: DataTypes.BLOB,
+    image: DataTypes.STRING,
     name_en: DataTypes.STRING,
     name_zh: DataTypes.STRING,
     name_ja: DataTypes.STRING,

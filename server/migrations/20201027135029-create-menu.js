@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       image: {
-        type: Sequelize.BLOB
+        type: Sequelize.STRING
       },
       name_en: {
         type: Sequelize.STRING
