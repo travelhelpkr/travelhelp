@@ -20,6 +20,7 @@ function FoodNoodle(props) {
   const [isOpen, setModal] = useState(false);
 
   // modal information
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
@@ -128,6 +129,7 @@ function FoodNoodle(props) {
               <div className="menuLi" onClick={e => {
                 e.preventDefault();
                 setModal(!isOpen);
+                setImage(menu.image);
                 setName(
                   window.localStorage.getItem('i18nextLng') === 'en'
                   ? menu.name_en
@@ -166,7 +168,7 @@ function FoodNoodle(props) {
           })
         }
       </ul>
-      <Modal isOpen={isOpen} setModal={setModal} infoName={name} infoPrice={price} infoDescription={description} />
+      <Modal isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} />
     </div>
   </div>
   )
