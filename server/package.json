@@ -35,5 +35,9 @@
     "passport": "^0.4.1",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.4.14"
   }
 }
