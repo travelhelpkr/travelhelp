@@ -1,6 +1,6 @@
 import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import chicken from '../img/chicken.jpg';
+// import chicken from '../img/chicken.jpg';
 import "../scss/Modal.scss";
 
 function Modal(props) {
@@ -19,7 +19,7 @@ function Modal(props) {
         }}><CloseIcon /></button>
 
         {/* menu information */}
-        <img src={chicken} className="modalMenuImage"/>
+        {/* <img src={chicken} className="modalMenuImage"/> */}
         <div className="modalMenuInfo">
           <div className="modalMenuName">
             {infoName}
