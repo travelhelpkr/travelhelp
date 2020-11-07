@@ -6,7 +6,7 @@ import "../scss/Modal.scss";
 function Modal(props) {
 
   // get from each menu
-  const { isOpen, setModal, infoName, infoPrice, infoDescription } = props;
+  const { isOpen, setModal, infoImage, infoName, infoPrice, infoDescription } = props;
 
   return(
     <div className={isOpen ? "openModal" : "none"}>
@@ -19,7 +19,7 @@ function Modal(props) {
         }}><CloseIcon /></button>
 
         {/* menu information */}
-        {/* <img src={chicken} className="modalMenuImage"/> */}
+        <img src={infoImage} className="modalMenuImage"/>
         <div className="modalMenuInfo">
           <div className="modalMenuName">
             {infoName}
