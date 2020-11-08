@@ -20,7 +20,6 @@ module.exports = {
     try {
       const { email, password, name, is_policy_agreed, language } = req.body;
       const hash_password = await bcrypt.hash(password, 10);
-      const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60 * 24 });
       
       // check db has req.body.email
       const userData = await User.findOne({
@@ -30,9 +29,11 @@ module.exports = {
       });
     
       if (userData) {
-        res.status(409).send("User already existed.");
+        res.status(409).send({ message: 'User already existed.' });
       }
       else {
+        // generate token for verifying user email. available for 24 hours.
+        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60 * 24 });
         // make a new user on the db
         const newUser = await User.create({
           email: email,
@@ -42,7 +43,6 @@ module.exports = {
           last_visited_at: new Date(),
           language: language
         })
-        
         const smtpTransporter = nodemailer.createTransport({
           service: 'gmail',
           host: 'smtp.gmail.com',
@@ -67,7 +67,7 @@ module.exports = {
           
           To activate your TravelHelp account, we just need yo verify your email address:        
           
-          http://localhost:3355/users/auth/?token=${generatedAuthToken}
+          http://localhost:3355/users/auth/email/?token=${generatedAuthToken}
   
           This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(http://localhost:5533/user/signin) by trying to sign in again with your email address.
           
@@ -82,7 +82,7 @@ module.exports = {
           else {
             console.log('Email sent: ', info.response);
             console.log("Message sent: %s", info.messageId);
-            res.status(201).send("Please verify your email address");
+            res.status(201).send({ message: 'Please verify your email address' });
           }
           smtpTransporter.close();
         });

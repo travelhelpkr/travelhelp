@@ -29,7 +29,7 @@ module.exports = {
     
     // check req.body.email exists on db
     if (!userData) {
-      res.status(401).send("You need to sign up first.");
+      res.status(404).send("You need to sign up first.");
     }
     else {
       // compare req.body.password && hashed password from db
