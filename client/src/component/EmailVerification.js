@@ -10,9 +10,12 @@ function EmailVerification(props) {
   return(
     <div className="background">
       <h1 className="h1">{t('email.title')}</h1>
-
+      
       <div className="contentUserInfo">
-        
+        <div className="verificationTitle">Please verify your email</div>
+        <div className="verificationContent verificationContent1">You're almost there!<br />We sent to an email to <span>your email address.</span></div>
+        <div className="verificationContent verificationContent2">Just click on the link in that email to complete.</div>
+        <div className="verificationContent verificationContent3">If you don't see it, you may need to <span>check your spam folder.</span></div>
       </div>
     </div>
   )

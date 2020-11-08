@@ -107,5 +107,9 @@
   "food.delivery": "快递费",
   "resetPassword.step1": "输入您的电子邮件地址，我们将向您发送一个链接以重置密码。",
   "resetPassword.email": "电邮地址",
-  "resetPassword.btn": "重设密码"
+  "resetPassword.btn": "重设密码",
+  "resetPassword.signup": "您需要先注册。",
+  "resetPassword.emailVerification": "请检查您的电子邮件并首先验证您的电子邮件地址。",
+  "resetPassword.newPassword": "新密码",
+  "resetPassword.confirmPassword": "确认密码"
 }
