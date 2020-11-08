@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import ResetPassword from './ResetPassword';
+import ModalResetPassword from './ModalResetPassword';
 import '../scss/Form.scss';
 
 function Signin(props) {
@@ -94,7 +94,7 @@ function Signin(props) {
           <a href="/user/signup">{t('signin.gotoSignUp')}</a>
         </div>
 
-        <ResetPassword isOpen={isOpen} setModal={setModal} />
+        <ModalResetPassword isOpen={isOpen} setModal={setModal} />
 
       </div>
     </div>

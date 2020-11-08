@@ -7,10 +7,14 @@ import axios from 'axios';
 function ResestPassword(props) {
 
   // get from each menu
-  const { isOpen, setModal } = props;
+  const { isOpen, setModal, history } = props;
 
   // input state of user information for signin
   const [email, inputEmail] = useState('');
+
+  // failure of signin
+  const [failAlertSignUp, setFailAlertSignUp] = useState(false);
+  const [failAlertVerification, setFailAlertVerification] = useState(false);
 
   // change language handler
   const { t } = useTranslation();
@@ -29,7 +33,16 @@ function ResestPassword(props) {
     })
     .then(res => {
       console.log("res:", res);
-      inputEmail("");
+      if(res.data.status === 404) {
+        inputEmail("");
+        setFailAlertSignUp(true)
+      } else if(res.data.status === 401) {
+        inputEmail("");
+        setFailAlertVerification(true)
+      } else {
+        inputEmail("");
+        window.location = "/user/emailVerified";
+      }
     })
   }
 
@@ -51,6 +64,8 @@ function ResestPassword(props) {
             <input className="emailInput" type="text" name="email" onChange={(e) => inputEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
           </form>
           <button className="resetPasswordBtn" onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
+          <div className={failAlertSignUp ? "alert" : "none"}>You need to sign up first.</div>
+          <div className={failAlertVerification ? "alert" : "none"}>You need to verify your email address first.<br />Please check your email or resend it from this link.</div>
         </div>
       </div>
     </div>
