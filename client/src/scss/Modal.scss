@@ -130,6 +130,14 @@
             font-weight: 600;
           }
         }
+        .alert {
+          color: rgb(190, 23, 11);
+          font-size: 0.7em;
+          margin-bottom: 1em;
+        }
+        .none {
+          display: none;
+        }
       }
     }
   }

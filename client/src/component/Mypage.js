@@ -29,7 +29,7 @@ function Mypage(props) {
         setName("");
         window.sessionStorage.clear();
       })
-      .then(() => history.push('/'))
+      .then(() => window.location = "/")
   }
 
   return(
