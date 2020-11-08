@@ -35,6 +35,23 @@
       .verificationContent3 {
         padding-bottom: 20px;
       }
+      .verificationContent4 {
+        padding-top: 20px;
+      }
+      .resendEmailBtn {
+        margin: 10px 0;
+        padding: 10px 0;
+        width: 15em;
+        border-radius: 4px;
+        font-size: 1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
     }
   } 
 }

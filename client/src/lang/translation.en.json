@@ -99,6 +99,14 @@
   "rental.chargingCableDetail2": "- 8 pin for Apple",
   "rental.chargingCableDetail3": "- Type-C for Huawei/Xiaomi/LG/Galaxy/etc.",
   "email.title": "Email Verification",
+  "email.title2": "Please verify your email",
+  "email.des1-1": "You're almost there!",
+  "email.des1-2": "We sent to an email to",
+  "email.des2": "Just click on the link in that email to complete.",
+  "email.des3-1": "If you don't see it, you may need to ",
+  "email.des3-2": "check your spam folder.",
+  "email.des4": "Still can't find the email?",
+  "email.resendBtn": "Resend Email",
   "food.chicken": "Chicken",
   "food.noodle": "Noodle",
   "food.restaurant": "Restaurant",
@@ -109,7 +117,7 @@
   "resetPassword.email": "Email Address",
   "resetPassword.btn": "Reset Password",
   "resetPassword.signup": "You need to sign up first.",
-  "resetPassword.emailVerification": "Please check your email and verify your email address first.",
+  "resetPassword.emailVerification": "Please verify your email address first.",
   "resetPassword.newPassword": "New Password",
   "resetPassword.confirmPassword": "Confirm Password"
 }

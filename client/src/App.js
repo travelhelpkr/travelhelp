@@ -25,7 +25,7 @@ function App(props) {
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    if(window.sessionStorage.getItem('email')) {
+    if(window.sessionStorage.getItem('name')) {
       setIsLogin(true);
       setEmail(window.sessionStorage.getItem('email'));
       setName(window.sessionStorage.getItem('name'));
@@ -33,7 +33,7 @@ function App(props) {
   })
 
   const Nav = () => {
-    if(window.sessionStorage.getItem('email')) {
+    if(window.sessionStorage.getItem('name')) {
       return <NavMypage />
     } else {
       return <NavSignin />
@@ -49,7 +49,7 @@ function App(props) {
             return <Home />
           }} />
           <Route path="/user/signin" render={() => {
-            if(window.sessionStorage.getItem("email")){
+            if(window.sessionStorage.getItem("name")){
               return <Redirect to='/' />
             } else {
               return <Signin setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
@@ -59,7 +59,7 @@ function App(props) {
             return <Signup />
           }} />
           <Route path="/user/mypage" render={() => {
-            if(window.sessionStorage.getItem("email")){
+            if(window.sessionStorage.getItem("name")){
               return <Mypage setIsLogin={setIsLogin} name={name} email={email} setEmail={setEmail} setName={setName} />
             } else {
               return <Redirect to='/user/signin' />

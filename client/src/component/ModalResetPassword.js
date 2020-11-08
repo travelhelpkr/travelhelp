@@ -37,6 +37,7 @@ function ResestPassword(props) {
         inputEmail("");
         setFailAlertSignUp(true)
       } else if(res.data.status === 401) {
+        window.sessionStorage.setItem('email', email);
         inputEmail("");
         setFailAlertVerification(true)
       } else {
@@ -65,10 +66,13 @@ function ResestPassword(props) {
           </form>
           <button className="resetPasswordBtn" onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
           <div className={failAlertSignUp ? "signUpAlert" : "none"}>
-            <span>You need to sign up first.</span>
+            <span>{t('resetPassword.signup')}</span>
             <span className="signupLink"><a href="/user/signup">{t('signup.signup')}</a></span>
             </div>
-          <div className={failAlertVerification ? "signUpAlert" : "none"}>{t('resetPassword.emailVerification')}</div>
+          <div className={failAlertVerification ? "signUpAlert" : "none"}>
+            <span>{t('resetPassword.emailVerification')}</span>
+            <span className="signupLink"><a href="/user/emailVerified">{t('email.title')}</a></span>
+          </div>
         </div>
       </div>
     </div>
