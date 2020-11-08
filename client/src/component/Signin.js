@@ -37,14 +37,18 @@ function Signin(props) {
        }
     })
     .then(res => {
-      window.sessionStorage.setItem('email', res.data.email);
-      window.sessionStorage.setItem('name', res.data.name);
-      window.localStorage.setItem('i18nextLng', res.data.language);
-      setIsLogin(true);
-      setEmail(res.data.email);
-      setName(res.data.name);
-      inputEmail("");
-      inputPassword("");
+      if(res.data.status === 403) {
+        window.location = '/user/emailVerified';
+      } else {
+        window.sessionStorage.setItem('email', res.data.email);
+        window.sessionStorage.setItem('name', res.data.name);
+        window.localStorage.setItem('i18nextLng', res.data.language);
+        setIsLogin(true);
+        setEmail(res.data.email);
+        setName(res.data.name);
+        inputEmail("");
+        inputPassword("");
+      }
     })
     .catch((err) => setFailAlert(true));
   }

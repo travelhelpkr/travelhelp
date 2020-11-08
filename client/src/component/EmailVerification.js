@@ -7,8 +7,8 @@ import '../scss/EmailVerification.scss';
 function EmailVerification(props) {
 
   // get user email address
-  const { email } = props;
-  console.log("email:", email);
+  // const { email } = props;
+  // console.log("email:", email);
 
   // change language handler
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ function EmailVerification(props) {
   const handleResendBtn = (e) => {
     e.preventDefault();
     axios.post('http://localhost:3355/users/auth/email', {
-      email: email
+      email: window.sessionStorage.getItem('email')
     }, {
       withCredentials: true,
     }, {
