@@ -2,22 +2,26 @@ import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import ResetPassword from './ResetPassword';
 import '../scss/Form.scss';
 
 function Signin(props) {
 
   // login state props
   const { setIsLogin, setEmail, setName, setUserId } = props;
-
-  // change language handler
-  const { t } = useTranslation();
-
+  
   // input state of user information for signin
   const [email, inputEmail] = useState('');
   const [password, inputPassword] = useState('');
-
+  
   // failure of signin
   const [failAlert, setFailAlert] = useState(false);
+
+  // open modal
+  const [isOpen, setModal] = useState(false);
+  
+  // change language handler
+  const { t } = useTranslation();
 
   // signin handler
   const handleLoginBtn = (e) => {
@@ -78,14 +82,19 @@ function Signin(props) {
         <button className="signupSubmitBtn" onClick={handleLoginBtn}>{t('signin.signin')}</button>
         
         {/* find password */}
-        <div className="gotoSignIn forgotPassword">
-          <a href="/user/signup">{t('signin.forgotPassword')}</a>
+        <div className="gotoSignIn forgotPassword" onClick={e => {
+          e.preventDefault();
+          setModal(!isOpen);
+        }}>
+          <p>{t('signin.forgotPassword')}</p>
         </div>
 
         {/* go to signup */}
         <div className="gotoSignIn">
           <a href="/user/signup">{t('signin.gotoSignUp')}</a>
         </div>
+
+        <ResetPassword isOpen={isOpen} setModal={setModal} />
 
       </div>
     </div>

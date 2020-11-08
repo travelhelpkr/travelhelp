@@ -34,7 +34,8 @@
         }
         .googleBtn {
           margin-bottom: 0.5em;
-          padding: 10px 90px;
+          padding: 10px 0;
+          width: 21em;
           color: black;
           position: relative;
           background-color: white;
@@ -45,7 +46,8 @@
         }
         .wechatBtn {
           margin-bottom: 0.5em;
-          padding: 10px 87px;
+          padding: 10px 0;
+          width: 21em;
           color: black;
           position: relative;
           background-color: white;
@@ -56,7 +58,8 @@
         }
         .lineBtn {
           margin-bottom: 0.5em;
-          padding: 10px 101px;
+          padding: 10px 0;
+          width: 21em;
           color: black;
           position: relative;
           background-color: white;
@@ -75,7 +78,8 @@
         .signupInput {
           display: block;
           margin: 0.5em auto;
-          padding: 10px 173px 10px 10px;
+          padding: 10px 0 10px 10px;
+          width: 24.3em;
           border: 1px solid #ccc;
           border-radius: 4px;
         }
@@ -96,7 +100,8 @@
       }
       .signupSubmitBtn {
         margin: 2em 1em 1em;
-        padding: 10px 135px;
+        width: 21em;
+        padding: 10px 0;
         border-radius: 4px;
         font-size: 1em;
         color: white;
@@ -118,6 +123,14 @@
       }
       .forgotPassword {
         margin-bottom: 1em;
+        p {
+          color: rgb(1, 1, 37);
+          text-decoration: underline;
+          &:hover {
+            cursor: pointer;
+            font-weight: 600;
+          }
+        }
       }
     }
   }

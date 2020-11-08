@@ -104,5 +104,8 @@
   "food.restaurant": "レストラン",
   "food.hour": "営業時間",
   "food.minimum": "最低価格",
-  "food.delivery": "配送料"
+  "food.delivery": "配送料",
+  "resetPassword.step1": "メールアドレスを入力すると、パスワードをリセットするためのリンクが送信されます。",
+  "resetPassword.email": "Eメールアドレス",
+  "resetPassword.btn": "パスワードを再設定する"
 }

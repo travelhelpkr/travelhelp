@@ -104,5 +104,8 @@
   "food.restaurant": "餐厅",
   "food.hour": "营业时间",
   "food.minimum": "最低价格",
-  "food.delivery": "快递费"
+  "food.delivery": "快递费",
+  "resetPassword.step1": "输入您的电子邮件地址，我们将向您发送一个链接以重置密码。",
+  "resetPassword.email": "电邮地址",
+  "resetPassword.btn": "重设密码"
 }
