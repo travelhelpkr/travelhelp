@@ -39,10 +39,14 @@ module.exports = {
           }
         });
 
-        res.status(201).send({message: 'Successfully verified your email and now your sign up process is completed!'});
+        res.status(201).send({
+          message: 'Successfully verified your email and now your sign up process is completed!'
+        });
       }
       else {
-        res.status(403).send("The action code is invalid. This can happen if the code is malformed, expired, or has already been used.");
+        res.status(403).send({
+          message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
+        });
       }
     }
     catch (err) {
@@ -69,7 +73,10 @@ module.exports = {
       });
 
       if (userData) {
-        res.status(201).send({ email: userData.dataValues.email, message: 'You can enter your new password now' });
+        res.status(200).send({
+          email: userData.dataValues.email,
+          message: 'You can enter your new password now'
+        });
       }
     } 
     catch (err) {
