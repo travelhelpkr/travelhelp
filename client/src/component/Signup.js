@@ -61,7 +61,10 @@ function SignupEmail({ history }) {
         is_policy_agreed: policy,
         language: window.localStorage.getItem("i18nextLng")
       })
-      .then(res => { history.push('/user/signin') });
+      .then(() => {
+        window.sessionStorage.setItem('email', email);
+        window.location = "/user/emailVerified";
+      });
     }
     else {
       validateEmail(email) ? setWrongEmail(false) : setWrongEmail(true);
