@@ -12,6 +12,7 @@ import Rental from "./component/Rental";
 import NavMypage from "./component/NavMypage";
 import NavSignin from "./component/NavSignin";
 import EmailVerification from "./component/EmailVerification";
+import ResetPassword from "./component/ResetPassword";
 import FoodChicken from "./component/FoodChicken";
 import FoodNoodle from "./component/FoodNoodle";
 import './App.scss';
@@ -66,6 +67,9 @@ function App(props) {
           }} />
           <Route path="/user/emailVerified" render={() => {
             return <EmailVerification />
+          }} />
+          <Route path="/user/resetPassword" render={() => {
+            return <ResetPassword />
           }} />
           <Route path="/help/foodDelivery" render={() => {
             return <FoodDelivery />

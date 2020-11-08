@@ -64,8 +64,11 @@ function ResestPassword(props) {
             <input className="emailInput" type="text" name="email" onChange={(e) => inputEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
           </form>
           <button className="resetPasswordBtn" onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
-          <div className={failAlertSignUp ? "alert" : "none"}>You need to sign up first.</div>
-          <div className={failAlertVerification ? "alert" : "none"}>You need to verify your email address first.<br />Please check your email or resend it from this link.</div>
+          <div className={failAlertSignUp ? "signUpAlert" : "none"}>
+            <span>You need to sign up first.</span>
+            <span className="signupLink"><a href="/user/signup">{t('signup.signup')}</a></span>
+            </div>
+          <div className={failAlertVerification ? "signUpAlert" : "none"}>{t('resetPassword.emailVerification')}</div>
         </div>
       </div>
     </div>

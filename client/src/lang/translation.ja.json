@@ -107,5 +107,9 @@
   "food.delivery": "配送料",
   "resetPassword.step1": "メールアドレスを入力すると、パスワードをリセットするためのリンクが送信されます。",
   "resetPassword.email": "Eメールアドレス",
-  "resetPassword.btn": "パスワードを再設定する"
+  "resetPassword.btn": "パスワードを再設定する",
+  "resetPassword.signup": "最初にサインアップする必要があります。",
+  "resetPassword.emailVerification": "最初にメールをチェックして、メールアドレスを確認してください。",
+  "resetPassword.newPassword": "新しいパスワード",
+  "resetPassword.confirmPassword": "パスワードを認証する"
 }

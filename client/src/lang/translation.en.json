@@ -107,5 +107,9 @@
   "food.delivery": "Delivery Fee",
   "resetPassword.step1": "Enter your email address and we'll send you a link to reset your password.",
   "resetPassword.email": "Email Address",
-  "resetPassword.btn": "Reset Password"
+  "resetPassword.btn": "Reset Password",
+  "resetPassword.signup": "You need to sign up first.",
+  "resetPassword.emailVerification": "Please check your email and verify your email address first.",
+  "resetPassword.newPassword": "New Password",
+  "resetPassword.confirmPassword": "Confirm Password"
 }

@@ -68,7 +68,7 @@
       transform: translate3d(-50%, -50%, 0);
       background: white;
       width: 30em;
-      height: 16em;
+      height: 19em;
       padding: 45px;
       border-radius: 5px;
       .modalCloseBtn {
@@ -99,6 +99,7 @@
         border-top: 3px solid rgb(1, 1, 37);
         border-radius: 5px;
         padding: 20px;
+        height: 15em;
         .step1 {
           color: rgb(109, 109, 109);
           padding-bottom: 15px;
@@ -118,6 +119,7 @@
           border-radius: 4px;
         }
         .resetPasswordBtn {
+          margin-top: 10px;
           padding: 10px 0;
           width: 27.1em;
           border-radius: 4px;
@@ -130,10 +132,22 @@
             font-weight: 600;
           }
         }
-        .alert {
+        .signUpAlert {
+          padding-top: 15px;
           color: rgb(190, 23, 11);
-          font-size: 0.7em;
+          font-size: 1em;
           margin-bottom: 1em;
+          .signupLink {
+            a {
+              padding-left: 10px;
+              color: rgb(1, 1, 37);
+              font-weight: 500;
+              font-size: 0.9em;
+              &:hover {
+                font-weight: 600;
+              }
+            }
+          }
         }
         .none {
           display: none;
