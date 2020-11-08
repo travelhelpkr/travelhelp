@@ -60,6 +60,78 @@
         }
       }
     }
+    .modalContentPassword {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 30em;
+      height: 16em;
+      padding: 45px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 3%;
+        top: 4%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.2em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalTitle {
+        font-size: 1.4em;
+        font-weight: 500;
+        margin-bottom: 20px;
+      }
+      .emailInputBox {
+        color: rgb(1, 1, 37);
+        font-weight: 400;
+        font-size: 1em;
+        background-color: #f6f6f8;
+        border: 1px solid #ebebeb;
+        border-top: 3px solid rgb(1, 1, 37);
+        border-radius: 5px;
+        padding: 20px;
+        .step1 {
+          color: rgb(109, 109, 109);
+          padding-bottom: 15px;
+          border-bottom: 1px solid #ebebeb;
+        }
+        .emailAddress {
+          font-size: 0.9em;
+          text-align: left;
+          padding: 15px 0 0 4px;
+          font-weight: 600;
+        }
+        .emailInput {
+          margin: 10px 0 15px;
+          padding: 10px 0 10px 10px;
+          width: 31.5em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .resetPasswordBtn {
+          padding: 10px 0;
+          width: 27.1em;
+          border-radius: 4px;
+          font-size: 1em;
+          color: white;
+          background-color:  rgb(1, 1, 37);
+          &:hover {
+            cursor: pointer;
+            opacity: 85%;
+            font-weight: 600;
+          }
+        }
+      }
+    }
   }
   .none {
     display: none;

@@ -25,7 +25,7 @@
   "signin.line": "Sign In with Line",
   "signin.email": "Email Address *",
   "signin.password": "Password *",
-  "signin.forgotPassword": "forgot your password?",
+  "signin.forgotPassword": "Forgot your password?",
   "signin.gotoSignUp": "If you don't have an ID yet",
   "signin.or": "OR",
   "signin.wrongInfo": "The email address or password is not match.",
@@ -104,5 +104,8 @@
   "food.restaurant": "Restaurant",
   "food.hour": "Operation Hour",
   "food.minimum": "Minimum Price",
-  "food.delivery": "Delivery Fee"
+  "food.delivery": "Delivery Fee",
+  "resetPassword.step1": "Enter your email address and we'll send you a link to reset your password.",
+  "resetPassword.email": "Email Address",
+  "resetPassword.btn": "Reset Password"
 }

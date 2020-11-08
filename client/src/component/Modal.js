@@ -1,6 +1,5 @@
 import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-// import chicken from '../img/chicken.jpg';
 import "../scss/Modal.scss";
 
 function Modal(props) {
