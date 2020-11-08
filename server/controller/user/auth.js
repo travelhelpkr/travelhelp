@@ -156,8 +156,6 @@ module.exports = {
           }
           smtpTransporter.close();
         });
-
-        res.status(201).send({ message: 'Your email had been changed' });
       }
     } 
     catch (err) {
