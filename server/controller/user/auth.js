@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken');
 */
 
 module.exports = {
-  email: async (req, res) => {
+  getEmail: async (req, res) => {
 
     try {
       // decode token's value from the URI's query string.
@@ -39,9 +39,7 @@ module.exports = {
           }
         });
 
-        res.status(201).send({
-          message: 'Successfully verified your email and now your sign up process is completed!'
-        });
+        res.redirect(201, 'http://localhost:5533/user/signin');
       }
       else {
         res.status(403).send({
@@ -51,9 +49,83 @@ module.exports = {
     }
     catch (err) {
       // response err to client. no need to throw err.
-      res.status(err.status || 403).json({
-        message: err.message || 'Your token may have problem. You can resend verification mail from sign in page. If you still have problem, please contact us: (contact information)'
-      });  
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.'
+      });
+    }
+
+  },
+
+  postEmail: async (req, res) => {
+
+    try {
+      const { email } = req.body;
+      
+      // check db has email(the decoded token) on the db
+      const newUser = await User.findOne({
+        where: {
+          email: email
+        }
+      });
+
+      // redirect user into sigin page in case user email already verified or user access this page without email. such as directly approach with the url.
+      if (newUser === null || newUser.dataValues.is_email_verified) {
+        res.redirect(403, 'http://localhost:5533/user/signin');
+      }
+      else {
+        // generate token for verifying user email. available for 24 hours.
+        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60 * 24 });
+        
+        const smtpTransporter = nodemailer.createTransport({
+          service: 'gmail',
+          host: 'smtp.gmail.com',
+          // if port is 587 or 25, secure should be false. Or if port is 465, secure should be true.
+          port: 587,
+          secure: false,
+          tls: {
+            // do not fail on invalid certs
+            rejectUnauthorized: false
+          },
+          auth: {
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASS
+          }
+        });
+  
+        const mailOptions = {
+          from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
+          to: newUser.dataValues.email,
+          subject: "Verify your TravelHelp account",
+          text: `Almost done, ${newUser.dataValues.name}!
+          
+          To activate your TravelHelp account, we just need yo verify your email address:        
+          
+          http://localhost:3355/users/auth/email/?token=${generatedAuthToken}
+  
+          This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(http://localhost:5533/user/signin) by trying to sign in again with your email address.
+          
+          If you have any problems, please contact us: (attatch channel.io link)`
+        }
+  
+        smtpTransporter.sendMail(mailOptions, (error, info) => {
+          if(error) {
+            console.log('error message: ', error);
+            res.send({message: 'err'});
+          }
+          else {
+            console.log('Email sent: ', info.response);
+            console.log("Message sent: %s", info.messageId);
+            res.status(201).send({ message: 'Please verify your email address' });
+          }
+          smtpTransporter.close();
+        });
+      }
+    }
+    catch (err) {
+      // response err to client. no need to throw err.
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.'
+      });
     }
 
   },
@@ -81,11 +153,11 @@ module.exports = {
     } 
     catch (err) {
       // response err to client. no need to throw err.
-      res.status(err.status || 403).json({
-        message: err.message || 'Your token may have problem. You can resend verification mail from find password page. If you still have problem, please contact us: (contact information)'
-      });  
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.'
+      });
     }
-
+    
   },
 
   postPassword: async (req, res) => {
