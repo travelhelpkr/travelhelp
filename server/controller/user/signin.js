@@ -18,58 +18,81 @@ const bcrypt = require('bcrypt');
 module.exports = {
   post: async (req, res) => {
 
-    const { email, password } = req.body;
-    
-    // bring the user information with req.body.email
-    const userData = await User.findOne({
-      where: {
-        email: email
-      }
-    });
-    
-    // check req.body.email exists on db
-    if (!userData) {
-      res.status(404).send("You need to sign up first.");
-    }
-    else {
-      // compare req.body.password && hashed password from db
-      bcrypt.compare(password, userData.dataValues.password, (err, result) => {
-        // catch err or wrong password, 
-        if (err || !result) { 
-          console.log('Error from password: ', err);
-          res.status(401).send("Wrong password.");
-        }
-        else {
-          // store user information & sign in status & visit times on the session
-          req.session.user_name = userData.dataValues.name;
-          req.session.user_email = userData.dataValues.email;
-          req.session.user_language = userData.dataValues.language;
-          req.session.visit_count = userData.dataValues.visit_count;
-          if (req.session.visit_count) {
-            req.session.visit_count++;
-          } else {
-            req.session.visit_count = 1;
-          }
+    try {
+      const { email, password } = req.body;
 
-          // update last visited time & visit count on users table from the db
-          User.update({
-            last_visited_at: new Date(),
-            visit_count: req.session.visit_count
-          }, {  
-            where: {
-              id: userData.dataValues.id
-            }
-          });
-          
-          // excutes this callback after saving the session
-          req.session.save(() => {
-            console.log('current session ID: ', req.session.id);
-            console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
-            // send user info to client side as an object
-            res.status(200).send({name: req.session.user_name, email: req.session.user_email, language: req.session.user_language});
-          });
+      // bring the user information with req.body.email
+      const userData = await User.findOne({
+        where: {
+          email: email
         }
       });
+      
+      // check req.body.email exists on db
+      if (!userData) {
+        res.status(404).send({ message: 'You need to sign up first.' });
+      }
+      // redirect user to email verification page when email is not verified
+      else if (userData && !userData.dataValues.is_email_verified) {
+        // store user email on the session. client can employ it when resending verification mail
+        req.session.user_email = email;
+        req.session.save(() => {
+          console.log('req.session.user_email: ', req.session.user_email);
+          res.redirect(403, 'http://localhost:5533/user/emailVerified');
+        });
+      }
+      else {
+        // compare req.body.password && hashed password from db
+        bcrypt.compare(password, userData.dataValues.password, (err, result) => {
+          // catch err or wrong password, 
+          if (err || !result) { 
+            console.log('Error from password: ', err);
+            res.status(401).send({ message: 'Wrong password.' });
+          }
+          else {
+            // store user information & sign in status & visit times on the session
+            req.session.user_name = userData.dataValues.name;
+            req.session.user_email = userData.dataValues.email;
+            req.session.user_language = userData.dataValues.language;
+            req.session.visit_count = userData.dataValues.visit_count;
+
+            if (req.session.visit_count) {
+              req.session.visit_count++;
+            } else {
+              req.session.visit_count = 1;
+            }
+  
+            // excutes this callback after saving the session
+            req.session.save(() => {
+              console.log('current session ID: ', req.session.id);
+              console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
+
+              // update last visited time & visit count on users table from the db
+              User.update({
+                last_visited_at: new Date(),
+                visit_count: req.session.visit_count
+              }, {  
+                where: {
+                  id: userData.dataValues.id
+                }
+              });
+
+              // send user info to client side as an object
+              res.status(200).send({
+                name: req.session.user_name,
+                email: req.session.user_email,
+                language: req.session.user_language
+              });
+            });
+          }
+        });
+      }
+    }
+    catch (err) {
+      // response err to client. no need to throw err.
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.'
+      });  
     }
     
   }
