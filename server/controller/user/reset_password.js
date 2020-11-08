@@ -1,71 +1,93 @@
 const { User } = require('../../models');
-const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 /*
 1. if email not exists
+  1. redirect to signup page
 2. if email exists
   1. but if it is not verified yet
     1. redirect to email verification page
-  2. email is verified
+  2. if email is verified
     1. send verification code to the email address
 */
 
 module.exports = {
   post: async (req, res) => {
 
-    const { email, password } = req.body;
-    
-    // bring the user information with req.body.email
-    const userData = await User.findOne({
-      where: {
-        email: email
-      }
-    });
-    
-    // check req.body.email exists on db
-    if (!userData) {
-      res.status(401).send("You need to sign up first.");
-    }
-    else {
-      // compare req.body.password && hashed password from db
-      bcrypt.compare(password, userData.dataValues.password, (err, result) => {
-        // catch err or wrong password, 
-        if (err || !result) { 
-          console.log('Error from password: ', err);
-          res.status(401).send("Wrong password.");
-        }
-        else {
-          // store user information & sign in status & visit times on the session
-          req.session.user_name = userData.dataValues.name;
-          req.session.user_email = userData.dataValues.email;
-          req.session.user_language = userData.dataValues.language;
-          req.session.visit_count = userData.dataValues.visit_count;
-          if (req.session.visit_count) {
-            req.session.visit_count++;
-          } else {
-            req.session.visit_count = 1;
-          }
-
-          // update last visited time & visit count on users table from the db
-          User.update({
-            last_visited_at: new Date(),
-            visit_count: req.session.visit_count
-          }, {  
-            where: {
-              id: userData.dataValues.id
-            }
-          });
-          
-          // excutes this callback after saving the session
-          req.session.save(() => {
-            console.log('current session ID: ', req.session.id);
-            console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
-            // send user info to client side as an object
-            res.status(200).send({name: req.session.user_name, email: req.session.user_email, language: req.session.user_language});
-          });
+    try {
+      const { email } = req.body;
+      
+      // bring the user information with req.body.email
+      const userData = await User.findOne({
+        where: {
+          email: email
         }
       });
+
+      // check req.body.email exists on db
+      if (!userData) {
+        res.status(404).send({ message: 'You need to sign up first' });
+      }
+      else if (userData && !userData.dataValues.is_email_verified) {
+        res.status(401).send({ message: 'You need to verify your email address. Please check your email or resend it from this link' });
+      }
+      else {
+        // generate token for verifying user email. available for an hour.
+        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60});
+        console.log('token: ', generatedAuthToken);
+        const smtpTransporter = nodemailer.createTransport({
+          service: 'gmail',
+          host: 'smtp.gmail.com',
+          // if port is 587 or 25, secure should be false. Or if port is 465, secure should be true.
+          port: 587,
+          secure: false,
+          tls: {
+            // do not fail on invalid certs
+            rejectUnauthorized: false
+          },
+          auth: {
+            user: process.env.NODEMAILER_USER,
+            pass: process.env.NODEMAILER_PASS
+          }
+        });
+  
+        const mailOptions = {
+          from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
+          to: userData.dataValues.email,
+          subject: "Reset your password",
+          text: 
+          `Almost done, ${userData.dataValues.name}!
+          
+          You told us you forgot your password. If you really did, click this link to choose a new one:        
+          
+          http://localhost:3355/users/auth/password/?token=${generatedAuthToken}
+          
+          This link will only be valid for an hour.
+
+          If you didn’t mean to reset your password, then you can just ignore this email; your password will not change.`
+        }
+  
+        smtpTransporter.sendMail(mailOptions, (error, info) => {
+          if(error) {
+            console.log('error message: ', error);
+            res.send({ message: 'err' });
+          }
+          else {
+            console.log('Email sent: ', info.response);
+            console.log("Message sent: %s", info.messageId);
+            res.status(201).send({ message: 'Please check your email for changing the password' });
+          }
+          smtpTransporter.close();
+        });
+      }
     }
-    
+    catch (err) {
+      // response err to client. no need to throw err.
+      res.status(err.status || 400).json({
+        message: err.message || 'wrong approach'
+      });
+    }
+
   }
 };

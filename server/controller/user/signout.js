@@ -31,7 +31,7 @@ module.exports = {
           }
           else {
             res.clearCookie('sid');
-            res.status(200).send("successfully signed out");
+            res.status(200).send({ message: 'successfully signed out' });
           }
         });
       }
