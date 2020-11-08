@@ -10,8 +10,9 @@ const userRouter = express.Router();
 userRouter.post('/signup', signup.post);
 userRouter.post('/signin', signin.post);
 userRouter.post('/signout', signout.post);
-userRouter.get('/auth/email', auth.email);
 userRouter.post('/reset_password', reset_password.post);
+userRouter.get('/auth/email', auth.getEmail);
+userRouter.post('/auth/email', auth.postEmail);
 userRouter.get('/auth/password', auth.getPassword);
 userRouter.post('/auth/password', auth.postPassword);
 
