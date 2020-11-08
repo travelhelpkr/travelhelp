@@ -27,10 +27,16 @@ module.exports = {
 
       // check req.body.email exists on db
       if (!userData) {
-        res.status(404).send({ message: 'You need to sign up first' });
+        res.send({
+          status: 404,
+          message: 'You need to sign up first'
+        });
       }
       else if (userData && !userData.dataValues.is_email_verified) {
-        res.status(401).send({ message: 'You need to verify your email address. Please check your email or resend it from this link' });
+        res.send({
+          status: 401,
+          message: 'You need to verify your email address. Please check your email or resend it from this link'
+        });
       }
       else {
         // generate token for verifying user email. available for an hour.
@@ -61,7 +67,7 @@ module.exports = {
           
           You told us you forgot your password. If you really did, click this link to choose a new one:        
           
-          http://localhost:3355/users/auth/password/?token=${generatedAuthToken}
+          http://localhost:5533/user/resetPassword/?token=${generatedAuthToken}
           
           This link will only be valid for an hour.
 
