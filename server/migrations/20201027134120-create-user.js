@@ -20,6 +20,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      is_oauth: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
       is_email_verified: {
         type: Sequelize.BOOLEAN,
         allowNull: false,

@@ -34,11 +34,6 @@ module.exports = {
       }
       // redirect user to email verification page when email is not verified
       else if (userData && !userData.dataValues.is_email_verified) {
-        // store user email on the session. client can employ it when resending verification mail
-        // req.session.user_email = email;
-        // req.session.save(() => {
-        //   console.log('req.session.user_email: ', req.session.user_email);
-        // });
         res.send({ status: 403, message: 'You need to verify your email first' });
       }
       else {
