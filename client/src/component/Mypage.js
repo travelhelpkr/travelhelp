@@ -24,6 +24,7 @@ function Mypage(props) {
        }
     })
       .then(res => {
+        console.log("res:", res);
         setIsLogin(false);
         setEmail("");
         setName("");

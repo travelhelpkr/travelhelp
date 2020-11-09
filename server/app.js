@@ -6,16 +6,20 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const userRouter = require('./router/userRouter');
 const foodRouter = require('./router/foodRouter');
+const oAuthRouter = require('./router/oAuthRouter');
+const passport = require('passport');
+const passportConfig = require('./controller/user/passportGoogle.js');
+passportConfig();
 const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
+app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(cors({
   origin: "http://localhost:5533",
   credentials: true
 }));
-app.use(cookieParser());
-app.use(bodyParser.json());
 
 // declare env variable for managing session
 const env = process.env;
@@ -38,7 +42,7 @@ app.use(
     cookie: {
       // cookie availables for a day
       maxAge: 6000 * 60 * 24
-
+      
       // samesite setting for production level
       // sameSite: 'none',
       // secure: true,
@@ -46,9 +50,14 @@ app.use(
   })
 );
 
+// passport
+app.use(passport.initialize());
+app.use(passport.session())
+
 // routing
 app.use('/users', userRouter);
 app.use('/foods', foodRouter);
+app.use('/auth', oAuthRouter);
 
 app.get('/', (req, res) => {
   console.log('session: ', req.session);

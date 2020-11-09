@@ -1,7 +1,7 @@
 const { Restaurant } = require('../../models');
 
 /*
-1. check id of restaurant table
+1. check id of restaurant table 
 2. send restaurant information matched with id(PK)
 */
 
