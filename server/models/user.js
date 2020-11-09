@@ -26,10 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    is_oauth: {
-      type: DataTypes.BOOLEAN,
+    oauth_provider: {
+      type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: false
+      defaultValue: 'local'
     },
     is_email_verified: {
       type: DataTypes.BOOLEAN,
