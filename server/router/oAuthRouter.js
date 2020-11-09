@@ -3,6 +3,7 @@ const passport = require('passport');
 
 const oAuthRouter = express.Router();
 
+// google
 oAuthRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 oAuthRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:5533/user/signin' }),
   async (req, res) => {
@@ -13,5 +14,15 @@ oAuthRouter.get('/google/callback', passport.authenticate('google', { failureRed
     res.redirect('http://localhost:5533');
   }
 );
+
+// line
+oAuthRouter.get('/line', passport.authenticate('line'));
+oAuthRouter.get('/line/callback', passport.authenticate('line', { failureRedirect: 'http://localhost:5533/user/signin' }),
+  async (req, res) => {
+    console.log('req.session:', req.session.passport.user);
+    res.cookie('line', 'line');
+    res.redirect('http://localhost:5533');
+  }
+)
 
 module.exports = oAuthRouter;

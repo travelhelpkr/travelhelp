@@ -8,14 +8,17 @@ const userRouter = require('./router/userRouter');
 const foodRouter = require('./router/foodRouter');
 const oAuthRouter = require('./router/oAuthRouter');
 const passport = require('passport');
-const passportConfig = require('./controller/user/passportGoogle.js');
-passportConfig();
+const passportGoogle = require('./controller/user/passportGoogle.js');
+const passportLine = require('./controller/user/passportLine.js');
+passportGoogle();
+passportLine();
 const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
 
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(require('body-parser').urlencoded({extended: true}));
 app.use(cors({
   origin: "http://localhost:5533",
   credentials: true
