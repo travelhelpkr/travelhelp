@@ -53,21 +53,6 @@ function Signin(props) {
     .catch((err) => setFailAlert(true));
   }
 
-  // google login handler
-  // const handleGoogleLogin = (e) => {
-  //   e.preventDefault();
-  //   axios.get('http://localhost:3355/auth/google', {
-  //     withCredentials: true,
-  //   }, {
-  //     headers: { 
-  //       "Access-Control-Allow-Origin": "http://localhost:3355",
-  //      }
-  //   })
-  //   .then(res => {
-  //     console.log("res:", res);
-  //   })
-  // }
-
   return(
     <div className="background">
 
@@ -77,7 +62,6 @@ function Signin(props) {
         {/* social signin */}
         <div className="signupBtn">
           <a href="http://localhost:3355/auth/google" className="btn googleBtn">{t('signin.google')}</a>
-          {/* <button onClick={handleGoogleLogin}>{t('signin.google')}</button> */}
         </div>
         <div className="signupBtn">
           <a href="/user/signupwithemail" className="btn wechatBtn">{t('signin.wechat')}</a>

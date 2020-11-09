@@ -15,7 +15,6 @@ function SignupEmail({ history }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [policy, setPolicy] = useState('');
-  const [verification, setVerification] = useState('');
 
   // failure of signup
   const [wrongEmail, setWrongEmail] = useState(false);
@@ -83,7 +82,7 @@ function SignupEmail({ history }) {
       <div className="content">
         {/* social signup */}
         <div className="signupBtn">
-          <a href="/user/signupwithemail" className="btn googleBtn">{t('signup.google')}</a>
+          <a href="http://localhost:3355/auth/google" className="btn googleBtn">{t('signup.google')}</a>
         </div>
         <div className="signupBtn">
           <a href="/user/signupwithemail" className="btn wechatBtn">{t('signup.wechat')}</a>
