@@ -5,10 +5,12 @@ const credentials = require('../../config/google.json');
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
+    console.log("serializeUser:", user)
     done(null, user);
   });
 
   passport.deserializeUser((user, done) => {
+    console.log("deserializeUser:", user)
     done(null, user);
   });
 
@@ -23,22 +25,22 @@ module.exports = () => {
     console.log('refreshToken: ', refreshToken);
     console.log('profile: ', profile);
     const email = profile.emails[0].value;
-    const name = profile.name.givenName;
+    const name = profile.displayName;
     const userData = await User.findOne({ where: { email: email } });
 
     // if existing user
     if (userData) {
       // store user information & sign in status & visit times on the session
-      req.session.user_name = userData.dataValues.name;
-      req.session.user_email = userData.dataValues.email;
-      req.session.user_language = userData.dataValues.language;
-      req.session.visit_count = userData.dataValues.visit_count;
+      // req.session.user_name = userData.dataValues.name;
+      // req.session.user_email = userData.dataValues.email;
+      // req.session.user_language = userData.dataValues.language;
+      // req.session.visit_count = userData.dataValues.visit_count;
 
-      if (req.session.visit_count) {
-        req.session.visit_count++;
-      } else {
-        req.session.visit_count = 1;
-      }
+      // if (req.session.visit_count) {
+      //   req.session.visit_count++;
+      // } else {
+      //   req.session.visit_count = 1;
+      // }
       
       return cb(null, userData);
     }
@@ -46,9 +48,10 @@ module.exports = () => {
     else {
       const newUser = await User.create({
         email: email,
+        password: '1234',
+        name: name,
         is_email_verified: true,
-        is_policy_agreed: true,
-        name: name
+        is_policy_agreed: true
       });
 
       return cb(null, newUser);

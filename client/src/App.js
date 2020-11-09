@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-// import Nav from "./component/Nav";
+import Cookies from 'js-cookie';
 import Home from "./component/Home";
 import Signin from "./component/Signin";
 import Signup from "./component/Signup";
@@ -19,6 +19,8 @@ import './App.scss';
 
 function App(props) {
 
+  console.log('cookie:', Cookies.get('google'));
+
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -26,6 +28,16 @@ function App(props) {
 
   useEffect(() => {
     if(window.sessionStorage.getItem('name')) {
+      setIsLogin(true);
+      setEmail(window.sessionStorage.getItem('email'));
+      setName(window.sessionStorage.getItem('name'));
+    }
+  })
+
+  useEffect(() => {
+    if(Cookies.get('google')) {
+      window.sessionStorage.setItem('email', Cookies.get('email'));
+      window.sessionStorage.setItem('name', Cookies.get('name'));
       setIsLogin(true);
       setEmail(window.sessionStorage.getItem('email'));
       setName(window.sessionStorage.getItem('name'));
