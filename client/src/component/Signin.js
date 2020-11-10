@@ -67,7 +67,7 @@ function Signin(props) {
           <a href="/user/signupwithemail" className="btn wechatBtn">{t('signin.wechat')}</a>
         </div>
         <div className="signupBtn">
-          <a href="/user/signupwithemail" className="btn lineBtn">{t('signin.line')}</a>
+          <a href="http://localhost:3355/auth/line" className="btn lineBtn">{t('signin.line')}</a>
         </div>
 
         {/* or */}
