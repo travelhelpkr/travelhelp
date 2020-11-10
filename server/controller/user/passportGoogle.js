@@ -50,6 +50,7 @@ module.exports = () => {
         email: email,
         password: '1234',
         name: name,
+        oauth_provider: 'google',
         is_email_verified: true,
         is_policy_agreed: true
       });

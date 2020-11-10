@@ -55,6 +55,7 @@ module.exports = {
           else {
             res.clearCookie('connect.sid');
             res.clearCookie('google');
+            res.clearCookie('line');
             res.clearCookie('name');
             res.clearCookie('email');
             res.status(200).send({ message: 'successfully signed out' });
