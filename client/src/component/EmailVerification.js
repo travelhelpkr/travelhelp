@@ -10,6 +10,7 @@ function EmailVerification(props) {
   // change language handler
   const { t } = useTranslation();
 
+  // success of resend email
   const [alert, setAlert] = useState(false);
 
   // resend Email btn handler
