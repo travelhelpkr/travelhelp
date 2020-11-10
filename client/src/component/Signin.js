@@ -38,6 +38,7 @@ function Signin(props) {
     })
     .then(res => {
       if(res.data.status === 403) {
+        window.sessionStorage.setItem('email', email);
         window.location = '/user/emailVerified';
       } else {
         window.sessionStorage.setItem('id', res.data.id);

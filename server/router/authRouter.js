@@ -10,7 +10,7 @@ const authRouter = express.Router();
 // local
 authRouter.post('/email', verifyEmail.resendEmail);
 authRouter.get('/email', verifyEmail.updateEmail);
-authRouter.post('/reset_password', resetPassword.sendEmail);
+authRouter.post('/resetPassword', resetPassword.sendEmail);
 authRouter.get('/password', resetPassword.verifyToken);
 authRouter.post('/password', resetPassword.updatePassword);
 
