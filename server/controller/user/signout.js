@@ -58,6 +58,7 @@ module.exports = {
             res.clearCookie('line');
             res.clearCookie('name');
             res.clearCookie('email');
+            res.clearCookie('id');
             res.status(200).send({ message: 'successfully signed out' });
           }
         });
