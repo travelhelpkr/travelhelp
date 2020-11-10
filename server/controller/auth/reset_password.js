@@ -67,7 +67,7 @@ module.exports = {
           
           You told us you forgot your password. If you really did, click this link to choose a new one:        
           
-          http://localhost:5533/user/resetPassword/?token=${generatedAuthToken}
+          http://localhost:5533/auth/resetPassword/?token=${generatedAuthToken}
           
           This link will only be valid for an hour.
 
