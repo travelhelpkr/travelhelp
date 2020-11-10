@@ -22,7 +22,7 @@ oAuthRouter.get('/line/callback', passport.authenticate('line', { failureRedirec
   async (req, res) => {
     console.log('req.session.passport:', req.session.passport.user);
     res.cookie('line', 'line');
-    res.cookie('id', req.session.user.id);
+    res.cookie('id', req.session.passport.user.id);
     res.cookie('name', req.session.passport.user.name);
     res.cookie('email', req.session.passport.user.email);
     res.redirect('http://localhost:5533');
