@@ -20,8 +20,6 @@ import './App.scss';
 
 function App(props) {
 
-  console.log('cookie:', Cookies.get('google'));
-
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -47,6 +45,8 @@ function App(props) {
       setName(window.sessionStorage.getItem('name'));
     }
   })
+
+  console.log('userId:', userId);
 
   const Nav = () => {
     if(window.sessionStorage.getItem('id')) {
@@ -88,16 +88,16 @@ function App(props) {
             return <ResetPassword />
           }} />
           <Route path="/user/cart" render={() => {
-            return <Cart userId={userId}/>
+            return <Cart userId={userId} />
           }} />
           <Route path="/help/foodDelivery" render={() => {
-            return <FoodDelivery />
+            return <FoodDelivery userId={userId} />
           }} />
           <Route path="/help/foodDelivery/chicken" render={() => {
-            return <FoodChicken />
+            return <FoodChicken userId={userId} />
           }} />
           <Route path="/help/foodDelivery/noodle" render={() => {
-            return <FoodNoodle />
+            return <FoodNoodle  userId={userId} />
           }} />
           <Route path="/help/luggage" render={() => {
             return <Luggage />

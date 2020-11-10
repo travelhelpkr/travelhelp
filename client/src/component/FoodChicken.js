@@ -5,10 +5,13 @@ import axios from 'axios';
 import chickenImg from '../img/new_banner_CK.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
-import Modal from './Modal';
+import ModalChicken from './ModalChicken';
 import '../scss/FoodChicken.scss';
 
 function FoodChicken(props) {
+
+  // userId props for modal
+  const { userId } = props;
 
   // menu of restaurant
   const [menu, setMenu] = useState(null);
@@ -170,7 +173,7 @@ function FoodChicken(props) {
           })
         }
       </ul>
-      <Modal isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} />
+      <ModalChicken isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} userId={userId} />
     </div>
   </div>
 
