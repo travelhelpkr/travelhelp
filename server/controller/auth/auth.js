@@ -23,29 +23,48 @@ module.exports = {
       const decodedToken = jwt.verify(req.query.token, process.env.secret);
   
       // check db has email(the decoded token) on the db
-      const userData = await User.findOne({
+      User.findOne({
         where: {
           email: decodedToken.email
         }
+      })
+      .then(userData => {
+        if (userData) {
+          // update email verified column into true
+          User.update({
+            is_email_verified: true
+          }, {  
+            where: {
+              email: decodedToken.email
+            }
+          });
+
+          res.redirect(201, 'http://localhost:5533/user/signin');
+        }
+        else {
+          res.status(403).send({
+            message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
+          });
+        }
       });
+      
+      // if (userData) {
+      //   // update email verified column into true
+      //   User.update({
+      //     is_email_verified: true
+      //   }, {  
+      //     where: {
+      //       email: decodedToken.email
+      //     }
+      //   });
 
-      if (userData) {
-        // update email verified column into true
-        User.update({
-          is_email_verified: true
-        }, {  
-          where: {
-            email: decodedToken.email
-          }
-        });
-
-        res.redirect(201, 'http://localhost:5533/user/signin');
-      }
-      else {
-        res.status(403).send({
-          message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
-        });
-      }
+      //   res.redirect(201, 'http://localhost:5533/user/signin/finish');
+      // }
+      // else {
+      //   res.status(403).send({
+      //     message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
+      //   });
+      // }
     }
     catch (err) {
       // response err to client. no need to throw err.
@@ -100,7 +119,7 @@ module.exports = {
           
           To activate your TravelHelp account, we just need yo verify your email address:        
           
-          http://localhost:3355/users/auth/email/?token=${generatedAuthToken}
+          http://localhost:3355/auth/email/?token=${generatedAuthToken}
   
           This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(http://localhost:5533/user/signin) by trying to sign in again with your email address.
           

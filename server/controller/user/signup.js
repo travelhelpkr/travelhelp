@@ -67,7 +67,7 @@ module.exports = {
           
           To activate your TravelHelp account, we just need yo verify your email address:        
           
-          http://localhost:3355/users/auth/email/?token=${generatedAuthToken}
+          http://localhost:3355/auth/email/?token=${generatedAuthToken}
   
           This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(http://localhost:5533/user/signin) by trying to sign in again with your email address.
           
