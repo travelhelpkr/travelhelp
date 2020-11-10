@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
+import Policy from './Policy';
 import '../scss/Form.scss';
 
 function SignupEmail({ history }) {
@@ -22,6 +23,8 @@ function SignupEmail({ history }) {
   const [wrongName, setWrongName] = useState(false);
   const [wrongPolicy, setWrongPolicy] = useState(false);
 
+  // open modal
+  const [isOpen, setModal] = useState(false);
 
   // form input change handler
   const onChangeHandler = (e) => {
@@ -73,6 +76,14 @@ function SignupEmail({ history }) {
     }
   }
 
+  // const Policy = () => {
+  //   if(window.localStorage.getItem('i18nextLng') === 'en') {
+  //     return <PolicyEn />
+  //   } else if(window.localStorage.getItem('i18nextLng') === 'zh') {
+  //     return <PolicyZh />
+  //   }
+  // }
+
 
   return(
     <div className="background">
@@ -111,7 +122,11 @@ function SignupEmail({ history }) {
           
           <div className="signupCheckBox">
             <input name="policy" onChange={onChangeHandler} type="checkbox"></input>
-            <label htmlFor="policy">{t("signup.policy")}</label>
+            <label htmlFor="policy" onClick={e => {
+              e.preventDefault();
+              setModal(!isOpen);
+            }}>{t("signup.policy")}
+            </label>
           </div>
           <div className={wrongPolicy ? "alert" : "none"}>{t('signup.wrongPolicy')}</div>
         </form>
@@ -124,7 +139,8 @@ function SignupEmail({ history }) {
           <a href="/user/signin">{t('signup.already')}</a>
         </div>
       </div>
-
+      
+      <Policy isOpen={isOpen} setModal={setModal}/>
     </div>
   )
 }
