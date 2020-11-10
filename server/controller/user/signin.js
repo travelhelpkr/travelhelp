@@ -46,6 +46,7 @@ module.exports = {
           }
           else {
             // store user information & sign in status & visit times on the session
+            req.session.user_id = userData.dataValues.id;
             req.session.user_name = userData.dataValues.name;
             req.session.user_email = userData.dataValues.email;
             req.session.user_language = userData.dataValues.language;
@@ -74,6 +75,7 @@ module.exports = {
 
               // send user info to client side as an object
               res.status(200).send({
+                id: req.session.user_id,
                 name: req.session.user_name,
                 email: req.session.user_email,
                 language: req.session.user_language
