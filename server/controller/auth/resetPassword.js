@@ -1,100 +1,49 @@
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 /*
-1. check query string from the received uri
-  1. decode jwt token
-    1. get email value from the token
-      1. check user exists on db
-        1. if user exists on db
-          1. update email verification value into true
-        2. else
-          1. 403 err
+1. if email not exists
+  1. redirect to signup page
+2. if email exists
+  1. but if it is not verified yet
+    1. redirect to email verification page
+  2. if email is verified
+    1. send verification code to the email address
 */
 
 module.exports = {
-  getEmail: async (req, res) => {
-
-    try {
-      // decode token's value from the URI's query string.
-      // expected prints: { email: value, iat:time , exp:time }
-      const decodedToken = jwt.verify(req.query.token, process.env.secret);
-  
-      // check db has email(the decoded token) on the db
-      User.findOne({
-        where: {
-          email: decodedToken.email
-        }
-      })
-      .then(userData => {
-        if (userData) {
-          // update email verified column into true
-          User.update({
-            is_email_verified: true
-          }, {  
-            where: {
-              email: decodedToken.email
-            }
-          });
-
-          res.redirect(201, 'http://localhost:5533/user/signin');
-        }
-        else {
-          res.status(403).send({
-            message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
-          });
-        }
-      });
-      
-      // if (userData) {
-      //   // update email verified column into true
-      //   User.update({
-      //     is_email_verified: true
-      //   }, {  
-      //     where: {
-      //       email: decodedToken.email
-      //     }
-      //   });
-
-      //   res.redirect(201, 'http://localhost:5533/user/signin/finish');
-      // }
-      // else {
-      //   res.status(403).send({
-      //     message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
-      //   });
-      // }
-    }
-    catch (err) {
-      // response err to client. no need to throw err.
-      res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
-      });
-    }
-
-  },
-
-  postEmail: async (req, res) => {
+  // send email with redirect URI for changing password
+  sendEmail: async (req, res) => {
 
     try {
       const { email } = req.body;
       
-      // check db has email(the decoded token) on the db
-      const newUser = await User.findOne({
+      // bring the user information with req.body.email
+      const userData = await User.findOne({
         where: {
           email: email
         }
       });
 
-      // redirect user into sigin page in case user email already verified or user access this page without email. such as directly approach with the url.
-      if (newUser === null || newUser.dataValues.is_email_verified) {
-        res.redirect(403, 'http://localhost:5533/user/signin');
+      // check req.body.email exists on db
+      if (!userData) {
+        res.send({
+          status: 404,
+          message: 'You need to sign up first'
+        });
+      }
+      else if (userData && !userData.dataValues.is_email_verified) {
+        res.send({
+          status: 401,
+          message: 'You need to verify your email address. Please check your email or resend it from this link'
+        });
       }
       else {
-        // generate token for verifying user email. available for 24 hours.
-        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60 * 24 });
-        
+        // generate token for verifying user email. available for an hour.
+        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60});
+        console.log('token: ', generatedAuthToken);
         const smtpTransporter = nodemailer.createTransport({
           service: 'gmail',
           host: 'smtp.gmail.com',
@@ -113,28 +62,28 @@ module.exports = {
   
         const mailOptions = {
           from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
-          to: newUser.dataValues.email,
-          subject: "Verify your TravelHelp account",
-          text: `Almost done, ${newUser.dataValues.name}!
+          to: userData.dataValues.email,
+          subject: "Reset your password",
+          text: `Almost done, ${userData.dataValues.name}!
           
-          To activate your TravelHelp account, we just need yo verify your email address:        
+You told us you forgot your password. If you really did, click this link to choose a new one:        
           
-          http://localhost:3355/auth/email/?token=${generatedAuthToken}
-  
-          This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(http://localhost:5533/user/signin) by trying to sign in again with your email address.
+http://localhost:5533/user/resetPassword/?token=${generatedAuthToken}
           
-          If you have any problems, please contact us: (attatch channel.io link)`
+This link will only be valid for an hour.
+
+If you didn’t mean to reset your password, then you can just ignore this email; your password will not change.`
         }
   
         smtpTransporter.sendMail(mailOptions, (error, info) => {
           if(error) {
             console.log('error message: ', error);
-            res.send({message: 'err'});
+            res.send({ message: 'err' });
           }
           else {
             console.log('Email sent: ', info.response);
             console.log("Message sent: %s", info.messageId);
-            res.status(201).send({ message: 'Please verify your email address' });
+            res.status(201).send({ message: 'Please check your email for changing the password' });
           }
           smtpTransporter.close();
         });
@@ -142,14 +91,13 @@ module.exports = {
     }
     catch (err) {
       // response err to client. no need to throw err.
-      res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+      res.status(err.status || 400).json({
+        message: err.message || 'wrong approach'
       });
     }
 
   },
-
-  getPassword: async (req, res) => {
+  verifyToken: async (req, res) => {
 
     try {
       // decode token's value from the URI's query string.
@@ -179,7 +127,7 @@ module.exports = {
     
   },
 
-  postPassword: async (req, res) => {
+  updatePassword: async (req, res) => {
 
     try {
       const { email, password } = req.body;
@@ -222,17 +170,16 @@ module.exports = {
           from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
           to: userData.dataValues.email,
           subject: "Password changed",
-          text: 
-          `You have a new password!
+          text: `You have a new password!
           
-          Your password for signing in to ${userData.dataValues.name} was recently changed. If you made this change, then we're all set.
+Your password for signing in to ${userData.dataValues.name} was recently changed. If you made this change, then we're all set.
   
-          If you did not make this change, please reset your password to secure your account.
+If you did not make this change, please reset your password to secure your account.
           
-          Either way, feel free to reach out with any questions you might have. We're here to help.
+Either way, feel free to reach out with any questions you might have. We're here to help.
           
-          Best,
-          The team at TravelHelp`
+Best,
+The team at TravelHelp`
         }
   
         const sendEmail = await smtpTransporter.sendMail(mailOptions, (error, info) => {
@@ -257,5 +204,4 @@ module.exports = {
     }
 
   }
-
 };
