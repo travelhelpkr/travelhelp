@@ -55,9 +55,9 @@ function Policy(props) {
           However, if customers refuse to store cookies, they may not use some services that require them.<br />
           3) Method for changing settings to reject cookies<br />
           A. Internet Explorer<br />
-            Directly change settings by clicking Tools > Internet Options > Personal Information tab on the upper menu of a web browser<br />
+            Directly change settings by clicking Tools ⇒ Internet Options ⇒ Personal Information tab on the upper menu of a web browser<br />
           B. Chrome<br />
-            Directly change settings by clicking Menu icon on the upper right bar of a web browser >Settings > Advanced Settings on the bottom of the screen > Contents Setting button on Personal Information section > Cookies section<br /><br />
+            Directly change settings by clicking Menu icon on the upper right bar of a web browser ⇒ Settings ⇒ Advanced Settings on the bottom of the screen ⇒ Contents Setting button on Personal Information section ⇒ Cookies section<br /><br />
 
           <strong>Article 4 Periods of Retaining and Using Personal Information and Destruction of Personal Information</strong><br />
           1) Customers’ personal information shall be destroyed without any delay after the purposes of collection and use of their personal information have been fulfilled. However, if customers’ personal information needs to be retained for a certain period of time for the following purpose of verifying transaction parties’ rights and obligations in accordance with provisions of relevant statutes, such as the Protection of Consumers in e-commerce and Other Transactions Act, such information shall be retained for the specified period:<br />
