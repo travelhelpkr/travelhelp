@@ -1,5 +1,4 @@
 const { User } = require('../../models');
-const { Op } = require('sequelize');
 
 /*
 1. check req.session.user.id for checking user sign in status.
@@ -8,7 +7,7 @@ const { Op } = require('sequelize');
 */
 
 module.exports = {
-  post: async (req, res) => {
+  leaveService: async (req, res) => {
     
     try {
       const { language } = req.body;

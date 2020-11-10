@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken');
 */
 
 module.exports = {
-  post: async (req, res) => {
+  askSignup: async (req, res) => {
 
     try {
       const { email, password, name, is_policy_agreed, language } = req.body;
