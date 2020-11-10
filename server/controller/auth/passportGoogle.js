@@ -2,6 +2,7 @@ const { User } = require('../../models');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const credentials = require('../../config/google.json');
+const bcrypt = require('bcrypt');
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
@@ -41,16 +42,22 @@ module.exports = () => {
       // } else {
       //   req.session.visit_count = 1;
       // }
+
+      // to do
+      // count up
+      // session update: lang, ----
       
       return cb(null, userData);
     }
     // if new user
     else {
+      const hash_password = await bcrypt.hash(process.env.secret, 10);
       const newUser = await User.create({
         email: email,
-        password: '1234',
+        password: hash_password,
         name: name,
         oauth_provider: 'google',
+        visit_count: 1,
         is_email_verified: true,
         is_policy_agreed: true
       });

@@ -1,8 +1,9 @@
 const { User } = require('../../models');
 const passport = require('passport');
 const LineStrategy = require('passport-line-auth').Strategy;
-const jwt = require('jsonwebtoken');
 const credentials = require('../../config/line.json');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 
 module.exports = () => {
@@ -39,11 +40,13 @@ module.exports = () => {
         return cb(null, userData);
       }
       else {
+        const hash_password = await bcrypt.hash(process.env.secret, 10);
         const newUser = await User.create({
           email: email,
-          password: '1234',
+          password: hash_password,
           name: name,
           oauth_provider: 'line',
+          visit_count: 1,
           is_email_verified: true,
           is_policy_agreed: true
         });
