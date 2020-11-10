@@ -20,6 +20,19 @@ function ResetPassword(props) {
   // check password and confirm password
   const [wrongPassword, setWrongPassword] = useState(false);
 
+  // send token value with uri to the server
+  useEffect(() => {
+    axios.get('http://localhost:3355/auth/password', {
+      params: {
+        token: url.searchParams.get('token') 
+      }
+    })
+    .then(res => {
+      console.log("res:", res.data.email);
+      setEmail(res.data.email);
+    })
+  },[])
+
   // form input change handler
   const onChangeHandler = (e) => {
     if(e.target.name === "password") {
@@ -32,29 +45,16 @@ function ResetPassword(props) {
   const resetPasswordHandler = (e) => {
     e.preventDefault();
     if(password === confirmPassword) {
-      axios.post('http://localhost:3355/users/auth/password', {
+      axios.post('http://localhost:3355/auth/password', {
         email: email,
         password: password
       })
       .then(() => window.location = "/user/signin")
     }
     else {
-      ((password === confirmPassword) && password !== "") ?setWrongPassword(false): setWrongPassword(true);
+      ((password === confirmPassword) && password !== "") ? setWrongPassword(false) : setWrongPassword(true);
     }
   }
-
-  // send token value with uri to the server
-  useEffect(() => {
-    axios.get('http://localhost:3355/users/auth/password', {
-      params: {
-        token: url.searchParams.get('token') 
-      }
-    })
-    .then(res => {
-      console.log("res:", res.data.email);
-      setEmail(res.data.email);
-    })
-  },[])
 
   return(
     <div className="background">
