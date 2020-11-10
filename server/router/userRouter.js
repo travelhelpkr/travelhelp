@@ -6,8 +6,8 @@ const signout = require('../controller/user/signout');
 
 const userRouter = express.Router();
 
-userRouter.post('/signup', signup.post);
-userRouter.post('/signin', signin.post);
-userRouter.post('/signout', signout.post);
+userRouter.post('/signup', signup.askSignup);
+userRouter.post('/signin', signin.askSignin);
+userRouter.post('/signout', signout.leaveService);
 
 module.exports = userRouter;

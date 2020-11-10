@@ -16,7 +16,7 @@ const bcrypt = require('bcrypt');
 */
 
 module.exports = {
-  post: async (req, res) => {
+  askSignin: async (req, res) => {
 
     try {
       const { email, password } = req.body;
