@@ -84,11 +84,11 @@ function SignupEmail({ history }) {
         <div className="signupBtn">
           <a href="http://localhost:3355/auth/google" className="btn googleBtn">{t('signup.google')}</a>
         </div>
-        <div className="signupBtn">
+        {/* <div className="signupBtn">
           <a href="/user/signupwithemail" className="btn wechatBtn">{t('signup.wechat')}</a>
-        </div>
+        </div> */}
         <div className="signupBtn">
-          <a href="/user/signupwithemail" className="btn lineBtn">{t('signup.line')}</a>
+          <a href="http://localhost:3355/auth/line" className="btn lineBtn">{t('signup.line')}</a>
         </div>
 
         {/* or */}

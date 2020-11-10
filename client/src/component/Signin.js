@@ -63,9 +63,9 @@ function Signin(props) {
         <div className="signupBtn">
           <a href="http://localhost:3355/auth/google" className="btn googleBtn">{t('signin.google')}</a>
         </div>
-        <div className="signupBtn">
+        {/* <div className="signupBtn">
           <a href="/user/signupwithemail" className="btn wechatBtn">{t('signin.wechat')}</a>
-        </div>
+        </div> */}
         <div className="signupBtn">
           <a href="http://localhost:3355/auth/line" className="btn lineBtn">{t('signin.line')}</a>
         </div>
