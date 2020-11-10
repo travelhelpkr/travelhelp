@@ -28,9 +28,11 @@ module.exports = () => {
       console.log('refreshToken: ', refreshToken);
       console.log('profile:', profile);
       console.log('params:', params.id_token);
-      const { email } = jwt.decode(params.id_token);
-      profile.email = email;
-      console.log('email:', email);
+      // should be applied after permission of Line Corp.
+      // const { email } = jwt.decode(params.id_token);
+      // profile.email = email;
+      // console.log('email:', email);
+      const email = 'lineTest@gmail.com';
       const name = profile.displayName;
       const userData = await User.findOne({ where: { email: email } });
 
@@ -42,6 +44,7 @@ module.exports = () => {
           email: email,
           password: '1234',
           name: name,
+          oauth_provider: 'line',
           is_email_verified: true,
           is_policy_agreed: true
         });
