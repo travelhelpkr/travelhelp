@@ -63,7 +63,7 @@ function FoodChicken(props) {
   <div>
     {/* cart icon */}
     <div className="cartIcon">
-      <img src={cartWhite}/>
+      <a href="/user/cart"><img src={cartWhite}/></a>
     </div>
 
     {/* choose restaurants btn */}
