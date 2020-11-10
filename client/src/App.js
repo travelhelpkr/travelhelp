@@ -16,6 +16,7 @@ import ResetPassword from "./component/ResetPassword";
 import FoodChicken from "./component/FoodChicken";
 import FoodNoodle from "./component/FoodNoodle";
 import Cart from "./component/Cart";
+import VerifyEmail from './component/VerifyEmail';
 import './App.scss';
 
 function App(props) {
@@ -89,6 +90,9 @@ function App(props) {
           }} />
           <Route path="/user/cart" render={() => {
             return <Cart userId={userId} />
+          }} />
+          <Route path="/user/verifyEmail" render={() => {
+            return <VerifyEmail />
           }} />
           <Route path="/help/foodDelivery" render={() => {
             return <FoodDelivery userId={userId} />
