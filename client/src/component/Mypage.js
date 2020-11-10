@@ -38,7 +38,7 @@ function Mypage(props) {
 
       <h1 className="h1">{t('mypage.title')}</h1>
 
-      <div className="contentUserInfo">
+      <div className="contentMyInfo">
         <div className="userInfoTitle">{t('mypage.userInfoTitle')}</div>
 
         {/* user infomation */}
@@ -53,7 +53,6 @@ function Mypage(props) {
           </div>
         </div>
         <div className="userInfoBtn">
-          <button className="mypageBtn changePasswordBtn" onClick={signoutHandler}>{t('mypage.changePassword')}</button>
           <button className="mypageBtn signOutBtn" onClick={signoutHandler}>{t('mypage.signout')}</button>
         </div>
       </div>
