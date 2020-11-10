@@ -29,10 +29,9 @@ module.exports = () => {
       console.log('profile:', profile);
       console.log('params:', params.id_token);
       // should be applied after permission of Line Corp.
-      // const { email } = jwt.decode(params.id_token);
-      // profile.email = email;
-      // console.log('email:', email);
-      const email = 'lineTest@gmail.com';
+      const { email } = jwt.decode(params.id_token);
+      profile.email = email;
+      console.log('email:', email);
       const name = profile.displayName;
       const userData = await User.findOne({ where: { email: email } });
 
