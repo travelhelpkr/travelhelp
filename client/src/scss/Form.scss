@@ -95,6 +95,13 @@
           font-size: 0.9em;
           input {
             margin: 0.5em 0.5em 0.5em 0;
+            cursor: pointer;
+          }
+          label {
+            &:hover {
+              cursor: pointer;
+              font-weight: 500;
+            }
           }
         }
       }
