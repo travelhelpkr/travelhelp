@@ -1,18 +1,18 @@
 const express = require('express');
 const passport = require('passport');
-const auth = require('../controller/auth/auth');
-const reset_password = require('../controller/auth/reset_password');
+const verifyEmail = require('../controller/auth/verifyEmail');
+const resetPassword = require('../controller/auth/resetPassword');
 const passportGoogle = require('../controller/auth/passportGoogle.js');
 const passportLine = require('../controller/auth/passportLine.js');
 
 const authRouter = express.Router();
 
 // local
-authRouter.get('/email', auth.getEmail);
-authRouter.post('/email', auth.postEmail);
-authRouter.post('/reset_password', reset_password.post);
-authRouter.get('/password', auth.getPassword);
-authRouter.post('/password', auth.postPassword);
+authRouter.post('/email', verifyEmail.resendEmail);
+authRouter.get('/email', verifyEmail.updateEmail);
+authRouter.post('/reset_password', resetPassword.sendEmail);
+authRouter.get('/password', resetPassword.verifyToken);
+authRouter.post('/password', resetPassword.updatePassword);
 
 // google
 passportGoogle();

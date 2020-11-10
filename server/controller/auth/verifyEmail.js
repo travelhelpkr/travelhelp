@@ -1,48 +1,41 @@
 const { User } = require('../../models');
-const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 
 /*
-1. check req.body.email exists on db
-  1. if exist
-    1. res 409 err
-  2. if no matches
-    1. put req.body datas on db
-      1. encrypt password before putting it on db
-      2. res 201 ok
-    2. send verification email to the user_email
+1. check query string from the received uri
+  1. decode jwt token
+    1. get email value from the token
+      1. check user exists on db
+        1. if user exists on db
+          1. update email verification value into true
+        2. else
+          1. 403 err
 */
 
 module.exports = {
-  post: async (req, res) => {
+  
+  // send email to the user if the user's email is not verified.
+  resendEmail: async (req, res) => {
 
     try {
-      const { email, password, name, is_policy_agreed, language } = req.body;
-      const hash_password = await bcrypt.hash(password, 10);
+      const { email } = req.body;
       
-      // check db has req.body.email
-      const userData = await User.findOne({
+      // check db has email(the decoded token) on the db
+      const newUser = await User.findOne({
         where: {
           email: email
         }
       });
-    
-      if (userData) {
-        res.status(409).send({ message: 'User already existed.' });
+      
+      // redirect user into sigin page in case user email already verified or user access this page without email. such as directly approach with the url.
+      if (newUser === null || newUser.dataValues.is_email_verified) {
+        res.redirect(403, 'http://localhost:5533/user/signin');
       }
       else {
         // generate token for verifying user email. available for 24 hours.
         const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60 * 24 });
-        // make a new user on the db
-        const newUser = await User.create({
-          email: email,
-          password: hash_password,
-          name: name,
-          is_policy_agreed: is_policy_agreed,
-          last_visited_at: new Date(),
-          language: language
-        })
+        
         const smtpTransporter = nodemailer.createTransport({
           service: 'gmail',
           host: 'smtp.gmail.com',
@@ -58,7 +51,7 @@ module.exports = {
             pass: process.env.NODEMAILER_PASS
           }
         });
-  
+        
         const mailOptions = {
           from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
           to: newUser.dataValues.email,
@@ -68,12 +61,12 @@ module.exports = {
 To activate your TravelHelp account, we just need yo verify your email address:        
           
 http://localhost:5533/user/verifyEmail/?token=${generatedAuthToken}
-  
+          
 This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(http://localhost:5533/user/signin) by trying to sign in again with your email address.
           
 If you have any problems, please contact us: (attatch channel.io link)`
         }
-  
+        
         smtpTransporter.sendMail(mailOptions, (error, info) => {
           if(error) {
             console.log('error message: ', error);
@@ -90,10 +83,41 @@ If you have any problems, please contact us: (attatch channel.io link)`
     }
     catch (err) {
       // response err to client. no need to throw err.
-      res.status(err.status || 403).json({
-        message: err.message || 'Your token may have problem. You can resend verification mail from sign in page. If you still have problem, please contact us: (contact information)'
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.'
       });
     }
     
+  },
+
+  // verify user's token when user click the given link from the verification email
+  // and update user email verification status into verified if it is vaid
+  updateEmail: async (req, res) => {
+  
+    try {
+      // decode token's value from the URI's query string.
+      // expected prints: { email: value, iat:time , exp:time }
+      const decodedToken = jwt.verify(req.query.token, process.env.secret);
+      console.log('token: ', decodedToken);
+      // check db has email(the decoded token) on the db
+      const updatedUser = await User.update({
+        is_email_verified: true
+      }, {  
+        where: {
+          email: decodedToken.email
+        }
+      });
+
+      res.status(200).send({
+        message: 'Your email address has verified.'
+      });
+    }
+    catch (err) {
+      // response err to client. no need to throw err.
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.'
+      });
+    }
+
   }
 };
