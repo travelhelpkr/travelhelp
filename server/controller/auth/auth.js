@@ -23,29 +23,48 @@ module.exports = {
       const decodedToken = jwt.verify(req.query.token, process.env.secret);
   
       // check db has email(the decoded token) on the db
-      const userData = await User.findOne({
+      User.findOne({
         where: {
           email: decodedToken.email
         }
+      })
+      .then(userData => {
+        if (userData) {
+          // update email verified column into true
+          User.update({
+            is_email_verified: true
+          }, {  
+            where: {
+              email: decodedToken.email
+            }
+          });
+
+          res.redirect(201, 'http://localhost:5533/user/signin');
+        }
+        else {
+          res.status(403).send({
+            message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
+          });
+        }
       });
+      
+      // if (userData) {
+      //   // update email verified column into true
+      //   User.update({
+      //     is_email_verified: true
+      //   }, {  
+      //     where: {
+      //       email: decodedToken.email
+      //     }
+      //   });
 
-      if (userData) {
-        // update email verified column into true
-        User.update({
-          is_email_verified: true
-        }, {  
-          where: {
-            email: decodedToken.email
-          }
-        });
-
-        res.redirect(201, 'http://localhost:5533/user/signin');
-      }
-      else {
-        res.status(403).send({
-          message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
-        });
-      }
+      //   res.redirect(201, 'http://localhost:5533/user/signin/finish');
+      // }
+      // else {
+      //   res.status(403).send({
+      //     message: 'The action code is invalid. This can happen if the code is malformed, expired, or has already been used.'
+      //   });
+      // }
     }
     catch (err) {
       // response err to client. no need to throw err.
