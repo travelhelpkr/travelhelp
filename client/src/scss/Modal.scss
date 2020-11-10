@@ -74,6 +74,9 @@
         width: 28.9em;
         border: 1px solid #ccc;
         border-radius: 4px;
+        &:hover {
+          cursor: pointer;
+        }
       }
       .addCartBtn {
         margin: 1em 1em 1em;
