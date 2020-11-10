@@ -35,7 +35,7 @@ function App(props) {
   })
 
   useEffect(() => {
-    if(Cookies.get('google')) {
+    if(Cookies.get('google') || Cookies.get('line')) {
       window.sessionStorage.setItem('email', Cookies.get('email'));
       window.sessionStorage.setItem('name', Cookies.get('name'));
       setIsLogin(true);
