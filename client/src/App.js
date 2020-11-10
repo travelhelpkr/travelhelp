@@ -30,6 +30,7 @@ function App(props) {
   useEffect(() => {
     if(window.sessionStorage.getItem('name')) {
       setIsLogin(true);
+      setUserId(window.sessionStorage.getItem('id'));
       setEmail(window.sessionStorage.getItem('email'));
       setName(window.sessionStorage.getItem('name'));
     }
@@ -37,16 +38,18 @@ function App(props) {
 
   useEffect(() => {
     if(Cookies.get('google') || Cookies.get('line')) {
+      window.sessionStorage.setItem('id', Cookies.get('id'));
       window.sessionStorage.setItem('email', Cookies.get('email'));
       window.sessionStorage.setItem('name', Cookies.get('name'));
       setIsLogin(true);
+      setUserId(window.sessionStorage.getItem('id'));
       setEmail(window.sessionStorage.getItem('email'));
       setName(window.sessionStorage.getItem('name'));
     }
   })
 
   const Nav = () => {
-    if(window.sessionStorage.getItem('name')) {
+    if(window.sessionStorage.getItem('id')) {
       return <NavMypage />
     } else {
       return <NavSignin />
@@ -62,7 +65,7 @@ function App(props) {
             return <Home />
           }} />
           <Route path="/user/signin" render={() => {
-            if(window.sessionStorage.getItem("name")){
+            if(window.sessionStorage.getItem("id")){
               return <Redirect to='/' />
             } else {
               return <Signin setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
@@ -72,7 +75,7 @@ function App(props) {
             return <Signup />
           }} />
           <Route path="/user/mypage" render={() => {
-            if(window.sessionStorage.getItem("name")){
+            if(window.sessionStorage.getItem("id")){
               return <Mypage setIsLogin={setIsLogin} name={name} email={email} setEmail={setEmail} setName={setName} />
             } else {
               return <Redirect to='/user/signin' />
@@ -85,7 +88,7 @@ function App(props) {
             return <ResetPassword />
           }} />
           <Route path="/user/cart" render={() => {
-            return <Cart />
+            return <Cart userId={userId}/>
           }} />
           <Route path="/help/foodDelivery" render={() => {
             return <FoodDelivery />
