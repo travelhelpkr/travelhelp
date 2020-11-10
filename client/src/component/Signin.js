@@ -40,10 +40,12 @@ function Signin(props) {
       if(res.data.status === 403) {
         window.location = '/user/emailVerified';
       } else {
+        window.sessionStorage.setItem('id', res.data.id);
         window.sessionStorage.setItem('email', res.data.email);
         window.sessionStorage.setItem('name', res.data.name);
         window.localStorage.setItem('i18nextLng', res.data.language);
         setIsLogin(true);
+        setUserId(res.data.id);
         setEmail(res.data.email);
         setName(res.data.name);
         inputEmail("");
