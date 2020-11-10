@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CloseIcon from '@material-ui/icons/Close';
-import "../scss/Modal.scss";
 import axios from 'axios';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import "../scss/Modal.scss";
 
 function ResestPassword(props) {
 
@@ -15,6 +16,9 @@ function ResestPassword(props) {
   // failure of signin
   const [failAlertSignUp, setFailAlertSignUp] = useState(false);
   const [failAlertVerification, setFailAlertVerification] = useState(false);
+
+  // success of send email
+  const [alert, setAlert] = useState(false);
 
   // change language handler
   const { t } = useTranslation();
@@ -42,7 +46,7 @@ function ResestPassword(props) {
         setFailAlertVerification(true)
       } else {
         inputEmail("");
-        window.location = "/user/emailVerified";
+        setAlert(true);
       }
     })
   }
@@ -73,6 +77,10 @@ function ResestPassword(props) {
             <span>{t('resetPassword.emailVerification')}</span>
             <span className="signupLink"><a href="/user/emailVerified">{t('email.title')}</a></span>
           </div>
+          <div className={alert? "emailAlert" : "none"}>
+            <div className="checkIcon"><CheckCircleRoundedIcon /></div>
+            <div className="checkText">Reset password link has been sent to your email!</div>
+        </div>
         </div>
       </div>
     </div>
