@@ -21,6 +21,9 @@ import './App.scss';
 
 function App(props) {
 
+  // get 'user' cookie from browser
+  const userCookie = JSON.parse(Cookies.get('user').slice(Cookies.get('user').indexOf('{')));
+
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -36,10 +39,10 @@ function App(props) {
   })
 
   useEffect(() => {
-    if(Cookies.get('google') || Cookies.get('line')) {
-      window.sessionStorage.setItem('id', Cookies.get('id'));
-      window.sessionStorage.setItem('email', Cookies.get('email'));
-      window.sessionStorage.setItem('name', Cookies.get('name'));
+    if(userCookie.oauth_provider === 'google' || userCookie.oauth_provider === 'line') {
+      window.sessionStorage.setItem('id', userCookie.id);
+      window.sessionStorage.setItem('email', userCookie.email);
+      window.sessionStorage.setItem('name', userCookie.name);
       setIsLogin(true);
       setUserId(window.sessionStorage.getItem('id'));
       setEmail(window.sessionStorage.getItem('email'));

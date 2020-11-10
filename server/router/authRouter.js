@@ -17,27 +17,21 @@ authRouter.post('/password', resetPassword.updatePassword);
 // google
 passportGoogle();
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-authRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:5533/user/signin' }),
-async (req, res) => {
-  console.log('req.session.passport:', req.session.passport.user);
-  res.cookie('google', 'google');
-  res.cookie('id', req.session.passport.user.id);
-  res.cookie('name', req.session.passport.user.name);
-  res.cookie('email', req.session.passport.user.email);
+authRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:5533/user/signin' })
+, (req, res) => {
+  const { id, name, email, oauth_provider } = req.session.passport.user;
+  res.cookie('user', { id, name, email, oauth_provider });
   res.redirect('http://localhost:5533');
 }
-);
+);  
 
 // line
 passportLine();
 authRouter.get('/line', passport.authenticate('line'));
-authRouter.get('/line/callback', passport.authenticate('line', { failureRedirect: 'http://localhost:5533/user/signin' }),
-  async (req, res) => {
-    console.log('req.session.passport:', req.session.passport.user);
-    res.cookie('line', 'line');
-    res.cookie('id', req.session.passport.user.id);
-    res.cookie('name', req.session.passport.user.name);
-    res.cookie('email', req.session.passport.user.email);
+authRouter.get('/line/callback', passport.authenticate('line', { failureRedirect: 'http://localhost:5533/user/signin' })
+, (req, res) => {
+    const { id, name, email, oauth_provider } = req.session.passport.user;
+    res.cookie('user', { id, name, email, oauth_provider });
     res.redirect('http://localhost:5533');
   }
 )
