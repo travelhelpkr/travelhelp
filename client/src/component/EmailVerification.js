@@ -16,7 +16,7 @@ function EmailVerification(props) {
   // resend Email btn handler
   const handleResendBtn = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3355/users/auth/email', {
+    axios.post('http://localhost:3355/auth/email', {
       email: window.sessionStorage.getItem('email')
     }, {
       withCredentials: true,

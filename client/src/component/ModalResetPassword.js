@@ -22,7 +22,7 @@ function ResestPassword(props) {
   // reset password handler
   const handleResetPasswordBtn = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3355/users/reset_password", {
+    axios.post("http://localhost:3355/auth/reset_password", {
       email: email
     },{
       withCredentials: true,
