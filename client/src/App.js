@@ -15,6 +15,7 @@ import EmailVerification from "./component/EmailVerification";
 import ResetPassword from "./component/ResetPassword";
 import FoodChicken from "./component/FoodChicken";
 import FoodNoodle from "./component/FoodNoodle";
+import Cart from "./component/Cart";
 import './App.scss';
 
 function App(props) {
@@ -82,6 +83,9 @@ function App(props) {
           }} />
           <Route path="/user/resetPassword" render={() => {
             return <ResetPassword />
+          }} />
+          <Route path="/user/cart" render={() => {
+            return <Cart />
           }} />
           <Route path="/help/foodDelivery" render={() => {
             return <FoodDelivery />
