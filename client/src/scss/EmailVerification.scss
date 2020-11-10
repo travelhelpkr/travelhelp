@@ -52,6 +52,24 @@
           font-weight: 600;
         }
       }
+      .resendAlert {
+        padding-top: 15px;
+        color: rgb(5, 202, 71);
+        font-size: 0.9em;
+        width: 16.5em;
+        margin: auto;
+        font-weight: 500;
+        .MuiSvgIcon-root {
+          font-size: 1.2em;
+          float: left;
+        }
+        .checkText {
+          width: 16.5em;
+        }
+      }
+      .none {
+        display: none;
+      }
     }
   } 
 }

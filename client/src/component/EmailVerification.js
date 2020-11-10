@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/EmailVerification.scss';
 
 function EmailVerification(props) {
 
-  // get user email address
-  // const { email } = props;
-  // console.log("email:", email);
-
   // change language handler
   const { t } = useTranslation();
+
+  const [alert, setAlert] = useState(false);
 
   // resend Email btn handler
   const handleResendBtn = (e) => {
@@ -25,6 +24,7 @@ function EmailVerification(props) {
         "Access-Control-Allow-Origin": "http://localhost:3355",
        }
     })
+    .then(() => setAlert(true));
   }
 
   return(
@@ -38,6 +38,10 @@ function EmailVerification(props) {
         <div className="verificationContent verificationContent3">{t('email.des3-1')}<span>{t('email.des3-2')}</span></div>
         <div className="verificationContent verificationContent4">{t('email.des4')}</div>
         <button className="resendEmailBtn" onClick={handleResendBtn}>{t('email.resendBtn')}</button>
+        <div className={alert? "resendAlert" : "none"}>
+          <div className="checkIcon"><CheckCircleRoundedIcon /></div>
+          <div className="checkText">Verification mail has been sent!</div>
+        </div>
       </div>
     </div>
   )
