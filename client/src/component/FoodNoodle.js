@@ -5,10 +5,13 @@ import axios from 'axios';
 import noodleImg from '../img/new_banner_bn.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
-import Modal from './Modal';
+import ModalNoodle from './ModalNoodle';
 import '../scss/FoodNoodle.scss';
 
 function FoodNoodle(props) {
+  
+  // userId props for modal
+  const { userId } = props;
 
   // menu of restaurant
   const [menu, setMenu] = useState(null);
@@ -168,7 +171,7 @@ function FoodNoodle(props) {
           })
         }
       </ul>
-      <Modal isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} />
+      <ModalNoodle isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} userId={userId} />
     </div>
   </div>
   )
