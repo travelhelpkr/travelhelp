@@ -19,8 +19,9 @@ passportGoogle();
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 authRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:5533/user/signin' })
 , (req, res) => {
-  const { id, name, email, oauth_provider } = req.session.passport.user;
-  res.cookie('user', { id, name, email, oauth_provider });
+  // defined variables will be tossed to the cookie of the browser
+  const { id, name, email, oauth_provider, language } = req.session.passport.user;
+  res.cookie('user', { id, name, email, oauth_provider, language });
   res.redirect('http://localhost:5533');
 }
 );  
@@ -30,8 +31,9 @@ passportLine();
 authRouter.get('/line', passport.authenticate('line'));
 authRouter.get('/line/callback', passport.authenticate('line', { failureRedirect: 'http://localhost:5533/user/signin' })
 , (req, res) => {
-    const { id, name, email, oauth_provider } = req.session.passport.user;
-    res.cookie('user', { id, name, email, oauth_provider });
+  // defined variables will be tossed to the cookie of the browser
+    const { id, name, email, oauth_provider, language } = req.session.passport.user;
+    res.cookie('user', { id, name, email, oauth_provider, language });
     res.redirect('http://localhost:5533');
   }
 )

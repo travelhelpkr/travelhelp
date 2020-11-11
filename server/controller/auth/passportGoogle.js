@@ -21,32 +21,17 @@ module.exports = () => {
     // localhost: [1], production: [0]
     callbackURL: credentials.web.redirect_uris[1]
   },
-  async function(accessToken, refreshToken, profile, cb) {
-    console.log('accessToken: ', accessToken);
-    console.log('refreshToken: ', refreshToken);
-    console.log('profile: ', profile);
+  async (accessToken, refreshToken, profile, cb) => {
+    // console.log('accessToken: ', accessToken);
+    // console.log('refreshToken: ', refreshToken);
+    // console.log('profile: ', profile);
     const email = profile.emails[0].value;
     const name = profile.displayName;
     const userData = await User.findOne({ where: { email: email } });
 
     // if existing user
     if (userData) {
-      // store user information & sign in status & visit times on the session
-      // req.session.user_name = userData.dataValues.name;
-      // req.session.user_email = userData.dataValues.email;
-      // req.session.user_language = userData.dataValues.language;
-      // req.session.visit_count = userData.dataValues.visit_count;
-
-      // if (req.session.visit_count) {
-      //   req.session.visit_count++;
-      // } else {
-      //   req.session.visit_count = 1;
-      // }
-
-      // to do
-      // count up
-      // session update: lang, ----
-      
+      userData.increment('visit_count');
       return cb(null, userData);
     }
     // if new user
