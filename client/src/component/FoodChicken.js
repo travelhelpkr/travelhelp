@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import chickenImg from '../img/new_banner_CK.png';
@@ -23,10 +23,10 @@ function FoodChicken(props) {
   const [isOpen, setModal] = useState(false);
 
   // modal information
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
 
   // change language
   const { t } = useTranslation();
@@ -41,7 +41,7 @@ function FoodChicken(props) {
     .then(res => {
       let result = res.data;
       setMenu(result);
-      console.log("menu:", menu);
+      console.log('menu:', menu);
     })
   },[])
 
@@ -55,41 +55,41 @@ function FoodChicken(props) {
     .then(res => {
       let informtaion = res.data;
       setInformation(informtaion);
-      console.log("information:", information);
+      console.log('information:', information);
     })
   },[])
 
   return(
   <div>
     {/* cart icon */}
-    <div className="cartIcon">
-      <a href="/user/cart"><img src={cartWhite}/></a>
+    <div className='cartIcon'>
+      <a href='/user/cart'><img src={cartWhite}/></a>
     </div>
 
     {/* choose restaurants btn */}
-    <div className="restaurantsChicken">
-      <div className="chickenSelected">
-        <a href="/help/foodDelivery/chicken">{t('food.chicken')}</a>
+    <div className='restaurantsChicken'>
+      <div className='chickenSelected'>
+        <a href='/help/foodDelivery/chicken'>{t('food.chicken')}</a>
       </div>
-      <div className="noodle">
-        <a href="/help/foodDelivery/noodle">{t('food.noodle')}</a>
+      <div className='noodle'>
+        <a href='/help/foodDelivery/noodle'>{t('food.noodle')}</a>
       </div>
     </div>
 
-    <div className="menu">
+    <div className='menu'>
 
       {/* banner img */}
-      <div className="banner">
+      <div className='banner'>
         <img src={chickenImg}/>
       </div>
 
       {/* restaurant information */}
-      <div className="restaurantInfo">
+      <div className='restaurantInfo'>
         {
           information && information.map(information => {
             return(
               <div>
-                <div className="Info restaurantDes">
+                <div className='Info restaurantDes'>
                   {
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? information.description_en
@@ -98,8 +98,8 @@ function FoodChicken(props) {
                     : information.description_ja
                   }
                 </div>
-                <div className="Info restaurantName">
-                  <span className="InfoDetailTitle">{t('food.restaurant')}</span>
+                <div className='Info restaurantName'>
+                  <span className='InfoDetailTitle'>{t('food.restaurant')}</span>
                   {
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? information.name_en
@@ -108,16 +108,16 @@ function FoodChicken(props) {
                     : information.name_ja
                   }
                 </div>
-                <div className="Info restaurantHour">
-                  <span className="InfoDetailTitle">{t('food.hour')}</span>
+                <div className='Info restaurantHour'>
+                  <span className='InfoDetailTitle'>{t('food.hour')}</span>
                   {information.operation_hour}
                 </div>
-                <div className="Info restaurantMin">
-                  <span className="InfoDetailTitle">{t('food.minimum')}</span>
+                <div className='Info restaurantMin'>
+                  <span className='InfoDetailTitle'>{t('food.minimum')}</span>
                   {information.minimum_price}
                 </div>
-                <div className="Info restaurantDel">
-                  <span className="InfoDetailTitle">{t('food.delivery')}</span>
+                <div className='Info restaurantDel'>
+                  <span className='InfoDetailTitle'>{t('food.delivery')}</span>
                   {information.delivery_fee}
                 </div>
               </div>
@@ -173,6 +173,8 @@ function FoodChicken(props) {
           })
         }
       </ul>
+
+      {/* chicken modal */}
       <ModalChicken isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} userId={userId} />
     </div>
   </div>

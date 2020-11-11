@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
-import "../scss/Modal.scss";
+import '../scss/Modal.scss';
 
 function ResestPassword(props) {
 
@@ -26,60 +26,63 @@ function ResestPassword(props) {
   // reset password handler
   const handleResetPasswordBtn = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3355/auth/resetPassword", {
+    axios.post('http://localhost:3355/auth/resetPassword', {
       email: email
     },{
       withCredentials: true,
     }, {
       headers: { 
-        "Access-Control-Allow-Origin": "http://localhost:3355",
+        'Access-Control-Allow-Origin': 'http://localhost:3355',
        }
     })
     .then(res => {
-      console.log("res:", res);
+      console.log('res:', res);
       if(res.data.status === 404) {
-        inputEmail("");
+        inputEmail('');
         setFailAlertSignUp(true)
       } else if(res.data.status === 401) {
         window.sessionStorage.setItem('email', email);
-        inputEmail("");
+        inputEmail('');
         setFailAlertVerification(true)
       } else {
-        inputEmail("");
+        inputEmail('');
         setAlert(true);
       }
     })
   }
 
   return(
-    <div className={isOpen ? "openModal" : "none"}>
-      <div className="modalContentPassword">
+    <div className={isOpen ? 'openModal' : 'none'}>
+      <div className='modalContentPassword'>
 
         {/* close modal */}
-        <button className="modalCloseBtn" onClick={e => {
+        <button className='modalCloseBtn' onClick={e => {
           e.preventDefault();
           setModal(!isOpen);
         }}><CloseIcon /></button>
-
-        <div className="modalTitle">{t('signin.forgotPassword')}</div>
-        <div className="emailInputBox">
-          <div className="step1">{t('resetPassword.step1')}</div>
-          <div className="emailAddress">{t('resetPassword.email')}</div>
+        
+        {/* modal */}
+        <div className='modalTitle'>{t('signin.forgotPassword')}</div>
+        <div className='emailInputBox'>
+          <div className='step1'>{t('resetPassword.step1')}</div>
+          <div className='emailAddress'>{t('resetPassword.email')}</div>
           <form>
-            <input className="emailInput" type="text" name="email" onChange={(e) => inputEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
+            <input className='emailInput' type='text' name='email' onChange={(e) => inputEmail(e.target.value)} placeholder={t('signin.email')} label='Email Address' />
           </form>
-          <button className="resetPasswordBtn" onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
-          <div className={failAlertSignUp ? "signUpAlert" : "none"}>
+          <button className='resetPasswordBtn' onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
+          
+          {/* modal alert */}
+          <div className={failAlertSignUp ? 'signUpAlert' : 'none'}>
             <span>{t('resetPassword.signup')}</span>
-            <span className="signupLink"><a href="/user/signup">{t('signup.signup')}</a></span>
+            <span className='signupLink'><a href='/user/signup'>{t('signup.signup')}</a></span>
             </div>
-          <div className={failAlertVerification ? "signUpAlert" : "none"}>
+          <div className={failAlertVerification ? 'signUpAlert' : 'none'}>
             <span>{t('resetPassword.emailVerification')}</span>
-            <span className="signupLink"><a href="/user/emailVerified">{t('email.title')}</a></span>
+            <span className='signupLink'><a href='/user/emailVerified'>{t('email.title')}</a></span>
           </div>
-          <div className={alert? "emailAlert" : "none"}>
-            <div className="checkIcon"><CheckCircleRoundedIcon /></div>
-            <div className="checkText">Reset password link has been sent to your email!</div>
+          <div className={alert? 'emailAlert' : 'none'}>
+            <div className='checkIcon'><CheckCircleRoundedIcon /></div>
+            <div className='checkText'>Reset password link has been sent to your email!</div>
         </div>
         </div>
       </div>

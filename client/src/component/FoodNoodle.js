@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import noodleImg from '../img/new_banner_bn.png';
@@ -23,10 +23,10 @@ function FoodNoodle(props) {
   const [isOpen, setModal] = useState(false);
 
   // modal information
-  const [image, setImage] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
 
   // change language
   const { t } = useTranslation();
@@ -61,33 +61,33 @@ function FoodNoodle(props) {
   return(
   <div>
     {/* cart icon */}
-    <div className="cartIconNoodle">
+    <div className='cartIconNoodle'>
       <img src={cartWhite}/>
     </div>
 
     {/* choose restaurants btn */}
-    <div className="restaurantNoodle">
-      <div className="chicken">
-        <a href="/help/foodDelivery/chicken">{t('food.chicken')}</a>
+    <div className='restaurantNoodle'>
+      <div className='chicken'>
+        <a href='/help/foodDelivery/chicken'>{t('food.chicken')}</a>
       </div>
-      <div className="noodleSelected">
-        <a href="/help/foodDelivery/noodle">{t('food.noodle')}</a>
+      <div className='noodleSelected'>
+        <a href='/help/foodDelivery/noodle'>{t('food.noodle')}</a>
       </div>
     </div>
-    <div className="menu">
+    <div className='menu'>
 
       {/* banner img */}
-      <div className="banner">
+      <div className='banner'>
         <img src={noodleImg}/>
       </div>
 
       {/* restaurant information */}
-      <div className="restaurantInfo">
+      <div className='restaurantInfo'>
         {
           information && information.map(information => {
             return(
               <div>
-                <div className="Info restaurantDes">
+                <div className='Info restaurantDes'>
                   {
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? information.description_en
@@ -96,8 +96,8 @@ function FoodNoodle(props) {
                     : information.description_ja
                   }
                 </div>
-                <div className="Info restaurantName">
-                  <span className="InfoDetailTitle">{t('food.restaurant')}</span>
+                <div className='Info restaurantName'>
+                  <span className='InfoDetailTitle'>{t('food.restaurant')}</span>
                   {
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? information.name_en
@@ -106,16 +106,16 @@ function FoodNoodle(props) {
                     : information.name_ja
                   }
                 </div>
-                <div className="Info restaurantHour">
-                  <span className="InfoDetailTitle">{t('food.hour')}</span>
+                <div className='Info restaurantHour'>
+                  <span className='InfoDetailTitle'>{t('food.hour')}</span>
                   {information.operation_hour}
                 </div>
-                <div className="Info restaurantMin">
-                  <span className="InfoDetailTitle">{t('food.minimum')}</span>
+                <div className='Info restaurantMin'>
+                  <span className='InfoDetailTitle'>{t('food.minimum')}</span>
                   {information.minimum_price}
                 </div>
-                <div className="Info restaurantDel">
-                  <span className="InfoDetailTitle">{t('food.delivery')}</span>
+                <div className='Info restaurantDel'>
+                  <span className='InfoDetailTitle'>{t('food.delivery')}</span>
                   {information.delivery_fee}
                 </div>
               </div>
@@ -129,7 +129,7 @@ function FoodNoodle(props) {
         {
           menu && menu.map(menu => {
             return(
-              <div className="menuLi" onClick={e => {
+              <div className='menuLi' onClick={e => {
                 e.preventDefault();
                 setModal(!isOpen);
                 setImage(menu.image);
@@ -153,7 +153,7 @@ function FoodNoodle(props) {
               }}>
                 <li key={menu.id}>
                   <img src={menu.image}/>
-                  <div className="menuName">
+                  <div className='menuName'>
                     {
                       window.localStorage.getItem('i18nextLng') === 'en'
                       ? menu.name_en
@@ -163,14 +163,16 @@ function FoodNoodle(props) {
                       : menu.name_ja
                     }
                   </div>
-                  <div className="menuPrice">{menu.price}₩</div>
-                  <button className="addCartBtn"><img src={cartNavy} /></button>
+                  <div className='menuPrice'>{menu.price}₩</div>
+                  <button className='addCartBtn'><img src={cartNavy} /></button>
                 </li>
               </div>
             )
           })
         }
       </ul>
+
+      {/* noodle modal */}
       <ModalNoodle isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} userId={userId} />
     </div>
   </div>
