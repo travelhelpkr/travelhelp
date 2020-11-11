@@ -120,5 +120,16 @@
   "resetPassword.signup": "最初にサインアップする必要があります。",
   "resetPassword.emailVerification": "最初にメールをチェックして、メールアドレスを確認してください。",
   "resetPassword.newPassword": "新しいパスワード",
-  "resetPassword.confirmPassword": "パスワードを認証する"
+  "resetPassword.confirmPassword": "パスワードを認証する",
+  "modalChicken.checkBone": "骨/骨なし",
+  "modalChicken.required": "必須",
+  "modalChicken.bone": "骨",
+  "modalChicken.boneless": "骨なし",
+  "modalChicken.addToCart": "カートに追加",
+  "modalNoodle.size": "メニューのサイズ",
+  "modalNoodle.sml": "小/中/大",
+  "modalNoodle.small": "小",
+  "modalNoodle.medium": "中",
+  "modalNoodle.large": "大",
+  "modalPassword.alert": "パスワードのリセットリンクがメールに送信されました！"
 }
