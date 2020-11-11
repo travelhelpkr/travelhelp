@@ -16,6 +16,7 @@
   "signup.contact": "电话号码 *",
   "signup.policy": "私隐政策 *",
   "signup.wrongEmail": "无效的电子邮件格式。",
+  "signup.existEmail": "现有的电子邮件地址。",
   "signup.wrongPassword": "密码不匹配。",
   "signup.wrongName": "姓名需提供资料。",
   "signip.wrongPolicy": "请查阅《私隐政策》。",
