@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
+import { useTranslation } from 'react-i18next';
 import '../scss/Modal.scss';
 
 function ModalNoodle(props) {
 
   // get from each menu
   const { isOpen, setModal, infoImage, infoName, infoPrice, infoDescription } = props;
+
+  // change language handler
+  const { t } = useTranslation();
 
   // choose size of menu
   const [type, setType] = useState('');
@@ -35,16 +39,16 @@ function ModalNoodle(props) {
         </div>
 
         {/* choose size of menu */}
-        <div className='selectTitle'>Size of Menu *</div>
+        <div className='selectTitle'>{t('modalNoodle.size')} *</div>
         <select className='selectBox' onChange={e => setType(e.target.value)}>
-          <option value='' disabled selected>Small/Medium/Large (Required)</option>
-          <option value='bone'>Small</option>
-          <option value='boneless'>Medium (+5,000₩)</option>
-          <option value='boneless'>Large (+10,000₩)</option>
+          <option value='' disabled selected>{t('modalNoodle.sml')} ({t('modalChicken.required')})</option>
+          <option value='bone'>{t('modalNoodle.small')}</option>
+          <option value='boneless'>{t('modalNoodle.medium')} (+5,000₩)</option>
+          <option value='boneless'>{t('modalNoodle.large')} (+10,000₩)</option>
         </select>
 
         {/* add to cart btn */}
-        <button className='addCartBtn'>Add to Cart</button>
+        <button className='addCartBtn'>{t('modalChicken.addToCart')}</button>
       </div>
     </div>
   )

@@ -120,5 +120,16 @@
   "resetPassword.signup": "您需要先注册。",
   "resetPassword.emailVerification": "请检查您的电子邮件并首先验证您的电子邮件地址。",
   "resetPassword.newPassword": "新密码",
-  "resetPassword.confirmPassword": "确认密码"
+  "resetPassword.confirmPassword": "确认密码",
+  "modalChicken.checkBone": "骨/无骨的",
+  "modalChicken.required": "需要",
+  "modalChicken.bone": "骨",
+  "modalChicken.boneless": "无骨的",
+  "modalChicken.addToCart": "添加到购物车",
+  "modalNoodle.size": "菜单尺寸",
+  "modalNoodle.sml": "小/中/大",
+  "modalNoodle.small": "小",
+  "modalNoodle.medium": "中",
+  "modalNoodle.large": "大",
+  "modalPassword.alert": "重置密码链接已发送至您的电子邮件！"
 }

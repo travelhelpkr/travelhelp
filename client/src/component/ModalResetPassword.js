@@ -82,7 +82,7 @@ function ResestPassword(props) {
           </div>
           <div className={alert? 'emailAlert' : 'none'}>
             <div className='checkIcon'><CheckCircleRoundedIcon /></div>
-            <div className='checkText'>Reset password link has been sent to your email!</div>
+            <div className='checkText'>{t('modalPassword.alert')}</div>
         </div>
         </div>
       </div>
