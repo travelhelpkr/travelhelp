@@ -41,10 +41,10 @@ function Signin(props) {
         window.sessionStorage.setItem('email', email);
         window.location = '/user/emailVerified';
       } else {
+        window.localStorage.setItem('i18nextLng', res.data.language);
         window.sessionStorage.setItem('id', res.data.id);
         window.sessionStorage.setItem('email', res.data.email);
         window.sessionStorage.setItem('name', res.data.name);
-        window.localStorage.setItem('i18nextLng', res.data.language);
         setIsLogin(true);
         setUserId(res.data.id);
         setEmail(res.data.email);
