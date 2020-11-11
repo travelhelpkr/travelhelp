@@ -21,14 +21,11 @@ import './App.scss';
 
 function App(props) {
 
-  // get 'user' cookie from browser
-  const userCookie = JSON.parse(Cookies.get('user').slice(Cookies.get('user').indexOf('{')));
-
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [userId, setUserId] = useState("");
-
+  
   useEffect(() => {
     if(window.sessionStorage.getItem('name')) {
       setIsLogin(true);
@@ -37,9 +34,11 @@ function App(props) {
       setName(window.sessionStorage.getItem('name'));
     }
   })
-
+  
   useEffect(() => {
-    if(userCookie.oauth_provider === 'google' || userCookie.oauth_provider === 'line') {
+    if(Cookies.get('user')) {
+      // get userCookie obj when oAuth sign in through federation login
+      const userCookie = JSON.parse(Cookies.get('user').slice(Cookies.get('user').indexOf('{')));
       window.sessionStorage.setItem('id', userCookie.id);
       window.sessionStorage.setItem('email', userCookie.email);
       window.sessionStorage.setItem('name', userCookie.name);
