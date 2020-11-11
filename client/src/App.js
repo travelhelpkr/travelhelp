@@ -42,7 +42,6 @@ function App(props) {
     if(Cookies.get('user')) {
       // get userCookie obj when oAuth sign in through federation login
       const userCookie = JSON.parse(Cookies.get('user').slice(Cookies.get('user').indexOf('{')));
-      window.localStorage.setItem('i18nextLng', userCookie.language);
       window.sessionStorage.setItem('id', userCookie.id);
       window.sessionStorage.setItem('email', userCookie.email);
       window.sessionStorage.setItem('name', userCookie.name);
