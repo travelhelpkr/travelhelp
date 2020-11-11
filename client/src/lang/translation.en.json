@@ -16,6 +16,7 @@
   "signup.contact": "Phone Number *",
   "signup.policy": "Privacy Policy *",
   "signup.wrongEmail": "Invalid email format.",
+  "signup.existEmail": "Existed email address.",
   "signup.wrongPassword": "Passwords do not match.",
   "signup.wrongName": "Name is required information.",
   "signip.wrongPolicy": "Please check the Privacy Policy Agreement.",

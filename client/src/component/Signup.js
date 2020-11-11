@@ -22,6 +22,7 @@ function SignupEmail({ history }) {
   const [wrongPassword, setWrongPassword] = useState(false);
   const [wrongName, setWrongName] = useState(false);
   const [wrongPolicy, setWrongPolicy] = useState(false);
+  const [existEmail, setExistEmail] = useState(false);
 
   // open modal
   const [isOpen, setModal] = useState(false);
@@ -63,9 +64,13 @@ function SignupEmail({ history }) {
         is_policy_agreed: policy,
         language: window.localStorage.getItem('i18nextLng')
       })
-      .then(() => {
-        window.sessionStorage.setItem('email', email);
-        window.location = '/user/emailVerified';
+      .then((res) => {
+        if(res.data.status === 409) {
+          setExistEmail(true);
+        } else {
+          window.sessionStorage.setItem('email', email);
+          window.location = '/user/emailVerified';
+        }
       });
     }
     else {
@@ -102,6 +107,7 @@ function SignupEmail({ history }) {
         <form className='signupForm'>
           <input className='signupInput' type='text' name='email' onChange={onChangeHandler} placeholder={t('signup.email')} label='Email Address' />
           <div className={wrongEmail ? 'alert' : 'none'}>{t('signup.wrongEmail')}</div>
+          <div className={existEmail ? 'alert' : 'none'}>{t('signup.existEmail')}</div>
 
           <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} label='Password' />
 
