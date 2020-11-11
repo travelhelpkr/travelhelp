@@ -41,7 +41,7 @@ function EmailVerification(props) {
         <button className='resendEmailBtn' onClick={handleResendBtn}>{t('email.resendBtn')}</button>
         <div className={alert? 'resendAlert' : 'none'}>
           <div className='checkIcon'><CheckCircleRoundedIcon /></div>
-          <div className='checkText'>Verification mail has been sent!</div>
+          <div className='checkText'>t{'email.alert'}</div>
         </div>
       </div>
     </div>
