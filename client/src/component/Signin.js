@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import ModalResetPassword from './ModalResetPassword';
@@ -33,7 +33,7 @@ function Signin(props) {
       withCredentials: true,
     }, {
       headers: { 
-        "Access-Control-Allow-Origin": "http://localhost:3355",
+        'Access-Control-Allow-Origin': 'http://localhost:3355',
        }
     })
     .then(res => {
@@ -49,47 +49,47 @@ function Signin(props) {
         setUserId(res.data.id);
         setEmail(res.data.email);
         setName(res.data.name);
-        inputEmail("");
-        inputPassword("");
+        inputEmail('');
+        inputPassword('');
       }
     })
     .catch((err) => setFailAlert(true));
   }
 
   return(
-    <div className="background">
+    <div className='background'>
 
-      <h1 className="h1">{t('signin.signin')}</h1>
+      <h1 className='h1'>{t('signin.signin')}</h1>
 
-      <div className="content">
+      <div className='content'>
         {/* social signin */}
-        <div className="signupBtn">
-          <a href="http://localhost:3355/auth/google" className="btn googleBtn">{t('signin.google')}</a>
+        <div className='signupBtn'>
+          <a href='http://localhost:3355/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
         </div>
-        {/* <div className="signupBtn">
-          <a href="/user/signupwithemail" className="btn wechatBtn">{t('signin.wechat')}</a>
+        {/* <div className='signupBtn'>
+          <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signin.wechat')}</a>
         </div> */}
-        <div className="signupBtn">
-          <a href="http://localhost:3355/auth/line" className="btn lineBtn">{t('signin.line')}</a>
+        <div className='signupBtn'>
+          <a href='http://localhost:3355/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
         </div>
 
         {/* or */}
-        <div className="signupOR">
+        <div className='signupOR'>
           <span>{t('signin.or')}</span>
         </div>
 
         {/* email signin */}
-        <form className="signupForm">
-          <input className="signupInput" type="text" name="email" onChange={(e) => inputEmail(e.target.value)} placeholder={t("signin.email")} label="Email Address" />
-          <input className="signupInput" type="password" name="password" onChange={(e) => inputPassword(e.target.value)} placeholder={t("signin.password")} label="Password" />
-          <div className={failAlert ? "alert" : "none"}>{t('signin.wrongInfo')}</div>
+        <form className='signupForm'>
+          <input className='signupInput' type='text' name='email' onChange={(e) => inputEmail(e.target.value)} placeholder={t('signin.email')} label='Email Address' />
+          <input className='signupInput' type='password' name='password' onChange={(e) => inputPassword(e.target.value)} placeholder={t('signin.password')} label='Password' />
+          <div className={failAlert ? 'alert' : 'none'}>{t('signin.wrongInfo')}</div>
         </form>
 
         {/* signin btn */}
-        <button className="signupSubmitBtn" onClick={handleLoginBtn}>{t('signin.signin')}</button>
+        <button className='signupSubmitBtn' onClick={handleLoginBtn}>{t('signin.signin')}</button>
         
         {/* find password */}
-        <div className="gotoSignIn forgotPassword" onClick={e => {
+        <div className='gotoSignIn forgotPassword' onClick={e => {
           e.preventDefault();
           setModal(!isOpen);
         }}>
@@ -97,10 +97,12 @@ function Signin(props) {
         </div>
 
         {/* go to signup */}
-        <div className="gotoSignIn">
-          <a href="/user/signup">{t('signin.gotoSignUp')}</a>
+        <div className='gotoSignIn'>
+          <a href='/user/signup'>{t('signin.gotoSignUp')}</a>
         </div>
+        
 
+        {/* forgot password modal */}
         <ModalResetPassword isOpen={isOpen} setModal={setModal} />
 
       </div>

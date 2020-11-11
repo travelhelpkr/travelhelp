@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
@@ -8,11 +8,13 @@ import '../scss/Mypage.scss';
 
 function Mypage(props) {
 
+  // props
   const { email, name, setIsLogin, setEmail, setName, history } = props;
-  console.log("props:", email, name);
+
   // change language handler
   const { t } = useTranslation();
 
+  // handle sign out
   const signoutHandler = () => {
     axios.post('http://localhost:3355/users/signout', {
       language: window.localStorage.getItem('i18nextLng')
@@ -20,45 +22,46 @@ function Mypage(props) {
       withCredentials: true,
     }, {
       headers: { 
-        "Access-Control-Allow-Origin": "http://localhost:3355",
+        'Access-Control-Allow-Origin': 'http://localhost:3355',
        }
     })
       .then(res => {
-        console.log("res:", res);
+        console.log('res:', res);
         setIsLogin(false);
-        setEmail("");
-        setName("");
+        setEmail('');
+        setName('');
         window.sessionStorage.clear();
       })
-      .then(() => window.location = "/")
+      .then(() => window.location = '/')
   }
 
   return(
-    <div className="background">
+    <div className='background'>
 
-      <h1 className="h1">{t('mypage.title')}</h1>
+      <h1 className='h1'>{t('mypage.title')}</h1>
 
-      <div className="contentMyInfo">
-        <div className="userInfoTitle">{t('mypage.userInfoTitle')}</div>
+      <div className='contentMyInfo'>
+        <div className='userInfoTitle'>{t('mypage.userInfoTitle')}</div>
 
         {/* user infomation */}
-        <div className="userInfoBox">
-          <div className="userInfo userInfoName">
-            <div className="userInfoIcon"><AccountCircleOutlinedIcon /></div>
-            <div className="userInfoText"><span>{t('mypage.userName')}</span>{name}</div>
+        <div className='userInfoBox'>
+          <div className='userInfo userInfoName'>
+            <div className='userInfoIcon'><AccountCircleOutlinedIcon /></div>
+            <div className='userInfoText'><span>{t('mypage.userName')}</span>{name}</div>
           </div>
-          <div className="userInfo userInfoEmail">
-            <div className="userInfoIcon"><AlternateEmailOutlinedIcon /></div>
-            <div className="userInfoText"><span>{t('mypage.userEmail')}</span>{email}</div>
+          <div className='userInfo userInfoEmail'>
+            <div className='userInfoIcon'><AlternateEmailOutlinedIcon /></div>
+            <div className='userInfoText'><span>{t('mypage.userEmail')}</span>{email}</div>
           </div>
         </div>
-        <div className="userInfoBtn">
-          <button className="mypageBtn signOutBtn" onClick={signoutHandler}>{t('mypage.signout')}</button>
+        <div className='userInfoBtn'>
+          <button className='mypageBtn signOutBtn' onClick={signoutHandler}>{t('mypage.signout')}</button>
         </div>
       </div>
 
-      <div className="contentOrderInfo">
-        <div className="orderHistoryTitle">{t('mypage.orderHistoryTitle')}</div>
+      {/* order info */}
+      <div className='contentOrderInfo'>
+        <div className='orderHistoryTitle'>{t('mypage.orderHistoryTitle')}</div>
       </div>
     </div>
   )

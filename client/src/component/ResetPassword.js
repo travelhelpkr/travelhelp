@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import '../scss/ResetPassword.scss';
@@ -28,20 +28,21 @@ function ResetPassword(props) {
       }
     })
     .then(res => {
-      console.log("res:", res.data.email);
+      console.log('res:', res.data.email);
       setEmail(res.data.email);
     })
   },[])
 
   // form input change handler
   const onChangeHandler = (e) => {
-    if(e.target.name === "password") {
+    if(e.target.name === 'password') {
       setPassword(e.target.value);
-    } else if(e.target.name === "confirmPassword") {
+    } else if(e.target.name === 'confirmPassword') {
       setConfirmPassword(e.target.value);
     }
   }
 
+  // reset password handler
   const resetPasswordHandler = (e) => {
     e.preventDefault();
     if(password === confirmPassword) {
@@ -49,31 +50,31 @@ function ResetPassword(props) {
         email: email,
         password: password
       })
-      .then(() => window.location = "/user/signin")
+      .then(() => window.location = '/user/signin')
     }
     else {
-      ((password === confirmPassword) && password !== "") ? setWrongPassword(false) : setWrongPassword(true);
+      ((password === confirmPassword) && password !== '') ? setWrongPassword(false) : setWrongPassword(true);
     }
   }
 
   return(
-    <div className="background">
-      <h1 className="h1">{t('resetPassword.btn')}</h1>
+    <div className='background'>
+      <h1 className='h1'>{t('resetPassword.btn')}</h1>
 
-      <div className="contentUserInfo">
-        <div className="emailAddressTitle">
+      <div className='contentUserInfo'>
+        <div className='emailAddressTitle'>
           <span>{t('resetPassword.email')}</span>
-          <span className="userEmailAddress">{email}</span>
+          <span className='userEmailAddress'>{email}</span>
         </div>
         <form>
-          <div className="inputTitle">{t('resetPassword.newPassword')}</div>
-          <input className="signupInput" type="password" name="password" onChange={onChangeHandler} placeholder={t("signup.password")} label="Password" />
-          <div className="inputTitle">{t('resetPassword.confirmPassword')}</div>
-          <input className="signupInput" type="password" name="confirmPassword" onChange={onChangeHandler} placeholder={t("signup.confirmPassword")} label="Confirm Password" />
+          <div className='inputTitle'>{t('resetPassword.newPassword')}</div>
+          <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} label='Password' />
+          <div className='inputTitle'>{t('resetPassword.confirmPassword')}</div>
+          <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} label='Confirm Password' />
         </form>
-        <div className={wrongPassword ? "passwordAlert" : "none"}>{t('signup.wrongPassword')}</div>
+        <div className={wrongPassword ? 'passwordAlert' : 'none'}>{t('signup.wrongPassword')}</div>
         
-        <button className="resetPasswordBtn" onClick={resetPasswordHandler}>{t('resetPassword.btn')}</button>
+        <button className='resetPasswordBtn' onClick={resetPasswordHandler}>{t('resetPassword.btn')}</button>
       </div>
     </div>
   )
