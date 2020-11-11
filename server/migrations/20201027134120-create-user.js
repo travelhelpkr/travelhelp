@@ -43,7 +43,8 @@ module.exports = {
         defaultValue: 0
       },
       language: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'en'
       },
       createdAt: {
         allowNull: false,

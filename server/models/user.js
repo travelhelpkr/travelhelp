@@ -43,7 +43,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     last_visited_at: DataTypes.DATE,
     visit_count: DataTypes.INTEGER,
-    language: DataTypes.STRING
+    language: {
+      type: DataTypes.STRING,
+      defaultValue: 'en'
+    }
   }, {
     sequelize,
     modelName: 'User',
