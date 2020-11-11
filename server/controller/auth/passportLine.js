@@ -24,19 +24,19 @@ module.exports = () => {
     scope: ['profile', 'openid', 'email'],
     botPrompt: 'normal'
   },
-    async function(accessToken, refreshToken, params, profile, cb) {
-      console.log('accessToken: ', accessToken);
-      console.log('refreshToken: ', refreshToken);
-      console.log('profile:', profile);
-      console.log('params:', params.id_token);
+    async (accessToken, refreshToken, params, profile, cb) => {
+      // console.log('accessToken: ', accessToken);
+      // console.log('refreshToken: ', refreshToken);
+      // console.log('profile:', profile);
+      // console.log('params:', params.id_token);
       // should be applied after permission of Line Corp.
       const { email } = jwt.decode(params.id_token);
-      profile.email = email;
-      console.log('email:', email);
+      // profile.email = email;
       const name = profile.displayName;
       const userData = await User.findOne({ where: { email: email } });
 
       if(userData) {
+        userData.increment('visit_count');
         return cb(null, userData);
       }
       else {
