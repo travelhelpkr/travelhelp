@@ -29,8 +29,15 @@ module.exports = () => {
     const name = profile.displayName;
     const userData = await User.findOne({ where: { email: email } });
 
+    // if user email already been occuipied by local signup method
+    if (userData.dataValues.oauth_provider === 'local') {
+      return cb(null, false, {
+        status: 409,
+        message: `User email(${email}) already existing on Travel Help. Please sigin in with this email`
+      });
+    }
     // if existing user
-    if (userData) {
+    else if (userData) {
       userData.increment('visit_count');
       return cb(null, userData);
     }

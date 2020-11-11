@@ -29,7 +29,10 @@ module.exports = {
       });
     
       if (userData) {
-        res.status(409).send({ message: 'User already existed.' });
+        res.send({
+          status: 409,
+          message: 'User already existed.'
+        });
       }
       else {
         // generate token for verifying user email. available for 24 hours.
