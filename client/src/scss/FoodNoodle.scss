@@ -33,28 +33,34 @@
     font-size: 1.5em;
     .chicken {
       float: left;
+      width: 17.55em;
+      height: 2em;
+      background-color: transparent;
+      border: 1px solid rgb(183, 60, 3);
+      margin-right: 5px;
       a {
-        background-color: transparent;
-        padding:  10px 7em;
-        margin-right: 5px;
+        line-height: 2em;
         text-decoration: none;
         color:  rgb(183, 60, 3);
-        border: 1px solid rgb(183, 60, 3);
-        &:hover {
-          background-color:  rgb(183, 60, 3);
+      }
+      &:hover {
+        background-color:  rgb(183, 60, 3);
+        a {
           color: white;
         }
       }
     }
     .noodleSelected {
       float: left;
+      width: 17.55em;
+      height: 2em;
+      background-color: rgb(183, 60, 3);
+      border: 1px solid rgb(183, 60, 3);
+      margin-left: 5px;
       a {
-        background-color: rgb(183, 60, 3);
-        padding:  10px 7em;
-        margin-left: 5px;
+        line-height: 2em;
         text-decoration: none;
         color: white;
-        border: 1px solid rgb(183, 60, 3);
       }
     }
   }

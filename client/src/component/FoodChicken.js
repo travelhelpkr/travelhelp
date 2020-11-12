@@ -88,7 +88,7 @@ function FoodChicken(props) {
       </div>
     </div>
 
-    <div className='menu'>
+    <div className='menuContent'>
 
       {/* banner img */}
       <div className='banner'>

@@ -29,8 +29,8 @@ function ModalSignin(props) {
 
         {/* signin alert content */}
         <div className="signinAlert">
-          You should <strong>Sign In first</strong> :) <br/><br/>
-          When you press <strong>'Okay'</strong> button,<br/>you can go to <strong>Sign In Page</strong>.
+          <span>{t('modalSignin.signin1')}</span> :) <br/><br/>
+          {t('modalSignin.signin2')}
         </div>
 
         {/* press ok btn */}

@@ -132,5 +132,7 @@
   "modalNoodle.small": "Small",
   "modalNoodle.medium": "Medium",
   "modalNoodle.large": "Large",
-  "modalPassword.alert": "Reset password link has been sent to your email!"
+  "modalPassword.alert": "Reset password link has been sent to your email!",
+  "modalSignin.signin1": "You should Sign In first",
+  "modalSignin.signin2": "When you press 'Okay' button, you can go to 'Sign In Page'."
 }

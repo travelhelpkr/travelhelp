@@ -86,7 +86,7 @@ function FoodNoodle(props) {
         <a href='/help/foodDelivery/noodle'>{t('food.noodle')}</a>
       </div>
     </div>
-    <div className='menu'>
+    <div className='menuContent'>
 
       {/* banner img */}
       <div className='banner'>

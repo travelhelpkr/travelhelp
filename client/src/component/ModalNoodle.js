@@ -41,7 +41,7 @@ function ModalNoodle(props) {
         {/* choose size of menu */}
         <div className='selectTitle'>{t('modalNoodle.size')} *</div>
         <select className='selectBox' onChange={e => setType(e.target.value)}>
-          <option value='' disabled selected>{t('modalNoodle.sml')} ({t('modalChicken.required')})</option>
+          <option value='' disabled defaultValue>{t('modalNoodle.sml')} ({t('modalChicken.required')})</option>
           <option value='bone'>{t('modalNoodle.small')}</option>
           <option value='boneless'>{t('modalNoodle.medium')} (+5,000₩)</option>
           <option value='boneless'>{t('modalNoodle.large')} (+10,000₩)</option>
