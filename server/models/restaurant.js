@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Menu, {
+        foreignKey: 'restaurant_id'
+      });
     }
   };
   Restaurant.init({
@@ -30,10 +33,11 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Restaurant',
   });
-  Restaurant.associate = function(models) {
-    Restaurant.hasMany(models.Menu, {
-      foreignKey: 'restaurant_id'
-    });
-  }
+
+  // Restaurant.associate = function(models) {
+  //   Restaurant.hasMany(models.Menu, {
+  //     foreignKey: 'restaurant_id'
+  //   });
+  // }
   return Restaurant;
 };

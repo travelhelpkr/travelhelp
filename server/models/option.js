@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Menu_option, {
+        foreignKey: 'option_id'
+      });
     }
   };
   Option.init({
@@ -27,10 +30,11 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Option',
   });
-  Option.associate = function(models) {
-    Option.hasMany(models.Menu_option, {
-      foreignKey: 'option_id'
-    });
-  }
+
+  // Option.associate = function(models) {
+  //   Option.hasMany(models.Menu_option, {
+  //     foreignKey: 'option_id'
+  //   });
+  // }
   return Option;
 };

@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Order, {
+        foreignKey: 'order_id'
+      });
+      this.belongsTo(models.Menu, {
+        foreignKey: 'menu_id'
+      });
     }
   };
   Order_menu.init({
@@ -25,13 +31,14 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Order_menu',
   });
-  Order_menu.associate = function(models) {
-    Order_menu.belongsTo(models.Order, {
-      foreignKey: 'order_id'
-    });
-    Order_menu.belongsTo(models.Menu, {
-      foreignKey: 'menu_id'
-    });
-  }
+
+  // Order_menu.associate = function(models) {
+  //   Order_menu.belongsTo(models.Order, {
+  //     foreignKey: 'order_id'
+  //   });
+  //   Order_menu.belongsTo(models.Menu, {
+  //     foreignKey: 'menu_id'
+  //   });
+  // }
   return Order_menu;
 };
