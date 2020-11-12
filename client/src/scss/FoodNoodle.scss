@@ -11,15 +11,19 @@
     color: white;
     right: 5em;
     font-weight: 100;
-    img {
-      width: 2em;
-      height: auto;
-      &:hover {
-        cursor: pointer;
-        width: 1.8em;
-        padding: 5px;
-        background-color: rgba(255, 255, 255, 0.15);
-        border-radius: 0.5em;
+    .cartIconBtn {
+      background-color: transparent;
+      border: none;
+      img {
+        width: 2em;
+        height: auto;
+        &:hover {
+          cursor: pointer;
+          width: 1.8em;
+          padding: 5px;
+          background-color: rgba(255, 255, 255, 0.15);
+          border-radius: 0.5em;
+        }
       }
     }
   }

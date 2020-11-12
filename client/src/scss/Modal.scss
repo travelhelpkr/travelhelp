@@ -235,6 +235,59 @@
   .none {
     display: none;
   }
+  .openSigninModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.5);
+    .signinModalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 15em;
+      height: auto;
+      padding: 45px 45px 30px;
+      border-radius: 5px;
+      .closeBtn {
+        position: absolute;
+        right: 3%;
+        top: 5%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.2em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .signinAlert {
+        font-size: 0.95em;
+        line-height: 1.5em;
+        margin-bottom: 1em;
+      }
+      .okayBtn {
+        width: 5em;
+        padding: 8px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }  
 }
 
 @include tablet {
