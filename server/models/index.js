@@ -17,17 +17,21 @@ if (config.use_env_variable) {
 }
 
 fs
+  // read all files from /models folder
   .readdirSync(__dirname)
+  // filter only model definition files
   .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
+  // call model initialize function
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    // const model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
   });
 
+// bring defined model list from the sequelize object
 Object.keys(db).forEach(modelName => {
+  // if associate exists, make relationship with associate() method
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
