@@ -6,6 +6,7 @@ import noodleImg from '../img/new_banner_bn.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
 import ModalNoodle from './ModalNoodle';
+import ModalSignin from './ModalSignin';
 import '../scss/FoodNoodle.scss';
 
 function FoodNoodle(props) {
@@ -21,6 +22,7 @@ function FoodNoodle(props) {
 
   // open modal
   const [isOpen, setModal] = useState(false);
+  const [isSignin, setIsSignin] = useState(false);
 
   // modal information
   const [image, setImage] = useState('');
@@ -58,11 +60,21 @@ function FoodNoodle(props) {
     })
   },[])
 
+  // check signin status when user clicked cart icon on Nav bar
+  const checkSigninStatus = (e) => {
+    if(window.sessionStorage.getItem('id')) {
+      window.location = '/user/cart';
+    } else {
+      e.preventDefault();
+      setIsSignin(!isSignin);
+    }
+  }
+
   return(
   <div>
     {/* cart icon */}
     <div className='cartIconNoodle'>
-      <img src={cartWhite}/>
+      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite}/></button>
     </div>
 
     {/* choose restaurants btn */}
@@ -174,6 +186,9 @@ function FoodNoodle(props) {
 
       {/* noodle modal */}
       <ModalNoodle isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} userId={userId} />
+      
+      {/* signin modal */}
+      <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />
     </div>
   </div>
   )

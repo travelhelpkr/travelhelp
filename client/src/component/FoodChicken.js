@@ -6,6 +6,7 @@ import chickenImg from '../img/new_banner_CK.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
 import ModalChicken from './ModalChicken';
+import ModalSignin from './ModalSignin';
 import '../scss/FoodChicken.scss';
 
 function FoodChicken(props) {
@@ -21,6 +22,7 @@ function FoodChicken(props) {
 
   // open modal
   const [isOpen, setModal] = useState(false);
+  const [isSignin, setIsSignin] = useState(false);
 
   // modal information
   const [image, setImage] = useState('');
@@ -59,11 +61,21 @@ function FoodChicken(props) {
     })
   },[])
 
+  // check signin status when user clicked cart icon on Nav bar
+  const checkSigninStatus = (e) => {
+    if(window.sessionStorage.getItem('id')) {
+      window.location = '/user/cart';
+    } else {
+      e.preventDefault();
+      setIsSignin(!isSignin);
+    }
+  }
+
   return(
   <div>
     {/* cart icon */}
     <div className='cartIcon'>
-      <a href='/user/cart'><img src={cartWhite}/></a>
+      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite}/></button>
     </div>
 
     {/* choose restaurants btn */}
@@ -176,6 +188,9 @@ function FoodChicken(props) {
 
       {/* chicken modal */}
       <ModalChicken isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} userId={userId} />
+
+      {/* signin modal */}
+      <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />
     </div>
   </div>
 
