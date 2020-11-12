@@ -132,5 +132,7 @@
   "modalNoodle.small": "小",
   "modalNoodle.medium": "中",
   "modalNoodle.large": "大",
-  "modalPassword.alert": "パスワードのリセットリンクがメールに送信されました！"
+  "modalPassword.alert": "パスワードのリセットリンクがメールに送信されました！",
+  "modalSignin.signin1": "您应该先登录",
+  "modalSignin.signin2": "「OK」ボタンを押すと、「サインインページ」に移動できます。"
 }

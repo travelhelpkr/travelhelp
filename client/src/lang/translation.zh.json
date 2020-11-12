@@ -132,5 +132,7 @@
   "modalNoodle.small": "小",
   "modalNoodle.medium": "中",
   "modalNoodle.large": "大",
-  "modalPassword.alert": "重置密码链接已发送至您的电子邮件！"
+  "modalPassword.alert": "重置密码链接已发送至您的电子邮件！",
+  "modalSignin.signin1": "您应该先登录",
+  "modalSignin.signin2": "当您按“确定”按钮时，您可以转到“登录页面”。"
 }

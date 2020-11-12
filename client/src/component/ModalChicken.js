@@ -41,7 +41,7 @@ function ModalChicken(props) {
         {/* choose bone or boneless */}
         <div className='selectTitle'>{t('modalChicken.checkBone')} *</div>
         <select className='selectBox' onChange={e => setType(e.target.value)}>
-          <option value='' disabled selected>{t('modalChicken.checkBone')} ({t('modalChicken.required')})</option>
+          <option value='' disabled defaultValue>{t('modalChicken.checkBone')} ({t('modalChicken.required')})</option>
           <option value='bone'>{t('modalChicken.bone')}</option>
           <option value='boneless'>{t('modalChicken.boneless')} (+2,000₩)</option>
         </select>
