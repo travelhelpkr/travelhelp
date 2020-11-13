@@ -11,9 +11,8 @@ module.exports = {
     try {
       // check restaurant id
       const restaurant_id = req.query.restaurant_id;
-  
+
       // get all menus matched with restaurant_id
-      // Left join Option table 
       const foodMenu = await Menu.findAll({
         attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'description_en', 'description_zh', 'description_ja', 'price' ],
         where: {
@@ -21,13 +20,14 @@ module.exports = {
         },
         include: {
           model: Option,
-          attributes: [ 'name_en', 'name_zh', 'name_ja', 'price' ]
+          attributes: [ 'name_en', 'name_zh', 'name_ja', 'price' ],
+          // hide unwanted `Menu_option` nested object from results
+          through: { attributes: [] }
         }
       });
-      
-      console.log('foodMenu: ', foodMenu[0].dataValues.Options[0]);
-      // console.log('foodMenu: ', foodMenu[0]);
 
+      console.log(foodMenu[0].dataValues.Options[0]._options);
+      
       res.status(200).send(foodMenu);
     }
     catch (err) {
