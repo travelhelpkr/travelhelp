@@ -19,6 +19,7 @@ import FoodNoodle from './component/FoodNoodle';
 import Cart from './component/Cart';
 import VerifyEmail from './component/VerifyEmail';
 import config from './config/channelTalk.json';
+import FormatQuoteRoundedIcon from '@material-ui/icons/FormatQuoteRounded';
 import './App.scss';
 
 function App(props) {
@@ -35,7 +36,8 @@ function App(props) {
   const [userId, setUserId] = useState('')
 
   // user profile for ChannelTalk
-  const profile = { name: name, email: email, mobileNumber: '010-1111-1111' }
+  const profile = { name: name, email: email }
+  console.log("profile:", name, email)
 
   // check state of signin
   useEffect(() => {
@@ -130,8 +132,8 @@ function App(props) {
       </BrowserRouter>
 
       {/* Setting of Channel Talk */}
-      <button onClick={() => ChannelTalk.show()}>
-        <span>Open</span>
+      <button className="channelTalkIcon"onClick={() => ChannelTalk.show()}>
+        <FormatQuoteRoundedIcon />
       </button>
       <ChannelTalk 
         pluginKey={config.web.pluginKey}

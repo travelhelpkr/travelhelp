@@ -8,3 +8,38 @@
 body{
   overflow-y: scroll;
 }
+
+@include desktop-large {
+ 
+}
+
+@include desktop-small {
+  .channelTalkIcon {
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    background: linear-gradient(rgb(58, 202, 209), rgb(38, 159, 175));
+    border: none;
+    border-radius: 50%;
+    width: 4.5em;
+    height: 4.5em;
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+    .MuiSvgIcon-root {
+      width: 1.5em;
+      height: auto;
+      color: white;
+    }
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0.2em 0.2em 0.4em rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+@include tablet {
+
+}
+
+@include mobile {
+
+}
