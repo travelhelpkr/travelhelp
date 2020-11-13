@@ -16,12 +16,12 @@ module.exports = (sequelize, DataTypes) => {
       // this.hasMany(models.Order_menu, {
       //   foreignKey: 'order_id'
       // });
+      this.belongsTo(models.User);
+      this.belongsTo(models.Address_book);
       this.belongsToMany(models.Menu, {
         through: models.Order_menu,
         foreignKey: 'order_id'
       });
-      this.belongsTo(models.User);
-      this.belongsTo(models.Address_book);
     }
   };
   Order.init({

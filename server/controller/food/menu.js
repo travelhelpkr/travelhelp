@@ -1,4 +1,4 @@
-const { Menu } = require('../../models');
+const { Menu, Option } = require('../../models');
 
 /*
 1. check req.query.restaurant_id
@@ -11,14 +11,12 @@ module.exports = {
     try {
       // check restaurant id
       const restaurant_id = req.query.restaurant_id;
-  
       // get all menus matched with restaurant_id
       const foodMenu = await Menu.findAll({
         where: {
           restaurant_id: restaurant_id
         }
       });
-      
       res.status(200).send(foodMenu);
     }
     catch (err) {

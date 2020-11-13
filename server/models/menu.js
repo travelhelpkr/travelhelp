@@ -20,18 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       // this.hasMany(models.Menu_option, {
       //   foreignKey: 'menu_id'
       // });
-      // it's defined as hasMany from Restaurant table side. Once tested and works well as expected, remove this code.
-      // this.belongsTo(models.Restaurant, {
-      //   foreignKey: 'restaurant_id'
-      // });
+      
+      this.belongsTo(models.Restaurant);
 
       this.belongsToMany(models.Order, {
-        foreignKey: 'menu_id',
-        through: models.Order_menu
+        through: models.Order_menu,
+        foreignKey: 'menu_id'
       });
       this.belongsToMany(models.Option, {
-        foreignKey: 'menu_id',
-        through: models.Menu_option
+        through: models.Menu_option,
+        foreignKey: 'menu_id'
       });
     }
   };
