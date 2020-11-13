@@ -2,6 +2,7 @@
 config.json
 google.json
 line.json
+channelTalk.json
 
 # Backup folder
 backup
