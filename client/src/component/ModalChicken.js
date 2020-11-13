@@ -6,7 +6,7 @@ import '../scss/Modal.scss';
 function ModalChicken(props) {
 
   // get from each menu
-  const { isOpen, setModal, infoImage, infoName, infoPrice, infoDescription } = props;
+  const { isOpen, setModal, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2 } = props;
 
   // change language handler
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ function ModalChicken(props) {
   const [type, setType] = useState('');
 
   return(
-    <div className={isOpen ? 'openModal' : 'none'}>
+    <div className={isOpen ? 'openModalChicken' : 'none'}>
       <div className='modalContent'>
 
         {/* close modal */}
@@ -39,11 +39,11 @@ function ModalChicken(props) {
         </div>
 
         {/* choose bone or boneless */}
-        <div className='selectTitle'>{t('modalChicken.checkBone')} *</div>
+        <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
         <select className='selectBox' onChange={e => setType(e.target.value)}>
-          <option value='' disabled defaultValue>{t('modalChicken.checkBone')} ({t('modalChicken.required')})</option>
-          <option value='bone'>{t('modalChicken.bone')}</option>
-          <option value='boneless'>{t('modalChicken.boneless')} (+2,000₩)</option>
+          <option value='' disabled defaultValue>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
+          <option value='bone'>{infoOptionName1}</option>
+          <option value='boneless'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
         </select>
 
         {/* add to cart btn */}

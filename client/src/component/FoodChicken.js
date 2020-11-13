@@ -29,6 +29,9 @@ function FoodChicken(props) {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
+  const [optionName1, setOptionName1] = useState('');
+  const [optionName2, setOptionName2] = useState('');
+  const [optionPrice2, setOptionPrice2] = useState('');
 
   // change language
   const { t } = useTranslation();
@@ -43,7 +46,7 @@ function FoodChicken(props) {
     .then(res => {
       let result = res.data;
       setMenu(result);
-      console.log('menu:', menu);
+      console.log("menu::::", menu);
     })
   },[])
 
@@ -142,6 +145,7 @@ function FoodChicken(props) {
       <ul>
         {
           menu && menu.map(menu => {
+            console.log("options:", menu.Options[0].name_en);
             return(
               <div className="menuLi" onClick={e => {
                 e.preventDefault();
@@ -163,7 +167,24 @@ function FoodChicken(props) {
                   window.localStorage.getItem('i18nextLng') === 'zh'
                   ? menu.description_zh
                   : menu.description_ja
-                )
+                );
+                setOptionName1(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.Options[0].name_en
+                  :
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.Options[0].name_zh
+                  : menu.Options[0].name_ja
+                );
+                setOptionName2(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.Options[1].name_en
+                  :
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.Options[1].name_zh
+                  : menu.Options[1].name_ja
+                );
+                setOptionPrice2(menu.Options[1].price);
               }}>
                 <li key={menu.id}>
                   <img src={menu.image}/>
@@ -187,7 +208,7 @@ function FoodChicken(props) {
       </ul>
 
       {/* chicken modal */}
-      <ModalChicken isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} userId={userId} />
+      <ModalChicken isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} userId={userId} />
 
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />
