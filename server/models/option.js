@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Restaurant extends Model {
+  class Option extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,33 +11,37 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Menu, {
-        foreignKey: 'restaurant_id'
+      
+      // it's replaced as belongsToMany. Once tested and works well as expected, remove this code.
+      // this.hasMany(models.Menu_option, {
+      //   foreignKey: 'option_id'
+      // });
+
+      this.belongsToMany(models.Menu, {
+        through: models.Menu_option,
+        foreignKey: 'option_id'
       });
     }
   };
-  Restaurant.init({
+  Option.init({
+    image: DataTypes.STRING,
     name_en: DataTypes.STRING,
     name_zh: DataTypes.STRING,
     name_ja: DataTypes.STRING,
-    category_en: DataTypes.STRING,
-    category_zh: DataTypes.STRING,
-    category_ja: DataTypes.STRING,
     description_en: DataTypes.STRING,
     description_zh: DataTypes.STRING,
     description_ja: DataTypes.STRING,
-    operation_hour: DataTypes.STRING,
-    minimum_price: DataTypes.INTEGER,
-    delivery_fee: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
+    restaurant_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Restaurant',
+    modelName: 'Option',
   });
 
-  // Restaurant.associate = function(models) {
-  //   Restaurant.hasMany(models.Menu, {
-  //     foreignKey: 'restaurant_id'
+  // Option.associate = function(models) {
+  //   Option.hasMany(models.Menu_option, {
+  //     foreignKey: 'option_id'
   //   });
   // }
-  return Restaurant;
+  return Option;
 };

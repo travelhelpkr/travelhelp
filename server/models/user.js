@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Address_book, {
+        foreignKey: 'user_id'
+      });
+      this.hasMany(models.Order, {
+        foreignKey: 'user_id'
+      });
     }
   };
   User.init({
@@ -52,13 +58,13 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
   
-  User.associate = function(models) {
-    User.hasMany(models.Address_book, {
-      foreignKey: 'user_id'
-    });
-    User.hasMany(models.Order, {
-      foreignKey: 'user_id'
-    });
-  }
+  // User.associate = function(models) {
+  //   User.hasMany(models.Address_book, {
+  //     foreignKey: 'user_id'
+  //   });
+  //   User.hasMany(models.Order, {
+  //     foreignKey: 'user_id'
+  //   });
+  // }
   return User;
 };

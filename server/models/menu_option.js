@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Order_menu extends Model {
+  class Menu_option extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,34 +12,36 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // both of belows are unneccessary association since this table is joint table.
-      // this.belongsTo(models.Order, {
-      //   foreignKey: 'order_id'
-      // });
+      // // menu_id will be located on Menu_option table
       // this.belongsTo(models.Menu, {
       //   foreignKey: 'menu_id'
       // });
+      // // option_id will be located on Menu_option table
+      // this.belongsTo(models.Option, {
+      //   foreignKey: 'option_id'
+      // });
     }
   };
-  Order_menu.init({
+  Menu_option.init({
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1
     },
-    order_id: DataTypes.INTEGER,
-    menu_id: DataTypes.INTEGER
+    menu_id: DataTypes.INTEGER,
+    option_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Order_menu',
+    modelName: 'Menu_option',
   });
 
-  // Order_menu.associate = function(models) {
-  //   Order_menu.belongsTo(models.Order, {
-  //     foreignKey: 'order_id'
-  //   });
-  //   Order_menu.belongsTo(models.Menu, {
+  // Menu_option.associate = function(models) {
+  //   Menu_option.belongsTo(models.Menu, {
   //     foreignKey: 'menu_id'
   //   });
+  //   Menu_option.belongsTo(models.Option, {
+  //     foreignKey: 'option_id'
+  //   });
   // }
-  return Order_menu;
+  return Menu_option;
 };
