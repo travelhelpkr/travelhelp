@@ -11,11 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-      // it's replaced as belongsToMany. Once tested and works well as expected, remove this code.
-      // this.hasMany(models.Order_menu, {
-      //   foreignKey: 'order_id'
-      // });
       this.belongsTo(models.User, {
         foreignKey: 'user_id'
       });
@@ -40,16 +35,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Order',
   });
   
-  // Order.associate = function(models) {
-  //   Order.belongsTo(models.User, {
-  //     foreignKey: 'user_id'
-  //   });
-  //   Order.belongsTo(models.Address_book, {
-  //     foreignKey: 'address_book_id'
-  //   });
-  //   Order.hasMany(models.Order_menu, {
-  //     foreignKey: 'order_id'
-  //   });
-  // }
   return Order;
 };

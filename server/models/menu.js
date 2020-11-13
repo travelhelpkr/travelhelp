@@ -11,16 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-      // it's replaced as belongsToMany. Once tested and works well as expected, remove this code.
-      // this.hasMany(models.Order_menu, {
-      //   foreignKey: 'menu_id'
-      // });
-      // it's replaced as belongsToMany. Once tested and works well as expected, remove this code.
-      // this.hasMany(models.Menu_option, {
-      //   foreignKey: 'menu_id'
-      // });
-      
       this.belongsTo(models.Restaurant, {
         foreignKey: 'restaurant_id'
       });
@@ -49,16 +39,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Menu',
   });
 
-  // Menu.associate = function(models) {
-  //   Menu.hasMany(models.Order_menu, {
-  //     foreignKey: 'menu_id'
-  //   });
-  //   Menu.hasMany(models.Menu_option, {
-  //     foreignKey: 'menu_id'
-  //   });
-  //   Menu.belongsTo(models.Restaurant, {
-  //     foreignKey: 'restaurant_id'
-  //   });
-  // }
   return Menu;
 };

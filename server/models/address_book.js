@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
       this.belongsTo(models.User, {
         foreignKey: 'user_id'
       });
@@ -29,13 +28,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Address_book',
   });
 
-  // Address_book.associate = function(models) {
-  //   Address_book.belongsTo(models.User, {
-  //     foreignKey: 'user_id'
-  //   });
-  //   Address_book.hasOne(models.Order, {
-  //     foreignKey: 'address_book_id'
-  //   });
-  // }
   return Address_book;
 };

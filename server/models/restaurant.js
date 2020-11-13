@@ -34,10 +34,5 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Restaurant',
   });
 
-  // Restaurant.associate = function(models) {
-  //   Restaurant.hasMany(models.Menu, {
-  //     foreignKey: 'restaurant_id'
-  //   });
-  // }
   return Restaurant;
 };
