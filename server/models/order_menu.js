@@ -11,13 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // both of belows are unneccessary association since this table is joint table.
-      // this.belongsTo(models.Order, {
-      //   foreignKey: 'order_id'
-      // });
-      // this.belongsTo(models.Menu, {
-      //   foreignKey: 'menu_id'
-      // });
     }
   };
   Order_menu.init({
@@ -26,9 +19,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 1
     }
-    // ,
-    // order_id: DataTypes.INTEGER,
-    // menu_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Order_menu',
