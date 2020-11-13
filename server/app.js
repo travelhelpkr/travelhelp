@@ -5,8 +5,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const userRouter = require('./router/userRouter');
-const foodRouter = require('./router/foodRouter');
 const authRouter = require('./router/authRouter');
+const foodRouter = require('./router/foodRouter');
+const orderRouter = require('./router/orderRouter');
 const passport = require('passport');
 const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
@@ -55,8 +56,9 @@ app.use(passport.session())
 
 // routing
 app.use('/users', userRouter);
-app.use('/foods', foodRouter);
 app.use('/auth', authRouter);
+app.use('/foods', foodRouter);
+app.use('/order', orderRouter);
 
 app.get('/', (req, res) => {
   console.log('session: ', req.session);
