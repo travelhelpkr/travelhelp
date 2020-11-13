@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
-      this.belongsTo(models.User);
+      this.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      });
       this.hasMany(models.Order, {
         foreignKey: 'address_book_id'
       });
@@ -21,20 +22,11 @@ module.exports = (sequelize, DataTypes) => {
   Address_book.init({
     address: DataTypes.STRING,
     postal_code: DataTypes.INTEGER,
-    contact: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER
+    contact: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Address_book',
   });
 
-  // Address_book.associate = function(models) {
-  //   Address_book.belongsTo(models.User, {
-  //     foreignKey: 'user_id'
-  //   });
-  //   Address_book.hasOne(models.Order, {
-  //     foreignKey: 'address_book_id'
-  //   });
-  // }
   return Address_book;
 };

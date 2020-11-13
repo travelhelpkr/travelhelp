@@ -27,21 +27,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1
-    },
-    menu_id: DataTypes.INTEGER,
-    option_id: DataTypes.INTEGER
+    }
+    // ,
+    // menu_id: DataTypes.INTEGER,
+    // option_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Menu_option',
   });
-
-  // Menu_option.associate = function(models) {
-  //   Menu_option.belongsTo(models.Menu, {
-  //     foreignKey: 'menu_id'
-  //   });
-  //   Menu_option.belongsTo(models.Option, {
-  //     foreignKey: 'option_id'
-  //   });
-  // }
+  
   return Menu_option;
 };

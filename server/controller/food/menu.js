@@ -11,12 +11,18 @@ module.exports = {
     try {
       // check restaurant id
       const restaurant_id = req.query.restaurant_id;
+      console.log('restaurant_id: ', restaurant_id);
+  
       // get all menus matched with restaurant_id
       const foodMenu = await Menu.findAll({
         where: {
           restaurant_id: restaurant_id
-        }
+        },
+        include: Option
       });
+      
+      console.log('foodMenu: ', foodMenu);
+
       res.status(200).send(foodMenu);
     }
     catch (err) {
