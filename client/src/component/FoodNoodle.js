@@ -268,7 +268,7 @@ function FoodNoodle(props) {
         }
       </ul>
 
-      {/* noodle modal */}
+      {/* choose noodle modal */}
       { menu && menu.map(menu => {
           if(menu.Options[0]) {
             return <ModalNoodle isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
