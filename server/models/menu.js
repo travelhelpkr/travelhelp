@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       //   foreignKey: 'menu_id'
       // });
       
-      this.belongsTo(models.Restaurant);
+      this.belongsTo(models.Restaurant, {
+        foreignKey: 'restaurant_id'
+      });
 
       this.belongsToMany(models.Order, {
         through: models.Order_menu,
@@ -41,8 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     description_en: DataTypes.STRING,
     description_zh: DataTypes.STRING,
     description_ja: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    restaurant_id: DataTypes.INTEGER
+    price: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Menu',

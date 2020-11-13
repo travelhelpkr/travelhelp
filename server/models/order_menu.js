@@ -25,9 +25,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 1
-    },
-    order_id: DataTypes.INTEGER,
-    menu_id: DataTypes.INTEGER
+    }
+    // ,
+    // order_id: DataTypes.INTEGER,
+    // menu_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Order_menu',

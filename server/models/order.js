@@ -16,8 +16,12 @@ module.exports = (sequelize, DataTypes) => {
       // this.hasMany(models.Order_menu, {
       //   foreignKey: 'order_id'
       // });
-      this.belongsTo(models.User);
-      this.belongsTo(models.Address_book);
+      this.belongsTo(models.User, {
+        foreignKey: 'user_id'
+      });
+      this.belongsTo(models.Address_book, {
+        foreignKey: 'address_book_id'
+      });
       this.belongsToMany(models.Menu, {
         through: models.Order_menu,
         foreignKey: 'order_id'
@@ -30,9 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: true
     },
-    purchased_at: DataTypes.DATE,
-    user_id: DataTypes.INTEGER,
-    address_book_id: DataTypes.INTEGER
+    purchased_at: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Order',
