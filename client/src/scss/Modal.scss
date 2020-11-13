@@ -235,6 +235,255 @@
   .none {
     display: none;
   }
+  .openModalChicken {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.5);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 30em;
+      height: auto;
+      padding: 45px 45px 30px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 3%;
+        top: 3%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.2em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 24em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+        margin-bottom: 1em;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        width: 24.2em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.5em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuPrice {
+          padding: 5px 0;
+        }
+      }
+      .selectTitle {
+        width: 30em;
+        margin: 30px auto 0;
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: left;
+      }
+      .selectBox {
+        display: block;
+        margin: 0.5em auto;
+        padding: 7px 0 7px 10px;
+        width: 28.9em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .addCartBtn {
+        margin: 1em 1em 1em;
+        width: 24.2em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .openModalNoodle {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.15);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 30em;
+      height: auto;
+      padding: 45px 45px 30px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 3%;
+        top: 3%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.2em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 24em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+        margin-bottom: 1em;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        width: 24.2em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.5em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuPrice {
+          padding: 5px 0;
+        }
+      }
+      .selectTitle {
+        width: 30em;
+        margin: 30px auto 0;
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: left;
+      }
+      .selectBox {
+        display: block;
+        margin: 0.5em auto;
+        padding: 7px 0 7px 10px;
+        width: 28.9em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .addCartBtn {
+        margin: 1em 1em 1em;
+        width: 24.2em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .openModalNoOption {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.1);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 30em;
+      height: auto;
+      padding: 45px 45px 30px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 3%;
+        top: 3%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.2em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 24em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+        margin-bottom: 1em;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        width: 24.2em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.5em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuPrice {
+          padding: 5px 0;
+        }
+      }
+      .addCartBtn {
+        margin: 1em 1em 1em;
+        width: 24.2em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
   .openSigninModal {
     position: fixed;
     left: 0;
