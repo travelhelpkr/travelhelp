@@ -25,8 +25,6 @@ module.exports = {
           through: { attributes: [] }
         }
       });
-
-      console.log(foodMenu[0].dataValues.Options[0]._options);
       
       res.status(200).send(foodMenu);
     }
