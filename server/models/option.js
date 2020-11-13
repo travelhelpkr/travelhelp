@@ -11,7 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Menu_option, {
+      
+      // it's replaced as belongsToMany. Once tested and works well as expected, remove this code.
+      // this.hasMany(models.Menu_option, {
+      //   foreignKey: 'option_id'
+      // });
+
+      this.belongsToMany(models.Menu, {
+        through: models.Menu_option,
         foreignKey: 'option_id'
       });
     }

@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Order, {
-        foreignKey: 'order_id'
-      });
-      this.belongsTo(models.Menu, {
-        foreignKey: 'menu_id'
-      });
+      // both of belows are unneccessary association since this table is joint table.
+      // this.belongsTo(models.Order, {
+      //   foreignKey: 'order_id'
+      // });
+      // this.belongsTo(models.Menu, {
+      //   foreignKey: 'menu_id'
+      // });
     }
   };
   Order_menu.init({
