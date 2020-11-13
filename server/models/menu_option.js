@@ -11,26 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // both of belows are unneccessary association since this table is joint table.
-      // // menu_id will be located on Menu_option table
-      // this.belongsTo(models.Menu, {
-      //   foreignKey: 'menu_id'
-      // });
-      // // option_id will be located on Menu_option table
-      // this.belongsTo(models.Option, {
-      //   foreignKey: 'option_id'
-      // });
     }
   };
   Menu_option.init({
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 1
-    }
-    // ,
-    // menu_id: DataTypes.INTEGER,
-    // option_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Menu_option',
