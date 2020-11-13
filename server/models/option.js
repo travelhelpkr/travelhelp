@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Option.init({
-    image: DataTypes.STRING,
     name_en: DataTypes.STRING,
     name_zh: DataTypes.STRING,
     name_ja: DataTypes.STRING,

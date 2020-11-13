@@ -1,4 +1,4 @@
-const { Menu, Option } = require('../../models');
+const { Menu } = require('../../models');
 
 /*
 1. check req.query.restaurant_id
