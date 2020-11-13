@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { ChannelTalk } from 'react-channel-plugin';
 import Cookies from 'js-cookie';
 import Home from './component/Home';
 import Signin from './component/Signin';
@@ -17,15 +18,24 @@ import FoodChicken from './component/FoodChicken';
 import FoodNoodle from './component/FoodNoodle';
 import Cart from './component/Cart';
 import VerifyEmail from './component/VerifyEmail';
+import config from './config/channelTalk.json';
 import './App.scss';
 
 function App(props) {
+
+  // setting of Channel Talk
+  const onTalkError = React.useCallback(err => {
+    console.log('Error:', err);
+  }, []);
 
   // user state
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [userId, setUserId] = useState('');
+  const [userId, setUserId] = useState('')
+
+  // user profile for ChannelTalk
+  const profile = { name: name, email: email, mobileNumber: '010-1111-1111' }
 
   // check state of signin
   useEffect(() => {
@@ -118,6 +128,19 @@ function App(props) {
           }} />
         </Switch>
       </BrowserRouter>
+
+      {/* Setting of Channel Talk */}
+      <button onClick={() => ChannelTalk.show()}>
+        <span>Open</span>
+      </button>
+      <ChannelTalk 
+        pluginKey={config.web.pluginKey}
+        locale="en"
+        userId={userId}
+        profile={profile}
+        hideDefaultLauncher={true}
+        onError={onTalkError}
+      />
     </div>
   );
 }
