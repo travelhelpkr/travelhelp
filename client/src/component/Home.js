@@ -21,26 +21,26 @@ function Home() {
 
       {/* Body - travel help menu */}
       <div className='helpMenu'>
-        <div className='foodDelivery'>
+        <a href='/help/foodDelivery' className='foodDelivery'>
           <div className='overlay'>
-            <a href='/help/foodDelivery'>{t('home.foodDelivery')}</a>
+            <span>{t('home.foodDelivery')}</span>
           </div>
-        </div>
-        <div className='luggage'>
+        </a>
+        <a href='/help/luggage' className='luggage'>
           <div className='overlay'>
-            <a href='/help/luggage'>{t('home.luggage')}</a>
+            <span>{t('home.luggage')}</span>
           </div>
-        </div>
-        <div className='taxi'>
+        </a>
+        <a href='/help/taxi' className='taxi'>
           <div className='overlay'>
-            <a href='/help/taxi'>{t('home.taxi')}</a>
+            <span>{t('home.taxi')}</span>
           </div>
-        </div>
-        <div className='rental'>
+        </a>
+        <a href='/help/rental' className='rental'>
           <div className='overlay'>
-            <a href='/help/rental'>{t('home.rental')}</a>
+            <span>{t('home.rental')}</span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   )

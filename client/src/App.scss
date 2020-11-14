@@ -10,7 +10,26 @@ body{
 }
 
 @include desktop-large {
- 
+  .channelTalkIcon {
+    position: fixed;
+    right: 6%;
+    bottom: 6%;
+    background: linear-gradient(rgb(58, 202, 209), rgb(38, 159, 175));
+    border: none;
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+    .MuiSvgIcon-root {
+      width: 1.8em;
+      height: auto;
+      color: white;
+    }
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0.2em 0.2em 0.4em rgba(0, 0, 0, 0.4);
+    }
+  }
 }
 
 @include desktop-small {

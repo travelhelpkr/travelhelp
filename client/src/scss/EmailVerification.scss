@@ -1,7 +1,73 @@
 @import '../mixin';
 
 @include desktop-large {
- 
+  .background {
+    .h1 {
+      font-size: 2.1em;
+      margin: 1.5em;
+      color: rgb(1, 1, 37);
+    }
+    .contentUserInfo {
+      background-color: #f6f6f8;
+      width: 55%;
+      margin: auto;
+      padding: 30px 0;
+      border: 1px solid #ebebeb;
+      color: rgb(1, 1, 37);
+      .verificationTitle {
+        font-size: 1.5em;
+        font-weight: 500;
+        padding-bottom: 40px;
+      }
+      .verificationContent {
+        font-size: 1.1em;
+        span {
+          font-weight: 700;
+        }
+      }
+      .verificationContent1 {
+        padding-bottom: 20px;
+      }
+      .verificationContent3 {
+        padding-bottom: 20px;
+      }
+      .verificationContent4 {
+        padding-top: 20px;
+      }
+      .resendEmailBtn {
+        margin: 10px 0;
+        padding: 10px 0;
+        width: 15.5em;
+        border-radius: 4px;
+        font-size: 1.1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+      .resendAlert {
+        padding-top: 15px;
+        color: rgb(5, 202, 71);
+        font-size: 0.9em;
+        width: 17em;
+        margin: auto;
+        font-weight: 500;
+        .MuiSvgIcon-root {
+          font-size: 1.3em;
+          float: left;
+        }
+        .checkText {
+          width: 17em;
+        }
+      }
+      .none {
+        display: none;
+      }
+    }
+  }
 }
 
 @include desktop-small {
