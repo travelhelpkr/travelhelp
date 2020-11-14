@@ -263,10 +263,134 @@
 }
 
 @include tablet {
-  .homeTitle {
-    font-size: 2em;
+  .background {
     width: 100%;
-    margin: 0.5em auto;
+    position: relative;
+    text-align: center;
+    .languageBtn {
+      color: white;
+      background-color: transparent;
+      font-size: 0.75em;
+      position: absolute;
+      right: 1.5em;
+      top: -11.3%;
+      clear: both;
+      text-align: center;
+      width: 8em;
+      height: 2.9em;
+      padding: 9px;
+      text-align: center;
+      border: 0.01rem solid rgba(255, 255, 255, 0.5);
+      border-radius: 0.5em;
+      &:hover {
+        cursor: pointer;
+        width: 7.8em;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: white;
+        border-radius: 0.5em;
+        text-align: center;
+        font-weight: 600;
+        border: 0.01rem solid rgba(255, 255, 255, 0.1);
+      }
+    }
+    .helpMenu {
+      text-align: center;
+      line-height: 22em;
+      display: inline-block;
+      .foodDelivery {
+        background-image: url('../img/delivery.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 22em;
+        height: 22em;
+        margin: 0.4em;
+        text-decoration: none;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          height: 22em;
+          span {
+            font-size: 1.6em;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+      .luggage {
+        background-image: url('../img/suitcase.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 22em;
+        height: 22em;
+        margin: 0.4em;
+        text-decoration: none;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          height: 22em;
+          span {
+            font-size: 1.6em;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+      .taxi {
+        background-image: url('../img/airtaxi.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 22em;
+        clear: both;
+        height: 22em;
+        margin: 0.4em;
+        text-decoration: none;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          height: 22em;
+          span {
+            font-size: 1.6em;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+      .rental {
+        background-image: url('../img/travelpackage.png');
+        background-size: cover;
+        background-repeat: none;
+        float: left;
+        width: 22em;
+        height: 22em;
+        margin: 0.4em;
+        text-decoration: none;
+        .overlay {
+          background-color: rgba(20, 20, 20, 0.4);
+          height: 22em;
+          span {
+            font-size: 1.6em;
+            color: white;
+            font-weight: 500;
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(20, 20, 20, 0.5);
+          }
+        }
+      }
+    }
   }
 }
 

@@ -334,7 +334,168 @@
 }
 
 @include tablet {
-
+  .background {
+    .h1 {
+      font-size: 1.7em;
+      margin: 1.2em;
+      color: rgb(1, 1, 37);
+    }
+    .cartTable {
+      width: 44em;
+      margin: auto;
+      text-align: center;
+      .tableHead {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuInfo {
+          float: left;
+          width: 35em;
+        }
+      }
+      .chickenCart {
+        font-weight: 600;
+        border-bottom: 1px solid #ebebeb;
+        .neneChicken {
+          font-size: 1.1em;
+          float: left;
+          width: 24em;
+          text-align: left;
+          padding: 20px 0 20px 20px;
+        }
+        .minPrice {
+          font-size: 0.9em;
+          padding: 20px 0;
+          span {
+            font-size: 1em;
+            padding-left: 10px;
+            color: rgb(183, 60, 3);
+          }
+        }
+      }
+      .eachMenuInfo {
+        padding-left: 0px;
+        height: 4.5em;
+        li {
+          margin-top: 5px;
+          list-style: none;
+          .menuImage {
+            padding-left: 5px;
+            float: left;
+            width: 4.5em;
+            img {
+              width: 4.5em;
+              height: auto;
+            }
+          }
+          .menuInfo {
+            margin-left: 10px;
+            float: left;
+            text-align: left;
+            font-size: 0.85em;
+            font-weight: 500;
+            padding-top: 15px;
+            .menuType {
+              padding-top: 5px;
+              font-weight: 400;
+            }
+          }
+          .menuPrice {
+            margin-left: 55px;
+            float: left;
+            padding-top: 20px;
+            font-size: 0.85em;
+          }
+          .menuQuantity {
+            margin: 18px 0 0 15px;
+            float: left;
+            border: 1px solid #ccc;
+            border-radius: 1px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .menuTotalPrice {
+            margin-left: 20px;
+            float: left;
+            padding-top: 18px;
+            font-size: 1em;
+            font-weight: 500;
+          }
+          .deleteMenu {
+            margin-left: 20px;
+            float: left;
+            padding-top: 15px;
+            .MuiSvgIcon-root {
+              color: gray;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .summaryInfo {
+        height: 1.5em;
+        margin-top: 1em;
+        clear: both;
+        padding: 15px 0 15px 30px;
+        background-color: #f6f6f8;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuTotalPriceSum {
+          float: left;
+          .priceSum1 {
+            font-size: 0.85em;
+          }
+          .priceSum2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1em;
+          }
+        }
+        .plus {
+          padding-left: 10px;
+          float: left;
+          font-size: 1.3em;
+          font-weight: 300;
+        }
+        .deliveryFee {
+          padding-left: 10px;
+          float: left;
+          .delivery1 {
+            font-size: 0.85em;
+          }
+          .delivery2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1em;
+          }
+        }
+        .equal {
+          padding-left: 10px;
+          float: left;
+          font-size: 1.3em;
+          font-weight: 300;
+        }
+        .totalPrice {
+          padding-left: 10px;
+          float: left;
+          .total1 {
+            font-size: 0.85em;
+          }
+          .total2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
 }
 
 @include mobile {
