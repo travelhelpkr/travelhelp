@@ -18,7 +18,7 @@ function Luggage() {
 
       {/* price table */}
       <div className='contentTable'>
-        <div className='tableTitle'> - {t('luggage.tableTitle')} (KRW) -</div>
+        <div className='tableTitle'>{t('luggage.tableTitle')} (KRW)</div>
         <table className='priceTable'>
           <tr className='firstRow'>
             <td></td>
@@ -50,7 +50,7 @@ function Luggage() {
           </tr>
         </table>
 
-        <div className='tableTitleDiscounted'> - {t('luggage.tableTitleDiscounted')} -</div>
+        <div className='tableTitleDiscounted'>{t('luggage.tableTitleDiscounted')}</div>
         <table className='priceTable'>
           <tr className='firstRow'>
             <td></td>
@@ -85,7 +85,6 @@ function Luggage() {
 
       {/* size guideline */}
       <div className='sizeTable'>
-        <div className='sizeGuidelineTitle'> - Size Guideline -</div>
         <div className='sizeGuideline'>
           <img className='sizeImg' src={size_guideline} />
         </div>

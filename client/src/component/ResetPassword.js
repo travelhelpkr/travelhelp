@@ -62,19 +62,21 @@ function ResetPassword(props) {
       <h1 className='h1'>{t('resetPassword.btn')}</h1>
 
       <div className='contentUserInfo'>
-        <div className='emailAddressTitle'>
-          <span>{t('resetPassword.email')}</span>
-          <span className='userEmailAddress'>{email}</span>
+        <div className="form">
+          <div className='emailAddressTitle'>
+            <span>{t('resetPassword.email')}</span>
+            <span className='userEmailAddress'>{email}</span>
+          </div>
+          <form>
+            <div className='inputTitle'>{t('resetPassword.newPassword')}</div>
+            <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} label='Password' />
+            <div className='inputTitle'>{t('resetPassword.confirmPassword')}</div>
+            <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} label='Confirm Password' />
+          </form>
+          <div className={wrongPassword ? 'passwordAlert' : 'none'}>{t('signup.wrongPassword')}</div>
+          
+          <button className='resetPasswordBtn' onClick={resetPasswordHandler}>{t('resetPassword.btn')}</button>
         </div>
-        <form>
-          <div className='inputTitle'>{t('resetPassword.newPassword')}</div>
-          <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} label='Password' />
-          <div className='inputTitle'>{t('resetPassword.confirmPassword')}</div>
-          <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} label='Confirm Password' />
-        </form>
-        <div className={wrongPassword ? 'passwordAlert' : 'none'}>{t('signup.wrongPassword')}</div>
-        
-        <button className='resetPasswordBtn' onClick={resetPasswordHandler}>{t('resetPassword.btn')}</button>
       </div>
     </div>
   )
