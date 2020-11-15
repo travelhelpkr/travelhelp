@@ -41,7 +41,7 @@ function Cart(props) {
             </div>
             <div className='menuPrice'>26,000₩</div>
             <select className='menuQuantity'>
-              <option value='1' selected>1</option>
+              <option value='1' defaultValue>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
               <option value='4'>4</option>
