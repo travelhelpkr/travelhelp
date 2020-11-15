@@ -151,7 +151,7 @@ function FoodNoodle(props) {
           menu && menu.map(menu => {
             if(menu.Options[0]) {
               return(
-                <div className='menuLi' onClick={e => {
+                <div key={menu.id} className='menuLi' onClick={e => {
                   e.preventDefault();
                   setModal(!isOpen);
                   setMenuId(menu.id);
@@ -215,11 +215,12 @@ function FoodNoodle(props) {
                     <div className='menuPrice'>{menu.price}₩</div>
                     <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
                   </li>
+                  <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
                 </div>
               )
             } else {
               return(
-                <div className='menuLi' onClick={e => {
+                <div key={menu.id} className='menuLi' onClick={e => {
                   e.preventDefault();
                   setModalNoOption(!isOpenNoOption);
                   setMenuIdNoOption(menu.id);
@@ -257,22 +258,14 @@ function FoodNoodle(props) {
                     <div className='menuPrice'>{menu.price}₩</div>
                     <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
                   </li>
+                  <ModalNoodleNoOption isOpenNoOption={isOpenNoOption} setModalNoOption={setModalNoOption} infoMenuId={menuIdNoOption} infoImage={imageNoOption} infoName={nameNoOption} infoPrice={priceNoOption} infoDescription={descriptionNoOption} />
                 </div>
               )
             }
           })
         }
       </ul>
-
-      {/* choose noodle modal */}
-      { menu && menu.map(menu => {
-          if(menu.Options[0]) {
-            return <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
-          } else {
-            return <ModalNoodleNoOption isOpenNoOption={isOpenNoOption} setModalNoOption={setModalNoOption} infoMenuId={menuIdNoOption} infoImage={imageNoOption} infoName={nameNoOption} infoPrice={priceNoOption} infoDescription={descriptionNoOption} />
-          }
-        })
-      }
+      
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />
     </div>

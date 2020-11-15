@@ -139,7 +139,7 @@ function FoodChicken(props) {
           menu && menu.map(menu => {
             console.log("options:", menu.Options[0].name_en);
             return(
-              <div className="menuLi" onClick={e => {
+              <div key={menu.id} className="menuLi" onClick={e => {
                 e.preventDefault();
                 setModal(!isOpen);
                 setMenuId(menu.id);
