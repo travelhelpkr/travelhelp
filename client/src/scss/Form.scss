@@ -384,5 +384,131 @@
 }
 
 @include mobile {
-
+  .background {
+    .h1 {
+      font-size: 1.5em;
+      margin: 1em;
+    }
+    .content {
+      background-color: #f6f6f8;
+      width: 90%;
+      margin: auto;
+      padding: 20px 0 1px;
+      border: 1px solid #ebebeb;
+      .signupBtn {
+        width: 100%;
+        .btn {
+          text-decoration: none;
+          font-size: 0.85em;
+          vertical-align: baseline;
+          text-align: center;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          display: inline-block;
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(207, 207, 207, 0.2);
+            font-weight: 600;
+          }
+        }
+        .googleBtn {
+          margin-bottom: 0.4em;
+          padding: 11px 0;
+          width: 20em;
+          color: black;
+          position: relative;
+          background-color: white;
+          background-image: url('../img/google_logo.png');
+          background-size: 20px;
+          background-position: 20px 50%;
+          background-repeat: no-repeat;
+        }
+        .lineBtn {
+          margin-bottom: 0.5em;
+          padding: 11px 0;
+          width: 20em;
+          color: black;
+          position: relative;
+          background-color: white;
+          background-image: url('../img/line_logo.png');
+          background-size: 22px;
+          background-position: 20px 50%;
+          background-repeat: no-repeat;
+        }
+      }
+      .signupOR {
+        font-size: 0.85em;
+        margin: 0.5em auto 1em;
+      }
+      .signupForm {
+        width: 100%;
+        .signupInput {
+          font-size: 0.75em;
+          display: block;
+          margin: 0.5em auto;
+          padding: 11px 0 11px 12px;
+          width: 21.6em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .alert {
+          color: rgb(190, 23, 11);
+          font-size: 0.75em;
+          margin-bottom: 0.5em;
+        }
+        .none {
+          display: none;
+        }
+        .signupCheckBox {
+          font-size: 0.8em;
+          input {
+            margin: 0.5em 0.5em 0.5em 0;
+            cursor: pointer;
+          }
+          label {
+            &:hover {
+              cursor: pointer;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+      .signupSubmitBtn {
+        margin: 1.5em 1em 1em;
+        width: 18.8em;
+        padding: 11px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+      .gotoSignIn {
+        margin-bottom: 1.5em;
+        a {
+          font-size: 0.9em;
+          color: rgb(1, 1, 37);
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+      .forgotPassword {
+        margin-bottom: 1em;
+        p {
+          font-size: 0.95em;
+          color: rgb(1, 1, 37);
+          text-decoration: underline;
+          &:hover {
+            cursor: pointer;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
 }

@@ -211,5 +211,71 @@
 }
 
 @include mobile {
-
+  .background {
+    .h1 {
+      font-size: 1.5em;
+      margin: 1em;
+      color: rgb(1, 1, 37);
+    }
+    .contentUserInfo {
+      background-color: #f6f6f8;
+      width: 95%;
+      margin: auto;
+      padding: 15px 0;
+      border: 1px solid #ebebeb;
+      color: rgb(1, 1, 37);
+      .verificationTitle {
+        font-size: 1.1em;
+        font-weight: 500;
+        padding-bottom: 30px;
+      }
+      .verificationContent {
+        font-size: 0.9em;
+        span {
+          font-weight: 700;
+        }
+      }
+      .verificationContent1 {
+        padding-bottom: 15px;
+      }
+      .verificationContent3 {
+        padding-bottom: 15px;
+      }
+      .verificationContent4 {
+        padding-top: 15px;
+      }
+      .resendEmailBtn {
+        margin: 10px 0;
+        padding: 10px 0;
+        width: 10em;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+      .resendAlert {
+        padding-top: 5px;
+        color: rgb(5, 202, 71);
+        font-size: 0.9em;
+        width: 16.5em;
+        margin: auto;
+        font-weight: 500;
+        .MuiSvgIcon-root {
+          font-size: 1.2em;
+          float: left;
+        }
+        .checkText {
+          width: 16.5em;
+        }
+      }
+      .none {
+        display: none;
+      }
+    }
+  }
 }

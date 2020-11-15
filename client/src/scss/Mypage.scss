@@ -248,5 +248,85 @@
 }
 
 @include mobile {
-
+  .background {
+    .h1 {
+      font-size: 1.5em;
+      margin: 1em;
+      color: rgb(1, 1, 37);
+    }
+    .contentMyInfo {
+      background-color: #f6f6f8;
+      width: 90%;
+      margin: auto;
+      padding: 20px 0;
+      border: 1px solid #ebebeb;
+      color: rgb(1, 1, 37);
+      .userInfoTitle {
+        font-size: 1.1em;
+        font-weight: 600;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .userInfoBox {
+        margin-top: 20px;
+        .userInfo {
+          text-align: left;
+          padding-left: 20px;
+          .userInfoIcon {
+            color: rgb(1, 1, 37);
+            float: left;
+            margin-right: 5px;
+            .MuiSvgIcon-root {
+              font-size: 1.1em;
+            }
+          }
+          .userInfoText {
+            font-size: 0.9em;
+            color: rgba(1, 1, 37, 0.8);
+            span {
+              font-weight: 900;
+              margin-right: 20px;
+            }
+          }
+        }
+        .userInfoEmail {
+          clear: both;
+        }
+      }
+      .userInfoBtn {
+        margin: 20px auto 0;
+        padding-left: 200px;
+        .mypageBtn {
+          font-size: 0.8em;
+          border: 1px solid rgba(1, 1, 37, 0.3);
+          border-radius: 4px;
+          padding: 8px 12px;
+          background-color: rgba(255, 255, 255, 0.5);
+          &:hover {
+            cursor: pointer;
+            background-color: white;
+            font-weight: 600;
+            border: 1px solid rgba(1, 1, 37, 0.2);
+          }
+        }
+        .changePasswordBtn {
+          margin-right: 10px;
+        }
+      }
+    }
+    .contentOrderInfo {
+      background-color: #f6f6f8;
+      width: 90%;
+      margin: 1em auto;
+      padding: 20px 0;
+      border: 1px solid #ebebeb;
+      color: rgb(1, 1, 37);
+      .orderHistoryTitle {
+        font-size: 1.1em;
+        font-weight: 600;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ebebeb;
+      }
+    }
+  }
 }
