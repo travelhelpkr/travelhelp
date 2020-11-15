@@ -50,30 +50,40 @@ function FoodNoodle(props) {
 
   // get restaurant menus
   useEffect(() => {
-    axios.get('http://localhost:3355/foods/menu', {
+    axios.get('http://localhost:3355/foods/menu', 
+    // {
+    //   user_id: window.sessionStorage.getItem('id')
+    // },
+    {
       params: {
         restaurant_id : 2
       }
     })
     .then(res => {
-      let result = res.data;
-      setMenu(result)
+      console.log("res:", res);
+      const menuResult = res.data.menu;
+      const restaurantResult = res.data.restaurant;
+      console.log("menuResult:", menuResult);
+      console.log("restaurantResult:", restaurantResult);
+      setMenu(menuResult);
+      setInformation(restaurantResult);
+      console.log("information:", information);
     })
   },[])
 
   // get restaurant information
-  useEffect(() => {
-    axios.get('http://localhost:3355/foods/restaurant', {
-      params: {
-        id : 2
-      }
-    })
-    .then(res => {
-      let informtaion = res.data;
-      setInformation(informtaion);
-      console.log(information);
-    })
-  },[])
+  // useEffect(() => {
+  //   axios.get('http://localhost:3355/foods/restaurant', {
+  //     params: {
+  //       id : 2
+  //     }
+  //   })
+  //   .then(res => {
+  //     let informtaion = res.data;
+  //     setInformation(informtaion);
+  //     console.log(information);
+  //   })
+  // },[])
 
   // check signin status when user clicked cart icon on Nav bar
   const checkSigninStatus = (e) => {
@@ -110,44 +120,41 @@ function FoodNoodle(props) {
 
       {/* restaurant information */}
       <div className='restaurantInfo'>
-        {
-          information && information.map(information => {
-            return(
-              <div>
-                <div className='Info restaurantDes'>
-                  {
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? information.description_en
-                    : window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? information.description_zh
-                    : information.description_ja
-                  }
-                </div>
-                <div className='Info restaurantName'>
-                  <span className='InfoDetailTitle'>{t('food.restaurant')}</span>
-                  {
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? information.name_en
-                    : window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? information.name_zh
-                    : information.name_ja
-                  }
-                </div>
-                <div className='Info restaurantHour'>
-                  <span className='InfoDetailTitle'>{t('food.hour')}</span>
-                  {information.operation_hour}
-                </div>
-                <div className='Info restaurantMin'>
-                  <span className='InfoDetailTitle'>{t('food.minimum')}</span>
-                  {information.minimum_price}
-                </div>
-                <div className='Info restaurantDel'>
-                  <span className='InfoDetailTitle'>{t('food.delivery')}</span>
-                  {information.delivery_fee}
-                </div>
-              </div>
-            )
-          })
+        { information ?
+          <div>
+            <div className='Info restaurantDes'>
+              {
+                window.localStorage.getItem('i18nextLng') === 'en'
+                ? information.description_en
+                : window.localStorage.getItem('i18nextLng') === 'zh'
+                ? information.description_zh
+                : information.description_ja
+              }
+            </div>
+            <div className='Info restaurantName'>
+              <span className='InfoDetailTitle'>{t('food.restaurant')}</span>
+              {
+                window.localStorage.getItem('i18nextLng') === 'en'
+                ? information.name_en
+                : window.localStorage.getItem('i18nextLng') === 'zh'
+                ? information.name_zh
+                : information.name_ja
+              }
+            </div>
+            <div className='Info restaurantHour'>
+              <span className='InfoDetailTitle'>{t('food.hour')}</span>
+              {information.operation_hour}
+            </div>
+            <div className='Info restaurantMin'>
+              <span className='InfoDetailTitle'>{t('food.minimum')}</span>
+              {information.minimum_price}
+            </div>
+            <div className='Info restaurantDel'>
+              <span className='InfoDetailTitle'>{t('food.delivery')}</span>
+              {information.delivery_fee}
+            </div>
+          </div>
+          : <div></div>
         }
       </div>
 
