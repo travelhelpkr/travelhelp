@@ -9,7 +9,7 @@ import '../scss/Mypage.scss';
 function Mypage(props) {
 
   // props
-  const { email, name, setIsLogin, setEmail, setName, history } = props;
+  const { email, name, setIsLogin, setEmail, setName } = props;
 
   // change language handler
   const { t } = useTranslation();

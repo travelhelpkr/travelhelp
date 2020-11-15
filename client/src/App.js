@@ -37,7 +37,6 @@ function App(props) {
 
   // user profile for ChannelTalk
   const profile = { name: name, email: email }
-  console.log("profile:", name, email)
 
   // check state of signin
   useEffect(() => {
@@ -47,7 +46,7 @@ function App(props) {
       setEmail(window.sessionStorage.getItem('email'));
       setName(window.sessionStorage.getItem('name'));
     }
-  })
+  },[])
   
   // check state of signin by federation login
   useEffect(() => {
@@ -62,7 +61,7 @@ function App(props) {
       setEmail(window.sessionStorage.getItem('email'));
       setName(window.sessionStorage.getItem('name'));
     }
-  })
+  },[])
 
   // change navigation bar depends on signin status
   const Nav = () => {
@@ -85,7 +84,7 @@ function App(props) {
             if(window.sessionStorage.getItem('id')){
               return <Redirect to='/' />
             } else {
-              return <Signin setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
+              return <Signin isLogin={isLogin} setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
             }
           }} />
           <Route path='/user/signup' render={() => {

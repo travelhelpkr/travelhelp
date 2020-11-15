@@ -56,7 +56,6 @@ function FoodChicken(props) {
       console.log("restaurantResult:", restaurantResult);
       setMenu(menuResult);
       setInformation(restaurantResult);
-      console.log("information:", information);
     })
   },[])
 
@@ -74,7 +73,7 @@ function FoodChicken(props) {
   <div>
     {/* cart icon */}
     <div className='cartIcon'>
-      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite}/></button>
+      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite} alt='cartIconBtn'/></button>
     </div>
 
     {/* choose restaurants btn */}
@@ -91,7 +90,7 @@ function FoodChicken(props) {
 
       {/* banner img */}
       <div className='banner'>
-        <img src={chickenImg}/>
+        <img src={chickenImg} alt='banner'/>
       </div>
 
       {/* restaurant information */}
@@ -143,6 +142,7 @@ function FoodChicken(props) {
               <div className="menuLi" onClick={e => {
                 e.preventDefault();
                 setModal(!isOpen);
+                setMenuId(menu.id);
                 setImage(menu.image);
                 setName(
                   window.localStorage.getItem('i18nextLng') === 'en'
@@ -180,7 +180,7 @@ function FoodChicken(props) {
                 setOptionPrice2(menu.Options[1].price);
               }}>
                 <li key={menu.id}>
-                  <img src={menu.image}/>
+                  <img src={menu.image} alt='menuImage'/>
                   <div className="menuName">
                     {
                       window.localStorage.getItem('i18nextLng') === 'en'
@@ -192,7 +192,7 @@ function FoodChicken(props) {
                     }
                   </div>
                   <div className="menuPrice">{menu.price}₩</div>
-                  <button className="addCartBtn"><img src={cartNavy}/></button>
+                  <button className="addCartBtn"><img src={cartNavy} alt='cartIcon'/></button>
                 </li>
               </div>
             )
