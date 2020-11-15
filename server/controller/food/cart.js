@@ -64,7 +64,7 @@ module.exports = {
         res.send({ status: 409, message: 'this menu already exists in the user cart' });
       }
       else {
-        res.status(200).send({ message: 'menu added in user cart' });
+        res.send({ status: 200, message: 'menu added in user cart' });
       }
     } 
     catch (err) {
