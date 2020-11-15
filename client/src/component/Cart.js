@@ -8,24 +8,27 @@ import '../scss/Cart.scss';
 
 function Cart(props) {
 
+  // change language handler
+  const { t } = useTranslation();
+
   return(
     <div className='background'>
 
-      <h1 className='h1'>My Cart</h1>
+      <h1 className='h1'>{t('cart.myCart')}</h1>
 
       {/* cart table */}
       <div className='cartTable'>
 
         {/* table head */}
         <div className='tableHead'>
-          <div className='menuInfo'>Menu</div>
-          <div className='totalPrice'>Price</div>
+          <div className='menuInfo'>{t('cart.menu')}</div>
+          <div className='totalPrice'>{t('cart.price')}</div>
         </div>
         
         {/* chicken cart */}
         <div className='chickenCart'>
-          <div className='neneChicken'>NeNe Chicken</div>
-          <div className='minPrice'>Minimum Order Price<span>15,000₩</span></div>
+          <div className='neneChicken'>NeNe {t('food.chicken')}</div>
+          <div className='minPrice'>{t('cart.minimum')}<span>15,000₩</span></div>
         </div>
 
         {/* chicken menu delivery info */}
@@ -52,17 +55,17 @@ function Cart(props) {
         {/* chicken menu total info */}
         <div className='summaryInfo'>
           <div className='menuTotalPriceSum'>
-            <span className='priceSum1'>Menu Price</span>
+            <span className='priceSum1'>{t('cart.menuPrice')}</span>
             <span className='priceSum2'>26,000</span>
           </div>
           <div className='plus'>+</div>
           <div className='deliveryFee'>
-            <span className='delivery1'>Delivery Fee</span>
+            <span className='delivery1'>{t('cart.delivery')}</span>
             <span className='delivery2'>2,000</span>
           </div>
           <div className='equal'>=</div>
           <div className='totalPrice'>
-            <span className='total1'>Total Price</span>
+            <span className='total1'>{t('cart.total')}</span>
             <span className='total2'>28,000 ₩</span>
           </div>
         </div>

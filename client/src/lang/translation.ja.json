@@ -134,5 +134,12 @@
   "modalNoodle.large": "大",
   "modalPassword.alert": "パスワードのリセットリンクがメールに送信されました！",
   "modalSignin.signin1": "您应该先登录",
-  "modalSignin.signin2": "「OK」ボタンを押すと、「サインインページ」に移動できます。"
+  "modalSignin.signin2": "「OK」ボタンを押すと、「サインインページ」に移動できます。",
+  "cart.myCart": "私のカート",
+  "cart.menu": "メニュー",
+  "cart.price": "価格",
+  "cart.minimum": "最低注文価格",
+  "cart.menuPrice": "メニュー価格",
+  "cart.delivery": "配送料",
+  "cart.total": "合計金額"
 }
