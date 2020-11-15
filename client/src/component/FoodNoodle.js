@@ -29,6 +29,7 @@ function FoodNoodle(props) {
   const [isOpenNoOption, setModalNoOption] = useState(false);
 
   // ModalNoodle information
+  const [menuId, setMenuId] = useState('');
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -40,6 +41,7 @@ function FoodNoodle(props) {
   const [optionPrice3, setOptionPrice3] = useState('');
 
   // ModalNoodleNoOption information
+  const [menuIdNoOption, setMenuIdNoOption] = useState('');
   const [imageNoOption, setImageNoOption] = useState('');
   const [nameNoOption, setNameNoOption] = useState('');
   const [priceNoOption, setPriceNoOption] = useState('');
@@ -70,20 +72,6 @@ function FoodNoodle(props) {
       console.log("information:", information);
     })
   },[])
-
-  // get restaurant information
-  // useEffect(() => {
-  //   axios.get('http://localhost:3355/foods/restaurant', {
-  //     params: {
-  //       id : 2
-  //     }
-  //   })
-  //   .then(res => {
-  //     let informtaion = res.data;
-  //     setInformation(informtaion);
-  //     console.log(information);
-  //   })
-  // },[])
 
   // check signin status when user clicked cart icon on Nav bar
   const checkSigninStatus = (e) => {
@@ -167,6 +155,7 @@ function FoodNoodle(props) {
                 <div className='menuLi' onClick={e => {
                   e.preventDefault();
                   setModal(!isOpen);
+                  setMenuId(menu.id);
                   setImage(menu.image);
                   setName(
                     window.localStorage.getItem('i18nextLng') === 'en'
@@ -234,6 +223,7 @@ function FoodNoodle(props) {
                 <div className='menuLi' onClick={e => {
                   e.preventDefault();
                   setModalNoOption(!isOpenNoOption);
+                  setMenuIdNoOption(menu.id);
                   setImageNoOption(menu.image);
                   setNameNoOption(
                     window.localStorage.getItem('i18nextLng') === 'en'
@@ -278,9 +268,9 @@ function FoodNoodle(props) {
       {/* choose noodle modal */}
       { menu && menu.map(menu => {
           if(menu.Options[0]) {
-            return <ModalNoodle isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
+            return <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
           } else {
-            return <ModalNoodleNoOption isOpenNoOption={isOpenNoOption} setModalNoOption={setModalNoOption} infoImage={imageNoOption} infoName={nameNoOption} infoPrice={priceNoOption} infoDescription={descriptionNoOption} />
+            return <ModalNoodleNoOption isOpenNoOption={isOpenNoOption} setModalNoOption={setModalNoOption} infoMenuId={menuIdNoOption} infoImage={imageNoOption} infoName={nameNoOption} infoPrice={priceNoOption} infoDescription={descriptionNoOption} />
           }
         })
       }

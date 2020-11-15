@@ -6,7 +6,7 @@ import '../scss/Modal.scss';
 function ModalNoodleNoOption(props) {
 
   // get from each menu
-  const { isOpenNoOption, setModalNoOption, infoImage, infoName, infoPrice, infoDescription } = props;
+  const { isOpenNoOption, setModalNoOption, infoMenuId, infoImage, infoName, infoPrice, infoDescription } = props;
 
   // change language handler
   const { t } = useTranslation();
