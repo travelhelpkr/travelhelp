@@ -25,6 +25,7 @@ function FoodChicken(props) {
   const [isSignin, setIsSignin] = useState(false);
 
   // modal information
+  const [menuId, setMenuId] = useState('');
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -200,7 +201,7 @@ function FoodChicken(props) {
       </ul>
 
       {/* chicken modal */}
-      <ModalChicken isOpen={isOpen} setModal={setModal} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} userId={userId} />
+      <ModalChicken isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} userId={userId} />
 
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />

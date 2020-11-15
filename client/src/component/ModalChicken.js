@@ -6,7 +6,7 @@ import '../scss/Modal.scss';
 function ModalChicken(props) {
 
   // get from each menu
-  const { isOpen, setModal, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2 } = props;
+  const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2 } = props;
 
   // change language handler
   const { t } = useTranslation();

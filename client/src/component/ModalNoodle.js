@@ -6,7 +6,7 @@ import '../scss/Modal.scss';
 function ModalNoodle(props) {
 
   // get from each menu
-  const { isOpen, setModal, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, infoOptionName3, infoOptionPrice3 } = props;
+  const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, infoOptionName3, infoOptionPrice3 } = props;
 
   console.log("infoOptionName1:", infoOptionName1);
 
