@@ -69,7 +69,6 @@ function FoodNoodle(props) {
       console.log("restaurantResult:", restaurantResult);
       setMenu(menuResult);
       setInformation(restaurantResult);
-      console.log("information:", information);
     })
   },[])
 
@@ -87,7 +86,7 @@ function FoodNoodle(props) {
   <div>
     {/* cart icon */}
     <div className='cartIconNoodle'>
-      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite}/></button>
+      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite} alt='cartIconBtn'/></button>
     </div>
 
     {/* choose restaurants btn */}
@@ -103,7 +102,7 @@ function FoodNoodle(props) {
 
       {/* banner img */}
       <div className='banner'>
-        <img src={noodleImg}/>
+        <img src={noodleImg} alt='banner'/>
       </div>
 
       {/* restaurant information */}
@@ -202,7 +201,7 @@ function FoodNoodle(props) {
                   setOptionPrice3(menu.Options[2].price);
                 }}>
                   <li key={menu.id}>
-                    <img src={menu.image}/>
+                    <img src={menu.image} alt='menuImage'/>
                     <div className='menuName'>
                       {
                         window.localStorage.getItem('i18nextLng') === 'en'
@@ -214,7 +213,7 @@ function FoodNoodle(props) {
                       }
                     </div>
                     <div className='menuPrice'>{menu.price}₩</div>
-                    <button className='addCartBtn'><img src={cartNavy} /></button>
+                    <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
                   </li>
                 </div>
               )
@@ -244,7 +243,7 @@ function FoodNoodle(props) {
                   );
                 }}>
                   <li key={menu.id}>
-                    <img src={menu.image}/>
+                    <img src={menu.image} alt='menuImage'/>
                     <div className='menuName'>
                       {
                         window.localStorage.getItem('i18nextLng') === 'en'
@@ -256,7 +255,7 @@ function FoodNoodle(props) {
                       }
                     </div>
                     <div className='menuPrice'>{menu.price}₩</div>
-                    <button className='addCartBtn'><img src={cartNavy} /></button>
+                    <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
                   </li>
                 </div>
               )

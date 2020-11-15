@@ -31,7 +31,7 @@ function ResetPassword(props) {
       console.log('res:', res.data.email);
       setEmail(res.data.email);
     })
-  },[])
+  })
 
   // form input change handler
   const onChangeHandler = (e) => {

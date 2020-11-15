@@ -8,7 +8,7 @@ import '../scss/Modal.scss';
 function ResestPassword(props) {
 
   // get from each menu
-  const { isOpen, setModal, history } = props;
+  const { isOpen, setModal } = props;
 
   // input state of user information for signin
   const [email, inputEmail] = useState('');

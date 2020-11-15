@@ -34,7 +34,7 @@ function Cart(props) {
         {/* chicken menu delivery info */}
         <ul className='eachMenuInfo'>
           <li>
-            <div className='menuImage'><img src={delivery}/></div>
+            <div className='menuImage'><img src={delivery} alt='menuImage'/></div>
             <div className='menuInfo'>
               <div className='menuName'>Half snowing cheese + Half super hot + Half fried</div>
               <div className='menuType'>- Boneless (+2,000)</div>

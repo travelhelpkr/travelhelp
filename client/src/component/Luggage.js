@@ -86,7 +86,7 @@ function Luggage() {
       {/* size guideline */}
       <div className='sizeTable'>
         <div className='sizeGuideline'>
-          <img className='sizeImg' src={size_guideline} />
+          <img className='sizeImg' src={size_guideline} alt='sizeImg'/>
         </div>
         <ul className='sizeDetail'>
           <li>{t('luggage.sizeDetail1')}</li>

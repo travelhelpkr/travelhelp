@@ -27,7 +27,7 @@ function ModalNoodle(props) {
         }}><CloseIcon /></button>
 
         {/* menu information */}
-        <img src={infoImage} className='modalMenuImage'/>
+        <img src={infoImage} className='modalMenuImage' alt='modalMenuImage'/>
         <div className='modalMenuInfo'>
           <div className='modalMenuName'>
             {infoName}

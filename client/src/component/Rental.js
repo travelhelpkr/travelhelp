@@ -20,7 +20,7 @@ function Taxi() {
       {/* portable wifi */}
       <div className='contentTable'>
         <div className='contentTitle'>{t('rental.wifi')}</div>
-        <div className='contentImg'><img src={wifi}/></div>
+        <div className='contentImg'><img src={wifi} alt='wifi'/></div>
         <div className='contentDetail'>{t('rental.wifiDetail')}</div>
         <table className='priceTable'>
           <tr className='firstRow'>
@@ -41,7 +41,7 @@ function Taxi() {
       {/* luggage scale */}
       <div className='contentTable'>
         <div className='contentTitle'>{t('rental.luggageScale')}</div>
-        <div className='contentImg'><img src={luggageScale}/></div>
+        <div className='contentImg'><img src={luggageScale} alt='luggageScale'/></div>
         <ul className='contentDetailList'>{t('rental.luggageDetailTitle')}
           <li>{t('rental.luggageDetail1')}</li>
           <li>{t('rental.luggageDetail2')}</li>
@@ -65,7 +65,7 @@ function Taxi() {
       {/* adaptor */}
       <div className='contentTable'>
         <div className='contentTitle'>{t('rental.adaptor')}</div>
-        <div className='contentImg'><img src={adaptor}/></div>
+        <div className='contentImg'><img src={adaptor} alt='adaptor'/></div>
         <table className='priceTable'>
           <tr className='firstRow'>
             <td></td>
@@ -83,7 +83,7 @@ function Taxi() {
       {/* charging cable */}
       <div className='contentTable'>
         <div className='contentTitle'>{t('rental.chargingCable')}</div>
-        <div className='contentImg'><img src={chargingCable}/></div>
+        <div className='contentImg'><img src={chargingCable} alt='chargingCable'/></div>
         <ul className='contentDetailList'>{t('rental.chargingCableDetailTitle')}
           <li>{t('rental.chargingCableDetail1')}</li>
           <li>{t('rental.chargingCableDetail2')}</li>
