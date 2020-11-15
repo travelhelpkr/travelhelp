@@ -134,5 +134,12 @@
   "modalNoodle.large": "Large",
   "modalPassword.alert": "Reset password link has been sent to your email!",
   "modalSignin.signin1": "You should Sign In first",
-  "modalSignin.signin2": "When you press 'Okay' button, you can go to 'Sign In Page'."
+  "modalSignin.signin2": "When you press 'Okay' button, you can go to 'Sign In Page'.",
+  "cart.myCart": "My Cart",
+  "cart.menu": "Menu",
+  "cart.price": "Price",
+  "cart.minimum": "Minimum Order Price",
+  "cart.menuPrice": "Menu Price",
+  "cart.delivery": "Delivery Fee",
+  "cart.total": "Total Price"
 }

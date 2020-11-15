@@ -134,5 +134,12 @@
   "modalNoodle.large": "大",
   "modalPassword.alert": "重置密码链接已发送至您的电子邮件！",
   "modalSignin.signin1": "您应该先登录",
-  "modalSignin.signin2": "当您按“确定”按钮时，您可以转到“登录页面”。"
+  "modalSignin.signin2": "当您按“确定”按钮时，您可以转到“登录页面”。",
+  "cart.myCart": "我的车",
+  "cart.menu": "菜单",
+  "cart.price": "价钱",
+  "cart.minimum": "最低订购价",
+  "cart.menuPrice": "菜单价格",
+  "cart.delivery": "快递费",
+  "cart.total": "总价"
 }
