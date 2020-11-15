@@ -38,7 +38,7 @@ module.exports = {
   add: async (req, res) => {
 
     try {
-      const { } = req.body;
+      const { menu_id, menu_quantity } = req.body;
       
     } 
     catch (err) {
