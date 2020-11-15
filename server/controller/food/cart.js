@@ -1,4 +1,4 @@
-const { User } = require('../../models');
+const { User, Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
 
 /*
 // this restaurant checking process will be done from client side.
@@ -27,6 +27,7 @@ menu id
 menu name (en, zh, ja)
 menu image
 menu price
+menu restaurant_id
 menu_order quantity
 option id
 option name (en, zh, ja)
@@ -34,12 +35,41 @@ option price
 */
 
 module.exports = {
-  // make Cart  
+  // update user's db with selected menu
   add: async (req, res) => {
 
     try {
-      const { menu_id, menu_quantity } = req.body;
+      const { user_id, menu_id, option_id } = req.body;
+
+      // 
+      const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
+        where: {
+          is_cart: true,
+          user_id: user_id
+        }
+      });
+
+      console.log('targetOrder: ', targetOrder.toJSON());
+      console.log('is created Order: ', isCreatedOrder);
       
+      if (!isCreatedOrder) {
+        console.log('existing user cart');
+      }
+
+      const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
+        where: {
+          order_id: targetOrder.id,
+          menu_id: menu_id
+        }
+      });
+
+      console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
+      console.log('is created OrderMenu: ', isCreatedOrderMenu);
+
+      if (!isCreatedOrderMenu) {
+        console.log('this menu already exists in the user cart');
+      }
+
     } 
     catch (err) {
       // response err to client. no need to throw err.
@@ -47,12 +77,45 @@ module.exports = {
         message: err.message || 'Server does not response.'
       });  
     }
-
+    
   },
-
+  
   show: async (req, res) => {
-
+    
     try {
+      const selectedMenu = await Menu.findOne({
+        attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ],
+        where: {
+          id: menu_id
+        },
+        include: [{
+          model: Option,
+          attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ],
+          // hide unwanted `Menu_option` nested object from results. by explicitly defining through option, we can hide junction table's values from result.
+          through: { attributes: [] }
+        }, {
+          // pick only menu_id belongs to selected order_menu id
+          // this menu value will be employeed for checking restaurant id validation on cart page from client side
+          model: Order,
+          attributes: [ 'id' ],
+          through: { attributes: [ menu_id ] },
+          where: {
+            id: userCart.dataValues.id,
+            is_cart: true
+          },
+          require: false
+        }]
+      });
+
+      const foodMenuArr = foodMenu.reduce((acc, cur) => {
+        let menu = cur.dataValues;
+        menu.Options = menu.Options.map(option => option.dataValues);
+        acc.push(menu);
+        return acc;
+      }, []);
+
+      console.log('foodMenuArr: ', foodMenuArr);
+      res.status(200).send({ menu: foodMenuArr, restaurant: selectedRestaurantObj });
       
       
     } 
