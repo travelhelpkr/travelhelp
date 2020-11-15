@@ -41,35 +41,31 @@ module.exports = {
     try {
       const { user_id, menu_id, option_id } = req.body;
 
-      // 
       const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
         where: {
           is_cart: true,
           user_id: user_id
         }
       });
-
-      console.log('targetOrder: ', targetOrder.toJSON());
-      console.log('is created Order: ', isCreatedOrder);
+      // console.log('targetOrder: ', targetOrder.toJSON());
       
-      if (!isCreatedOrder) {
-        console.log('existing user cart');
-      }
-
       const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
         where: {
           order_id: targetOrder.id,
-          menu_id: menu_id
+          menu_id: menu_id,
+          option_id: option_id
         }
       });
+      // console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
 
-      console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
+      console.log('is created Order: ', isCreatedOrder);
       console.log('is created OrderMenu: ', isCreatedOrderMenu);
-
-      if (!isCreatedOrderMenu) {
-        console.log('this menu already exists in the user cart');
+      if (!isCreatedOrder && !isCreatedOrderMenu) {
+        res.send({ status: 409, message: 'this menu already exists in the user cart' });
       }
-
+      else {
+        res.status(200).send({ message: 'menu added in user cart' });
+      }
     } 
     catch (err) {
       // response err to client. no need to throw err.
