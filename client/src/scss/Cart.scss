@@ -499,5 +499,173 @@
 }
 
 @include mobile {
-
+  .background {
+    .h1 {
+      font-size: 1.5em;
+      margin: 1em;
+      color: rgb(1, 1, 37);
+    }
+    .cartTable {
+      width: 22em;
+      margin: auto;
+      text-align: center;
+      .tableHead {
+        background-color: #f6f6f8;
+        padding: 8px 0;
+        font-size: 0.8em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuInfo {
+          float: left;
+          width: 18em;
+        }
+      }
+      .chickenCart {
+        font-weight: 600;
+        border-bottom: 1px solid #ebebeb;
+        .neneChicken {
+          font-size: 0.9em;
+          float: left;
+          width: 10em;
+          text-align: left;
+          padding: 15px 0 15px 15px;
+        }
+        .minPrice {
+          font-size: 0.8em;
+          padding: 15px 0;
+          span {
+            font-size: 0.9em;
+            padding-left: 5px;
+            color: rgb(183, 60, 3);
+          }
+        }
+      }
+      .eachMenuInfo {
+        padding-left: 0px;
+        height: 3em;
+        margin: 10px 0;
+        li {
+          margin-top: 5px;
+          list-style: none;
+          .menuImage {
+            padding-left: 5px;
+            float: left;
+            width: 3em;
+            img {
+              width: 3em;
+              height: auto;
+            }
+          }
+          .menuInfo {
+            margin-left: 10px;
+            float: left;
+            text-align: left;
+            font-size: 0.75em;
+            font-weight: 500;
+            padding-top: 5px;
+            .menuType {
+              padding-top: 5px;
+              font-weight: 400;
+            }
+          }
+          .menuPrice {
+            text-align: left;
+            margin-left: 75px;
+            clear: both;
+            float: left;
+            padding-top: 10px;
+            font-size: 0.8em;
+          }
+          .menuQuantity {
+            font-size: 0.8em;
+            margin: 8px 0 0 10px;
+            float: left;
+            border: 1px solid #ccc;
+            border-radius: 1px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .menuTotalPrice {
+            margin-left: 70px;
+            float: left;
+            padding-top: 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+          }
+          .deleteMenu {
+            margin-left: 20px;
+            float: left;
+            padding-top: 3px;
+            .MuiSvgIcon-root {
+              color: gray;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .summaryInfo {
+        height: 2.8em;
+        margin-top: 2.8em;
+        clear: both;
+        padding: 10px 0 10px 15px;
+        background-color: #f6f6f8;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuTotalPriceSum {
+          float: left;
+          .priceSum1 {
+            font-size: 0.8em;
+          }
+          .priceSum2 {
+            font-weight: 600;
+            padding-left: 5px;
+            font-size: 0.9em;
+          }
+        }
+        .plus {
+          padding-left: 5px;
+          float: left;
+          font-size: 1em;
+          font-weight: 300;
+        }
+        .deliveryFee {
+          padding-left: 5px;
+          float: left;
+          .delivery1 {
+            font-size: 0.8em;
+          }
+          .delivery2 {
+            font-weight: 600;
+            padding-left: 5px;
+            font-size: 0.9em;
+          }
+        }
+        .equal {
+          margin-top: 5px;
+          padding-left: 150px;
+          clear: both;
+          float: left;
+          font-size: 1em;
+          font-weight: 300;
+        }
+        .totalPrice {
+          margin-top: 5px;
+          padding-left: 5px;
+          float: left;
+          .total1 {
+            font-size: 0.8em;
+          }
+          .total2 {
+            font-weight: 600;
+            padding-left: 5px;
+            font-size: 0.9em;
+          }
+        }
+      }
+    }
+  }
 }

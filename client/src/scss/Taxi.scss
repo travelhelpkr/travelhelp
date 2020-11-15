@@ -257,5 +257,90 @@
 }
 
 @include mobile {
-
+  .background {
+    .h1 {
+      font-size: 1.5em;
+      margin: 1em;
+      color: rgb(1, 1, 37);
+    }
+    .description {
+      font-size: 0.9em;
+    }
+    .contentTable {
+      background-color: #f6f6f8;
+      width: 95%;
+      margin: auto;
+      margin-top: 10px;
+      padding: 15px 0;
+      border: 1px solid #ebebeb;
+      color: rgb(1, 1, 37);
+      font-size: 0.9em;
+      .contentTitle {
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+      .contentTitleAlert {
+        font-size: 1em;
+        font-weight: 600;
+        color: red;
+        line-height: 1.5em;
+        margin-top: 10px;
+      }
+      .contentDetail {
+        padding: 0 5px;
+        font-size: 1em;
+        line-height: 1.3em;
+      }
+      .bookingList {
+        margin: 20px 15px 0 15px;
+        font-size: 0.9em;
+        padding-left: 15px;
+        li {
+          text-align: left;
+          line-height: 1.2em;
+          margin-top: 8px;
+        }
+      }
+      .tableTitle {
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+      .tableTitleGMP {
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-top: 15px;
+      }
+      .priceTable {
+        font-size: 0.75em;
+        border: 1px solid #ebebeb;
+        margin: 5px auto;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        tr {
+          line-height: 2em;
+          td {
+            padding: 2px 5px;
+          }
+          .firstColumn {
+            background-color: #dfdfdf;
+            font-weight: 600;
+          }
+        }
+        .firstRow {
+          background-color: #dfdfdf;
+          font-weight: 600;
+        }
+      }
+      .priceInfo {
+        margin: 20px 15px 0 15px;
+        font-size: 0.9em;
+        padding-left: 15px;
+        li {
+          text-align: left;
+          line-height: 1.2em;
+          margin-top: 8px;
+        }
+      }
+    }
+  }
 }

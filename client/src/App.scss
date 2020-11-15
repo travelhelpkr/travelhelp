@@ -79,5 +79,24 @@ body{
 }
 
 @include mobile {
-
+  .channelTalkIcon {
+    position: fixed;
+    right: 7%;
+    bottom: 4%;
+    background: linear-gradient(rgb(58, 202, 209), rgb(38, 159, 175));
+    border: none;
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+    .MuiSvgIcon-root {
+      width: 1.3em;
+      height: auto;
+      color: white;
+    }
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0.2em 0.2em 0.4em rgba(0, 0, 0, 0.4);
+    }
+  }
 }

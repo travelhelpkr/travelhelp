@@ -1627,5 +1627,552 @@
 }
 
 @include mobile {
-
+  .openModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.5);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 30em;
+      height: auto;
+      padding: 45px 45px 30px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 3%;
+        top: 3%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.2em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 24em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+        margin-bottom: 1em;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        width: 24.2em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.5em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuPrice {
+          padding: 5px 0;
+        }
+      }
+      .selectTitle {
+        width: 30em;
+        margin: 30px auto 0;
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: left;
+      }
+      .selectBox {
+        display: block;
+        margin: 0.5em auto;
+        padding: 7px 0 7px 10px;
+        width: 28.9em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .addCartBtn {
+        margin: 1em 1em 1em;
+        width: 24.2em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+    .modalContentPassword {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 18em;
+      height: 18em;
+      padding: 25px 20px 5px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 2%;
+        top: 3%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 1.8em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalTitle {
+        font-size: 1.1em;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      .emailInputBox {
+        color: rgb(1, 1, 37);
+        font-weight: 400;
+        font-size: 0.9em;
+        background-color: #f6f6f8;
+        border: 1px solid #ebebeb;
+        border-top: 3px solid rgb(1, 1, 37);
+        border-radius: 5px;
+        padding: 10px;
+        height: 15em;
+        .step1 {
+          color: rgb(109, 109, 109);
+          padding-bottom: 15px;
+          border-bottom: 1px solid #ebebeb;
+        }
+        .emailAddress {
+          font-size: 0.85em;
+          text-align: left;
+          padding: 15px 0 0 4px;
+          font-weight: 600;
+        }
+        .emailInput {
+          font-size: 0.85em;
+          margin: 8px 0 15px;
+          padding: 10px 0 10px 10px;
+          width: 20.5em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .resetPasswordBtn {
+          margin-top: 10px;
+          padding: 10px 0;
+          width: 20.5em;
+          border-radius: 4px;
+          font-size: 0.9em;
+          color: white;
+          background-color:  rgb(1, 1, 37);
+          &:hover {
+            cursor: pointer;
+            opacity: 85%;
+            font-weight: 600;
+          }
+        }
+        .signUpAlert {
+          padding-top: 10px;
+          color: rgb(190, 23, 11);
+          font-size: 0.9em;
+          margin-bottom: 1em;
+          .signupLink {
+            a {
+              padding-left: 10px;
+              color: rgb(1, 1, 37);
+              font-weight: 500;
+              font-size: 0.95em;
+              &:hover {
+                font-weight: 600;
+              }
+            }
+          }
+        }
+        .none {
+          display: none;
+        }
+        .emailAlert {
+          padding-top: 5px;
+          color: rgb(5, 202, 71);
+          font-size: 0.85em;
+          width: 16.5em;
+          margin: auto;
+          font-weight: 500;
+          .MuiSvgIcon-root {
+            font-size: 1.1em;
+            float: left;
+          }
+          .checkText {
+            width: 16.5em;
+          }
+        }
+      }
+    }
+    .modalContentPolicy {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 19em;
+      height: 21em;
+      padding: 25px;
+      border-radius: 5px;
+      overflow-y: scroll;
+      text-align: left;
+      font-size: 0.8em;
+      .modalCloseBtn {
+        position: absolute;
+        right: 2%;
+        top: 3%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 1.8em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .none {
+    display: none;
+  }
+  .openModalChicken {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.5);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 16em;
+      height: auto;
+      padding: 30px 20px 20px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 1.5%;
+        top: 1.5%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 1.8em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 14em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+        margin-bottom: 1em;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 8px 0;
+        width: 14.1em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.1em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuDes {
+          font-size: 0.9em;
+        }
+        .modalMenuPrice {
+          font-size: 0.9em;
+          padding: 5px 0;
+        }
+      }
+      .selectTitle {
+        width: 17.5em;
+        margin: 15px auto 0;
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: left;
+      }
+      .selectBox {
+        display: block;
+        margin: 0.4em auto;
+        padding: 5px 0 5px 10px;
+        width: 17em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .addCartBtn {
+        margin: 1em 1em 0.2em;
+        width: 15.6em;
+        padding: 8px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .openModalNoodle {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.15);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 16em;
+      height: auto;
+      padding: 30px 20px 20px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 1.5%;
+        top: 1.5%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 1.8em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 14em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+        margin-bottom: 1em;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 8px 0;
+        width: 14.1em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.1em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuDes {
+          font-size: 0.9em;
+        }
+        .modalMenuPrice {
+          font-size: 0.9em;
+          padding: 5px 0;
+        }
+      }
+      .selectTitle {
+        width: 17.5em;
+        margin: 15px auto 0;
+        font-size: 0.8em;
+        font-weight: 500;
+        text-align: left;
+      }
+      .selectBox {
+        display: block;
+        margin: 0.4em auto;
+        padding: 5px 0 5px 10px;
+        width: 17em;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .addCartBtn {
+        margin: 1em 1em 0.2em;
+        width: 15.6em;
+        padding: 8px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .openModalNoOption {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.1);
+    .modalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 16em;
+      height: auto;
+      padding: 30px 20px 20px;
+      border-radius: 5px;
+      .modalCloseBtn {
+        position: absolute;
+        right: 1.5%;
+        top: 1.5%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 1.8em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .modalMenuImage {
+        width: 14em;
+        height: auto;
+        position: relative;
+        top: -5%;
+        border: 1px solid #ebebeb;
+        margin-bottom: 1em;
+      }
+      .modalMenuInfo {
+        background-color: #f6f6f8;
+        padding: 8px 0;
+        width: 14.1em;
+        margin: -20px auto 0;
+        .modalMenuName {
+          font-size: 1.1em;
+          font-weight: 500;
+          padding-bottom: 10px;
+        }
+        .modalMenuDes {
+          font-size: 0.9em;
+        }
+        .modalMenuPrice {
+          font-size: 0.9em;
+          padding: 5px 0;
+        }
+      }
+      .addCartBtn {
+        margin: 1em 1em 0.2em;
+        width: 15.6em;
+        padding: 8px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .openSigninModal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.5);
+    .signinModalContent {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 2;
+      transform: translate3d(-50%, -50%, 0);
+      background: white;
+      width: 15em;
+      height: auto;
+      padding: 30px 20px 20px;
+      border-radius: 5px;
+      .closeBtn {
+        position: absolute;
+        right: 2%;
+        top: 4%;
+        border: none;
+        background-color: transparent;
+        .MuiSvgIcon-root {
+          font-size: 1.8em;
+          color: rgb(1, 1, 37);
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .signinAlert {
+        font-size: 0.95em;
+        line-height: 1.5em;
+        margin-bottom: 1.2em;
+        span {
+          font-weight: 600;
+        }
+      }
+      .okayBtn {
+        width: 5em;
+        padding: 5px 0;
+        border-radius: 4px;
+        font-size: 0.8em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+    }
+  }
 }
