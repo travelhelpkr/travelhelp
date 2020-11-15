@@ -75,7 +75,7 @@ function ResestPassword(props) {
           <div className={failAlertSignUp ? 'signUpAlert' : 'none'}>
             <span>{t('resetPassword.signup')}</span>
             <span className='signupLink'><a href='/user/signup'>{t('signup.signup')}</a></span>
-            </div>
+          </div>
           <div className={failAlertVerification ? 'signUpAlert' : 'none'}>
             <span>{t('resetPassword.emailVerification')}</span>
             <span className='signupLink'><a href='/user/emailVerified'>{t('email.title')}</a></span>
