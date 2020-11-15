@@ -6,9 +6,9 @@ const foodRouter = express.Router();
 
 foodRouter.get('/menu', menu.get);
 
-foodRouter.post('/order', cart.add);
-foodRouter.get('/order', cart.show);
-foodRouter.put('/order', cart.update);
-foodRouter.delete('/order', cart.delete);
+foodRouter.post('/cart', cart.add);
+foodRouter.get('/cart', cart.show);
+foodRouter.put('/cart', cart.update);
+foodRouter.delete('/cart', cart.delete);
 
 module.exports = foodRouter;
