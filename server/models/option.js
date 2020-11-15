@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Menu_option,
         foreignKey: 'option_id'
       });
+      
+      this.hasMany(models.Order_menu, {
+        foreignKey: 'option_id'
+      });
     }
   };
   Option.init({

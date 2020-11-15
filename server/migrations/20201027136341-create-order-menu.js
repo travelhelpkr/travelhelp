@@ -27,6 +27,13 @@ module.exports = {
           key: 'id'
         }
       },
+      option_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Options',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
