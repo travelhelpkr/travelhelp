@@ -294,17 +294,50 @@
         font-weight: 500;
         text-align: left;
       }
-      .selectBox {
-        display: block;
-        margin: 0.5em auto;
-        padding: 8px 0 8px 12px;
-        width: 31.4em;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: transparent;
-        &:hover {
-          cursor: pointer;
+      .option1 {
+        .selectTitle {
+          width: 32.5em;
+          margin: 30px auto 0;
+          font-size: 0.8em;
+          font-weight: 500;
+          text-align: left;
         }
+        .selectBox {
+          display: block;
+          margin: 0.5em auto;
+          padding: 7px 0 7px 10px;
+          width: 31.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .option2 {
+        .selectTitle {
+          width: 32.5em;
+          margin: 30px auto 0;
+          font-size: 0.8em;
+          font-weight: 500;
+          text-align: left;
+        }
+        .selectBox {
+          display: block;
+          margin: 0.5em auto;
+          padding: 7px 0 7px 10px;
+          width: 31.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .none {
+        display: none;
       }
       .addCartBtn {
         margin: 1em 1em 1em;
@@ -427,95 +460,53 @@
           padding: 5px 0;
         }
       }
-      .selectTitle {
-        width: 28.9em;
-        margin: 30px auto 0;
-        font-size: 0.9em;
-        font-weight: 500;
-        text-align: left;
+      .option0 {
+        display: none;
       }
-      .selectBox {
-        display: block;
-        margin: 0.5em auto;
-        padding: 8px 0 8px 12px;
-        width: 31.4em;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: transparent;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-      .addCartBtn {
-        margin: 1em 1em 1em;
-        width: 23.8em;
-        padding: 12px 0;
-        border-radius: 4px;
-        font-size: 1.1em;
-        color: white;
-        background-color:  rgb(1, 1, 37);
-        &:hover {
-          cursor: pointer;
-          opacity: 85%;
-          font-weight: 600;
-        }
-      }
-    }
-  }
-  .openModalNoOption {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    z-index: 30;
-    background: rgba(0, 0, 0, 0.1);
-    .modalContent {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      z-index: 2;
-      transform: translate3d(-50%, -50%, 0);
-      background: white;
-      width: 32em;
-      height: auto;
-      padding: 45px 45px 30px;
-      border-radius: 5px;
-      .modalCloseBtn {
-        position: absolute;
-        right: 3%;
-        top: 3%;
-        border: none;
-        background-color: transparent;
-        .MuiSvgIcon-root {
-          font-size: 2.2em;
-          color: rgb(1, 1, 37);
-        }
-        &:hover {
-          cursor: pointer;
-        }
-      }
-      .modalMenuImage {
-        width: 26em;
-        height: auto;
-        position: relative;
-        top: -5%;
-        border: 1px solid #ebebeb;
-        margin-bottom: 1em;
-      }
-      .modalMenuInfo {
-        background-color: #f6f6f8;
-        padding: 15px 0;
-        width: 26.1em;
-        margin: -20px auto 0;
-        .modalMenuName {
-          font-size: 1.6em;
+      .option1 {
+        .selectTitle {
+          width: 32.5em;
+          margin: 30px auto 0;
+          font-size: 0.8em;
           font-weight: 500;
-          padding-bottom: 10px;
+          text-align: left;
         }
-        .modalMenuPrice {
-          padding: 5px 0;
+        .selectBox {
+          display: block;
+          margin: 0.5em auto;
+          padding: 7px 0 7px 10px;
+          width: 31.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
         }
+      }
+      .option2 {
+        .selectTitle {
+          width: 32.5em;
+          margin: 30px auto 0;
+          font-size: 0.8em;
+          font-weight: 500;
+          text-align: left;
+        }
+        .selectBox {
+          display: block;
+          margin: 0.5em auto;
+          padding: 7px 0 7px 10px;
+          width: 31.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .none {
+        display: none;
       }
       .addCartBtn {
         margin: 1em 1em 1em;
@@ -529,6 +520,56 @@
           cursor: pointer;
           opacity: 85%;
           font-weight: 600;
+        }
+      }
+      .none {
+        display: none;
+      }
+      .optionErrorAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+      }
+      .successAlert {
+        color: rgb(5, 202, 71);
+        font-size: 1em;
+        width: 22em;
+        margin: 2px auto;
+        font-weight: 500;
+        .MuiSvgIcon-root {
+          font-size: 1.2em;
+          float: left;
+        }
+        .goToCart {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .failureAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToCart {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
         }
       }
     }

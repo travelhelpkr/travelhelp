@@ -6,7 +6,6 @@ import noodleImg from '../img/new_banner_bn.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
 import ModalNoodle from './ModalNoodle';
-import ModalNoodleNoOption from './ModalNoodleNoOption';
 import ModalSignin from './ModalSignin';
 import '../scss/FoodNoodle.scss';
 
@@ -25,9 +24,6 @@ function FoodNoodle(props) {
   const [isOpen, setModal] = useState(false);
   const [isSignin, setIsSignin] = useState(false);
 
-  // open modalNoOption
-  const [isOpenNoOption, setModalNoOption] = useState(false);
-
   // ModalNoodle information
   const [menuId, setMenuId] = useState('');
   const [image, setImage] = useState('');
@@ -40,22 +36,12 @@ function FoodNoodle(props) {
   const [optionName3, setOptionName3] = useState('');
   const [optionPrice3, setOptionPrice3] = useState('');
 
-  // ModalNoodleNoOption information
-  const [menuIdNoOption, setMenuIdNoOption] = useState('');
-  const [imageNoOption, setImageNoOption] = useState('');
-  const [nameNoOption, setNameNoOption] = useState('');
-  const [priceNoOption, setPriceNoOption] = useState('');
-  const [descriptionNoOption, setDescriptionNoOption] = useState('');
-
   // change language
   const { t } = useTranslation();
 
   // get restaurant menus
   useEffect(() => {
-    axios.get('http://localhost:3355/foods/menu', 
-    // {
-    //   user_id: window.sessionStorage.getItem('id')
-    // },
+    axios.get(`http://localhost:3355/foods/menu${window.sessionStorage.getItem('id')}`, 
     {
       params: {
         restaurant_id : 2
@@ -149,30 +135,30 @@ function FoodNoodle(props) {
       <ul>
         {
           menu && menu.map(menu => {
-            if(menu.Options[0]) {
-              return(
-                <div key={menu.id} className='menuLi' onClick={e => {
-                  e.preventDefault();
-                  setModal(!isOpen);
-                  setMenuId(menu.id);
-                  setImage(menu.image);
-                  setName(
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? menu.name_en
-                    :
-                    window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? menu.name_zh
-                    : menu.name_ja
-                  );
-                  setPrice(menu.price);
-                  setDescription(
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? menu.description_en
-                    :
-                    window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? menu.description_zh
-                    : menu.description_ja
-                  );
+            return(
+              <div key={menu.id} className='menuLi' onClick={e => {
+                e.preventDefault();
+                setModal(!isOpen);
+                setMenuId(menu.id);
+                setImage(menu.image);
+                setName(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.name_en
+                  :
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.name_zh
+                  : menu.name_ja
+                );
+                setPrice(menu.price);
+                setDescription(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.description_en
+                  :
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.description_zh
+                  : menu.description_ja
+                );
+                { menu.Options[0] ? 
                   setOptionName1(
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? menu.Options[0].name_en
@@ -180,7 +166,11 @@ function FoodNoodle(props) {
                     window.localStorage.getItem('i18nextLng') === 'zh'
                     ? menu.Options[0].name_zh
                     : menu.Options[0].name_ja
-                  );
+                  )
+                  :
+                  setOptionName1('')
+                }
+                { menu.Options[1] ? 
                   setOptionName2(
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? menu.Options[1].name_en
@@ -188,8 +178,12 @@ function FoodNoodle(props) {
                     window.localStorage.getItem('i18nextLng') === 'zh'
                     ? menu.Options[1].name_zh
                     : menu.Options[1].name_ja
-                  );
-                  setOptionPrice2(menu.Options[1].price);
+                  )
+                  :
+                  setOptionName2('')
+                }
+                { menu.Options[2] ? setOptionPrice2(menu.Options[1].price) : setOptionPrice2('') }
+                { menu.Options[2] ? 
                   setOptionName3(
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? menu.Options[2].name_en
@@ -197,75 +191,36 @@ function FoodNoodle(props) {
                     window.localStorage.getItem('i18nextLng') === 'zh'
                     ? menu.Options[2].name_zh
                     : menu.Options[2].name_ja
-                  );
-                  setOptionPrice3(menu.Options[2].price);
-                }}>
-                  <li key={menu.id}>
-                    <img src={menu.image} alt='menuImage'/>
-                    <div className='menuName'>
-                      {
-                        window.localStorage.getItem('i18nextLng') === 'en'
-                        ? menu.name_en
-                        :
-                        window.localStorage.getItem('i18nextLng') === 'zh'
-                        ? menu.name_zh
-                        : menu.name_ja
-                      }
-                    </div>
-                    <div className='menuPrice'>{menu.price}₩</div>
-                    <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
-                  </li>
-                  <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
-                </div>
-              )
-            } else {
-              return(
-                <div key={menu.id} className='menuLi' onClick={e => {
-                  e.preventDefault();
-                  setModalNoOption(!isOpenNoOption);
-                  setMenuIdNoOption(menu.id);
-                  setImageNoOption(menu.image);
-                  setNameNoOption(
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? menu.name_en
-                    :
-                    window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? menu.name_zh
-                    : menu.name_ja
-                  );
-                  setPriceNoOption(menu.price);
-                  setDescriptionNoOption(
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? menu.description_en
-                    :
-                    window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? menu.description_zh
-                    : menu.description_ja
-                  );
-                }}>
-                  <li key={menu.id}>
-                    <img src={menu.image} alt='menuImage'/>
-                    <div className='menuName'>
-                      {
-                        window.localStorage.getItem('i18nextLng') === 'en'
-                        ? menu.name_en
-                        :
-                        window.localStorage.getItem('i18nextLng') === 'zh'
-                        ? menu.name_zh
-                        : menu.name_ja
-                      }
-                    </div>
-                    <div className='menuPrice'>{menu.price}₩</div>
-                    <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
-                  </li>
-                  <ModalNoodleNoOption isOpenNoOption={isOpenNoOption} setModalNoOption={setModalNoOption} infoMenuId={menuIdNoOption} infoImage={imageNoOption} infoName={nameNoOption} infoPrice={priceNoOption} infoDescription={descriptionNoOption} />
-                </div>
-              )
-            }
+                  )
+                  :
+                  setOptionName3('')
+                }
+                { menu.Options[2] ? setOptionPrice3(menu.Options[2].price) : setOptionPrice3('') }
+              }}>
+                <li key={menu.id}>
+                  <img src={menu.image} alt='menuImage'/>
+                  <div className='menuName'>
+                    {
+                      window.localStorage.getItem('i18nextLng') === 'en'
+                      ? menu.name_en
+                      :
+                      window.localStorage.getItem('i18nextLng') === 'zh'
+                      ? menu.name_zh
+                      : menu.name_ja
+                    }
+                  </div>
+                  <div className='menuPrice'>{menu.price}₩</div>
+                  <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
+                </li>
+              </div>
+            )
           })
         }
       </ul>
       
+      {/* chicken modal */}
+      <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
+
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />
     </div>
