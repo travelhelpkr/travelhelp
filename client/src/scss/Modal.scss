@@ -396,6 +396,24 @@
           }
         }
       }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToSignIn {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
@@ -554,6 +572,24 @@
         margin: 2px auto;
         font-weight: 500;
         .goToCart {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToSignIn {
           a {
             padding-left: 10px;
             color: rgb(1, 1, 37);
@@ -1038,6 +1074,24 @@
           }
         }
       }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 22em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToSignIn {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
@@ -1196,6 +1250,24 @@
         margin: 2px auto;
         font-weight: 500;
         .goToCart {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 22em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToSignIn {
           a {
             padding-left: 10px;
             color: rgb(1, 1, 37);
@@ -1664,6 +1736,24 @@
           }
         }
       }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 22em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToSignIn {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
@@ -1823,6 +1913,24 @@
         margin: 2px auto;
         font-weight: 500;
         .goToCart {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 22em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToSignIn {
           a {
             padding-left: 10px;
             color: rgb(1, 1, 37);
@@ -2295,6 +2403,26 @@
           }
         }
       }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.8em;
+        width: 16em;
+        margin: 5px auto;
+        font-weight: 500;
+        .goToSignIn {
+          display: inline-block;
+          margin-top: 5px;
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
@@ -2455,6 +2583,26 @@
         margin: 5px auto;
         font-weight: 500;
         .goToCart {
+          display: inline-block;
+          margin-top: 5px;
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .signinAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.8em;
+        width: 16em;
+        margin: 5px auto;
+        font-weight: 500;
+        .goToSignIn {
           display: inline-block;
           margin-top: 5px;
           a {
