@@ -97,7 +97,7 @@ function ModalChicken(props) {
         <div className={infoMenuId < 12 ? 'option1': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
           <select className='selectBox' onChange={e => setType(e.target.value)}>
-            <option value='' value>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
+            <option value=''>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
             <option value='2'>{infoOptionName1}</option>
             <option value='3'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
           </select>
@@ -106,7 +106,7 @@ function ModalChicken(props) {
         <div className={infoMenuId >= 12 ? 'option2': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
           <select className='selectBox' onChange={e => setType(e.target.value)}>
-            <option value='' value>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
+            <option value=''>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
             <option value='2'>{infoOptionName1}</option>
             <option value='6'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
           </select>
