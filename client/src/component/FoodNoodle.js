@@ -158,7 +158,8 @@ function FoodNoodle(props) {
                   ? menu.description_zh
                   : menu.description_ja
                 );
-                { menu.Options[0] ? 
+
+                menu.Options[0] ? 
                   setOptionName1(
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? menu.Options[0].name_en
@@ -169,8 +170,8 @@ function FoodNoodle(props) {
                   )
                   :
                   setOptionName1('')
-                }
-                { menu.Options[1] ? 
+                
+                menu.Options[1] ? 
                   setOptionName2(
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? menu.Options[1].name_en
@@ -181,9 +182,10 @@ function FoodNoodle(props) {
                   )
                   :
                   setOptionName2('')
-                }
-                { menu.Options[2] ? setOptionPrice2(menu.Options[1].price) : setOptionPrice2('') }
-                { menu.Options[2] ? 
+
+                menu.Options[2] ? setOptionPrice2(menu.Options[1].price) : setOptionPrice2('')
+                
+                menu.Options[2] ? 
                   setOptionName3(
                     window.localStorage.getItem('i18nextLng') === 'en'
                     ? menu.Options[2].name_en
@@ -194,8 +196,8 @@ function FoodNoodle(props) {
                   )
                   :
                   setOptionName3('')
-                }
-                { menu.Options[2] ? setOptionPrice3(menu.Options[2].price) : setOptionPrice3('') }
+
+                menu.Options[2] ? setOptionPrice3(menu.Options[2].price) : setOptionPrice3('')
               }}>
                 <li key={menu.id}>
                   <img src={menu.image} alt='menuImage'/>
@@ -219,7 +221,7 @@ function FoodNoodle(props) {
       </ul>
       
       {/* chicken modal */}
-      <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}/>
+      <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}  userId={userId} />
 
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />

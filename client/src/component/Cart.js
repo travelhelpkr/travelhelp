@@ -11,6 +11,10 @@ function Cart(props) {
   // change language handler
   const { t } = useTranslation();
 
+  // useEffect(() => {
+  //   axios.get()
+  // },[])
+
   return(
     <div className='background'>
 
