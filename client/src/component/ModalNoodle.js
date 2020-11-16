@@ -21,6 +21,7 @@ function ModalNoodle(props) {
   console.log('type:', type);
 
   // alert after add to cart btn
+  const [isSignin, setIsSignin] = useState(false);
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [optionError, setOptionError] = useState(false);
@@ -28,61 +29,66 @@ function ModalNoodle(props) {
   // add to cart btn handler
   const addToCartHandler = (e) => {
     e.preventDefault();
-    if(infoMenuId <= 24) {
-      axios.post('http://localhost:3355/foods/cart', {
-        user_id: window.sessionStorage.getItem('id'),
-        menu_id: infoMenuId,
-        option_id: null
-      }, {
-        withCredentials: true,
-      }, {
-        headers: { 
-          'Access-Control-Allow-Origin': 'http://localhost:3355',
-         }
-      })
-      .then(res => {
-        if(res.data.status === 409) {
-          setFailure(true);
-          setSuccess(false);
-          setOptionError(false);
-          setType('');
-        } else if(res.data.status === 200){
-          setSuccess(true);
-          setFailure(false);
-          setOptionError(false);
-          setType('');
-        }
-      })
-    } else if(infoMenuId < 25 || type) {
-      axios.post('http://localhost:3355/foods/cart', {
-        user_id: window.sessionStorage.getItem('id'),
-        menu_id: infoMenuId,
-        option_id: type
-      }, {
-        withCredentials: true,
-      }, {
-        headers: { 
-          'Access-Control-Allow-Origin': 'http://localhost:3355',
-         }
-      })
-      .then(res => {
-        if(res.data.status === 409) {
-          setFailure(true);
-          setSuccess(false);
-          setOptionError(false);
-          setType('');
-        } else if(res.data.status === 200){
-          setSuccess(true);
-          setFailure(false);
-          setOptionError(false);
-          setType('');
-        }
-      })
+    if(window.sessionStorage.getItem('id')) {
+      if(infoMenuId <= 24) {
+        axios.post('http://localhost:3355/foods/cart', {
+          user_id: window.sessionStorage.getItem('id'),
+          menu_id: infoMenuId,
+          option_id: null
+        }, {
+          withCredentials: true,
+        }, {
+          headers: { 
+            'Access-Control-Allow-Origin': 'http://localhost:3355',
+           }
+        })
+        .then(res => {
+          if(res.data.status === 409) {
+            setFailure(true);
+            setSuccess(false);
+            setOptionError(false);
+            setType('');
+          } else if(res.data.status === 200){
+            setSuccess(true);
+            setFailure(false);
+            setOptionError(false);
+            setType('');
+          }
+        })
+      } else if(infoMenuId < 25 || type) {
+        axios.post('http://localhost:3355/foods/cart', {
+          user_id: window.sessionStorage.getItem('id'),
+          menu_id: infoMenuId,
+          option_id: type
+        }, {
+          withCredentials: true,
+        }, {
+          headers: { 
+            'Access-Control-Allow-Origin': 'http://localhost:3355',
+           }
+        })
+        .then(res => {
+          if(res.data.status === 409) {
+            setFailure(true);
+            setSuccess(false);
+            setOptionError(false);
+            setType('');
+          } else if(res.data.status === 200){
+            setSuccess(true);
+            setFailure(false);
+            setOptionError(false);
+            setType('');
+          }
+        })
+      } else {
+        setOptionError(true);
+        setSuccess(false);
+        setFailure(false);
+        setType('');
+      }
     } else {
-      setOptionError(true);
-      setSuccess(false);
-      setFailure(false);
-      setType('');
+      e.preventDefault();
+      setIsSignin(true);
     }
   }
 
@@ -162,6 +168,11 @@ function ModalNoodle(props) {
           <span>{t('modalCart.already')}</span>
           <span className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></span>
         </div>
+        <div className={isSignin ? 'signinAlert' : 'none'}>
+          <span>Please Sign In first!</span>
+          <span className='goToSignIn'><a href='/user/signin'>Go To Sign In</a></span>
+        </div>
+
       </div>
     </div>
   )
