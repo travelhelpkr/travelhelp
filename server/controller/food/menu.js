@@ -54,7 +54,7 @@ module.exports = {
 /*
 below code has left here for just reference.
 It was made for checking existing restaurant id from the cart of the user.
-But it was accomplished from cart API. So no longer neccessary from this menu API.
+But it was accomplished from cart API. So no longer necessary from this menu API.
 
 // check user's signin status
 const user_id = req.params.id;
