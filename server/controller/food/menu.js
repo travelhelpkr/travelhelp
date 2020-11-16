@@ -24,7 +24,7 @@ module.exports = {
       const selectedRestaurantObj = selectedRestaurant.dataValues;
 
       // check user's signin status
-      const { user_id } = req.body;
+      const user_id = req.params.id;
 
       // if user exists && `is_cart` value from order table is `ture`
       // send user's order table's menu values for checking existing menu's restaurant id.

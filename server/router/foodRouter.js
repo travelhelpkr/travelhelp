@@ -4,7 +4,7 @@ const cart = require('../controller/food/cart');
 
 const foodRouter = express.Router();
 
-foodRouter.get('/menu', menu.get);
+foodRouter.get('/menu:id', menu.get);
 
 foodRouter.post('/cart', cart.add);
 foodRouter.get('/cart', cart.show);
