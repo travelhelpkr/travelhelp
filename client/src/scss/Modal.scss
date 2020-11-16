@@ -320,6 +320,56 @@
           font-weight: 600;
         }
       }
+      .none {
+        display: none;
+      }
+      .optionErrorAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+      }
+      .successAlert {
+        color: rgb(5, 202, 71);
+        font-size: 1em;
+        width: 22em;
+        margin: 2px auto;
+        font-weight: 500;
+        .MuiSvgIcon-root {
+          font-size: 1.2em;
+          float: left;
+        }
+        .goToCart {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .failureAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToCart {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
