@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Option, {
         foreignKey: 'option_id'
       });
+      this.belongsTo(models.Menu, {
+        foreignKey: 'menu_id'
+      });
+      this.belongsTo(models.Order, {
+        foreignKey: 'order_id'
+      });
     }
   };
   Order_menu.init({

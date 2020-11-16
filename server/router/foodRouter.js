@@ -7,7 +7,7 @@ const foodRouter = express.Router();
 foodRouter.get('/menu', menu.get);
 
 foodRouter.post('/cart', cart.add);
-foodRouter.get('/cart', cart.show);
+foodRouter.get('/cart/:id', cart.show);
 foodRouter.put('/cart', cart.update);
 foodRouter.delete('/cart', cart.delete);
 

@@ -40,7 +40,7 @@ module.exports = {
 
     try {
       const { user_id, menu_id, option_id } = req.body;
-
+  
       const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
         where: {
           is_cart: true,
@@ -79,41 +79,46 @@ module.exports = {
   show: async (req, res) => {
     
     try {
-      const selectedMenu = await Menu.findOne({
-        attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ],
+      const user_id = req.params.id;
+
+      const userCart = await Order.findOne({
+        attributes: [ 'id' ],
         where: {
-          id: menu_id
-        },
-        include: [{
-          model: Option,
-          attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ],
-          // hide unwanted `Menu_option` nested object from results. by explicitly defining through option, we can hide junction table's values from result.
-          through: { attributes: [] }
-        }, {
-          // pick only menu_id belongs to selected order_menu id
-          // this menu value will be employeed for checking restaurant id validation on cart page from client side
-          model: Order,
-          attributes: [ 'id' ],
-          through: { attributes: [ menu_id ] },
-          where: {
-            id: userCart.dataValues.id,
-            is_cart: true
-          },
-          require: false
-        }]
+          is_cart: true,
+          user_id: user_id
+        }
       });
 
-      const foodMenuArr = foodMenu.reduce((acc, cur) => {
-        let menu = cur.dataValues;
-        menu.Options = menu.Options.map(option => option.dataValues);
-        acc.push(menu);
-        return acc;
-      }, []);
+      const orderId = userCart.id;
+      console.log('orderId::::::::', orderId);
 
-      console.log('foodMenuArr: ', foodMenuArr);
-      res.status(200).send({ menu: foodMenuArr, restaurant: selectedRestaurantObj });
+      const listCartArr = await Order_menu.findAll({
+        attributes: [ 'menu_id', 'option_id', 'quantity' ],
+        where: {
+          order_id: userCart.id
+        },
+        include: [{
+          model: Menu,
+          attributes: [ 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ] 
+        }, {
+          model: Option,
+          attributes: [ 'name_en', 'name_zh', 'name_ja', 'price' ]
+        }], 
+        raw: true,
+        nest: true
+      });
+      console.log('listCartArr::::::::', listCartArr[0]);
       
-      
+      const restaurantInfo = await Restaurant.findOne({
+        attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'category_en', 'category_zh', 'category_ja', 'operation_hour', 'minimum_price', 'delivery_fee' ],
+        where: {
+          id: listCartArr[0].Menu.restaurant_id
+        },
+        raw: true
+      });
+      console.log('restaurantInfo::::::::', restaurantInfo);
+ 
+      res.status(200).send({ order_id: orderId, cart: listCartArr, restaurant: restaurantInfo });
     } 
     catch (err) {
       // response err to client. no need to throw err.
@@ -128,6 +133,40 @@ module.exports = {
 
     try {
       const { } = req.body;
+
+            // const selectedMenu = await Menu.findOne({
+      //   attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ],
+      //   where: {
+      //     id: menu_id
+      //   },
+      //   include: [{
+      //     model: Option,
+      //     attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ],
+      //     // hide unwanted `Menu_option` nested object from results. by explicitly defining through option, we can hide junction table's values from result.
+      //     through: { attributes: [] }
+      //   }, {
+      //     // pick only menu_id belongs to selected order_menu id
+      //     // this menu value will be employeed for checking restaurant id validation on cart page from client side
+      //     model: Order,
+      //     attributes: [ 'id' ],
+      //     through: { attributes: [ menu_id ] },
+      //     where: {
+      //       id: userCart.dataValues.id,
+      //       is_cart: true
+      //     },
+      //     require: false
+      //   }]
+      // });
+
+      // const foodMenuArr = foodMenu.reduce((acc, cur) => {
+      //   let menu = cur.dataValues;
+      //   menu.Options = menu.Options.map(option => option.dataValues);
+      //   acc.push(menu);
+      //   return acc;
+      // }, []);
+
+      // console.log('foodMenuArr: ', foodMenuArr);
+      // res.status(200).send({ listCart: listCartArr, restaurant: selectedRestaurantObj });
       
     } 
     catch (err) {
