@@ -16,6 +16,8 @@ function ModalChicken(props) {
   // choose bone or boneless state
   const [type, setType] = useState('');
 
+  console.log('type:', type);
+
   // alert after add to cart btn
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
@@ -86,12 +88,23 @@ function ModalChicken(props) {
         </div>
 
         {/* choose bone or boneless */}
-        <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
-        <select className='selectBox' onChange={e => setType(e.target.value)}>
-          <option value=''>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
-          <option value='2'>{infoOptionName1}</option>
-          <option value='3'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
-        </select>
+        <div className={infoMenuId < 12 ? 'option1': 'none'}>
+          <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
+          <select className='selectBox' onChange={e => setType(e.target.value)}>
+            <option value='' value>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
+            <option value='2'>{infoOptionName1}</option>
+            <option value='3'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
+          </select>
+        </div>
+
+        <div className={infoMenuId >= 12 ? 'option2': 'none'}>
+          <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
+          <select className='selectBox' onChange={e => setType(e.target.value)}>
+            <option value='' value>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
+            <option value='2'>{infoOptionName1}</option>
+            <option value='6'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
+          </select>
+        </div>
 
         {/* alert after clicking btn */}
         <div className={optionError ? 'optionErrorAlert' : 'none'}>
