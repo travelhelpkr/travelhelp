@@ -28,7 +28,32 @@ function ModalNoodle(props) {
   // add to cart btn handler
   const addToCartHandler = (e) => {
     e.preventDefault();
-    if(infoMenuId < 25 || type) {
+    if(infoMenuId <= 24) {
+      axios.post('http://localhost:3355/foods/cart', {
+        user_id: window.sessionStorage.getItem('id'),
+        menu_id: infoMenuId,
+        option_id: null
+      }, {
+        withCredentials: true,
+      }, {
+        headers: { 
+          'Access-Control-Allow-Origin': 'http://localhost:3355',
+         }
+      })
+      .then(res => {
+        if(res.data.status === 409) {
+          setFailure(true);
+          setSuccess(false);
+          setOptionError(false);
+          setType('');
+        } else if(res.data.status === 200){
+          setSuccess(true);
+          setFailure(false);
+          setOptionError(false);
+          setType('');
+        }
+      })
+    } else if(infoMenuId < 25 || type) {
       axios.post('http://localhost:3355/foods/cart', {
         user_id: window.sessionStorage.getItem('id'),
         menu_id: infoMenuId,
