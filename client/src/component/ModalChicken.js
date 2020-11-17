@@ -132,7 +132,8 @@ function ModalChicken(props) {
           <span className='goToSignIn'><a href='/user/signin'>Go To Sign In</a></span>
         </div>
         <div className={otherRestaurant ? 'otherRestaurantAlert' : 'none'}>
-          <span>Only menus from the same restaurant can be added.</span>
+          <div>Only menus from the same restaurant can be added.</div>
+          <div className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></div>
         </div>
 
       </div>
