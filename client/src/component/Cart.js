@@ -112,7 +112,15 @@ function Cart(props) {
                     <option value='5'>5</option>
                   </select>
                   <div className='menuTotalPrice'>{new Intl.NumberFormat().format(Number(((menu.Menu.price + menu.Option.price) * menu.quantity)))}₩</div>
-                  <div className='deleteMenu'><DeleteForeverIcon /></div>
+                  <div className='deleteMenu' onClick={e => {
+                    axios.delete('http://localhost:3355/foods/cart', {
+                      params: {
+                        order_id: orderId,
+                        menu_id: menu.Menu.id,
+                        option_id: menu.Option.id
+                      }
+                    })
+                  }}><DeleteForeverIcon /></div>
                 </li>
               )
             })
