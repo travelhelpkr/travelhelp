@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Option, {
         foreignKey: 'option_id'
       });
+      // defined belows for manipulating other models from this `Order_menu` table
       this.belongsTo(models.Menu, {
         foreignKey: 'menu_id'
       });
