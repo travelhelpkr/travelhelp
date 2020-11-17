@@ -188,7 +188,7 @@ function FoodChicken(props) {
                       : menu.name_ja
                     }
                   </div>
-                  <div className="menuPrice">{menu.price}₩</div>
+                  <div className="menuPrice">{menu.price.toLocaleString()}₩</div>
                   <button className="addCartBtn"><img src={cartNavy} alt='cartIcon'/></button>
                 </li>
               </div>

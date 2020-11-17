@@ -118,7 +118,7 @@ function ModalNoodle(props) {
             {infoDescription}
           </div>
           <div className='modalMenuPrice'>
-            {infoPrice}₩
+            {infoPrice.toLocaleString()}₩
           </div>
         </div>
 
@@ -128,8 +128,8 @@ function ModalNoodle(props) {
           <select className='selectBox' onChange={e => setType(e.target.value)}>
             <option value=''>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
-            <option value='8'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
-            <option value='9'>{infoOptionName3} (+{infoOptionPrice3}₩)</option>
+            <option value='8'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
+            <option value='9'>{infoOptionName3} (+{infoOptionPrice3.toLocaleString()}₩)</option>
           </select>
         </div>
 
@@ -138,8 +138,8 @@ function ModalNoodle(props) {
           <select className='selectBox' onChange={e => setType(e.target.value)}>
             <option value=''>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
-            <option value='8'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
-            <option value='9'>{infoOptionName3} (+{infoOptionPrice3}₩)</option>
+            <option value='8'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
+            <option value='9'>{infoOptionName3} (+{infoOptionPrice3.toLocaleString()}₩)</option>
           </select>
         </div>
 
@@ -148,8 +148,8 @@ function ModalNoodle(props) {
           <select className='selectBox' onChange={e => setType(e.target.value)}>
             <option value=''>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
-            <option value='10'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
-            <option value='11'>{infoOptionName3} (+{infoOptionPrice3}₩)</option>
+            <option value='10'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
+            <option value='11'>{infoOptionName3} (+{infoOptionPrice3.toLocaleString()}₩)</option>
           </select>
         </div>
 

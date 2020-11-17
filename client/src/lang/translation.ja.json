@@ -145,5 +145,6 @@
   "cart.minimum": "最低注文価格",
   "cart.menuPrice": "メニュー価格",
   "cart.delivery": "配送料",
-  "cart.total": "合計金額"
+  "cart.total": "合計金額",
+  "cart.minimumAlert": "最低注文価格は"
 }
