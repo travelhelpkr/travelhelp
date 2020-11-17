@@ -93,16 +93,16 @@ module.exports = {
       console.log('orderId::::::::', orderId);
 
       const listCartArr = await Order_menu.findAll({
-        attributes: [ 'menu_id', 'option_id', 'quantity' ],
+        attributes: [ 'quantity' ],
         where: {
           order_id: userCart.id
         },
         include: [{
           model: Menu,
-          attributes: [ 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ] 
+          attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ] 
         }, {
           model: Option,
-          attributes: [ 'name_en', 'name_zh', 'name_ja', 'price' ]
+          attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ]
         }], 
         raw: true,
         nest: true
@@ -123,7 +123,8 @@ module.exports = {
     catch (err) {
       // response err to client. no need to throw err.
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });  
     }
 
