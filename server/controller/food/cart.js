@@ -1,5 +1,5 @@
 const { User, Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
-
+const Sequelize = require('sequelize')
 /*
 // this restaurant checking process will be done from client side.
 1. if the restaurant value is different with existing menu
@@ -52,7 +52,7 @@ module.exports = {
       const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
         where: {
           order_id: targetOrder.id,
-          menu_id: menu_id,
+          menu_id: menu_id, 
           option_id: option_id
         }
       });
@@ -89,13 +89,14 @@ module.exports = {
         }
       });
 
+      // define selected cart's order id after finding the user cart
       const orderId = userCart.id;
       console.log('orderId::::::::', orderId);
 
       const listCartArr = await Order_menu.findAll({
         attributes: [ 'quantity' ],
         where: {
-          order_id: userCart.id
+          order_id: orderId
         },
         include: [{
           model: Menu,

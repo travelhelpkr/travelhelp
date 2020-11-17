@@ -14,8 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Restaurant, {
         foreignKey: 'restaurant_id'
       });
+      // by defining belongsToMany && hasMany together for N:M association, we can manipulate all kind of eager loading from this relationship.
       this.belongsToMany(models.Order, {
         through: models.Order_menu,
+        foreignKey: 'menu_id'
+      });
+      this.hasMany(models.Order_menu, {
         foreignKey: 'menu_id'
       });
       this.belongsToMany(models.Option, {
