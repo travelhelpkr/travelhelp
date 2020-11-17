@@ -68,9 +68,9 @@ module.exports = {
       const newRestaurantId = targetMenu.restaurant_id;
       console.log('restaurant id from the request menu::::::::', newRestaurantId);
 
-      // compare existing cart's restaurant & newly requested menu's restaurant id
+      // compare existing cart's restaurant id & newly requested menu's restaurant id
       if (existingRestaurantId !== newRestaurantId) {
-        res.send({ status: 409, confilct: true, message: 'only same restaurant order is available' });
+        res.send({ status: 409, conflict: true, message: 'only same restaurant order is available' });
       }
       else {
         const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
