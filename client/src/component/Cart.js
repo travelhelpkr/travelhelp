@@ -11,6 +11,9 @@ function Cart(props) {
   // change language handler
   const { t } = useTranslation();
 
+  // choose the quantity of menu
+  const [type, setType] = useState('');
+
   // useEffect(() => {
   //   axios.get()
   // },[])
@@ -45,7 +48,7 @@ function Cart(props) {
             </div>
             <div className='menuPrice'>26,000₩</div>
             <select className='menuQuantity'>
-              <option value='1' defaultValue>1</option>
+              <option value='1' defaultValue onChange={e => setType(e.target.value)}>1</option>
               <option value='2'>2</option>
               <option value='3'>3</option>
               <option value='4'>4</option>
