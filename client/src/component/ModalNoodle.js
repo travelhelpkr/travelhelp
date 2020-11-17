@@ -25,6 +25,7 @@ function ModalNoodle(props) {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [optionError, setOptionError] = useState(false);
+  const [otherRestaurant, setOtherRestaurant] = useState(false);
 
   // add to cart btn handler
   const addToCartHandler = (e) => {
@@ -40,7 +41,7 @@ function ModalNoodle(props) {
         }, {
           headers: { 
             'Access-Control-Allow-Origin': 'http://localhost:3355',
-           }
+            }
         })
         .then(res => {
           if(res.data.status === 409) {
@@ -49,6 +50,7 @@ function ModalNoodle(props) {
             setOptionError(false);
             setType('');
           } else if(res.data.status === 200){
+            window.sessionStorage.setItem('restaurant_id', 2);
             setSuccess(true);
             setFailure(false);
             setOptionError(false);
@@ -65,7 +67,7 @@ function ModalNoodle(props) {
         }, {
           headers: { 
             'Access-Control-Allow-Origin': 'http://localhost:3355',
-           }
+            }
         })
         .then(res => {
           if(res.data.status === 409) {
@@ -171,6 +173,9 @@ function ModalNoodle(props) {
         <div className={isSignin ? 'signinAlert' : 'none'}>
           <span>Please Sign In first!</span>
           <span className='goToSignIn'><a href='/user/signin'>Go To Sign In</a></span>
+        </div>
+        <div className={otherRestaurant ? 'otherRestaurantAlert' : 'none'}>
+          <span>Only menus from the same restaurant can be added.</span>
         </div>
 
       </div>

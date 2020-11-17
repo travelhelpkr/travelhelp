@@ -601,6 +601,24 @@
           }
         }
       }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToSignIn {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openSigninModal {

@@ -2,10 +2,25 @@
 
 @include desktop-large {
   .background {
-    .h1 {
-      font-size: 2.1em;
-      margin: 1.5em;
-      color: rgb(1, 1, 37);
+    .header {
+      width: 60em;
+      margin: auto;
+      .backBtn {
+        float: left;
+        border: none;
+        background: transparent;
+        .MuiSvgIcon-root {
+          font-size: 3.5em;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .h1 {
+        font-size: 2.1em;
+        margin: 1.5em;
+        color: rgb(1, 1, 37);
+      }
     }
     .cartTable {
       width: 60em;
@@ -45,10 +60,12 @@
       }
       .eachMenuInfo {
         padding-left: 0px;
-        height: 5.5em;
+        margin: 5px 0;
         li {
+          display: block;
           margin-top: 10px;
           list-style: none;
+          height: 4em;
           .menuImage {
             padding-left: 15px;
             float: left;
@@ -59,27 +76,33 @@
             }
           }
           .menuInfo {
+            width: 28em;
             margin-left: 25px;
             float: left;
             text-align: left;
             font-size: 1em;
             font-weight: 500;
-            padding-top: 20px;
+            padding-top: 8px;
             .menuType {
-              padding-top: 8px;
+              padding-top: 5px;
               font-weight: 400;
+              font-size: 0.9em;
+            }
+            .none {
+              display: none;
             }
           }
           .menuPrice {
-            margin-left: 90px;
+            width: 4em;
             float: left;
-            padding-top: 30px;
+            padding-top: 20px;
             font-size: 1em;
           }
           .menuQuantity {
+            width: 4em;
             font-size: 1em;
             padding: 2px 5px;
-            margin: 25px 0 0 45px;
+            margin: 15px 0 0 45px;
             float: left;
             border: 1px solid #ccc;
             border-radius: 1px;
@@ -89,16 +112,18 @@
             }
           }
           .menuTotalPrice {
-            margin-left: 55px;
+            width: 6em;
+            margin-left: 25px;
             float: left;
-            padding-top: 28px;
+            padding-top: 18px;
             font-size: 1.1em;
             font-weight: 500;
           }
           .deleteMenu {
-            margin-left: 40px;
+            width: 3em;
+            margin-left: 20px;
             float: left;
-            padding-top: 25px;
+            padding-top: 15px;
             .MuiSvgIcon-root {
               font-size: 1.7em;
               color: rgb(1, 1, 37);
@@ -110,10 +135,9 @@
         }
       }
       .summaryInfo {
-        height: 2em;
-        margin-top: 1em;
         clear: both;
-        padding: 25px 0 20px 30px;
+        height: 2em;
+        padding: 25px 0 25px 30px;
         background-color: #f6f6f8;
         border-top: 1px solid #ebebeb;
         border-bottom: 1px solid #ebebeb;
@@ -163,6 +187,16 @@
             padding-left: 10px;
             font-size: 1.2em;
           }
+        }
+        .minimumAlert {
+          text-align: left;
+          padding: 4px 20px;
+          clear: both;
+          color: rgb(190, 23, 11);
+          font-size: 0.95em;
+        }
+        .none {
+          display: none;
         }
       }
     }
