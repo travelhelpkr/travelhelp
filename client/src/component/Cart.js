@@ -14,9 +14,7 @@ function Cart(props) {
   const { t } = useTranslation();
 
   // choose the quantity of menu
-  const [type, setType] = useState('');
-
-  console.log('type:', type);
+  const [quantity, setQuantity] = useState('');
   
   // cart information
   const [cart, setCart] = useState('');
@@ -68,7 +66,7 @@ function Cart(props) {
         {/* chicken menu delivery info */}
         <ul className='eachMenuInfo'>
           { cart && cart.map((menu, index) => {
-              console.log('menu:', menu.Option.id);
+              console.log('menu:', menu);
               return(
                 <li key={index}>
                   <div className='menuImage'><img src={menu.Menu.image} alt='menuImage'/></div>
@@ -95,7 +93,18 @@ function Cart(props) {
                     </div>
                   </div>
                   <div className='menuPrice'>{new Intl.NumberFormat().format(Number((menu.Menu.price + menu.Option.price)))}</div>
-                  <select className='menuQuantity' defaultValue={menu.quantity} onChange={e => setType(e.target.value)}>
+                  <select className='menuQuantity' defaultValue={menu.quantity} onChange={e => {
+                    axios.put('http://localhost:3355/foods/cart', {
+                      order_id: orderId,
+                      menu_id: menu.Menu.id,
+                      option_id: menu.Option.id,
+                      quantity: e.target.value
+                    })
+                    .then(() => {
+                      setQuantity(e.target.value);
+                      window.location = '/user/cart';
+                    })
+                  }}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
