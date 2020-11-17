@@ -53,51 +53,52 @@ module.exports = {
         }
       });
 
-      // checking existing restaurant id from the cart
-      const existingRestaurantId = existingCartMenu.restaurant_id;
-      console.log('restaurant id from the existing cart::::::::', existingRestaurantId);
-
-      const targetMenu = await Menu.findOne({
-        attributes: [ 'restaurant_id' ],
+      // if there is already some menu in the cart
+      if (existingCartMenu) {
+        const existingRestaurantId = existingCartMenu.restaurant_id;
+        console.log('restaurant id from the existing cart::::::::', existingRestaurantId);
+  
+        const targetMenu = await Menu.findOne({
+          attributes: [ 'restaurant_id' ],
+          where: {
+            id: menu_id
+          }
+        });
+        
+        // checking request menu's restaurant id
+        const newRestaurantId = targetMenu.restaurant_id;
+        console.log('restaurant id from the request menu::::::::', newRestaurantId);
+  
+        // compare existing cart's restaurant id & newly requested menu's restaurant id
+        if (existingRestaurantId !== newRestaurantId) {
+          res.send({ status: 409, conflict: true, message: 'only same restaurant order is available' });
+          return;
+        }
+      }
+      const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
         where: {
-          id: menu_id
+          is_cart: true,
+          user_id: user_id
         }
       });
+      // console.log('targetOrder: ', targetOrder.toJSON());
       
-      // checking request menu's restaurant id
-      const newRestaurantId = targetMenu.restaurant_id;
-      console.log('restaurant id from the request menu::::::::', newRestaurantId);
+      const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
+        where: {
+          order_id: targetOrder.id,
+          menu_id: menu_id, 
+          option_id: option_id
+        }
+      });
+      // console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
 
-      // compare existing cart's restaurant id & newly requested menu's restaurant id
-      if (existingRestaurantId !== newRestaurantId) {
-        res.send({ status: 409, conflict: true, message: 'only same restaurant order is available' });
+      console.log('is created Order: ', isCreatedOrder);
+      console.log('is created OrderMenu: ', isCreatedOrderMenu);
+      if (!isCreatedOrder && !isCreatedOrderMenu) {
+        res.send({ status: 409, message: 'this menu already exists in the user cart' });
       }
       else {
-        const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
-          where: {
-            is_cart: true,
-            user_id: user_id
-          }
-        });
-        // console.log('targetOrder: ', targetOrder.toJSON());
-        
-        const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
-          where: {
-            order_id: targetOrder.id,
-            menu_id: menu_id, 
-            option_id: option_id
-          }
-        });
-        // console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
-
-        console.log('is created Order: ', isCreatedOrder);
-        console.log('is created OrderMenu: ', isCreatedOrderMenu);
-        if (!isCreatedOrder && !isCreatedOrderMenu) {
-          res.send({ status: 409, message: 'this menu already exists in the user cart' });
-        }
-        else {
-          res.send({ status: 200, message: 'menu added in user cart' });
-        }
+        res.send({ status: 200, message: 'menu added in user cart' });
       }
     } 
     catch (err) {
@@ -115,24 +116,30 @@ module.exports = {
     try {
       const user_id = req.params.id;
 
-      const userCart = await Order.findOne({
-        attributes: [ 'id' ],
-        where: {
-          is_cart: true,
-          user_id: user_id
-        }
-      });
+      // const userCart = await Order.findOne({
+      //   attributes: [ 'id' ],
+      //   where: {
+      //     is_cart: true,
+      //     user_id: user_id
+      //   }
+      // });
 
-      // define selected cart's order id after finding the user cart
-      const orderId = userCart.id;
-      console.log('orderId::::::::', orderId);
+      // // define selected cart's order id
+      // const orderId = userCart.id;
+      // console.log('orderId::::::::', orderId);
 
       const listCartArr = await Order_menu.findAll({
         attributes: [ 'quantity' ],
-        where: {
-          order_id: orderId
-        },
+        // where: {
+        //   order_id: orderId
+        // },
         include: [{
+          model: Order,
+          // attributes: [],
+          where: {
+            user_id: user_id
+          }
+        },{
           model: Menu,
           attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ] 
         }, {
