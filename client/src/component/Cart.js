@@ -62,7 +62,7 @@ function Cart(props) {
         {/* chicken cart */}
         <div className='chickenCart'>
           <div className='neneChicken'>{restaurant.name_en} {restaurant.category_en}</div>
-          <div className='minPrice'>{t('cart.minimum')}<span>{restaurant.minimum_price}₩</span></div>
+          <div className='minPrice'>{t('cart.minimum')}<span>{new Intl.NumberFormat().format(Number(restaurant.minimum_price))}₩</span></div>
         </div>
 
         {/* chicken menu delivery info */}
@@ -94,7 +94,7 @@ function Cart(props) {
                       } (+{menu.Option.price}₩)
                     </div>
                   </div>
-                  <div className='menuPrice'>{menu.Menu.price + menu.Option.price}</div>
+                  <div className='menuPrice'>{new Intl.NumberFormat().format(Number((menu.Menu.price + menu.Option.price)))}</div>
                   <select className='menuQuantity' value={menu.quantity} onChange={e => setType(e.target.value)}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
@@ -102,7 +102,7 @@ function Cart(props) {
                     <option value='4'>4</option>
                     <option value='5'>5</option>
                   </select>
-                  <div className='menuTotalPrice'>{(menu.Menu.price + menu.Option.price) * menu.quantity}₩</div>
+                  <div className='menuTotalPrice'>{new Intl.NumberFormat().format(Number(((menu.Menu.price + menu.Option.price) * menu.quantity)))}₩</div>
                   <div className='deleteMenu'><DeleteForeverIcon /></div>
                 </li>
               )
@@ -114,20 +114,20 @@ function Cart(props) {
         <div className='summaryInfo'>
           <div className='menuTotalPriceSum'>
             <span className='priceSum1'>{t('cart.menuPrice')}</span>
-            <span className='priceSum2'>{sum}</span>
+            <span className='priceSum2'>{new Intl.NumberFormat().format(Number(sum))}</span>
           </div>
           <div className='plus'>+</div>
           <div className='deliveryFee'>
             <span className='delivery1'>{t('cart.delivery')}</span>
-            <span className='delivery2'>{restaurant.delivery_fee}</span>
+            <span className='delivery2'>{new Intl.NumberFormat().format(Number(restaurant.delivery_fee))}</span>
           </div>
           <div className='equal'>=</div>
           <div className='totalPrice'>
             <span className='total1'>{t('cart.total')}</span>
-            <span className='total2'>{sum + restaurant.delivery_fee}</span>
+            <span className='total2'>{new Intl.NumberFormat().format(Number((sum + restaurant.delivery_fee)))}₩</span>
           </div>
           <div className={sum < restaurant.minimum_price ? 'minimumAlert' : 'none'}>
-            <span>↳ Minimum Order Price is <strong>{restaurant.minimum_price}₩</strong></span>
+            <span>↳ {t('cart.minimumAlert')} <strong>{new Intl.NumberFormat().format(Number(restaurant.minimum_price))}₩</strong></span>
           </div>
         </div>
 

@@ -145,5 +145,6 @@
   "cart.minimum": "Minimum Order Price",
   "cart.menuPrice": "Menu Price",
   "cart.delivery": "Delivery Fee",
-  "cart.total": "Total Price"
+  "cart.total": "Total Price",
+  "cart.minimumAlert": "Minimum Order Price is"
 }

@@ -120,11 +120,11 @@ function FoodNoodle(props) {
             </div>
             <div className='Info restaurantMin'>
               <span className='InfoDetailTitle'>{t('food.minimum')}</span>
-              {information.minimum_price}
+              {information.minimum_price.toLocaleString()}
             </div>
             <div className='Info restaurantDel'>
               <span className='InfoDetailTitle'>{t('food.delivery')}</span>
-              {information.delivery_fee}
+              {information.delivery_fee.toLocaleString()}
             </div>
           </div>
           : <div></div>
@@ -211,7 +211,7 @@ function FoodNoodle(props) {
                       : menu.name_ja
                     }
                   </div>
-                  <div className='menuPrice'>{menu.price}₩</div>
+                  <div className='menuPrice'>{menu.price.toLocaleString()}₩</div>
                   <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
                 </li>
               </div>

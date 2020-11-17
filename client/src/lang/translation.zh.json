@@ -145,5 +145,6 @@
   "cart.minimum": "最低订购价",
   "cart.menuPrice": "菜单价格",
   "cart.delivery": "快递费",
-  "cart.total": "总价"
+  "cart.total": "总价",
+  "cart.minimumAlert": "最低订购价格为"
 }
