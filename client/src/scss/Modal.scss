@@ -414,6 +414,24 @@
           }
         }
       }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 30em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToCart {
+          padding-top: 5px;
+          a {
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
@@ -607,9 +625,9 @@
         width: 30em;
         margin: 2px auto;
         font-weight: 500;
-        .goToSignIn {
+        .goToCart {
+          padding-top: 5px;
           a {
-            padding-left: 10px;
             color: rgb(1, 1, 37);
             font-weight: 500;
             font-size: 1em;
@@ -1110,6 +1128,24 @@
           }
         }
       }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 25em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToCart {
+          padding-top: 5px;
+          a {
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
@@ -1288,6 +1324,24 @@
         .goToSignIn {
           a {
             padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 25em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToCart {
+          padding-top: 5px;
+          a {
             color: rgb(1, 1, 37);
             font-weight: 500;
             font-size: 1em;
@@ -1757,12 +1811,30 @@
       .signinAlert {
         color: rgb(190, 23, 11);
         font-size: 0.9em;
-        width: 22em;
+        width: 25em;
         margin: 2px auto;
         font-weight: 500;
         .goToSignIn {
           a {
             padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 22em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToCart {
+          padding-top: 5px;
+          a {
             color: rgb(1, 1, 37);
             font-weight: 500;
             font-size: 1em;
@@ -1951,6 +2023,24 @@
         .goToSignIn {
           a {
             padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 25em;
+        margin: 2px auto;
+        font-weight: 500;
+        .goToCart {
+          padding-top: 5px;
+          a {
             color: rgb(1, 1, 37);
             font-weight: 500;
             font-size: 1em;
@@ -2441,6 +2531,25 @@
           }
         }
       }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.8em;
+        width: 16em;
+        margin: 5px auto;
+        font-weight: 500;
+        .goToCart {
+          display: inline-block;
+          margin-top: 5px;
+          a {
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
     }
   }
   .openModalNoodle {
@@ -2625,6 +2734,25 @@
           margin-top: 5px;
           a {
             padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .otherRestaurantAlert {
+        color: rgb(190, 23, 11);
+        font-size: 0.8em;
+        width: 16em;
+        margin: 5px auto;
+        font-weight: 500;
+        .goToCart {
+          display: inline-block;
+          margin-top: 5px;
+          a {
             color: rgb(1, 1, 37);
             font-weight: 500;
             font-size: 1em;

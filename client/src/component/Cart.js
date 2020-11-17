@@ -29,7 +29,7 @@ function Cart(props) {
     axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
     .then(res => {
       setCart(res.data.cart);
-      setOrderId(res.data.order_id);
+      setOrderId(res.data.cart[0].Order.id);
       setRestaurant(res.data.restaurant);
       console.log('restaurant:', res.data.restaurant);
       const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
@@ -132,6 +132,38 @@ function Cart(props) {
         </div>
 
       </div>
+
+      {/* delivery address */}
+      <div className='deliveryInfo'>
+        <div className='deliveryHeader'>Delivery Information</div>
+        <div className='addressInput'>
+          <div className='address'>Delivery Address * </div>
+          <select className='recentAddress'>
+            <option>Recent Address</option>
+          </select>
+          <form>
+            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder='Postal Code *' label='Postal Code' />
+            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder='Delivery Address *' label='Delivery Address' />
+          </form>
+          <button className='applyAddress'>Confirm above address</button>
+        </div>
+        
+        <div className='confirmAddress'>
+          <div className='confirmTitle'>Confirm Delivery Address</div>
+          <div className='confirmText'>123-456 604-801, han-shin-hu-plus apt, Seoul, gangnam-gu, Korea</div>
+        </div>
+        
+        <div className='contactInfo'>
+          <div className='contactNumber'>Contact Number * </div>
+          <form>
+            <input className='contact' type='number' name='contact' placeholder='Contact Number *' label='Contact Number' />
+          </form>
+        </div>
+
+      </div>
+
+      {/* payment */}
+      <button className='paymentBtn'>Pay</button>
 
     </div>
   )
