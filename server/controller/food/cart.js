@@ -1,5 +1,4 @@
-const { User, Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
-const Sequelize = require('sequelize')
+const { Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
 
 module.exports = {
   // update user's db with selected menu
