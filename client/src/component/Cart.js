@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import delivery from '../img/delivery.png';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import '../scss/Cart.scss'; 
 
 function Cart(props) {
+
+  const { history } = props;
 
   // change language handler
   const { t } = useTranslation();
@@ -14,14 +16,39 @@ function Cart(props) {
   // choose the quantity of menu
   const [type, setType] = useState('');
 
-  // useEffect(() => {
-  //   axios.get()
-  // },[])
+  console.log('type:', type);
+  
+  // cart information
+  const [cart, setCart] = useState('');
+  const [orderId, setOrderId] = useState('');
+  const [restaurant, setRestaurant] = useState('');
+  const [sum, setSum] = useState('');
+
+  // get cart information
+  useEffect(() => {
+    axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
+    .then(res => {
+      setCart(res.data.cart);
+      setOrderId(res.data.order_id);
+      setRestaurant(res.data.restaurant);
+      console.log('restaurant:', res.data.restaurant);
+      const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
+      const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
+      setSum(menuPriceSum);
+    })
+  },[])
+
+  const goBackHandler = () => {
+    history.goBack();
+  }
 
   return(
     <div className='background'>
 
-      <h1 className='h1'>{t('cart.myCart')}</h1>
+      <div className='header'>
+        <button className='backBtn' onClick={goBackHandler}><ArrowBackIcon /></button>
+        <h1 className='h1'>{t('cart.myCart')}</h1>
+      </div>
 
       {/* cart table */}
       <div className='cartTable'>
@@ -34,46 +61,73 @@ function Cart(props) {
         
         {/* chicken cart */}
         <div className='chickenCart'>
-          <div className='neneChicken'>NeNe {t('food.chicken')}</div>
-          <div className='minPrice'>{t('cart.minimum')}<span>15,000₩</span></div>
+          <div className='neneChicken'>{restaurant.name_en} {restaurant.category_en}</div>
+          <div className='minPrice'>{t('cart.minimum')}<span>{restaurant.minimum_price}₩</span></div>
         </div>
 
         {/* chicken menu delivery info */}
         <ul className='eachMenuInfo'>
-          <li>
-            <div className='menuImage'><img src={delivery} alt='menuImage'/></div>
-            <div className='menuInfo'>
-              <div className='menuName'>Half snowing cheese + Half super hot + Half fried</div>
-              <div className='menuType'>- Boneless (+2,000)</div>
-            </div>
-            <div className='menuPrice'>26,000₩</div>
-            <select className='menuQuantity'>
-              <option value='1' defaultValue onChange={e => setType(e.target.value)}>1</option>
-              <option value='2'>2</option>
-              <option value='3'>3</option>
-              <option value='4'>4</option>
-              <option value='5'>5</option>
-            </select>
-            <div className='menuTotalPrice'>26,000₩</div>
-            <div className='deleteMenu'><DeleteForeverIcon /></div>
-          </li>
+          { cart && cart.map((menu, index) => {
+              console.log('menu:', menu.Option.id);
+              return(
+                <li key={index}>
+                  <div className='menuImage'><img src={menu.Menu.image} alt='menuImage'/></div>
+                  <div className='menuInfo'>
+                    <div className='menuName'>
+                      {
+                        window.localStorage.getItem('i18nextLng') === 'en'
+                        ? menu.Menu.name_en
+                        :
+                        window.localStorage.getItem('i18nextLng') === 'zh'
+                        ? menu.Menu.name_zh
+                        : menu.Menu.name_ja
+                      }
+                    </div>
+                    <div className={menu.Option.id !== null ? 'menuType' : 'none'}>- 
+                      {
+                        window.localStorage.getItem('i18nextLng') === 'en'
+                        ? menu.Option.name_en
+                        :
+                        window.localStorage.getItem('i18nextLng') === 'zh'
+                        ? menu.Option.name_zh
+                        : menu.Option.name_ja
+                      } (+{menu.Option.price}₩)
+                    </div>
+                  </div>
+                  <div className='menuPrice'>{menu.Menu.price + menu.Option.price}</div>
+                  <select className='menuQuantity' value={menu.quantity} onChange={e => setType(e.target.value)}>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                  </select>
+                  <div className='menuTotalPrice'>{(menu.Menu.price + menu.Option.price) * menu.quantity}₩</div>
+                  <div className='deleteMenu'><DeleteForeverIcon /></div>
+                </li>
+              )
+            })
+          }
         </ul>
 
         {/* chicken menu total info */}
         <div className='summaryInfo'>
           <div className='menuTotalPriceSum'>
             <span className='priceSum1'>{t('cart.menuPrice')}</span>
-            <span className='priceSum2'>26,000</span>
+            <span className='priceSum2'>{sum}</span>
           </div>
           <div className='plus'>+</div>
           <div className='deliveryFee'>
             <span className='delivery1'>{t('cart.delivery')}</span>
-            <span className='delivery2'>2,000</span>
+            <span className='delivery2'>{restaurant.delivery_fee}</span>
           </div>
           <div className='equal'>=</div>
           <div className='totalPrice'>
             <span className='total1'>{t('cart.total')}</span>
-            <span className='total2'>28,000 ₩</span>
+            <span className='total2'>{sum + restaurant.delivery_fee}</span>
+          </div>
+          <div className={sum < restaurant.minimum_price ? 'minimumAlert' : 'none'}>
+            <span>↳ Minimum Order Price is <strong>{restaurant.minimum_price}₩</strong></span>
           </div>
         </div>
 

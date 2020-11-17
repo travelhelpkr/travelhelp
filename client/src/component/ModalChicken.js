@@ -23,6 +23,7 @@ function ModalChicken(props) {
   const [success, setSuccess] = useState(false);
   const [failure, setFailure] = useState(false);
   const [optionError, setOptionError] = useState(false);
+  const [otherRestaurant, setOtherRestaurant] = useState(false);
 
   // add to cart btn handler
   const addToCartHandler = (e) => {
@@ -38,7 +39,7 @@ function ModalChicken(props) {
         }, {
           headers: { 
             'Access-Control-Allow-Origin': 'http://localhost:3355',
-           }
+            }
         })
         .then(res => {
           if(res.data.status === 409) {
