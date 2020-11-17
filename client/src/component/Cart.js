@@ -13,10 +13,24 @@ function Cart(props) {
 
   // choose the quantity of menu
   const [type, setType] = useState('');
+  
+  // cart information
+  const [cart, setCart] = useState('');
+  const [orderId, setOrderId] = useState('');
+  const [restaurant, setRestaurant] = useState('');
 
-  // useEffect(() => {
-  //   axios.get()
-  // },[])
+  // get cart information
+  useEffect(() => {
+    axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
+    .then(res => {
+      console.log('res.cart ', res.data.cart);
+      console.log('res.order_id ', res.data.order_id);
+      console.log('res.restaurant ', res.data.restaurant);
+      setCart(res.data.cart);
+      setOrderId(res.data.order_id);
+      setRestaurant(res.data.restaurant);
+    })
+  },[])
 
   return(
     <div className='background'>
@@ -34,29 +48,33 @@ function Cart(props) {
         
         {/* chicken cart */}
         <div className='chickenCart'>
-          <div className='neneChicken'>NeNe {t('food.chicken')}</div>
-          <div className='minPrice'>{t('cart.minimum')}<span>15,000₩</span></div>
+          <div className='neneChicken'>{restaurant.name_en} {restaurant.category_en}</div>
+          <div className='minPrice'>{t('cart.minimum')}<span>{restaurant.minimum_price}₩</span></div>
         </div>
 
         {/* chicken menu delivery info */}
         <ul className='eachMenuInfo'>
-          <li>
-            <div className='menuImage'><img src={delivery} alt='menuImage'/></div>
-            <div className='menuInfo'>
-              <div className='menuName'>Half snowing cheese + Half super hot + Half fried</div>
-              <div className='menuType'>- Boneless (+2,000)</div>
-            </div>
-            <div className='menuPrice'>26,000₩</div>
-            <select className='menuQuantity'>
-              <option value='1' defaultValue onChange={e => setType(e.target.value)}>1</option>
-              <option value='2'>2</option>
-              <option value='3'>3</option>
-              <option value='4'>4</option>
-              <option value='5'>5</option>
-            </select>
-            <div className='menuTotalPrice'>26,000₩</div>
-            <div className='deleteMenu'><DeleteForeverIcon /></div>
-          </li>
+          { cart && cart.map(menu => {
+              console.log('menu:', menu);
+              <li key={menu.menu_id}>
+                <div className='menuImage'><img src={menu.Menu.image} alt='menuImage'/></div>
+                <div className='menuInfo'>
+                  <div className='menuName'>Half snowing cheese + Half super hot + Half fried</div>
+                  <div className='menuType'>- Boneless (+2,000)</div>
+                </div>
+                <div className='menuPrice'>26,000₩</div>
+                <select className='menuQuantity'>
+                  <option value='1' defaultValue onChange={e => setType(e.target.value)}>1</option>
+                  <option value='2'>2</option>
+                  <option value='3'>3</option>
+                  <option value='4'>4</option>
+                  <option value='5'>5</option>
+                </select>
+                <div className='menuTotalPrice'>26,000₩</div>
+                <div className='deleteMenu'><DeleteForeverIcon /></div>
+              </li>
+            })
+          }
         </ul>
 
         {/* chicken menu total info */}
