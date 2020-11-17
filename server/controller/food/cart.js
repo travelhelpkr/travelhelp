@@ -71,18 +71,20 @@ module.exports = {
   
         // compare existing cart's restaurant id & newly requested menu's restaurant id
         if (existingRestaurantId !== newRestaurantId) {
-          res.send({ status: 409, conflict: true, message: 'only same restaurant order is available' });
-          return;
+          return res.send({ status: 409, conflict: true, message: 'only same restaurant order is available' });
         }
       }
+
+      // if `is_cart` = true & `user_id` = user_id, find its value. Or create it.
       const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
         where: {
           is_cart: true,
           user_id: user_id
         }
       });
-      // console.log('targetOrder: ', targetOrder.toJSON());
+      // console.log('targetOrder:::::::: ', targetOrder.toJSON());
       
+      // check whether the same menu already exists in the cart from the same user.
       const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
         where: {
           order_id: targetOrder.id,
@@ -90,10 +92,11 @@ module.exports = {
           option_id: option_id
         }
       });
-      // console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
+      // console.log('targetOrderMenu:::::::: ', targetOrderMenu.toJSON());
 
-      console.log('is created Order: ', isCreatedOrder);
-      console.log('is created OrderMenu: ', isCreatedOrderMenu);
+      console.log('is created Order:::::::: ', isCreatedOrder);
+      console.log('is created OrderMenu:::::::: ', isCreatedOrderMenu);
+      // if cart already exists from this user && same menu(with same option) exists
       if (!isCreatedOrder && !isCreatedOrderMenu) {
         res.send({ status: 409, message: 'this menu already exists in the user cart' });
       }
@@ -102,7 +105,7 @@ module.exports = {
       }
     } 
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client. no need to throw err.
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
@@ -116,26 +119,11 @@ module.exports = {
     try {
       const user_id = req.params.id;
 
-      // const userCart = await Order.findOne({
-      //   attributes: [ 'id' ],
-      //   where: {
-      //     is_cart: true,
-      //     user_id: user_id
-      //   }
-      // });
-
-      // // define selected cart's order id
-      // const orderId = userCart.id;
-      // console.log('orderId::::::::', orderId);
-
       const listCartArr = await Order_menu.findAll({
         attributes: [ 'quantity' ],
-        // where: {
-        //   order_id: orderId
-        // },
         include: [{
           model: Order,
-          // attributes: [],
+          attributes: [ 'id' ],
           where: {
             user_id: user_id
           }
@@ -149,10 +137,10 @@ module.exports = {
         raw: true,
         nest: true
       });
-      console.log('listCartArr::::::::', listCartArr[0]);
+      console.log('listCartArr::::::::', listCartArr);
       
       const restaurantInfo = await Restaurant.findOne({
-        attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'category_en', 'category_zh', 'category_ja', 'operation_hour', 'minimum_price', 'delivery_fee' ],
+        attributes: { exclude: [ 'description_en', 'description_zh', 'description_ja', 'createdAt', 'updatedAt' ] },
         where: {
           id: listCartArr[0].Menu.restaurant_id
         },
@@ -160,14 +148,14 @@ module.exports = {
       });
       console.log('restaurantInfo::::::::', restaurantInfo);
  
-      res.status(200).send({ order_id: orderId, cart: listCartArr, restaurant: restaurantInfo });
+      res.status(200).send({ cart: listCartArr, restaurant: restaurantInfo });
     } 
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client. no need to throw err.
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
-      });  
+      });
     }
 
   },
@@ -175,47 +163,24 @@ module.exports = {
   update: async (req, res) => {
 
     try {
-      const { } = req.body;
+      const { order_id, menu_id, option_id, quantity } = req.body;
 
-            // const selectedMenu = await Menu.findOne({
-      //   attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ],
-      //   where: {
-      //     id: menu_id
-      //   },
-      //   include: [{
-      //     model: Option,
-      //     attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ],
-      //     // hide unwanted `Menu_option` nested object from results. by explicitly defining through option, we can hide junction table's values from result.
-      //     through: { attributes: [] }
-      //   }, {
-      //     // pick only menu_id belongs to selected order_menu id
-      //     // this menu value will be employeed for checking restaurant id validation on cart page from client side
-      //     model: Order,
-      //     attributes: [ 'id' ],
-      //     through: { attributes: [ menu_id ] },
-      //     where: {
-      //       id: userCart.dataValues.id,
-      //       is_cart: true
-      //     },
-      //     require: false
-      //   }]
-      // });
+      const updatedRow = await Order_menu.update({ quantity: quantity }, {
+        where: {
+          order_id: order_id,
+          menu_id: menu_id,
+          option_id: option_id
+        }
+      });
+      console.log('updatedRow::::::::', updatedRow);
 
-      // const foodMenuArr = foodMenu.reduce((acc, cur) => {
-      //   let menu = cur.dataValues;
-      //   menu.Options = menu.Options.map(option => option.dataValues);
-      //   acc.push(menu);
-      //   return acc;
-      // }, []);
-
-      // console.log('foodMenuArr: ', foodMenuArr);
-      // res.status(200).send({ listCart: listCartArr, restaurant: selectedRestaurantObj });
-      
+      res.status(200).send({ message: 'successfully updated menu quantity' });
     } 
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client. no need to throw err.
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });  
     }
 
@@ -224,17 +189,62 @@ module.exports = {
   delete: async (req, res) => {
 
     try {
-      const { } = req.body;
+    //   const { order_id, menu_id, option_id } = req.body;
+
+    //   const deletedRow = await Order_menu.destroy({
+    //     where: {
+    //       order_id: order_id,
+    //       menu_id: menu_id,
+    //       option_id: option_id
+    //     }
+    //   });
+    //   console.log('deletedRow::::::::', deletedRow);
+
+    //   res.status(200).send({ message: 'successfully deleted the menu' });
       
     } 
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client. no need to throw err.
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });  
     }
 
-  },
-
-
+  }
 };
+
+// const selectedMenu = await Menu.findOne({
+//   attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ],
+//   where: {
+//     id: menu_id
+//   },
+//   include: [{
+//     model: Option,
+//     attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ],
+//     // hide unwanted `Menu_option` nested object from results. by explicitly defining through option, we can hide junction table's values from result.
+//     through: { attributes: [] }
+//   }, {
+//     // pick only menu_id belongs to selected order_menu id
+//     // this menu value will be employeed for checking restaurant id validation on cart page from client side
+//     model: Order,
+//     attributes: [ 'id' ],
+//     through: { attributes: [ menu_id ] },
+//     where: {
+//       id: userCart.dataValues.id,
+//       is_cart: true
+//     },
+//     require: false
+//   }]
+// });
+
+// const foodMenuArr = foodMenu.reduce((acc, cur) => {
+//   let menu = cur.dataValues;
+//   menu.Options = menu.Options.map(option => option.dataValues);
+//   acc.push(menu);
+//   return acc;
+// }, []);
+
+// console.log('foodMenuArr: ', foodMenuArr);
+// res.status(200).send({ listCart: listCartArr, restaurant: selectedRestaurantObj });
+      
