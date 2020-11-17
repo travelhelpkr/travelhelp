@@ -165,14 +165,14 @@ module.exports = {
     try {
       const { order_id, menu_id, option_id, quantity } = req.body;
 
-      const updatedRow = await Order_menu.update({ quantity: quantity }, {
+      const affectedRows = await Order_menu.update({ quantity: quantity }, {
         where: {
           order_id: order_id,
           menu_id: menu_id,
           option_id: option_id
         }
       });
-      console.log('updatedRow::::::::', updatedRow);
+      console.log('affectedRows::::::::', affectedRows);
 
       res.status(200).send({ message: 'successfully updated menu quantity' });
     } 
@@ -189,19 +189,46 @@ module.exports = {
   delete: async (req, res) => {
 
     try {
-    //   const { order_id, menu_id, option_id } = req.body;
+      const { order_id, menu_id, option_id } = req.body;
 
-    //   const deletedRow = await Order_menu.destroy({
-    //     where: {
-    //       order_id: order_id,
-    //       menu_id: menu_id,
-    //       option_id: option_id
-    //     }
-    //   });
-    //   console.log('deletedRow::::::::', deletedRow);
+      const deletedRow = await Order_menu.destroy({
+        where: {
+          order_id: order_id,
+          menu_id: menu_id,
+          option_id: option_id
+        }
+      });
+      console.log('deletedRow::::::::', deletedRow);
 
-    //   res.status(200).send({ message: 'successfully deleted the menu' });
-      
+      if (!deletedRow) {
+        throw new Error('nothing to delete');
+      }
+
+      // check empty cart. check Order_menu table's order id count & rows.
+      const { count, rows } = await Order.findAndCountAll({
+        attributes: [],
+        include: { 
+          model: Order_menu,
+          attributes: [ 'id', 'order_id', 'menu_id', 'option_id' ],
+          required: true,
+          where: {
+            order_id: order_id
+          }
+        },
+        raw: true,
+        nest: true
+      });
+
+      // if cart is empty, delete user cart.
+      if (!count) {
+        const deleteCart = await Order.destroy({
+          where: {
+            id: order_id
+          }
+        });
+      } 
+
+      res.status(200).send({ message: 'successfully deleted the menu' });      
     } 
     catch (err) {
       // response err to the client. no need to throw err.
