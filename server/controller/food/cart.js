@@ -135,7 +135,7 @@ module.exports = {
         where: {
           order_id: order_id,
           menu_id: menu_id,
-          option_id: option_id
+          option_id: option_id || null
         }
       });
       console.log('affectedRows::::::::', affectedRows);
@@ -161,7 +161,7 @@ module.exports = {
         where: {
           order_id: order_id,
           menu_id: menu_id,
-          option_id: option_id
+          option_id: option_id || null
         }
       });
       console.log('deletedRow::::::::', deletedRow);
