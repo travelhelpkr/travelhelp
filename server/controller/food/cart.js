@@ -40,37 +40,71 @@ module.exports = {
 
     try {
       const { user_id, menu_id, option_id } = req.body;
-  
-      const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
-        where: {
-          is_cart: true,
-          user_id: user_id
-        }
-      });
-      // console.log('targetOrder: ', targetOrder.toJSON());
-      
-      const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
-        where: {
-          order_id: targetOrder.id,
-          menu_id: menu_id, 
-          option_id: option_id
-        }
-      });
-      // console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
 
-      console.log('is created Order: ', isCreatedOrder);
-      console.log('is created OrderMenu: ', isCreatedOrderMenu);
-      if (!isCreatedOrder && !isCreatedOrderMenu) {
-        res.send({ status: 409, message: 'this menu already exists in the user cart' });
+      // checking existing user's menu from the cart
+      const existingCartMenu = await Menu.findOne({
+        attributes: [ 'restaurant_id' ],
+        include: {
+          model: Order,
+          through: { attributes: [] },
+          where: {
+            user_id: user_id
+          }
+        }
+      });
+
+      // checking existing restaurant id from the cart
+      const existingRestaurantId = existingCartMenu.restaurant_id;
+      console.log('restaurant id from the existing cart::::::::', existingRestaurantId);
+
+      const targetMenu = await Menu.findOne({
+        attributes: [ 'restaurant_id' ],
+        where: {
+          id: menu_id
+        }
+      });
+      
+      // checking request menu's restaurant id
+      const newRestaurantId = targetMenu.restaurant_id;
+      console.log('restaurant id from the request menu::::::::', newRestaurantId);
+
+      // compare existing cart's restaurant & newly requested menu's restaurant id
+      if (existingRestaurantId !== newRestaurantId) {
+        res.send({ status: 409, confilct: true, message: 'only same restaurant order is available' });
       }
       else {
-        res.send({ status: 200, message: 'menu added in user cart' });
+        const [ targetOrder, isCreatedOrder ] = await Order.findOrCreate({
+          where: {
+            is_cart: true,
+            user_id: user_id
+          }
+        });
+        // console.log('targetOrder: ', targetOrder.toJSON());
+        
+        const [ targetOrderMenu, isCreatedOrderMenu ] = await Order_menu.findOrCreate({
+          where: {
+            order_id: targetOrder.id,
+            menu_id: menu_id, 
+            option_id: option_id
+          }
+        });
+        // console.log('targetOrderMenu: ', targetOrderMenu.toJSON());
+
+        console.log('is created Order: ', isCreatedOrder);
+        console.log('is created OrderMenu: ', isCreatedOrderMenu);
+        if (!isCreatedOrder && !isCreatedOrderMenu) {
+          res.send({ status: 409, message: 'this menu already exists in the user cart' });
+        }
+        else {
+          res.send({ status: 200, message: 'menu added in user cart' });
+        }
       }
     } 
     catch (err) {
       // response err to client. no need to throw err.
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });  
     }
     
