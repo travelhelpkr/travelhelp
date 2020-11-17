@@ -10,15 +10,11 @@ function ModalNoodle(props) {
   // get from each menu
   const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, infoOptionName3, infoOptionPrice3 } = props;
 
-  console.log("infoOptionName1:", infoOptionName1);
-
   // change language handler
   const { t } = useTranslation();
 
   // choose size of menu
   const [type, setType] = useState('');
-
-  console.log('type:', type);
 
   // alert after add to cart btn
   const [isSignin, setIsSignin] = useState(false);
@@ -44,17 +40,16 @@ function ModalNoodle(props) {
             }
         })
         .then(res => {
-          if(res.data.status === 409) {
-            setFailure(true);
-            setSuccess(false);
-            setOptionError(false);
-            setType('');
+          if(res.data.status === 409 && res.data.conflict === true) {
+            setOtherRestaurant(true);
           } else if(res.data.status === 200){
-            window.sessionStorage.setItem('restaurant_id', 2);
             setSuccess(true);
             setFailure(false);
             setOptionError(false);
-            setType('');
+          } else if(res.data.status === 409) {
+            setFailure(true);
+            setSuccess(false);
+            setOptionError(false);
           }
         })
       } else if(infoMenuId < 25 || type) {
@@ -70,23 +65,22 @@ function ModalNoodle(props) {
             }
         })
         .then(res => {
-          if(res.data.status === 409) {
-            setFailure(true);
-            setSuccess(false);
-            setOptionError(false);
-            setType('');
+          if(res.data.status === 409 && res.data.conflict === true) {
+            setOtherRestaurant(true);
           } else if(res.data.status === 200){
             setSuccess(true);
             setFailure(false);
             setOptionError(false);
-            setType('');
+          } else if(res.data.status === 409) {
+            setFailure(true);
+            setSuccess(false);
+            setOptionError(false);
           }
         })
       } else {
         setOptionError(true);
         setSuccess(false);
         setFailure(false);
-        setType('');
       }
     } else {
       e.preventDefault();
@@ -105,7 +99,7 @@ function ModalNoodle(props) {
           setSuccess(false);
           setFailure(false);
           setOptionError(false);
-          setType('');
+          setOtherRestaurant(false);
         }}><CloseIcon /></button>
 
         {/* menu information */}
@@ -125,8 +119,8 @@ function ModalNoodle(props) {
         {/* choose size of menu */}
         <div className={infoMenuId < 25 ? 'option0': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} *</div>
-          <select className='selectBox' onChange={e => setType(e.target.value)}>
-            <option value=''>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
+          <select className='selectBox' defaultValue={1} onChange={e => setType(e.target.value)}>
+            <option value='1'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
             <option value='8'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
             <option value='9'>{infoOptionName3} (+{infoOptionPrice3.toLocaleString()}₩)</option>
@@ -135,8 +129,8 @@ function ModalNoodle(props) {
 
         <div className={infoMenuId === 25 ? 'option1': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} *</div>
-          <select className='selectBox' onChange={e => setType(e.target.value)}>
-            <option value=''>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
+          <select className='selectBox' defaultValue={1} onChange={e => setType(e.target.value)}>
+            <option value='1'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
             <option value='8'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
             <option value='9'>{infoOptionName3} (+{infoOptionPrice3.toLocaleString()}₩)</option>
@@ -145,8 +139,8 @@ function ModalNoodle(props) {
 
         <div className={infoMenuId >= 26 ? 'option2': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} *</div>
-          <select className='selectBox' onChange={e => setType(e.target.value)}>
-            <option value=''>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
+          <select className='selectBox' defaultValue={1} onChange={e => setType(e.target.value)}>
+            <option value='1'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
             <option value='10'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
             <option value='11'>{infoOptionName3} (+{infoOptionPrice3.toLocaleString()}₩)</option>

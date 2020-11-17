@@ -95,7 +95,7 @@ function Cart(props) {
                     </div>
                   </div>
                   <div className='menuPrice'>{new Intl.NumberFormat().format(Number((menu.Menu.price + menu.Option.price)))}</div>
-                  <select className='menuQuantity' value={menu.quantity} onChange={e => setType(e.target.value)}>
+                  <select className='menuQuantity' defaultValue={menu.quantity} onChange={e => setType(e.target.value)}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
