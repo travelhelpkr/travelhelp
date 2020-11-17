@@ -155,7 +155,7 @@ module.exports = {
   delete: async (req, res) => {
 
     try {
-      const { order_id, menu_id, option_id } = req.body;
+      const { order_id, menu_id, option_id } = req.query;
 
       const deletedRow = await Order_menu.destroy({
         where: {
