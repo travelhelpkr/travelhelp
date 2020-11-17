@@ -42,14 +42,18 @@ function ModalChicken(props) {
             }
         })
         .then(res => {
-          if(res.data.status === 409) {
-            setFailure(true);
-            setSuccess(false);
-            setOptionError(false);
+          console.log('conflict:', res.data);
+          if(res.data.status === 409 && res.data.conflict === true) {
+            setOtherRestaurant(true);
             setType('');
           } else if(res.data.status === 200){
             setSuccess(true);
             setFailure(false);
+            setOptionError(false);
+            setType('');
+          } else if(res.data.status === 409) {
+            setFailure(true);
+            setSuccess(false);
             setOptionError(false);
             setType('');
           }
@@ -133,6 +137,9 @@ function ModalChicken(props) {
         <div className={isSignin ? 'signinAlert' : 'none'}>
           <span>Please Sign In first!</span>
           <span className='goToSignIn'><a href='/user/signin'>Go To Sign In</a></span>
+        </div>
+        <div className={otherRestaurant ? 'otherRestaurantAlert' : 'none'}>
+          <span>Only menus from the same restaurant can be added.</span>
         </div>
 
       </div>
