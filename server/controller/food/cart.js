@@ -1,5 +1,4 @@
-const { User, Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
-const Sequelize = require('sequelize')
+const { Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
 
 module.exports = {
   // update user's db with selected menu
@@ -156,7 +155,7 @@ module.exports = {
   delete: async (req, res) => {
 
     try {
-      const { order_id, menu_id, option_id } = req.body;
+      const { order_id, menu_id, option_id } = req.query;
 
       const deletedRow = await Order_menu.destroy({
         where: {
