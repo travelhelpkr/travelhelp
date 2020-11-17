@@ -16,8 +16,6 @@ function ModalChicken(props) {
   // choose bone or boneless state
   const [type, setType] = useState('');
 
-  console.log('type:', type);
-
   // alert after add to cart btn
   const [isSignin, setIsSignin] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -42,23 +40,22 @@ function ModalChicken(props) {
             }
         })
         .then(res => {
-          if(res.data.status === 409) {
-            setFailure(true);
-            setSuccess(false);
-            setOptionError(false);
-            setType('');
+          if(res.data.status === 409 && res.data.conflict === true) {
+            setOtherRestaurant(true);
           } else if(res.data.status === 200){
             setSuccess(true);
             setFailure(false);
             setOptionError(false);
-            setType('');
+          } else if(res.data.status === 409) {
+            setFailure(true);
+            setSuccess(false);
+            setOptionError(false);
           }
         })
       } else {
         setOptionError(true);
         setSuccess(false);
         setFailure(false);
-        setType('');
       }
     } else {
       e.preventDefault();
@@ -77,7 +74,7 @@ function ModalChicken(props) {
           setSuccess(false);
           setFailure(false);
           setOptionError(false);
-          setType('');
+          setOtherRestaurant(false);
         }}><CloseIcon /></button>
 
         {/* menu information */}
@@ -98,7 +95,7 @@ function ModalChicken(props) {
         <div className={infoMenuId < 12 ? 'option1': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
           <select className='selectBox' onChange={e => setType(e.target.value)}>
-            <option value=''>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
+            <option value='1'>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
             <option value='2'>{infoOptionName1}</option>
             <option value='3'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
           </select>
@@ -107,7 +104,7 @@ function ModalChicken(props) {
         <div className={infoMenuId >= 12 ? 'option2': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
           <select className='selectBox' onChange={e => setType(e.target.value)}>
-            <option value=''>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
+            <option value='1'>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
             <option value='2'>{infoOptionName1}</option>
             <option value='6'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
           </select>
@@ -133,6 +130,10 @@ function ModalChicken(props) {
         <div className={isSignin ? 'signinAlert' : 'none'}>
           <span>Please Sign In first!</span>
           <span className='goToSignIn'><a href='/user/signin'>Go To Sign In</a></span>
+        </div>
+        <div className={otherRestaurant ? 'otherRestaurantAlert' : 'none'}>
+          <div>Only menus from the same restaurant can be added.</div>
+          <div className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></div>
         </div>
 
       </div>

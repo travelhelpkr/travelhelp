@@ -14,9 +14,7 @@ function Cart(props) {
   const { t } = useTranslation();
 
   // choose the quantity of menu
-  const [type, setType] = useState('');
-
-  console.log('type:', type);
+  const [quantity, setQuantity] = useState('');
   
   // cart information
   const [cart, setCart] = useState('');
@@ -29,7 +27,7 @@ function Cart(props) {
     axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
     .then(res => {
       setCart(res.data.cart);
-      setOrderId(res.data.order_id);
+      setOrderId(res.data.cart[0].Order.id);
       setRestaurant(res.data.restaurant);
       console.log('restaurant:', res.data.restaurant);
       const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
@@ -68,7 +66,7 @@ function Cart(props) {
         {/* chicken menu delivery info */}
         <ul className='eachMenuInfo'>
           { cart && cart.map((menu, index) => {
-              console.log('menu:', menu.Option.id);
+              console.log('menu:', menu);
               return(
                 <li key={index}>
                   <div className='menuImage'><img src={menu.Menu.image} alt='menuImage'/></div>
@@ -95,7 +93,18 @@ function Cart(props) {
                     </div>
                   </div>
                   <div className='menuPrice'>{new Intl.NumberFormat().format(Number((menu.Menu.price + menu.Option.price)))}</div>
-                  <select className='menuQuantity' value={menu.quantity} onChange={e => setType(e.target.value)}>
+                  <select className='menuQuantity' defaultValue={menu.quantity} onChange={e => {
+                    axios.put('http://localhost:3355/foods/cart', {
+                      order_id: orderId,
+                      menu_id: menu.Menu.id,
+                      option_id: menu.Option.id,
+                      quantity: e.target.value
+                    })
+                    .then(() => {
+                      setQuantity(e.target.value);
+                      window.location = '/user/cart';
+                    })
+                  }}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
                     <option value='3'>3</option>
@@ -132,6 +141,38 @@ function Cart(props) {
         </div>
 
       </div>
+
+      {/* delivery address */}
+      <div className='deliveryInfo'>
+        <div className='deliveryHeader'>Delivery Information</div>
+        <div className='addressInput'>
+          <div className='address'>Delivery Address * </div>
+          <select className='recentAddress'>
+            <option>Recent Address</option>
+          </select>
+          <form>
+            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder='Postal Code *' label='Postal Code' />
+            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder='Delivery Address *' label='Delivery Address' />
+          </form>
+          <button className='applyAddress'>Confirm above address</button>
+        </div>
+        
+        <div className='confirmAddress'>
+          <div className='confirmTitle'>Confirm Delivery Address</div>
+          <div className='confirmText'>123-456 604-801, han-shin-hu-plus apt, Seoul, gangnam-gu, Korea</div>
+        </div>
+        
+        <div className='contactInfo'>
+          <div className='contactNumber'>Contact Number * </div>
+          <form>
+            <input className='contact' type='number' name='contact' placeholder='Contact Number *' label='Contact Number' />
+          </form>
+        </div>
+
+      </div>
+
+      {/* payment */}
+      <button className='paymentBtn'>Pay</button>
 
     </div>
   )
