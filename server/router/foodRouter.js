@@ -13,6 +13,6 @@ foodRouter.put('/cart', cart.update);
 foodRouter.delete('/cart', cart.delete);
 
 foodRouter.post('/order/:id', order.add);
-foodRouter.get('/order/:id', order.show);
+foodRouter.get('/order/:id', order.showAddress);
 
 module.exports = foodRouter;

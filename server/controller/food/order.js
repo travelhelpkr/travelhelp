@@ -52,28 +52,30 @@ module.exports = {
     
   },
   
-  show: async (req, res) => {
+  showAddress: async (req, res) => {
     
     try {
       const user_id = req.params.id;
       const { order_id, address, postal_code, contact } = req.query;
 
       // checking existing user's menu from the cart
-      const recentAddress = await Address_book.findAll({
-        attributes: [ 'address', 'postal_code', 'contact' ],
+      const listAddress = await Address_book.findAll({
+        attributes: [ 'id', 'address', 'postal_code', 'contact' ],
         include: {
           model: Order,
-          // attributes: [ 'purchased_at' ],
-          // attributes: [],
+          attributes: [],
           where: {
             user_id: user_id,
             is_cart: false
-          }
+          },
         },
-        order: [Address_book.associations.Orders, 'id', 'DESC'],
-        limit: 5
+        order: [ [Address_book.associations.Orders, 'purchased_at', 'DESC'] ],
+        raw: true,
+        nest: true
       });
 
+      // show only 5 recent address orderd by purchased_at date.
+      const recentAddress = listAddress.slice(0,5);
       console.log('recent address::::::::', recentAddress);
  
       res.status(200).send({ recent_address: recentAddress });
