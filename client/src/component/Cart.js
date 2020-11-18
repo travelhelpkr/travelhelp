@@ -205,9 +205,9 @@ function Cart(props) {
         
         <div className='confirmAddress'>
           <div className='confirmTitle'>{t('order.confirmDeliveryAddress')}</div>
-          <div className='confirmText postTalText'><div className='arrow'>☞</div><div classname='infoText'>{confirmPostcalCode}</div></div>
-          <div className='confirmText'><div className='arrow'>☞</div><div classname='infoText'>{confirmAddress}</div></div>
-          <div className='confirmText'><div className='arrow'>☞</div><div classname='infoText'>{confirmContact}</div></div>
+          <div className='confirmText postTalText'><div className='arrow'>☞</div><div className='infoText'>{confirmPostcalCode}</div></div>
+          <div className='confirmText'><div className='arrow'>☞</div><div className='infoText'>{confirmAddress}</div></div>
+          <div className='confirmText'><div className='arrow'>☞</div><div className='infoText'>{confirmContact}</div></div>
         </div>
 
       </div>
