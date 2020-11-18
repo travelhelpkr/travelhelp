@@ -88,7 +88,7 @@ function Cart(props) {
     })
     .then(() => {
       setSuccessAlert(true);
-      // setTimeout(function(){ window.location = '/user/mypage' }, 3000);
+      setTimeout(function(){ window.location = '/user/mypage' }, 5000);
     })
   }
 
@@ -225,19 +225,25 @@ function Cart(props) {
         
         <div className='confirmAddress'>
           <div className='confirmTitle'>{t('order.confirmDeliveryAddress')}</div>
-          <div className='confirmText postTalText'><div className='arrow'>☞</div><div className='infoText'>{confirmPostalCode}</div></div>
-          <div className='confirmText'><div className='arrow'>☞</div><div className='infoText'>{confirmAddress}</div></div>
-          <div className='confirmText'><div className='arrow'>☞</div><div className='infoText'>{confirmContact}</div></div>
+          <div className='confirmText postTalText'><div className='infoText'>{'>' + ' ' + confirmPostalCode}</div></div>
+          <div className='confirmText'><div className='infoText'>{'>' + ' ' + confirmAddress}</div></div>
+          <div className='confirmText'><div className='infoText'>{'>' + ' ' + confirmContact}</div></div>
+        </div>
+
+        <div className='blank'></div>
+
+        {/* payment */}
+        <button className='paymentBtn' onClick={payBtnHandler}>{t('order.pay')}</button>
+        <div className={successAlert? 'successPaymentAlert' : 'none'}>
+          <div className='iconText'>
+            <div className='checkIcon'><CheckCircleRoundedIcon /></div>
+            <div className='checkText1'>Payment Completed!</div>
+          </div>
+          <div className='checkText2'>After 3 seconds, move to Order Page.</div>
         </div>
 
       </div>
 
-      {/* payment */}
-      <button className='paymentBtn' onClick={payBtnHandler}>{t('order.pay')}</button>
-      <div className={successAlert? 'successPaymentAlert' : 'none'}>
-        <div className='checkIcon'><CheckCircleRoundedIcon /></div>
-        <div className='checkText'>Payment Completed!</div>
-      </div>
     </div>
   )
 
