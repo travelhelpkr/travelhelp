@@ -146,5 +146,13 @@
   "cart.menuPrice": "メニュー価格",
   "cart.delivery": "配送料",
   "cart.total": "合計金額",
-  "cart.minimumAlert": "最低注文価格は"
+  "cart.minimumAlert": "最低注文価格は",
+  "order.deliveryInformation": "配送に関する情報",
+  "order.deliveryAddress": "配送先住所 *",
+  "order.recentAddress": "最近の住所",
+  "order.postalCode": "郵便番号 *",
+  "order.confirmAddress": "住所を確認する",
+  "order.confirmDeliveryAddress": "配送先住所の確認",
+  "order.contact": "連絡先番号 * ",
+  "order.pay": "支払う"
 }

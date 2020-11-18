@@ -146,5 +146,13 @@
   "cart.menuPrice": "Menu Price",
   "cart.delivery": "Delivery Fee",
   "cart.total": "Total Price",
-  "cart.minimumAlert": "Minimum Order Price is"
+  "cart.minimumAlert": "Minimum Order Price is",
+  "order.deliveryInformation": "Delivery Information",
+  "order.deliveryAddress": "Delivery Address *",
+  "order.recentAddress": "Recent Address",
+  "order.postalCode": "Postal Code *",
+  "order.confirmAddress": "Confirm above address",
+  "order.confirmDeliveryAddress": "Confirm Delivery Address",
+  "order.contact": "Contact Number * ",
+  "order.pay": "Pay"
 }
