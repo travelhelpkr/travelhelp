@@ -150,6 +150,7 @@
   "cart.delivery": "Delivery Fee",
   "cart.total": "Total Price",
   "cart.minimumAlert": "Minimum Order Price is",
+  "order.delivery": "Delivery",
   "order.deliveryInformation": "Delivery Information",
   "order.deliveryAddress": "Delivery Address *",
   "order.recentAddress": "Recent Address",

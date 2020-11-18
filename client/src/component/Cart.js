@@ -27,9 +27,8 @@ function Cart(props) {
   const [inputPostalCode, setInputPostalCode] = useState('');
   const [inputAddress, setInputAddress] = useState('');
   const [inputContact, setInputContact] = useState('');
-  const [confirmPostalCode, setConfirmPostalCode] = useState('');
-  const [confirmAddress, setConfirmAddress] = useState('');
-  const [confirmContact, setConfirmContact] = useState('');
+  const [addressArray, setAddressArray] = useState('');
+  const [addressId, setAddressId] = useState('');
 
   // alert delivery information
   const [wrongAddress, setWrongAddress] = useState(false);
@@ -55,6 +54,15 @@ function Cart(props) {
     })
   },[])
 
+  // get recent address
+  useEffect(() => {
+    axios.get(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`)
+    .then(res => {
+      console.log('res:::::', res.data);
+      setAddressArray(res.data.recent_address);
+    })
+  },[])
+
   // go back btn handler
   const goBackHandler = () => {
     history.goBack();
@@ -71,31 +79,33 @@ function Cart(props) {
     }
   }
 
-  // confirm address btn handler
-  const confirmAddressHandler = (e) => {
-    e.preventDefault();
-    if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
-      setConfirmPostalCode(inputPostalCode);
-      setConfirmAddress(inputAddress);
-      setConfirmContact(inputContact);
-      setWrongAddress(false);
-    } else {
-      setWrongAddress(true);
-    }
-  }
-
   // pay btn handler
   const payBtnHandler = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
-      address: confirmAddress,
-      postal_code: confirmPostalCode,
-      contact: confirmContact
-    })
-    .then(() => {
-      setSuccessAlert(true);
-      setTimeout(function(){ window.location = '/user/mypage' }, 5000);
-    })
+    if(addressId) {
+      axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
+      address_book_id: addressId
+      })
+      .then(() => {
+        setSuccessAlert(true);
+        setTimeout(function(){ window.location = '/user/mypage' }, 5000);
+      })
+    } else {
+      if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
+        setWrongAddress(false);
+        axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
+          address: inputPostalCode,
+          postal_code: inputAddress,
+          contact: inputContact
+        })
+        .then(() => {
+          setSuccessAlert(true);
+          setTimeout(function(){ window.location = '/user/mypage' }, 5000);
+        })
+      } else {
+        setWrongAddress(true);
+      }
+    }
   }
 
   return(
@@ -210,30 +220,40 @@ function Cart(props) {
 
       {/* delivery address */}
       <div className={emptyCart? 'none' : 'deliveryInfo'}>
-        <div className='deliveryHeader'>{t('order.deliveryInformation')}</div>
+        <div className='deliveryHeader'>{t('order.delivery')}</div>
         <div className='addressInput'>
           <div className='address'>{t('order.deliveryInformation')}</div>
+
+          {/* select recent address */}
           <select className='recentAddress' onChange={e => {
-            setConfirmAddress(e.target.value);
+            console.log("e.target.value", e.target.value)
+            setAddressId(e.target.value);
           }}>
+            { addressArray && addressArray.map(address => {
+                return(
+                  <option key={address.id} value={address.id}>
+                    {address.postal_code + ')'} {address.address} {' / ' + address.contact}
+                  </option>
+                )
+              })
+            }
             <option>{t('order.recentAddress')}</option>
           </select>
-          <form>
+
+          <div className='or'>OR</div>
+          
+          {/* input address form */}
+          <form className='inputForm'>
             <input className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} label='Postal Code' onChange={addressOnChangeHandler} />
             <input className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} label='Delivery Address' onChange={addressOnChangeHandler} />
             <input className='inputaddress contact' type='number' name='contact' placeholder={t('order.contact')} label='Contact Number' onChange={addressOnChangeHandler} />
           </form>
+          
+          {/* alert when input is empty */}
           <div className={wrongAddress ? 'wrongAddressAlert' : 'none'}>
             <div>{t('order.alert')}</div>
           </div>
-          <button className='applyAddress' onClick={confirmAddressHandler} >{t('order.confirmAddress')}</button>
-        </div>
-        
-        <div className='confirmAddress'>
-          <div className='confirmTitle'>{t('order.confirmDeliveryAddress')}</div>
-          <div className='confirmText postTalText'><div className='infoText'>{'>' + ' ' + confirmPostalCode}</div></div>
-          <div className='confirmText'><div className='infoText'>{'>' + ' ' + confirmAddress}</div></div>
-          <div className='confirmText'><div className='infoText'>{'>' + ' ' + confirmContact}</div></div>
+
         </div>
 
         <div className='blank'></div>
@@ -249,7 +269,8 @@ function Cart(props) {
         </div>
 
       </div>
-
+      
+      {/* alert when cart is empty */}
       <div className={emptyCart? 'emptyAlert' : 'none'}>
         <span className='noMenu'>No menu in the Cart.</span>
         <span className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></span>
