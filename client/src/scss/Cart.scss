@@ -306,6 +306,24 @@
         font-weight: 600;
       }
     }
+    .successPaymentAlert {
+      padding-top: 13px;
+      color: rgb(5, 202, 71);
+      font-size: 1em;
+      width: 16.5em;
+      margin: auto;
+      font-weight: 500;
+      .MuiSvgIcon-root {
+        font-size: 1.2em;
+        float: left;
+      }
+      .checkText {
+        width: 16.5em;
+      }
+    }
+    .none {
+      display: none;
+    }
   } 
 }
 
