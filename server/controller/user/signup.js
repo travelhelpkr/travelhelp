@@ -92,10 +92,14 @@ If you have any problems, please contact us: (attatch channel.io link)`
       }
     }
     catch (err) {
-      // response err to client. no need to throw err.
-      res.status(err.status || 403).json({
-        message: err.message || 'Your token may have problem. You can resend verification mail from sign in page. If you still have problem, please contact us: (contact information)'
+      // response err to the client
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });
+      // res.status(err.status || 403).json({
+      //   message: err.message || 'Your token may have problem. You can resend verification mail from sign in page. If you still have problem, please contact us: (contact information)'
+      // });
     }
     
   }

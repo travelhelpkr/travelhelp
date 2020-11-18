@@ -90,9 +90,10 @@ If you didn’t mean to reset your password, then you can just ignore this email
       }
     }
     catch (err) {
-      // response err to client. no need to throw err.
-      res.status(err.status || 400).json({
-        message: err.message || 'wrong approach'
+      // response err to the client
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });
     }
 
@@ -119,9 +120,10 @@ If you didn’t mean to reset your password, then you can just ignore this email
       }
     } 
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });
     }
     
@@ -197,10 +199,11 @@ The team at TravelHelp`
       }
     } 
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
-      });  
+        message: err.message || 'Server does not response.',
+        stack: err.stack
+      });
     }
 
   }

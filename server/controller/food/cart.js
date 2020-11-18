@@ -71,7 +71,7 @@ module.exports = {
       }
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
@@ -85,39 +85,56 @@ module.exports = {
     try {
       const user_id = req.params.id;
 
-      const listCartArr = await Order_menu.findAll({
-        attributes: [ 'quantity' ],
-        include: [{
-          model: Order,
-          attributes: [ 'id' ],
-          where: {
-            user_id: user_id
-          }
-        },{
-          model: Menu,
-          attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ] 
-        }, {
-          model: Option,
-          attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ]
-        }], 
-        raw: true,
-        nest: true
-      });
-      console.log('listCartArr::::::::', listCartArr);
-      
-      const restaurantInfo = await Restaurant.findOne({
-        attributes: { exclude: [ 'description_en', 'description_zh', 'description_ja', 'createdAt', 'updatedAt' ] },
-        where: {
-          id: listCartArr[0].Menu.restaurant_id
-        },
+      const checkCartStatus = await Order.findOne({
+        attributes: [ 'is_cart' ],
+        where: { user_id: user_id },
         raw: true
       });
-      console.log('restaurantInfo::::::::', restaurantInfo);
- 
-      res.status(200).send({ cart: listCartArr, restaurant: restaurantInfo });
+
+      // check empty cart. if empty, return just message.
+      if (!checkCartStatus || !checkCartStatus.is_cart) {
+        return res.status(200).send({ message: 'empty cart' });
+      }
+
+      // show menus only in case the user & cart exists on DB
+      if (user_id && checkCartStatus.is_cart) {
+        const listCartArr = await Order_menu.findAll({
+          attributes: [ 'quantity' ],
+          include: [{
+            model: Order,
+            attributes: [ 'id' ],
+            where: {
+              user_id: user_id
+            }
+          },{
+            model: Menu,
+            attributes: [ 'id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id' ] 
+          }, {
+            model: Option,
+            attributes: [ 'id', 'name_en', 'name_zh', 'name_ja', 'price' ]
+          }], 
+          raw: true,
+          nest: true
+        });
+        console.log('listCartArr::::::::', listCartArr);
+        
+        const restaurantInfo = await Restaurant.findOne({
+          attributes: { exclude: [ 'description_en', 'description_zh', 'description_ja', 'createdAt', 'updatedAt' ] },
+          where: {
+            id: listCartArr[0].Menu.restaurant_id
+          },
+          raw: true
+        });
+        console.log('restaurantInfo::::::::', restaurantInfo);
+        
+        res.status(200).send({ cart: listCartArr, restaurant: restaurantInfo });
+      }
+      else {
+        throw new Error('something went wrong.');
+      }
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
@@ -143,7 +160,7 @@ module.exports = {
       res.status(200).send({ message: 'successfully updated menu quantity' });
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
@@ -176,7 +193,6 @@ module.exports = {
         include: { 
           model: Order_menu,
           attributes: [ 'id', 'order_id', 'menu_id', 'option_id' ],
-          required: true,
           where: {
             order_id: order_id
           }
@@ -197,7 +213,7 @@ module.exports = {
       res.status(200).send({ message: 'successfully deleted the menu' });      
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack

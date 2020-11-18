@@ -82,9 +82,10 @@ If you have any problems, please contact us: (attatch channel.io link)`
       }
     }
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });
     }
     
@@ -113,9 +114,10 @@ If you have any problems, please contact us: (attatch channel.io link)`
       });
     }
     catch (err) {
-      // response err to client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
-        message: err.message || 'Server does not response.'
+        message: err.message || 'Server does not response.',
+        stack: err.stack
       });
     }
 
