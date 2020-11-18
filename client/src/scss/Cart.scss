@@ -292,6 +292,7 @@
     }
     .paymentBtn {
       width: 15em;
+      margin-bottom: 10em;
       padding: 10px 0;
       border-radius: 4px;
       font-size: 1em;
@@ -503,6 +504,110 @@
         }
       }
     }
+    .deliveryInfo {
+      width: 55em;
+      margin: 40px auto 20px;
+      text-align: center;
+      border-bottom: 1px solid #ebebeb;
+      .deliveryHeader {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .addressInput {
+        width: 31em;
+        margin: 25px auto;
+        height: 9em;
+        .address {
+          float: left;
+          margin-bottom: 10px;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .recentAddress {
+          margin-left: 20px;
+          float: left;
+          padding: 1px;
+          font-size: 0.75em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .inputaddress {
+          font-size: 0.85em;
+          clear: both;
+          margin-top: 5px;
+          display: block;
+          width: 35.3em;
+          padding: 8px 0 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .applyAddress {
+          margin-top: 10px;
+          padding: 5px 8px;
+          font-size: 0.85em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color:  #f6f6f8;
+          font-weight: 500;
+        }
+      }
+      .confirmAddress {
+        width: 31em;
+        margin: 10px auto;
+        height: 4em;
+        .confirmTitle {
+          text-align: left;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .confirmText {
+          text-align: left;
+          font-size: 0.85em;
+          margin-top: 5px;
+        }
+      }
+      .contactInfo {
+        width: 31em;
+        margin: 10px auto;
+        height: 4.5em;
+        .contactNumber {
+          text-align: left;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .contact {
+          font-size: 0.85em;
+          margin-top: 8px;
+          display: block;
+          width: 35.3em;
+          padding: 8px 0 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+      }
+    }
+    .paymentBtn {
+      width: 13em;
+      margin-bottom: 8em;
+      padding: 10px 0;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: white;
+      background-color:  rgb(1, 1, 37);
+      &:hover {
+        cursor: pointer;
+        opacity: 85%;
+        font-weight: 600;
+      }
+    }
   } 
 }
 
@@ -701,6 +806,110 @@
         .none {
           display: none;
         }
+      }
+    }
+    .deliveryInfo {
+      width: 44em;
+      margin: 40px auto 20px;
+      text-align: center;
+      border-bottom: 1px solid #ebebeb;
+      .deliveryHeader {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .addressInput {
+        width: 31em;
+        margin: 25px auto;
+        height: 9em;
+        .address {
+          float: left;
+          margin-bottom: 10px;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .recentAddress {
+          margin-left: 20px;
+          float: left;
+          padding: 1px;
+          font-size: 0.75em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .inputaddress {
+          font-size: 0.85em;
+          clear: both;
+          margin-top: 5px;
+          display: block;
+          width: 35.3em;
+          padding: 8px 0 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .applyAddress {
+          margin-top: 10px;
+          padding: 5px 8px;
+          font-size: 0.85em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color:  #f6f6f8;
+          font-weight: 500;
+        }
+      }
+      .confirmAddress {
+        width: 31em;
+        margin: 10px auto;
+        height: 4em;
+        .confirmTitle {
+          text-align: left;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .confirmText {
+          text-align: left;
+          font-size: 0.85em;
+          margin-top: 5px;
+        }
+      }
+      .contactInfo {
+        width: 31em;
+        margin: 10px auto;
+        height: 4.5em;
+        .contactNumber {
+          text-align: left;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .contact {
+          font-size: 0.85em;
+          margin-top: 8px;
+          display: block;
+          width: 35.3em;
+          padding: 8px 0 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+      }
+    }
+    .paymentBtn {
+      width: 13em;
+      margin-bottom: 8em;
+      padding: 10px 0;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: white;
+      background-color:  rgb(1, 1, 37);
+      &:hover {
+        cursor: pointer;
+        opacity: 85%;
+        font-weight: 600;
       }
     }
   }
@@ -909,6 +1118,110 @@
         .none {
           display: none;
         }
+      }
+    }
+    .deliveryInfo {
+      width: 22em;
+      margin: 20px auto 20px;
+      text-align: center;
+      border-bottom: 1px solid #ebebeb;
+      .deliveryHeader {
+        background-color: #f6f6f8;
+        padding: 8px 0;
+        font-size: 0.8em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .addressInput {
+        width: 22em;
+        margin: 15px auto;
+        height: 8em;
+        .address {
+          float: left;
+          margin-bottom: 10px;
+          font-size: 0.85em;
+          font-weight: 600;
+        }
+        .recentAddress {
+          margin-left: 15px;
+          float: left;
+          padding: 1px;
+          font-size: 0.7em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .inputaddress {
+          font-size: 0.8em;
+          clear: both;
+          margin-top: 5px;
+          display: block;
+          width: 26.8em;
+          padding: 6px 0 6px 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .applyAddress {
+          margin-top: 10px;
+          padding: 5px 8px;
+          font-size: 0.8em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color:  #f6f6f8;
+          font-weight: 500;
+        }
+      }
+      .confirmAddress {
+        width: 22em;
+        margin: 10px auto;
+        height: 4em;
+        .confirmTitle {
+          text-align: left;
+          font-size: 0.9em;
+          font-weight: 600;
+        }
+        .confirmText {
+          text-align: left;
+          font-size: 0.8em;
+          margin-top: 5px;
+        }
+      }
+      .contactInfo {
+        width: 22em;
+        margin: 10px auto;
+        height: 3.5em;
+        .contactNumber {
+          text-align: left;
+          font-size: 0.9em;
+          font-weight: 600;
+        }
+        .contact {
+          font-size: 0.8em;
+          margin-top: 8px;
+          display: block;
+          width: 26.8em;
+          padding: 6px 0 6px 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+      }
+    }
+    .paymentBtn {
+      width: 13em;
+      margin-bottom: 1em;
+      padding: 8px 0;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: white;
+      background-color:  rgb(1, 1, 37);
+      &:hover {
+        cursor: pointer;
+        opacity: 85%;
+        font-weight: 600;
       }
     }
   }

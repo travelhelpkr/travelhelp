@@ -22,6 +22,11 @@ function Cart(props) {
   const [restaurant, setRestaurant] = useState('');
   const [sum, setSum] = useState('');
 
+  // delivery Address information
+  const [inputPostcalCode, setInputPostalCode] = useState('');
+  const [inputAddress, setInputAddress] = useState('');
+  const [confirmAddress, setConfirmAddress] = useState('');
+
   // get cart information
   useEffect(() => {
     axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
@@ -36,8 +41,24 @@ function Cart(props) {
     })
   },[])
 
+  // go back btn handler
   const goBackHandler = () => {
     history.goBack();
+  }
+
+  // address onChange handler
+  const addressOnChangeHandler = (e) => {
+    if(e.target.name === 'postalCode') {
+      setInputPostalCode(e.target.value);
+    } else if(e.target.name === 'address') {
+      setInputAddress(e.target.value);
+    }
+  }
+
+  // confirm address btn handler
+  const confirmAddressHandler = (e) => {
+    e.preventDefault();
+    setConfirmAddress(inputPostcalCode + ') ' + ' ' + inputAddress);
   }
 
   return(
@@ -156,19 +177,21 @@ function Cart(props) {
         <div className='deliveryHeader'>Delivery Information</div>
         <div className='addressInput'>
           <div className='address'>Delivery Address * </div>
-          <select className='recentAddress'>
+          <select className='recentAddress' onChange={e => {
+            setConfirmAddress(e.target.value);
+          }}>
             <option>Recent Address</option>
           </select>
           <form>
-            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder='Postal Code *' label='Postal Code' />
-            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder='Delivery Address *' label='Delivery Address' />
+            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder='Postal Code *' label='Postal Code' onChange={addressOnChangeHandler} />
+            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder='Delivery Address *' label='Delivery Address' onChange={addressOnChangeHandler} />
           </form>
-          <button className='applyAddress'>Confirm above address</button>
+          <button className='applyAddress' onClick={confirmAddressHandler} >Confirm above address</button>
         </div>
         
         <div className='confirmAddress'>
           <div className='confirmTitle'>Confirm Delivery Address</div>
-          <div className='confirmText'>123-456 604-801, han-shin-hu-plus apt, Seoul, gangnam-gu, Korea</div>
+          <div className='confirmText'>{confirmAddress}</div>
         </div>
         
         <div className='contactInfo'>
