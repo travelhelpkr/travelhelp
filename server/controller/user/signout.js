@@ -63,10 +63,14 @@ module.exports = {
       }
     }
     catch (err) {
-      // response err to client. no need to throw err.
-      res.status(err.status || 400).json({
-        message: err.message || 'wrong approach'
-      });  
+      // response err to the client
+      res.status(err.status || 500).json({
+        message: err.message || 'Server does not response.',
+        stack: err.stack
+      });
+      // res.status(err.status || 400).json({
+      //   message: err.message || 'wrong approach'
+      // });  
     }
 
   }

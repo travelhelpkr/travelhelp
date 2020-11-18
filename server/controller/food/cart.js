@@ -71,7 +71,7 @@ module.exports = {
       }
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
@@ -117,7 +117,7 @@ module.exports = {
       res.status(200).send({ cart: listCartArr, restaurant: restaurantInfo });
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
@@ -143,7 +143,7 @@ module.exports = {
       res.status(200).send({ message: 'successfully updated menu quantity' });
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack
@@ -197,7 +197,7 @@ module.exports = {
       res.status(200).send({ message: 'successfully deleted the menu' });      
     } 
     catch (err) {
-      // response err to the client. no need to throw err.
+      // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
         stack: err.stack

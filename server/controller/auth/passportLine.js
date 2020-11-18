@@ -8,12 +8,12 @@ const bcrypt = require('bcrypt');
 
 module.exports = () => {
   passport.serializeUser((user, cb) => {
-    console.log("serializeUser:", user)
+    // console.log("serializeUser:", user)
     cb(null, user);
   })
 
   passport.deserializeUser((obj, cb) => {
-    console.log("deserializeUser:", user)
+    // console.log("deserializeUser:", user)
     cb(null, obj);
   })
 
