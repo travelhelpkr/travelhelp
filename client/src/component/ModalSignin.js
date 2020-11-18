@@ -19,7 +19,7 @@ function ModalSignin(props) {
 
   return(
     <div className={isSignin? 'openSigninModal' : 'none'}>
-      <div className="signinModalContent">
+      <div className='signinModalContent'>
 
         {/* close modal */}
         <button className='closeBtn' onClick={e => {
@@ -28,13 +28,13 @@ function ModalSignin(props) {
         }}><CloseIcon /></button>
 
         {/* signin alert content */}
-        <div className="signinAlert">
+        <div className='signinAlert'>
           <span>{t('modalSignin.signin1')}</span> :) <br/><br/>
           {t('modalSignin.signin2')}
         </div>
 
         {/* press ok btn */}
-        <button className="okayBtn" onClick={goToSigninHandler}>Okay</button>
+        <button className='okayBtn' onClick={goToSigninHandler}>Okay</button>
 
       </div>
 
