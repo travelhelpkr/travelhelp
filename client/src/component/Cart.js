@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/Cart.scss'; 
 
 function Cart(props) {
@@ -20,15 +21,18 @@ function Cart(props) {
   const [sum, setSum] = useState('');
 
   // delivery Address information
-  const [inputPostcalCode, setInputPostalCode] = useState('');
+  const [inputPostalCode, setInputPostalCode] = useState('');
   const [inputAddress, setInputAddress] = useState('');
   const [inputContact, setInputContact] = useState('');
-  const [confirmPostcalCode, setConfirmPostcalCode] = useState('');
+  const [confirmPostalCode, setConfirmPostalCode] = useState('');
   const [confirmAddress, setConfirmAddress] = useState('');
   const [confirmContact, setConfirmContact] = useState('');
 
   // alert delivery information
   const [wrongAddress, setWrongAddress] = useState(false);
+
+  // payment success alert
+  const [successAlert, setSuccessAlert] = useState(false);
 
   // get cart information
   useEffect(() => {
@@ -64,14 +68,28 @@ function Cart(props) {
   // confirm address btn handler
   const confirmAddressHandler = (e) => {
     e.preventDefault();
-    if(inputPostcalCode !== '' && inputAddress !== '' && inputContact !== '') {
-      setConfirmPostcalCode(inputPostcalCode);
+    if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
+      setConfirmPostalCode(inputPostalCode);
       setConfirmAddress(inputAddress);
       setConfirmContact(inputContact);
       setWrongAddress(false);
     } else {
       setWrongAddress(true);
     }
+  }
+
+  // pay btn handler
+  const payBtnHandler = (e) => {
+    e.preventDefault();
+    axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
+      address: confirmAddress,
+      postal_code: confirmPostalCode,
+      contact: confirmContact
+    })
+    .then(() => {
+      setSuccessAlert(true);
+      // setTimeout(function(){ window.location = '/user/mypage' }, 3000);
+    })
   }
 
   return(
@@ -207,7 +225,7 @@ function Cart(props) {
         
         <div className='confirmAddress'>
           <div className='confirmTitle'>{t('order.confirmDeliveryAddress')}</div>
-          <div className='confirmText postTalText'><div className='arrow'>☞</div><div className='infoText'>{confirmPostcalCode}</div></div>
+          <div className='confirmText postTalText'><div className='arrow'>☞</div><div className='infoText'>{confirmPostalCode}</div></div>
           <div className='confirmText'><div className='arrow'>☞</div><div className='infoText'>{confirmAddress}</div></div>
           <div className='confirmText'><div className='arrow'>☞</div><div className='infoText'>{confirmContact}</div></div>
         </div>
@@ -215,8 +233,11 @@ function Cart(props) {
       </div>
 
       {/* payment */}
-      <button className='paymentBtn'>{t('order.pay')}</button>
-
+      <button className='paymentBtn' onClick={payBtnHandler}>{t('order.pay')}</button>
+      <div className={successAlert? 'successPaymentAlert' : 'none'}>
+        <div className='checkIcon'><CheckCircleRoundedIcon /></div>
+        <div className='checkText'>Payment Completed!</div>
+      </div>
     </div>
   )
 

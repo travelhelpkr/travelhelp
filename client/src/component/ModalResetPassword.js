@@ -83,7 +83,7 @@ function ResestPassword(props) {
           <div className={alert? 'emailAlert' : 'none'}>
             <div className='checkIcon'><CheckCircleRoundedIcon /></div>
             <div className='checkText'>{t('modalPassword.alert')}</div>
-        </div>
+          </div>
         </div>
       </div>
     </div>
