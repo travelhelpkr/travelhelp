@@ -174,37 +174,37 @@ function Cart(props) {
 
       {/* delivery address */}
       <div className='deliveryInfo'>
-        <div className='deliveryHeader'>Delivery Information</div>
+        <div className='deliveryHeader'>{t('order.deliveryInformation')}</div>
         <div className='addressInput'>
-          <div className='address'>Delivery Address * </div>
+          <div className='address'>{t('order.deliveryAddress')}</div>
           <select className='recentAddress' onChange={e => {
             setConfirmAddress(e.target.value);
           }}>
-            <option>Recent Address</option>
+            <option>{t('order.recentAddress')}</option>
           </select>
           <form>
-            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder='Postal Code *' label='Postal Code' onChange={addressOnChangeHandler} />
-            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder='Delivery Address *' label='Delivery Address' onChange={addressOnChangeHandler} />
+            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} label='Postal Code' onChange={addressOnChangeHandler} />
+            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} label='Delivery Address' onChange={addressOnChangeHandler} />
           </form>
-          <button className='applyAddress' onClick={confirmAddressHandler} >Confirm above address</button>
+          <button className='applyAddress' onClick={confirmAddressHandler} >{t('order.confirmAddress')}</button>
         </div>
         
         <div className='confirmAddress'>
-          <div className='confirmTitle'>Confirm Delivery Address</div>
+          <div className='confirmTitle'>{t('order.confirmDeliveryAddress')}</div>
           <div className='confirmText'>{confirmAddress}</div>
         </div>
         
         <div className='contactInfo'>
-          <div className='contactNumber'>Contact Number * </div>
+          <div className='contactNumber'>{t('order.contact')}</div>
           <form>
-            <input className='contact' type='number' name='contact' placeholder='Contact Number *' label='Contact Number' />
+            <input className='contact' type='number' name='contact' placeholder={t('order.contact')} label='Contact Number' />
           </form>
         </div>
 
       </div>
 
       {/* payment */}
-      <button className='paymentBtn'>Pay</button>
+      <button className='paymentBtn'>{t('order.pay')}</button>
 
     </div>
   )

@@ -146,5 +146,13 @@
   "cart.menuPrice": "菜单价格",
   "cart.delivery": "快递费",
   "cart.total": "总价",
-  "cart.minimumAlert": "最低订购价格为"
+  "cart.minimumAlert": "最低订购价格为",
+  "order.deliveryInformation": "配送信息",
+  "order.deliveryAddress": "邮寄地址 *",
+  "order.recentAddress": "最近地址",
+  "order.postalCode": "邮政编码 *",
+  "order.confirmAddress": "确认以上地址",
+  "order.confirmDeliveryAddress": "Confirm Delivery Address",
+  "order.contact": "联系电话 * ",
+  "order.pay": "工资"
 }
