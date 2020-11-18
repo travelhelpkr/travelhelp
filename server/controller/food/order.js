@@ -52,7 +52,7 @@ module.exports = {
     
   },
   
-  show: async (req, res) => {
+  showAddress: async (req, res) => {
     
     try {
       const user_id = req.params.id;
