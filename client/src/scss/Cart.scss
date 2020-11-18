@@ -202,9 +202,8 @@
     }
     .deliveryInfo {
       width: 60em;
-      margin: 40px auto 20px;
+      margin: 40px auto 120px;
       text-align: center;
-      border-bottom: 1px solid #ebebeb;
       .deliveryHeader {
         background-color: #f6f6f8;
         padding: 10px 0;
@@ -280,49 +279,60 @@
           text-align: left;
           font-size: 0.9em;
           margin-top: 5px;
-          height: 2.4em;
-          .arrow {
-            padding-right: 8px;
-            font-size: 1.1em;
-            float: left;
+          height: 1.8em;
+        }
+      }
+      .blank {
+        background-color: #f6f6f8;
+        padding: 5px 0;
+        font-size: 1em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 20px;
+      }
+      .paymentBtn {
+        width: 15em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          opacity: 85%;
+          font-weight: 600;
+        }
+      }
+      .successPaymentAlert {
+        padding-top: 13px;
+        color: rgb(5, 202, 71);
+        font-size: 1em;
+        width: 19em;
+        margin: auto;
+        font-weight: 500;
+        .iconText {
+          width: 12em;
+          margin: 0 auto 3px;
+          .checkIcon {
+            margin: auto;
+            .MuiSvgIcon-root {
+              font-size: 1.2em;
+              float: left;
+            }
+          }
+          .checkText1 {
+            margin: auto;
           }
         }
-        .postTalText {
-          height: 1.5em;
+        .checkText2 {
+          width: 19em;
+          margin: auto;
         }
       }
-    }
-    .paymentBtn {
-      width: 15em;
-      margin-bottom: 10em;
-      padding: 10px 0;
-      border-radius: 4px;
-      font-size: 1em;
-      color: white;
-      background-color:  rgb(1, 1, 37);
-      &:hover {
-        cursor: pointer;
-        opacity: 85%;
-        font-weight: 600;
+      .none {
+        display: none;
       }
-    }
-    .successPaymentAlert {
-      padding-top: 13px;
-      color: rgb(5, 202, 71);
-      font-size: 1em;
-      width: 16.5em;
-      margin: auto;
-      font-weight: 500;
-      .MuiSvgIcon-root {
-        font-size: 1.2em;
-        float: left;
-      }
-      .checkText {
-        width: 16.5em;
-      }
-    }
-    .none {
-      display: none;
     }
   } 
 }
@@ -526,9 +536,8 @@
     }
     .deliveryInfo {
       width: 55em;
-      margin: 40px auto 20px;
+      margin: 40px auto 120px;
       text-align: center;
-      border-bottom: 1px solid #ebebeb;
       .deliveryHeader {
         background-color: #f6f6f8;
         padding: 10px 0;
@@ -604,21 +613,21 @@
           text-align: left;
           font-size: 0.85em;
           margin-top: 5px;
-          height: 2.4em;
-          .arrow {
-            padding-right: 8px;
-            font-size: 1.1em;
-            float: left;
-          }
-        }
-        .postTalText {
-          height: 1.5em;
+          height: 1.8em;
         }
       }
     }
+    .blank {
+      background-color: #f6f6f8;
+      padding: 2px 0;
+      font-size: 1em;
+      font-weight: 600;
+      border-top: 1px solid #ebebeb;
+      border-bottom: 1px solid #ebebeb;
+      margin-bottom: 20px;
+    }
     .paymentBtn {
-      width: 13em;
-      margin-bottom: 8em;
+      width: 15em;
       padding: 10px 0;
       border-radius: 4px;
       font-size: 0.9em;
@@ -629,6 +638,35 @@
         opacity: 85%;
         font-weight: 600;
       }
+    }
+    .successPaymentAlert {
+      padding-top: 13px;
+      color: rgb(5, 202, 71);
+      font-size: 0.95em;
+      width: 18em;
+      margin: auto;
+      font-weight: 500;
+      .iconText {
+        width: 12em;
+        margin: 0 auto 3px;
+        .checkIcon {
+          margin: auto;
+          .MuiSvgIcon-root {
+            font-size: 1.2em;
+            float: left;
+          }
+        }
+        .checkText1 {
+          margin: auto;
+        }
+      }
+      .checkText2 {
+        width: 18em;
+        margin: auto;
+      }
+    }
+    .none {
+      display: none;
     }
   } 
 }
@@ -832,9 +870,8 @@
     }
     .deliveryInfo {
       width: 44em;
-      margin: 40px auto 20px;
+      margin: 40px auto 120px;
       text-align: center;
-      border-bottom: 1px solid #ebebeb;
       .deliveryHeader {
         background-color: #f6f6f8;
         padding: 10px 0;
@@ -910,21 +947,21 @@
           text-align: left;
           font-size: 0.85em;
           margin-top: 5px;
-          height: 2.4em;
-          .arrow {
-            padding-right: 8px;
-            font-size: 1.1em;
-            float: left;
-          }
-        }
-        .postTalText {
-          height: 1.5em;
+          height: 1.8em;
         }
       }
     }
+    .blank {
+      background-color: #f6f6f8;
+      padding: 2px 0;
+      font-size: 1em;
+      font-weight: 600;
+      border-top: 1px solid #ebebeb;
+      border-bottom: 1px solid #ebebeb;
+      margin-bottom: 20px;
+    }
     .paymentBtn {
-      width: 13em;
-      margin-bottom: 8em;
+      width: 15em;
       padding: 10px 0;
       border-radius: 4px;
       font-size: 0.9em;
@@ -935,6 +972,35 @@
         opacity: 85%;
         font-weight: 600;
       }
+    }
+    .successPaymentAlert {
+      padding-top: 13px;
+      color: rgb(5, 202, 71);
+      font-size: 0.9em;
+      width: 18em;
+      margin: auto;
+      font-weight: 500;
+      .iconText {
+        width: 12em;
+        margin: 0 auto 3px;
+        .checkIcon {
+          margin: auto;
+          .MuiSvgIcon-root {
+            font-size: 1.2em;
+            float: left;
+          }
+        }
+        .checkText1 {
+          margin: auto;
+        }
+      }
+      .checkText2 {
+        width: 18em;
+        margin: auto;
+      }
+    }
+    .none {
+      display: none;
     }
   }
 }
@@ -1146,9 +1212,8 @@
     }
     .deliveryInfo {
       width: 22em;
-      margin: 20px auto 20px;
+      margin: 20px auto 50px;
       text-align: center;
-      border-bottom: 1px solid #ebebeb;
       .deliveryHeader {
         background-color: #f6f6f8;
         padding: 8px 0;
@@ -1224,21 +1289,21 @@
           text-align: left;
           font-size: 0.8em;
           margin-top: 5px;
-          height: 2.4em;
-          .arrow {
-            padding-right: 8px;
-            font-size: 1.1em;
-            float: left;
-          }
-        }
-        .postTalText {
-          height: 1.5em;
+          height: 1.8em;
         }
       }
     }
+    .blank {
+      background-color: #f6f6f8;
+      padding: 2px 0;
+      font-size: 1em;
+      font-weight: 600;
+      border-top: 1px solid #ebebeb;
+      border-bottom: 1px solid #ebebeb;
+      margin-bottom: 20px;
+    }
     .paymentBtn {
-      width: 13em;
-      margin-bottom: 1em;
+      width: 15em;
       padding: 8px 0;
       border-radius: 4px;
       font-size: 0.9em;
@@ -1249,6 +1314,35 @@
         opacity: 85%;
         font-weight: 600;
       }
+    }
+    .successPaymentAlert {
+      padding-top: 10px;
+      color: rgb(5, 202, 71);
+      font-size: 0.85em;
+      width: 18em;
+      margin: auto;
+      font-weight: 500;
+      .iconText {
+        width: 12em;
+        margin: 0 auto 3px;
+        .checkIcon {
+          margin: auto;
+          .MuiSvgIcon-root {
+            font-size: 1.2em;
+            float: left;
+          }
+        }
+        .checkText1 {
+          margin: auto;
+        }
+      }
+      .checkText2 {
+        width: 18em;
+        margin: auto;
+      }
+    }
+    .none {
+      display: none;
     }
   }
 }
