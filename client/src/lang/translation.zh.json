@@ -150,6 +150,7 @@
   "cart.delivery": "快递费",
   "cart.total": "总价",
   "cart.minimumAlert": "最低订购价格为",
+  "cart.empty": "购物车中没有菜单。",
   "order.delivery": "交货",
   "order.deliveryInformation": "配送信息",
   "order.deliveryAddress": "邮寄地址 *",
@@ -159,5 +160,7 @@
   "order.confirmDeliveryAddress": "确认交货信息",
   "order.contact": "联系电话 * ",
   "order.pay": "工资",
-  "order.alert": "填写以上所有信息。"
+  "order.alert": "填写以上所有信息。",
+  "order.completed": "付款完成！",
+  "order.redirect": "3秒后，移至“订购页面”。"
 }

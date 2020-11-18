@@ -150,6 +150,7 @@
   "cart.delivery": "Delivery Fee",
   "cart.total": "Total Price",
   "cart.minimumAlert": "Minimum Order Price is",
+  "cart.empty": "No menu in the Cart.",
   "order.delivery": "Delivery",
   "order.deliveryInformation": "Delivery Information",
   "order.deliveryAddress": "Delivery Address *",
@@ -159,5 +160,7 @@
   "order.confirmDeliveryAddress": "Confirm Delivery Information",
   "order.contact": "Contact Number * ",
   "order.pay": "Pay",
-  "order.alert": "Fill all the above information."
+  "order.alert": "Fill all the above information.",
+  "order.completed": "Payment Completed!",
+  "order.redirect": "After 3 seconds, move to Order Page."
 }

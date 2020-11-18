@@ -20,9 +20,6 @@ function Cart(props) {
   const [restaurant, setRestaurant] = useState('');
   const [sum, setSum] = useState('');
 
-  // empty cart alert
-  const [emptyCart, setEmptyCart] = useState(false);
-
   // delivery Address information
   const [inputPostalCode, setInputPostalCode] = useState('');
   const [inputAddress, setInputAddress] = useState('');
@@ -33,8 +30,14 @@ function Cart(props) {
   // alert delivery information
   const [wrongAddress, setWrongAddress] = useState(false);
 
+  // alert minimum price
+  const [minimumPrice, setMinimumPrice] = useState(false);
+
   // payment success alert
   const [successAlert, setSuccessAlert] = useState(false);
+
+  // empty cart alert
+  const [emptyCart, setEmptyCart] = useState(false);
 
   // get cart information
   useEffect(() => {
@@ -82,29 +85,33 @@ function Cart(props) {
   // pay btn handler
   const payBtnHandler = (e) => {
     e.preventDefault();
-    if(addressId) {
-      axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
-      address_book_id: addressId
-      })
-      .then(() => {
-        setSuccessAlert(true);
-        setTimeout(function(){ window.location = '/user/mypage' }, 5000);
-      })
-    } else {
-      if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
-        setWrongAddress(false);
+    if(sum >= restaurant.minimum_price) {
+      if(addressId) {
         axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
-          address: inputPostalCode,
-          postal_code: inputAddress,
-          contact: inputContact
+        address_book_id: addressId
         })
         .then(() => {
           setSuccessAlert(true);
           setTimeout(function(){ window.location = '/user/mypage' }, 5000);
         })
       } else {
-        setWrongAddress(true);
+        if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
+          setWrongAddress(false);
+          axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
+            address: inputPostalCode,
+            postal_code: inputAddress,
+            contact: inputContact
+          })
+          .then(() => {
+            setSuccessAlert(true);
+            setTimeout(function(){ window.location = '/user/mypage' }, 5000);
+          })
+        } else {
+          setWrongAddress(true);
+        }
       }
+    } else {
+      setMinimumPrice(true);
     }
   }
 
@@ -240,7 +247,7 @@ function Cart(props) {
             <option>{t('order.recentAddress')}</option>
           </select>
 
-          <div className='or'>OR</div>
+          <div className='or'>{t('signin.or')}</div>
           
           {/* input address form */}
           <form className='inputForm'>
@@ -263,16 +270,20 @@ function Cart(props) {
         <div className={successAlert? 'successPaymentAlert' : 'none'}>
           <div className='iconText'>
             <div className='checkIcon'><CheckCircleRoundedIcon /></div>
-            <div className='checkText1'>Payment Completed!</div>
+            <div className='checkText1'>{t('order.completed')}</div>
           </div>
-          <div className='checkText2'>After 3 seconds, move to Order Page.</div>
+          <div className='checkText2'>{t('order.redirect')}</div>
+        </div>
+
+        <div className={minimumPrice ? 'minimumAlert' : 'none'}>
+          <span>{t('cart.minimumAlert')} <strong>{new Intl.NumberFormat().format(Number(restaurant.minimum_price))}₩</strong></span>
         </div>
 
       </div>
       
       {/* alert when cart is empty */}
       <div className={emptyCart? 'emptyAlert' : 'none'}>
-        <span className='noMenu'>No menu in the Cart.</span>
+        <span className='noMenu'>{t('cart.empty')}</span>
         <span className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></span>
       </div>
 
