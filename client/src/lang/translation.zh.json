@@ -150,6 +150,7 @@
   "cart.delivery": "快递费",
   "cart.total": "总价",
   "cart.minimumAlert": "最低订购价格为",
+  "order.delivery": "交货",
   "order.deliveryInformation": "配送信息",
   "order.deliveryAddress": "邮寄地址 *",
   "order.recentAddress": "最近地址",

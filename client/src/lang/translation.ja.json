@@ -150,6 +150,7 @@
   "cart.delivery": "配送料",
   "cart.total": "合計金額",
   "cart.minimumAlert": "最低注文価格は",
+  "order.delivery": "配達",
   "order.deliveryInformation": "配送に関する情報",
   "order.deliveryAddress": "配送先住所 *",
   "order.recentAddress": "最近の住所",
