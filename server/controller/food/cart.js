@@ -14,7 +14,8 @@ module.exports = {
           model: Order,
           through: { attributes: [] },
           where: {
-            user_id: user_id
+            user_id: user_id,
+            is_cart: true
           }
         }
       });
@@ -87,24 +88,25 @@ module.exports = {
 
       const checkCartStatus = await Order.findOne({
         attributes: [ 'is_cart' ],
-        where: { user_id: user_id },
+        where: { user_id: user_id, is_cart: true },
         raw: true
       });
 
       // check empty cart. if empty, return just message.
-      if (!checkCartStatus || !checkCartStatus.is_cart) {
+      if (!checkCartStatus) {
         return res.status(200).send({ message: 'empty cart' });
       }
 
       // show menus only in case the user & cart exists on DB
-      if (user_id && checkCartStatus.is_cart) {
+      if (user_id && checkCartStatus) {
         const listCartArr = await Order_menu.findAll({
           attributes: [ 'quantity' ],
           include: [{
             model: Order,
             attributes: [ 'id' ],
             where: {
-              user_id: user_id
+              user_id: user_id,
+              is_cart: true
             }
           },{
             model: Menu,
