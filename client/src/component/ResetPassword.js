@@ -62,7 +62,7 @@ function ResetPassword(props) {
       <h1 className='h1'>{t('resetPassword.btn')}</h1>
 
       <div className='contentUserInfo'>
-        <div className="form">
+        <div className='form'>
           <div className='emailAddressTitle'>
             <span>{t('resetPassword.email')}</span>
             <span className='userEmailAddress'>{email}</span>

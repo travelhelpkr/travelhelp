@@ -48,11 +48,11 @@ function FoodNoodle(props) {
       }
     })
     .then(res => {
-      console.log("res:", res);
+      console.log('res:', res);
       const menuResult = res.data.menu;
       const restaurantResult = res.data.restaurant;
-      console.log("menuResult:", menuResult);
-      console.log("restaurantResult:", restaurantResult);
+      console.log('menuResult:', menuResult);
+      console.log('restaurantResult:', restaurantResult);
       setMenu(menuResult);
       setInformation(restaurantResult);
     })
@@ -72,7 +72,7 @@ function FoodNoodle(props) {
   <div>
     {/* cart icon */}
     <div className='cartIconNoodle'>
-      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite} alt='cartIconBtn'/></button>
+      <button className='cartIconBtn' onClick={checkSigninStatus}><img src={cartWhite} alt='cartIconBtn'/></button>
     </div>
 
     {/* choose restaurants btn */}

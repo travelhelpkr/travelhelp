@@ -46,11 +46,11 @@ function FoodChicken(props) {
       }
     })
     .then(res => {
-      console.log("res:", res);
+      console.log('res:', res);
       const menuResult = res.data.menu;
       const restaurantResult = res.data.restaurant;
-      console.log("menuResult:", menuResult);
-      console.log("restaurantResult:", restaurantResult);
+      console.log('menuResult:', menuResult);
+      console.log('restaurantResult:', restaurantResult);
       setMenu(menuResult);
       setInformation(restaurantResult);
     })
@@ -70,7 +70,7 @@ function FoodChicken(props) {
   <div>
     {/* cart icon */}
     <div className='cartIcon'>
-      <button className="cartIconBtn" onClick={checkSigninStatus}><img src={cartWhite} alt='cartIconBtn'/></button>
+      <button className='cartIconBtn' onClick={checkSigninStatus}><img src={cartWhite} alt='cartIconBtn'/></button>
     </div>
 
     {/* choose restaurants btn */}
@@ -134,9 +134,9 @@ function FoodChicken(props) {
       <ul>
         {
           menu && menu.map(menu => {
-            console.log("options:", menu.Options[0].name_en);
+            console.log('options:', menu.Options[0].name_en);
             return(
-              <div key={menu.id} className="menuLi" onClick={e => {
+              <div key={menu.id} className='menuLi' onClick={e => {
                 e.preventDefault();
                 setModal(!isOpen);
                 setMenuId(menu.id);
@@ -178,7 +178,7 @@ function FoodChicken(props) {
               }}>
                 <li key={menu.id}>
                   <img src={menu.image} alt='menuImage'/>
-                  <div className="menuName">
+                  <div className='menuName'>
                     {
                       window.localStorage.getItem('i18nextLng') === 'en'
                       ? menu.name_en
@@ -188,8 +188,8 @@ function FoodChicken(props) {
                       : menu.name_ja
                     }
                   </div>
-                  <div className="menuPrice">{menu.price.toLocaleString()}₩</div>
-                  <button className="addCartBtn"><img src={cartNavy} alt='cartIcon'/></button>
+                  <div className='menuPrice'>{menu.price.toLocaleString()}₩</div>
+                  <button className='addCartBtn'><img src={cartNavy} alt='cartIcon'/></button>
                 </li>
               </div>
             )
