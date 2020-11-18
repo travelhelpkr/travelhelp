@@ -34,12 +34,14 @@ function Cart(props) {
   useEffect(() => {
     axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
     .then(res => {
-      setCart(res.data.cart);
-      setOrderId(res.data.cart[0].Order.id);
-      setRestaurant(res.data.restaurant);
-      const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
-      const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
-      setSum(menuPriceSum);
+      if(res.data.cart) {
+        setCart(res.data.cart);
+        setOrderId(res.data.cart[0].Order.id);
+        setRestaurant(res.data.restaurant);
+        const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
+        const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
+        setSum(menuPriceSum);
+      }
     })
   },[])
 
