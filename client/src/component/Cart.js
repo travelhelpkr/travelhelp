@@ -12,9 +12,6 @@ function Cart(props) {
 
   // change language handler
   const { t } = useTranslation();
-
-  // choose the quantity of menu
-  const [quantity, setQuantity] = useState('');
   
   // cart information
   const [cart, setCart] = useState('');
@@ -25,7 +22,13 @@ function Cart(props) {
   // delivery Address information
   const [inputPostcalCode, setInputPostalCode] = useState('');
   const [inputAddress, setInputAddress] = useState('');
+  const [inputContact, setInputContact] = useState('');
+  const [confirmPostcalCode, setConfirmPostcalCode] = useState('');
   const [confirmAddress, setConfirmAddress] = useState('');
+  const [confirmContact, setConfirmContact] = useState('');
+
+  // alert delivery information
+  const [wrongAddress, setWrongAddress] = useState(false);
 
   // get cart information
   useEffect(() => {
@@ -34,7 +37,6 @@ function Cart(props) {
       setCart(res.data.cart);
       setOrderId(res.data.cart[0].Order.id);
       setRestaurant(res.data.restaurant);
-      console.log('restaurant:', res.data.restaurant);
       const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
       const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
       setSum(menuPriceSum);
@@ -52,13 +54,22 @@ function Cart(props) {
       setInputPostalCode(e.target.value);
     } else if(e.target.name === 'address') {
       setInputAddress(e.target.value);
+    } else if(e.target.name === 'contact') {
+      setInputContact(e.target.value);
     }
   }
 
   // confirm address btn handler
   const confirmAddressHandler = (e) => {
     e.preventDefault();
-    setConfirmAddress(inputPostcalCode + ') ' + ' ' + inputAddress);
+    if(inputPostcalCode !== '' && inputAddress !== '' && inputContact !== '') {
+      setConfirmPostcalCode(inputPostcalCode);
+      setConfirmAddress(inputAddress);
+      setConfirmContact(inputContact);
+      setWrongAddress(false);
+    } else {
+      setWrongAddress(true);
+    }
   }
 
   return(
@@ -122,7 +133,6 @@ function Cart(props) {
                       quantity: e.target.value
                     })
                     .then(() => {
-                      setQuantity(e.target.value);
                       window.location = '/user/cart';
                     })
                   }}>
@@ -176,7 +186,7 @@ function Cart(props) {
       <div className='deliveryInfo'>
         <div className='deliveryHeader'>{t('order.deliveryInformation')}</div>
         <div className='addressInput'>
-          <div className='address'>{t('order.deliveryAddress')}</div>
+          <div className='address'>{t('order.deliveryInformation')}</div>
           <select className='recentAddress' onChange={e => {
             setConfirmAddress(e.target.value);
           }}>
@@ -185,20 +195,19 @@ function Cart(props) {
           <form>
             <input className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} label='Postal Code' onChange={addressOnChangeHandler} />
             <input className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} label='Delivery Address' onChange={addressOnChangeHandler} />
+            <input className='inputaddress contact' type='number' name='contact' placeholder={t('order.contact')} label='Contact Number' onChange={addressOnChangeHandler} />
           </form>
+          <div className={wrongAddress ? 'wrongAddressAlert' : 'none'}>
+            <div>{t('order.alert')}</div>
+          </div>
           <button className='applyAddress' onClick={confirmAddressHandler} >{t('order.confirmAddress')}</button>
         </div>
         
         <div className='confirmAddress'>
           <div className='confirmTitle'>{t('order.confirmDeliveryAddress')}</div>
-          <div className='confirmText'>{confirmAddress}</div>
-        </div>
-        
-        <div className='contactInfo'>
-          <div className='contactNumber'>{t('order.contact')}</div>
-          <form>
-            <input className='contact' type='number' name='contact' placeholder={t('order.contact')} label='Contact Number' />
-          </form>
+          <div className='confirmText postTalText'><div className='arrow'>☞</div><div classname='infoText'>{confirmPostcalCode}</div></div>
+          <div className='confirmText'><div className='arrow'>☞</div><div classname='infoText'>{confirmAddress}</div></div>
+          <div className='confirmText'><div className='arrow'>☞</div><div classname='infoText'>{confirmContact}</div></div>
         </div>
 
       </div>

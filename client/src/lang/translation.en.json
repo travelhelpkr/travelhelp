@@ -38,6 +38,9 @@
   "mypage.changePassword": "Change Password",
   "mypage.signout": "Sign Out",
   "mypage.orderHistoryTitle": "Order History",
+  "mypage.address": "Address",
+  "mypage.contact": "Contact",
+  "mypage.totalPrice": "Total Price",
   "luggage.title": "Luggage Keeping",
   "luggage.description1": "Please leave a heavy burden on us.",
   "luggage.description2": "All you have to do is travel with your hands freely.",
@@ -152,7 +155,8 @@
   "order.recentAddress": "Recent Address",
   "order.postalCode": "Postal Code *",
   "order.confirmAddress": "Confirm above address",
-  "order.confirmDeliveryAddress": "Confirm Delivery Address",
+  "order.confirmDeliveryAddress": "Confirm Delivery Information",
   "order.contact": "Contact Number * ",
-  "order.pay": "Pay"
+  "order.pay": "Pay",
+  "order.alert": "Fill all the above information."
 }

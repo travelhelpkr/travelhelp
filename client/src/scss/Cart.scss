@@ -216,7 +216,7 @@
       .addressInput {
         width: 32.7em;
         margin: 25px auto;
-        height: 9em;
+        height: 12em;
         .address {
           float: left;
           margin-bottom: 10px;
@@ -245,6 +245,13 @@
           border: 1px solid #ccc;
           border-radius: 4px;
         }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.95em;
+          width: 30em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
         .applyAddress {
           margin-top: 10px;
           padding: 5px 8px;
@@ -253,40 +260,35 @@
           border-radius: 4px;
           background-color:  #f6f6f8;
           font-weight: 500;
+          &:hover{
+            cursor: pointer;
+            font-weight: 600;
+          }
         }
       }
       .confirmAddress {
         width: 32.7em;
-        margin: 10px auto;
-        height: 4em;
+        margin: 30px auto;
+        height: 7em;
         .confirmTitle {
           text-align: left;
           font-size: 1em;
           font-weight: 600;
         }
         .confirmText {
+          padding-left: 10px;
           text-align: left;
           font-size: 0.9em;
           margin-top: 5px;
+          height: 2.4em;
+          .arrow {
+            padding-right: 8px;
+            font-size: 1.1em;
+            float: left;
+          }
         }
-      }
-      .contactInfo {
-        width: 32.7em;
-        margin: 10px auto;
-        height: 4.5em;
-        .contactNumber {
-          text-align: left;
-          font-size: 1em;
-          font-weight: 600;
-        }
-        .contact {
-          font-size: 0.9em;
-          margin-top: 8px;
-          display: block;
-          width: 35.3em;
-          padding: 8px 0 8px 12px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
+        .postTalText {
+          height: 1.5em;
         }
       }
     }
@@ -520,7 +522,7 @@
       .addressInput {
         width: 31em;
         margin: 25px auto;
-        height: 9em;
+        height: 11.5em;
         .address {
           float: left;
           margin-bottom: 10px;
@@ -549,6 +551,13 @@
           border: 1px solid #ccc;
           border-radius: 4px;
         }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.9em;
+          width: 30em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
         .applyAddress {
           margin-top: 10px;
           padding: 5px 8px;
@@ -557,40 +566,35 @@
           border-radius: 4px;
           background-color:  #f6f6f8;
           font-weight: 500;
+          &:hover{
+            cursor: pointer;
+            font-weight: 600;
+          }
         }
       }
       .confirmAddress {
         width: 31em;
         margin: 10px auto;
-        height: 4em;
+        height: 7em;
         .confirmTitle {
           text-align: left;
           font-size: 0.95em;
           font-weight: 600;
         }
         .confirmText {
+          padding-left: 10px;
           text-align: left;
           font-size: 0.85em;
           margin-top: 5px;
+          height: 2.4em;
+          .arrow {
+            padding-right: 8px;
+            font-size: 1.1em;
+            float: left;
+          }
         }
-      }
-      .contactInfo {
-        width: 31em;
-        margin: 10px auto;
-        height: 4.5em;
-        .contactNumber {
-          text-align: left;
-          font-size: 0.95em;
-          font-weight: 600;
-        }
-        .contact {
-          font-size: 0.85em;
-          margin-top: 8px;
-          display: block;
-          width: 35.3em;
-          padding: 8px 0 8px 12px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
+        .postTalText {
+          height: 1.5em;
         }
       }
     }
@@ -824,7 +828,7 @@
       .addressInput {
         width: 31em;
         margin: 25px auto;
-        height: 9em;
+        height: 11.5em;
         .address {
           float: left;
           margin-bottom: 10px;
@@ -853,6 +857,13 @@
           border: 1px solid #ccc;
           border-radius: 4px;
         }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.8em;
+          width: 30em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
         .applyAddress {
           margin-top: 10px;
           padding: 5px 8px;
@@ -861,40 +872,35 @@
           border-radius: 4px;
           background-color:  #f6f6f8;
           font-weight: 500;
+          &:hover{
+            cursor: pointer;
+            font-weight: 600;
+          }
         }
       }
       .confirmAddress {
         width: 31em;
         margin: 10px auto;
-        height: 4em;
+        height: 7em;
         .confirmTitle {
           text-align: left;
           font-size: 0.95em;
           font-weight: 600;
         }
         .confirmText {
+          padding-left: 10px;
           text-align: left;
           font-size: 0.85em;
           margin-top: 5px;
+          height: 2.4em;
+          .arrow {
+            padding-right: 8px;
+            font-size: 1.1em;
+            float: left;
+          }
         }
-      }
-      .contactInfo {
-        width: 31em;
-        margin: 10px auto;
-        height: 4.5em;
-        .contactNumber {
-          text-align: left;
-          font-size: 0.95em;
-          font-weight: 600;
-        }
-        .contact {
-          font-size: 0.85em;
-          margin-top: 8px;
-          display: block;
-          width: 35.3em;
-          padding: 8px 0 8px 12px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
+        .postTalText {
+          height: 1.5em;
         }
       }
     }
@@ -1136,7 +1142,7 @@
       .addressInput {
         width: 22em;
         margin: 15px auto;
-        height: 8em;
+        height: 10.5em;
         .address {
           float: left;
           margin-bottom: 10px;
@@ -1165,6 +1171,13 @@
           border: 1px solid #ccc;
           border-radius: 4px;
         }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.8em;
+          width: 22em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
         .applyAddress {
           margin-top: 10px;
           padding: 5px 8px;
@@ -1173,40 +1186,35 @@
           border-radius: 4px;
           background-color:  #f6f6f8;
           font-weight: 500;
+          &:hover{
+            cursor: pointer;
+            font-weight: 600;
+          }
         }
       }
       .confirmAddress {
         width: 22em;
         margin: 10px auto;
-        height: 4em;
+        height: 6em;
         .confirmTitle {
           text-align: left;
           font-size: 0.9em;
           font-weight: 600;
         }
         .confirmText {
+          padding-left: 5px;
           text-align: left;
           font-size: 0.8em;
           margin-top: 5px;
+          height: 2.4em;
+          .arrow {
+            padding-right: 8px;
+            font-size: 1.1em;
+            float: left;
+          }
         }
-      }
-      .contactInfo {
-        width: 22em;
-        margin: 10px auto;
-        height: 3.5em;
-        .contactNumber {
-          text-align: left;
-          font-size: 0.9em;
-          font-weight: 600;
-        }
-        .contact {
-          font-size: 0.8em;
-          margin-top: 8px;
-          display: block;
-          width: 26.8em;
-          padding: 6px 0 6px 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
+        .postTalText {
+          height: 1.5em;
         }
       }
     }

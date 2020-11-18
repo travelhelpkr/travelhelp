@@ -38,6 +38,9 @@
   "mypage.changePassword": "更改密码",
   "mypage.signout": "签出",
   "mypage.orderHistoryTitle": "秩序历史",
+  "mypage.address": "地址",
+  "mypage.contact": "联系",
+  "mypage.totalPrice": "总价",
   "luggage.title": "行李保管",
   "luggage.description1": "请给我们留下沉重的负担。",
   "luggage.description2": "您所要做的就是双手自由旅行。",
@@ -152,7 +155,8 @@
   "order.recentAddress": "最近地址",
   "order.postalCode": "邮政编码 *",
   "order.confirmAddress": "确认以上地址",
-  "order.confirmDeliveryAddress": "Confirm Delivery Address",
+  "order.confirmDeliveryAddress": "确认交货信息",
   "order.contact": "联系电话 * ",
-  "order.pay": "工资"
+  "order.pay": "工资",
+  "order.alert": "填写以上所有信息。"
 }
