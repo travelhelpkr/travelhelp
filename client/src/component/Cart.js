@@ -20,6 +20,9 @@ function Cart(props) {
   const [restaurant, setRestaurant] = useState('');
   const [sum, setSum] = useState('');
 
+  // empty cart alert
+  const [emptyCart, setEmptyCart] = useState(false);
+
   // delivery Address information
   const [inputPostalCode, setInputPostalCode] = useState('');
   const [inputAddress, setInputAddress] = useState('');
@@ -39,12 +42,15 @@ function Cart(props) {
     axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
     .then(res => {
       if(res.data.cart) {
+        setEmptyCart(false);
         setCart(res.data.cart);
         setOrderId(res.data.cart[0].Order.id);
         setRestaurant(res.data.restaurant);
         const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
         const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
         setSum(menuPriceSum);
+      } else {
+        setEmptyCart(true);
       }
     })
   },[])
@@ -101,7 +107,7 @@ function Cart(props) {
       </div>
 
       {/* cart table */}
-      <div className='cartTable'>
+      <div className={emptyCart? 'none' : 'cartTable'}>
 
         {/* table head */}
         <div className='tableHead'>
@@ -203,7 +209,7 @@ function Cart(props) {
       </div>
 
       {/* delivery address */}
-      <div className='deliveryInfo'>
+      <div className={emptyCart? 'none' : 'deliveryInfo'}>
         <div className='deliveryHeader'>{t('order.deliveryInformation')}</div>
         <div className='addressInput'>
           <div className='address'>{t('order.deliveryInformation')}</div>
@@ -242,6 +248,11 @@ function Cart(props) {
           <div className='checkText2'>After 3 seconds, move to Order Page.</div>
         </div>
 
+      </div>
+
+      <div className={emptyCart? 'emptyAlert' : 'none'}>
+        <span className='noMenu'>No menu in the Cart.</span>
+        <span className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></span>
       </div>
 
     </div>
