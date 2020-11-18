@@ -77,6 +77,61 @@
         padding-bottom: 30px;
         border-bottom: 1px solid #ebebeb;
       }
+      .orderHistoryBox {
+        margin: 15px auto;
+        width: 80%;
+        .orderLists {
+          background-color: rgba(255, 255, 255, 0.5);
+          padding: 15px;
+          border: 1px solid #ebebeb;
+          border-radius: 4px;
+          .orderlist {
+            list-style: none;
+            .restaurantName {
+              float: left;
+              font-size: 1.1em;
+              font-weight: 600;
+              padding-left: 20px;
+              margin-bottom: 20px;
+            }
+            .purchasedAt {
+              float: right;
+              font-size: 0.9em;
+              color: gray;
+              padding-right: 20px;
+            }
+            .menuLists {
+              clear: both;
+              .menuList {
+                list-style: none;
+                text-align: left;
+                .menuName {
+                  font-size: 0.95em;
+                  font-weight: 500;
+                }
+                .menuOption {
+                  font-size: 0.9em;
+                  margin-bottom: 10px;
+                  font-weight: 300;
+                }
+              }
+            }
+            .deliveryInfomation {
+              text-align: left;
+              padding: 5px 0 0 20px;
+              .title {
+                font-size: 0.9em;
+                font-weight: 600;
+              }
+              .text {
+                font-size: 0.9em;
+                font-weight: 350;
+                padding-left: 20px;
+              }
+            }
+          }
+        }
+      }
     }
   } 
 }

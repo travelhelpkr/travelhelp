@@ -62,6 +62,41 @@ function Mypage(props) {
       {/* order info */}
       <div className='contentOrderInfo'>
         <div className='orderHistoryTitle'>{t('mypage.orderHistoryTitle')}</div>
+
+        {/* order history */}
+        <div className='orderHistoryBox'>
+          {/* order lists */}
+          <ul className='orderLists'>
+            <li className='orderlist'>
+              <div className='restaurantName'>NeNe Chicken</div>
+              <div className='purchasedAt'>2020-11-17 13:45</div>
+              {/* menu lists */}
+              <ul className='menuLists'>
+                <li className='menuList'>
+                  <div className='menuName'>후라이드치킨</div>
+                  <div className='menuOption'>- 순살, 1ea</div>
+                </li>
+                <li className='menuList'>
+                  <div className='menuName'>후라이드반 양념반</div>
+                  <div className='menuOption'>- 뼈, 2ea</div>
+                </li>
+              </ul>
+              <div className='deliveryInfomation'>
+                <span className='title'>{t('mypage.address')}</span>
+                <span className='text'>03995) 서울시 마포구 양화로 175, 마젤란 309호</span>
+              </div>
+              <div className='deliveryInfomation'>
+                <span className='title'>{t('mypage.contact')}</span>
+                <span className='text'>01012345678</span>
+              </div>
+              <div className='deliveryInfomation'>
+                <span className='title'>{t('mypage.totalPrice')}</span>
+                <span className='text'>65,000₩</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
   )

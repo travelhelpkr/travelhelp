@@ -38,6 +38,9 @@
   "mypage.changePassword": "更改密码",
   "mypage.signout": "ログアウト",
   "mypage.orderHistoryTitle": "注文履歴",
+  "mypage.address": "住所",
+  "mypage.contact": "連絡先",
+  "mypage.totalPrice": "合計金額",
   "luggage.title": "荷物預かり",
   "luggage.description1": "重荷をお任せください。",
   "luggage.description2": "あなたがしなければならないのは、手で自由に旅行することです。",
@@ -152,7 +155,8 @@
   "order.recentAddress": "最近の住所",
   "order.postalCode": "郵便番号 *",
   "order.confirmAddress": "住所を確認する",
-  "order.confirmDeliveryAddress": "配送先住所の確認",
+  "order.confirmDeliveryAddress": "配送情報の確認",
   "order.contact": "連絡先番号 * ",
-  "order.pay": "支払う"
+  "order.pay": "支払う",
+  "order.alert": "上記の情報をすべて入力してください。"
 }
