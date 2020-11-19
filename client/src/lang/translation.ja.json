@@ -162,5 +162,7 @@
   "order.pay": "支払う",
   "order.alert": "上記の情報をすべて入力してください。",
   "order.completed": "お支払い完了！",
-  "order.redirect": "3秒後、注文ページに移動します。"
+  "order.redirect": "3秒後、注文ページに移動します。",
+  "order.choose": "最近の住所を選択してください",
+  "order.myself": "我自己输入地址"
 }

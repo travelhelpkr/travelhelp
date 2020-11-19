@@ -162,5 +162,7 @@
   "order.pay": "Pay",
   "order.alert": "Fill all the above information.",
   "order.completed": "Payment Completed!",
-  "order.redirect": "After 3 seconds, move to Order Page."
+  "order.redirect": "After 3 seconds, move to Order Page.",
+  "order.choose": "Choose recent address",
+  "order.myself": "Enter address myself"
 }

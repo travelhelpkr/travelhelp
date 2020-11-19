@@ -39,6 +39,9 @@ function Cart(props) {
   // empty cart alert
   const [emptyCart, setEmptyCart] = useState(false);
 
+  // delivery method alert
+  const [selectAddress, setSelectAddress] = useState(false);
+
   // get cart information
   useEffect(() => {
     axios.get(`http://localhost:3355/foods/cart/${window.sessionStorage.getItem('id')}`)
@@ -75,10 +78,13 @@ function Cart(props) {
   const addressOnChangeHandler = (e) => {
     if(e.target.name === 'postalCode') {
       setInputPostalCode(e.target.value);
+      setSelectAddress(false);
     } else if(e.target.name === 'address') {
       setInputAddress(e.target.value);
+      setSelectAddress(false);
     } else if(e.target.name === 'contact') {
       setInputContact(e.target.value);
+      setSelectAddress(false);
     }
   }
 
@@ -232,9 +238,12 @@ function Cart(props) {
           <div className='address'>{t('order.deliveryInformation')}</div>
 
           {/* select recent address */}
-          <select className='recentAddress' onChange={e => {
+
+          <button className={selectAddress? 'none' : 'choose'} onClick={() => setSelectAddress(true)}>{t('order.choose')}</button>
+          <select className={selectAddress? 'recentAddress' : 'none' } onChange={e => {
             console.log("e.target.value", e.target.value)
             setAddressId(e.target.value);
+            setSelectAddress(true);
           }}>
             { addressArray && addressArray.map(address => {
                 return(
@@ -250,11 +259,13 @@ function Cart(props) {
           <div className='or'>{t('signin.or')}</div>
           
           {/* input address form */}
-          <form className='inputForm'>
+          <form className={selectAddress? 'none' : 'inputForm'} >
             <input className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} label='Postal Code' onChange={addressOnChangeHandler} />
             <input className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} label='Delivery Address' onChange={addressOnChangeHandler} />
             <input className='inputaddress contact' type='number' name='contact' placeholder={t('order.contact')} label='Contact Number' onChange={addressOnChangeHandler} />
           </form>
+
+          <button className={selectAddress? 'myself' : 'none'} onClick={() => setSelectAddress(false)}>{t('order.myself')}</button>
           
           {/* alert when input is empty */}
           <div className={wrongAddress ? 'wrongAddressAlert' : 'none'}>

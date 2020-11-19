@@ -162,5 +162,7 @@
   "order.pay": "工资",
   "order.alert": "填写以上所有信息。",
   "order.completed": "付款完成！",
-  "order.redirect": "3秒后，移至“订购页面”。"
+  "order.redirect": "3秒后，移至“订购页面”。",
+  "order.choose": "选择最近的地址",
+  "order.myself": "我自己输入地址"
 }
