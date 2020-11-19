@@ -98,8 +98,8 @@ function Cart(props) {
         if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
           setWrongAddress(false);
           axios.post(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`, {
-            address: inputPostalCode,
-            postal_code: inputAddress,
+            postal_code: inputPostalCode,
+            address: inputAddress,
             contact: inputContact
           })
           .then(() => {

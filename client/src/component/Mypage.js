@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -13,6 +13,18 @@ function Mypage(props) {
 
   // change language handler
   const { t } = useTranslation();
+
+  // user order history state
+  const [orderHistory, setOrderHistory] = useState('');
+
+  // get order history
+  useEffect(() => {
+    axios.get(`http://localhost:3355/users/mypage/${window.sessionStorage.getItem('id')}`)
+    .then(res => {
+      console.log('res:', res.data.order_history);
+      setOrderHistory(res.data.order_history);
+    })
+  },[])
 
   // handle sign out
   const signoutHandler = () => {
@@ -67,33 +79,64 @@ function Mypage(props) {
         <div className='orderHistoryBox'>
           {/* order lists */}
           <ul className='orderLists'>
-            <li className='orderlist'>
-              <div className='restaurantName'>NeNe Chicken</div>
-              <div className='purchasedAt'>2020-11-17 13:45</div>
-              {/* menu lists */}
-              <ul className='menuLists'>
-                <li className='menuList'>
-                  <div className='menuName'>후라이드치킨</div>
-                  <div className='menuOption'>- 순살, 1ea</div>
-                </li>
-                <li className='menuList'>
-                  <div className='menuName'>후라이드반 양념반</div>
-                  <div className='menuOption'>- 뼈, 2ea</div>
-                </li>
-              </ul>
-              <div className='deliveryInfomation'>
-                <span className='title'>{t('mypage.address')}</span>
-                <span className='text'>03995) 서울시 마포구 양화로 175, 마젤란 309호</span>
-              </div>
-              <div className='deliveryInfomation'>
-                <span className='title'>{t('mypage.contact')}</span>
-                <span className='text'>01012345678</span>
-              </div>
-              <div className='deliveryInfomation'>
-                <span className='title'>{t('mypage.totalPrice')}</span>
-                <span className='text'>65,000₩</span>
-              </div>
-            </li>
+            {
+              orderHistory && orderHistory.map(order => {
+                console.log("order:", order);
+                const menuPrice = order.Menus.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
+                const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
+                console.log("menuPriceSum:", menuPriceSum)
+                return(
+                  <li key={order.id} className='orderlist'>
+                    <div className='restaurantName'>{order.Menus[0].Restaurant.name_en}</div>
+                    <div className='purchasedAt'>{order.purchased_at.substring(0,10)}</div>
+                    {/* menu lists */}
+                    <ul className='menuLists'>
+                      {
+                        order.Menus && order.Menus.map((menu,index) => {
+                          console.log("menu:", menu.Menu.price);
+                          return(
+                            <li key={index} className='menuList'>
+                              <div className='menuName'>
+                                {
+                                  window.localStorage.getItem('i18nextLng') === 'en'
+                                  ? menu.Menu.name_en
+                                  : window.localStorage.getItem('i18nextLng') === 'zh'
+                                  ? menu.Menu.name_zh
+                                  : menu.Menu.name_ja
+                                }
+                              </div>
+                              <div className='menuOption'>
+                              { 
+                                window.localStorage.getItem('i18nextLng') === 'en'
+                                ? menu.Option.name_en ? '- ' + menu.Option.name_en : ''
+                                : window.localStorage.getItem('i18nextLng') === 'zh'
+                                ? '- ' + menu.Option.name_zh
+                                : '- ' + menu.Option.name_ja
+                              }
+                              </div>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+
+                    <div className='deliveryInfomation'>
+                      <div className='title address'>{t('mypage.address')}</div>
+                      <div className='text address'>{order.Address_book.postal_code}) {order.Address_book.address}</div>
+                    </div>
+                    <div className='deliveryInfomation'>
+                      <div className='title'>{t('mypage.contact')}</div>
+                      <div className='text'>{order.Address_book.contact}</div>
+                    </div>
+                    <div className='deliveryInfomation'>
+                      <div className='title'>{t('mypage.totalPrice')}</div>
+                      <div className='text'>{menuPriceSum}</div>
+                    </div>
+                  </li>
+
+                )
+              })
+            }
           </ul>
         </div>
 
