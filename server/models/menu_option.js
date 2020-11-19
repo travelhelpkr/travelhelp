@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Option, {
+        foreignKey: 'option_id'
+      });
+      this.belongsTo(models.Menu, {
+        foreignKey: 'menu_id'
+      });
     }
   };
   Menu_option.init({

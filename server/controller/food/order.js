@@ -1,4 +1,4 @@
-const { Address_book, Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
+const { Address_book, Order } = require('../../models');
 
 module.exports = {
   // update user's db with selected menu
@@ -6,7 +6,7 @@ module.exports = {
 
     try {
       const user_id = req.params.id;
-      const { address, postal_code, contact } = req.body;
+      const { address_book_id, address, postal_code, contact } = req.body;
 
       // after clicking 'paynow' button,
       // create new values on the addressbook db

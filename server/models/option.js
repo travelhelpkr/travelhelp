@@ -12,10 +12,20 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsToMany(models.Menu, {
+        through: models.Order_menu,
+        foreignKey: 'option_id'
+      });
+      this.belongsToMany(models.Menu, {
         through: models.Menu_option,
         foreignKey: 'option_id'
       });
-      
+      this.hasMany(models.Menu_option, {
+        foreignKey: 'option_id'
+      });
+      this.belongsToMany(models.Order, {
+        through: models.Order_menu,
+        foreignKey: 'option_id'
+      });
       this.hasMany(models.Order_menu, {
         foreignKey: 'option_id'
       });
