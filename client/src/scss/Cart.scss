@@ -220,6 +220,19 @@
           font-size: 1em;
           font-weight: 600;
         }
+        .choose {
+          padding: 9px 0 9px 12px;
+          font-size: 0.9em;
+          display: block;
+          width: 36.2em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
         .recentAddress {
           padding: 8px 0 8px 12px;
           font-size: 0.9em;
@@ -246,6 +259,19 @@
           padding: 8px 0 8px 12px;
           border: 1px solid #ccc;
           border-radius: 4px;
+        }
+        .myself {
+          padding: 9px 0 9px 12px;
+          font-size: 0.9em;
+          display: block;
+          width: 36.2em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
         }
         .wrongAddressAlert {
           color: rgb(190, 23, 11);
@@ -555,6 +581,19 @@
           font-size: 0.95em;
           font-weight: 600;
         }
+        .choose {
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          display: block;
+          width: 36.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
         .recentAddress {
           padding: 8px 0 8px 12px;
           font-size: 0.85em;
@@ -581,6 +620,19 @@
           padding: 8px 0 8px 12px;
           border: 1px solid #ccc;
           border-radius: 4px;
+        }
+        .myself {
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          display: block;
+          width: 36.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
         }
         .wrongAddressAlert {
           color: rgb(190, 23, 11);
@@ -902,6 +954,19 @@
             cursor: pointer;
           }
         }
+        .choose {
+          display: block;
+          width: 36.3em;
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
         .or {
           font-size: 0.85em;
           font-weight: 500;
@@ -916,6 +981,19 @@
           padding: 8px 0 8px 12px;
           border: 1px solid #ccc;
           border-radius: 4px;
+        }
+        .myself {
+          display: block;
+          width: 36.3em;
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
         }
         .wrongAddressAlert {
           color: rgb(190, 23, 11);
@@ -1233,6 +1311,19 @@
           font-size: 0.85em;
           font-weight: 600;
         }
+        .choose {
+          display: block;
+          width: 27.6em;
+          padding: 6px 0 6px 8px;
+          font-size: 0.8em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
         .recentAddress {
           display: block;
           width: 27.6em;
@@ -1259,6 +1350,19 @@
           padding: 6px 0 6px 8px;
           border: 1px solid #ccc;
           border-radius: 4px;
+        }
+        .myself {
+          display: block;
+          width: 27.6em;
+          padding: 6px 0 6px 8px;
+          font-size: 0.8em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
         }
         .wrongAddressAlert {
           color: rgb(190, 23, 11);
