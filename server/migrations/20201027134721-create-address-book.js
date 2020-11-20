@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       address: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       postal_code: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.STRING
       },
       contact: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.STRING
       },
       user_id: {
         type: Sequelize.INTEGER,
