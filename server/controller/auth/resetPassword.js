@@ -26,16 +26,22 @@ module.exports = {
           email: email
         }
       });
-
-      // check req.body.email exists on db
+      
       if (!userData) {
-        res.send({
+        return res.send({
           status: 404,
           message: 'You need to sign up first'
         });
       }
-      else if (userData && !userData.dataValues.is_email_verified) {
-        res.send({
+      else if (userData.oauth_provider !== 'local') {
+        return res.send({
+          status: 409,
+          oauth_provider: userData.oauth_provider,
+          message: `You already signed up with the '${userData.oauth_provider}'. Please try again with the social sign in method`
+        });
+      }
+      else if (!userData.is_email_verified) {
+        return res.send({
           status: 401,
           message: 'You need to verify your email address. Please check your email or resend it from this link'
         });
@@ -62,9 +68,9 @@ module.exports = {
   
         const mailOptions = {
           from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
-          to: userData.dataValues.email,
+          to: userData.email,
           subject: "Reset your password",
-          text: `Almost done, ${userData.dataValues.name}!
+          text: `Almost done, ${userData.name}!
           
 You told us you forgot your password. If you really did, click this link to choose a new one:        
           
@@ -114,7 +120,7 @@ If you didn’t mean to reset your password, then you can just ignore this email
 
       if (userData) {
         res.status(200).send({
-          email: userData.dataValues.email,
+          email: userData.email,
           message: 'You can enter your new password now'
         });
       }
@@ -170,11 +176,11 @@ If you didn’t mean to reset your password, then you can just ignore this email
   
         const mailOptions = {
           from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
-          to: userData.dataValues.email,
+          to: userData.email,
           subject: "Password changed",
           text: `You have a new password!
           
-Your password for signing in to ${userData.dataValues.name} was recently changed. If you made this change, then we're all set.
+Your password for signing in to ${userData.name} was recently changed. If you made this change, then we're all set.
   
 If you did not make this change, please reset your password to secure your account.
           
