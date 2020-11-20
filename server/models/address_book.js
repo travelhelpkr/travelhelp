@@ -20,9 +20,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Address_book.init({
-    address: DataTypes.STRING,
-    postal_code: DataTypes.INTEGER,
-    contact: DataTypes.INTEGER
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    postal_code: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    contact: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Address_book',
