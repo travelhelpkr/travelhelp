@@ -59,6 +59,7 @@ function FoodChicken(props) {
     })
   },[])
 
+  // close modal when clicked outside
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     return () => {

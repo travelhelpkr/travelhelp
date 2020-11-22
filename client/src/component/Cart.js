@@ -98,7 +98,7 @@ function Cart(props) {
         })
         .then(() => {
           setSuccessAlert(true);
-          setTimeout(function(){ window.location = '/user/mypage' }, 5000);
+          setTimeout(function(){ window.location = '/user/mypage' }, 3000);
         })
       } else {
         if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
