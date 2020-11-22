@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import '../scss/Modal.scss';
 function ModalNoodle(props) {
 
   // get from each menu
-  const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, infoOptionName3, infoOptionPrice3 } = props;
+  const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, infoOptionName3, infoOptionPrice3, setSuccess, success, setFailure, failure, setOptionError , optionError, setOtherRestaurant, otherRestaurant } = props;
 
   // change language handler
   const { t } = useTranslation();
@@ -18,10 +18,6 @@ function ModalNoodle(props) {
 
   // alert after add to cart btn
   const [isSignin, setIsSignin] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [failure, setFailure] = useState(false);
-  const [optionError, setOptionError] = useState(false);
-  const [otherRestaurant, setOtherRestaurant] = useState(false);
 
   // add to cart btn handler
   const addToCartHandler = (e) => {
