@@ -82,7 +82,7 @@ function Mypage(props) {
             {
               orderHistory && orderHistory.map(order => {
                 console.log("order:", order);
-                const menuPrice = order.Menus.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
+                const menuPrice = order.Menus.map(menu => (menu.quantity * (menu.Menu.price + menu.Option.price)) + menu.Restaurant.delivery_fee);
                 const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
                 console.log("menuPriceSum:", menuPriceSum)
                 return(
@@ -112,7 +112,8 @@ function Mypage(props) {
                                 : window.localStorage.getItem('i18nextLng') === 'zh'
                                 ? '- ' + menu.Option.name_zh
                                 : '- ' + menu.Option.name_ja
-                              }
+                              }, 
+                              {' ' + menu.quantity}(ea)
                               </div>
                             </li>
                           )
@@ -130,7 +131,7 @@ function Mypage(props) {
                     </div>
                     <div className='deliveryInfomation'>
                       <div className='title'>{t('mypage.totalPrice')}</div>
-                      <div className='text'>{menuPriceSum}</div>
+                      <div className='text'>{new Intl.NumberFormat().format(Number(menuPriceSum))}₩</div>
                     </div>
                   </li>
 
