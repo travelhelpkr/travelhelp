@@ -64,7 +64,6 @@ function Cart(props) {
   useEffect(() => {
     axios.get(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`)
     .then(res => {
-      console.log('res:::::', res.data);
       setAddressArray(res.data.recent_address);
     })
   },[])
