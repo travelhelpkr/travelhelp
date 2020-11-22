@@ -38,7 +38,6 @@ function ResestPassword(props) {
     })
     .then(res => {
       console.log('res:', res);
-      console.log('res.data.status:', res.data.status);
       if(res.data.status === 409) {
         inputEmail('');
         setOauthUser(true);
@@ -91,7 +90,7 @@ function ResestPassword(props) {
           
           {/* modal alert */}
           <div className={oauthUser ? 'signUpAlert' : 'none'}>
-            <span>Please signin with Google or Line.</span>
+            <span>{t('resetPassword.oauthUser')}</span>
           </div>
           <div className={failAlertSignUp ? 'signUpAlert' : 'none'}>
             <span>{t('resetPassword.signup')}</span>

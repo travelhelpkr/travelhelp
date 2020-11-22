@@ -125,6 +125,7 @@
   "resetPassword.emailVerification": "最初にメールをチェックして、メールアドレスを確認してください。",
   "resetPassword.newPassword": "新しいパスワード",
   "resetPassword.confirmPassword": "パスワードを認証する",
+  "resetPassword.oauthUser": "GoogleまたはLineでサインインしてください。",
   "modalChicken.checkBone": "骨/骨なし",
   "modalChicken.required": "必須",
   "modalChicken.bone": "骨",
