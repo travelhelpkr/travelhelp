@@ -25,6 +25,7 @@ mysql(AWS RDS) ^8.0.20
 You need 4 config environments information. (these files listed on `.gitignore` for the security issue)
 - AWS RDS information  `/server/.env`
   - includes:
+  ```
   MYSQL_USER_NAME="(your username)"
   MYSQL_PASSWORD="(your password)"
   MYSQL_DATABASE="(your database name)"
@@ -38,6 +39,7 @@ You need 4 config environments information. (these files listed on `.gitignore` 
     
   NODEMAILER_USER="(your available gmail id)"
   NODEMAILER_PASS="(your gmail password)"
+  ```
 
   - note: NODEMAILER by gmail id requires security setting.
   "less secure" setting from your account, and "CAPTCHA Enable". Additionally, if your gmail account protected by 2FA, you should create an "Application Specific".
