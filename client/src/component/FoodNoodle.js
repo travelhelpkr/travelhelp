@@ -39,6 +39,12 @@ function FoodNoodle(props) {
   const [optionName3, setOptionName3] = useState('');
   const [optionPrice3, setOptionPrice3] = useState('');
 
+  // modal Alert
+  const [success, setSuccess] = useState(false);
+  const [failure, setFailure] = useState(false);
+  const [optionError, setOptionError] = useState(false);
+  const [otherRestaurant, setOtherRestaurant] = useState(false);
+
   // change language
   const { t } = useTranslation();
 
@@ -72,7 +78,21 @@ function FoodNoodle(props) {
   // close modal when clicked outside
   const handleClickOutside = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
-      setModal(false);
+      if (e.path[0].className !== 'openModalNoodle') return;
+      else if(e.path[0].className === 'modalCloseBtn') {
+        setModal(false);
+        setSuccess(false);
+        setFailure(false);
+        setOptionError(false);
+        setOtherRestaurant(false);
+      }
+      else {
+        setModal(false);
+        setSuccess(false);
+        setFailure(false);
+        setOptionError(false);
+        setOtherRestaurant(false);
+      }
     }
   };
 
@@ -239,7 +259,7 @@ function FoodNoodle(props) {
       </ul>
       
       {/* chicken modal */}
-      <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3}  userId={userId} />
+      <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3} userId={userId} setSuccess={setSuccess} success={success} setFailure={setFailure} failure={failure} setOptionError={setOptionError} optionError={optionError} setOtherRestaurant={setOtherRestaurant} otherRestaurant={otherRestaurant} />
 
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />

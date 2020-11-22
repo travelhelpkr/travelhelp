@@ -8,7 +8,7 @@ import '../scss/Modal.scss';
 function ModalChicken(props) {
 
   // get from each menu
-  const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2 } = props;
+  const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, setSuccess, success, setFailure, failure, setOptionError , optionError, setOtherRestaurant, otherRestaurant  } = props;
 
   // change language handler
   const { t } = useTranslation();
@@ -18,10 +18,6 @@ function ModalChicken(props) {
 
   // alert after add to cart btn
   const [isSignin, setIsSignin] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [failure, setFailure] = useState(false);
-  const [optionError, setOptionError] = useState(false);
-  const [otherRestaurant, setOtherRestaurant] = useState(false);
 
   // add to cart btn handler
   const addToCartHandler = (e) => {
@@ -128,11 +124,11 @@ function ModalChicken(props) {
           <span className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></span>
         </div>
         <div className={isSignin ? 'signinAlert' : 'none'}>
-          <span>Please Sign In first!</span>
-          <span className='goToSignIn'><a href='/user/signin'>Go To Sign In</a></span>
+          <span>{t('modalCart.signinFirst')}</span>
+          <span className='goToSignIn'><a href='/user/signin'>{t('modalCart.signin')}</a></span>
         </div>
         <div className={otherRestaurant ? 'otherRestaurantAlert' : 'none'}>
-          <div>Only menus from the same restaurant can be added.</div>
+          <div>{t('modalCart.onlySame')}</div>
           <div className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></div>
         </div>
 
