@@ -64,7 +64,6 @@ function Cart(props) {
   useEffect(() => {
     axios.get(`http://localhost:3355/foods/order/${window.sessionStorage.getItem('id')}`)
     .then(res => {
-      console.log('res:::::', res.data);
       setAddressArray(res.data.recent_address);
     })
   },[])
@@ -98,7 +97,7 @@ function Cart(props) {
         })
         .then(() => {
           setSuccessAlert(true);
-          setTimeout(function(){ window.location = '/user/mypage' }, 5000);
+          setTimeout(function(){ window.location = '/user/mypage' }, 3000);
         })
       } else {
         if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {

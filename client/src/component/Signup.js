@@ -74,7 +74,7 @@ function SignupEmail({ history }) {
       });
     }
     else {
-      validateEmail(email) ? setWrongEmail(false) : setWrongEmail(true);
+      validateEmail(email) ? setWrongEmail(false)  : setWrongEmail(true);
       ((password === confirmPassword) && password !== '') ? setWrongPassword(false) : setWrongPassword(true);
       (name !== '') ? setWrongName(false) : setWrongName(true);
       (policy !== '') ? setWrongPolicy(false) : setWrongPolicy(true);

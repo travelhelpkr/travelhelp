@@ -14,6 +14,7 @@ function ResestPassword(props) {
   const [email, inputEmail] = useState('');
 
   // failure of signin
+  const [oauthUser, setOauthUser] = useState(false);
   const [failAlertSignUp, setFailAlertSignUp] = useState(false);
   const [failAlertVerification, setFailAlertVerification] = useState(false);
 
@@ -36,17 +37,32 @@ function ResestPassword(props) {
        }
     })
     .then(res => {
-      console.log('res:', res);
-      if(res.data.status === 404) {
+      if(res.data.status === 409) {
         inputEmail('');
-        setFailAlertSignUp(true)
+        setOauthUser(true);
+        setFailAlertSignUp(false);
+        setFailAlertVerification(false);
+        setAlert(false);
+        console.log('oauthUser:', oauthUser);
+      } else if(res.data.status === 404) {
+        inputEmail('');
+        setFailAlertSignUp(true);
+        setFailAlertVerification(false);
+        setOauthUser(false);
+        setAlert(false);
       } else if(res.data.status === 401) {
         window.sessionStorage.setItem('email', email);
         inputEmail('');
-        setFailAlertVerification(true)
+        setFailAlertVerification(true);
+        setFailAlertSignUp(false);
+        setOauthUser(false);
+        setAlert(false);
       } else {
         inputEmail('');
         setAlert(true);
+        setFailAlertVerification(false);
+        setFailAlertSignUp(false);
+        setOauthUser(false);
       }
     })
   }
@@ -72,6 +88,9 @@ function ResestPassword(props) {
           <button className='resetPasswordBtn' onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
           
           {/* modal alert */}
+          <div className={oauthUser ? 'signUpAlert' : 'none'}>
+            <span>{t('resetPassword.oauthUser')}</span>
+          </div>
           <div className={failAlertSignUp ? 'signUpAlert' : 'none'}>
             <span>{t('resetPassword.signup')}</span>
             <span className='signupLink'><a href='/user/signup'>{t('signup.signup')}</a></span>

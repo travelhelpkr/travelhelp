@@ -125,6 +125,7 @@
   "resetPassword.emailVerification": "请检查您的电子邮件并首先验证您的电子邮件地址。",
   "resetPassword.newPassword": "新密码",
   "resetPassword.confirmPassword": "确认密码",
+  "resetPassword.oauthUser": "请使用Google或Line登录。",
   "modalChicken.checkBone": "骨/无骨的",
   "modalChicken.required": "需要",
   "modalChicken.bone": "骨",

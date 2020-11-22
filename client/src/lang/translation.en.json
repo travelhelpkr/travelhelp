@@ -125,6 +125,7 @@
   "resetPassword.emailVerification": "Please verify your email address first.",
   "resetPassword.newPassword": "New Password",
   "resetPassword.confirmPassword": "Confirm Password",
+  "resetPassword.oauthUser": "Please signin with Google or Line.",
   "modalChicken.checkBone": "Bone/Boneless",
   "modalChicken.required": "Required",
   "modalChicken.bone": "Bone",
