@@ -14,36 +14,6 @@
 /server npm install
 ```
 
-
-#### create security files listed on `.gitignore`
-- `.env`
-  - path: should have located on the `travelhelp/server/`.
-  - includes:
-    MYSQL_USER_NAME="(your username)"
-    MYSQL_PASSWORD="(your password)"
-    MYSQL_DATABASE="(your database name)"
-    MYSQL_HOST="(your databse host location)"
-    MYSQL_PORT="(your database port)"
-    SQL_DIALECT="mysql"
-    
-    SESSION_SECRET="(your secret keyword)"
-    
-    SERVER_PORT="(your nodejs server port)" 
-    
-    NODEMAILER_USER="(your available gmail id)"
-    NODEMAILER_PASS="(your gmail password)"
-
-  - note: NODEMAILER by gmail id requires security setting.
-  "less secure" setting from your account, and "CAPTCHA Enable". Additionally, if your gmail account protected by 2FA, you should create an "Application Specific".
-  check this out from [the official document of NODEMAILER](https://nodemailer.com/usage/using-gmail)
-
-- `google.json` && `line.json`
-  - path: should have located on the `travelhelp/server/config/`.
-  - you can receive `google.json` and `line.json` files once you fullfilled their requirement from developer page.
-  - [google cloud platform](https://console.cloud.google.com/apis/credentials/oauthclient)
-  - [line developer console](https://developers.line.biz/en/services/line-login/)
-
-
 ### Versions
 ```
 nodeJS v14.15.0 (nvm v0.36.0)
@@ -52,12 +22,32 @@ mysql(AWS RDS) ^8.0.20
 ```
 
 ### Config information
-You need 4 config environments information.
+You need 4 config environments information. (these files listed on `.gitignore` for the security issue)
 - AWS RDS information  `/server/.env`
-- Google Oauth Client API Keys  `/server/config/google.json`
-- Line Oauth Client API Keys  `/server/config/line.json`
-- Channel Talk API Keys  `/client/src/config/channelTalk.json`
+  - includes:
+  MYSQL_USER_NAME="(your username)"
+  MYSQL_PASSWORD="(your password)"
+  MYSQL_DATABASE="(your database name)"
+  MYSQL_HOST="(your databse host location)"
+  MYSQL_PORT="(your database port)"
+  SQL_DIALECT="mysql"
+    
+  SESSION_SECRET="(your secret keyword)"
+    
+  SERVER_PORT="(your nodejs server port)" 
+    
+  NODEMAILER_USER="(your available gmail id)"
+  NODEMAILER_PASS="(your gmail password)"
 
+  - note: NODEMAILER by gmail id requires security setting.
+  "less secure" setting from your account, and "CAPTCHA Enable". Additionally, if your gmail account protected by 2FA, you should create an "Application Specific".
+  check this out from [the official document of NODEMAILER](https://nodemailer.com/usage/using-gmail)
+
+- Google Oauth Client API Keys  `/server/config/google.json`
+  - [google cloud platform](https://console.cloud.google.com/apis/credentials/oauthclient)
+- Line Oauth Client API Keys  `/server/config/line.json`
+  - [line developer console](https://developers.line.biz/en/services/line-login/)
+- Channel Talk API Keys  `/client/src/config/channelTalk.json`
 
 ## Built With
 * [React](https://reactjs.org/) - Frontend, framework
@@ -65,7 +55,6 @@ You need 4 config environments information.
 * [Express](https://expressjs.com/) - Backend, server
 * [Mysql](https://www.mysql.com/) - Backend, DB
 * [Sequelize](https://sequelize.org/master) - Backend, ORM
-
 
 ## Versioning
 - 0.1.0 | Nov/22/2020
