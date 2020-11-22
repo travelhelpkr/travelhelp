@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -13,6 +13,9 @@ function FoodNoodle(props) {
   
   // userId props for modal
   const { userId } = props;
+
+  // close modal status
+  const ref = useRef(null);
 
   // menu of restaurant
   const [menu, setMenu] = useState(null);
@@ -57,6 +60,21 @@ function FoodNoodle(props) {
       setInformation(restaurantResult);
     })
   },[])
+
+  // close modal when clicked outside
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
+
+  // close modal when clicked outside
+  const handleClickOutside = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setModal(false);
+    }
+  };
 
   // check signin status when user clicked cart icon on Nav bar
   const checkSigninStatus = (e) => {
@@ -136,7 +154,7 @@ function FoodNoodle(props) {
         {
           menu && menu.map(menu => {
             return(
-              <div key={menu.id} className='menuLi' onClick={e => {
+              <div key={menu.id} ref={ref} className='menuLi' onClick={e => {
                 e.preventDefault();
                 setModal(!isOpen);
                 setMenuId(menu.id);
