@@ -81,12 +81,13 @@
         margin: 15px auto;
         width: 80%;
         .orderLists {
-          background-color: rgba(255, 255, 255, 0.5);
-          padding: 15px;
-          border: 1px solid #ebebeb;
-          border-radius: 4px;
           .orderlist {
             list-style: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px 10px;
+            border: 1px solid #ebebeb;
+            border-radius: 4px;
+            margin-bottom: 12px;
             .restaurantName {
               float: left;
               font-size: 1.1em;
@@ -102,12 +103,17 @@
             }
             .menuLists {
               clear: both;
+              padding-top: 15px;
+              padding-bottom: 10px;
+              margin-bottom: 15px;
+              border-top: 1px solid #ebebeb;
+              border-bottom: 1px solid #ebebeb;
               .menuList {
                 list-style: none;
                 text-align: left;
                 .menuName {
                   font-size: 0.95em;
-                  font-weight: 500;
+                  font-weight: 400;
                 }
                 .menuOption {
                   font-size: 0.9em;
@@ -122,11 +128,18 @@
               .title {
                 font-size: 0.9em;
                 font-weight: 600;
+                float: left;
+                width: 6em;
+                height: 1.5em;
               }
               .text {
+                height: 1.5em;
                 font-size: 0.9em;
                 font-weight: 350;
                 padding-left: 20px;
+              }
+              .address {
+                height: 2em;
               }
             }
           }
@@ -219,12 +232,12 @@
         margin: 15px auto 0;
         width: 90%;
         .orderLists {
-          background-color: rgba(255, 255, 255, 0.5);
-          padding: 15px;
-          border: 1px solid #ebebeb;
-          border-radius: 4px;
-          margin-bottom: 0;
           .orderlist {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border: 1px solid #ebebeb;
+            border-radius: 4px;
+            margin-bottom: 10px;
             list-style: none;
             .restaurantName {
               float: left;
@@ -241,6 +254,11 @@
             }
             .menuLists {
               clear: both;
+              padding-top: 15px;
+              padding-bottom: 10px;
+              margin-bottom: 15px;
+              border-top: 1px solid #ebebeb;
+              border-bottom: 1px solid #ebebeb;
               .menuList {
                 list-style: none;
                 text-align: left;
@@ -261,11 +279,18 @@
               .title {
                 font-size: 0.9em;
                 font-weight: 600;
+                float: left;
+                width: 6em;
+                height: 1.5em;
               }
               .text {
+                height: 1.5em;
                 font-size: 0.85em;
                 font-weight: 350;
                 padding-left: 15px;
+              }
+              .address {
+                height: 2.2em;
               }
             }
           }
@@ -358,12 +383,13 @@
         margin: 15px auto 0;
         width: 90%;
         .orderLists {
-          background-color: rgba(255, 255, 255, 0.5);
-          padding: 15px;
-          border: 1px solid #ebebeb;
-          border-radius: 4px;
-          margin-bottom: 0;
+          padding-left: 0;
           .orderlist {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border: 1px solid #ebebeb;
+            border-radius: 4px;
+            margin-bottom: 10px;
             list-style: none;
             .restaurantName {
               float: left;
@@ -380,6 +406,11 @@
             }
             .menuLists {
               clear: both;
+              padding-top: 15px;
+              padding-bottom: 5px;
+              margin-bottom: 15px;
+              border-top: 1px solid #ebebeb;
+              border-bottom: 1px solid #ebebeb;
               .menuList {
                 list-style: none;
                 text-align: left;
@@ -396,15 +427,22 @@
             }
             .deliveryInfomation {
               text-align: left;
-              padding: 5px 0 0 10px;
+              padding: 2px 0 0 10px;
               .title {
                 font-size: 0.85em;
                 font-weight: 600;
+                float: left;
+                width: 5em;
+                height: 1.5em;
               }
               .text {
+                height: 1.5em;
                 font-size: 0.8em;
                 font-weight: 350;
                 padding-left: 15px;
+              }
+              .address {
+                height: 2.2em;
               }
             }
           }
@@ -498,12 +536,13 @@
         margin: 15px auto 0;
         width: 95%;
         .orderLists {
-          background-color: rgba(255, 255, 255, 0.5);
-          padding: 10px;
-          border: 1px solid #ebebeb;
-          border-radius: 4px;
-          margin-bottom: 0;
+          padding-left: 0;
           .orderlist {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border: 1px solid #ebebeb;
+            border-radius: 4px;
+            margin-bottom: 10px;
             list-style: none;
             .restaurantName {
               float: left;
@@ -520,7 +559,10 @@
             }
             .menuLists {
               clear: both;
-              padding-left: 10px;
+              padding: 10px 0 3px 15px;
+              margin-bottom: 10px;
+              border-top: 1px solid #ebebeb;
+              border-bottom: 1px solid #ebebeb;
               .menuList {
                 list-style: none;
                 text-align: left;
@@ -541,11 +583,18 @@
               .title {
                 font-size: 0.8em;
                 font-weight: 600;
+                float: left;
+                width: 5em;
+                height: 1.5em;
               }
               .text {
+                height: 1.5em;
                 font-size: 0.75em;
                 font-weight: 350;
                 padding-left: 10px;
+              }
+              .address {
+                height: 3.5em;
               }
             }
           }

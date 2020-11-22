@@ -23,13 +23,20 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'menu_id'
       });
       this.belongsToMany(models.Option, {
+        through: models.Order_menu,
+        foreignKey: 'menu_id'
+      });
+      this.belongsToMany(models.Option, {
         through: models.Menu_option,
+        foreignKey: 'menu_id'
+      });
+      this.hasMany(models.Menu_option, {
         foreignKey: 'menu_id'
       });
     }
   };
   Menu.init({
-    image: DataTypes.STRING,
+    image: DataTypes.STRING(600),
     name_en: DataTypes.STRING,
     name_zh: DataTypes.STRING,
     name_ja: DataTypes.STRING,

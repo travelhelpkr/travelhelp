@@ -1,4 +1,4 @@
-const { Address_book, Menu, Order, Order_menu, Restaurant, Option } = require('../../models');
+const { Address_book, Order } = require('../../models');
 
 module.exports = {
   // update user's db with selected menu
@@ -6,23 +6,30 @@ module.exports = {
 
     try {
       const user_id = req.params.id;
-      const { address, postal_code, contact } = req.body;
+      const { address_book_id, address, postal_code, contact } = req.body;
 
       // after clicking 'paynow' button,
-      // create new values on the addressbook db
-      const newAddress = await Address_book.create({
+      // build new values on the addressbook db
+      // `.build()` is different with `create()`. It will hold its changes until it meets "instance.save()". if no saves, no changes will remain.
+      const newAddress = await Address_book.build({
         address: address,
         postal_code: postal_code,
         contact: contact,
         user_id: user_id
       });
-      console.log('new address::::::::', newAddress);
-      console.log('new address id::::::::', newAddress.id);
-          
+      console.log('req.address book id::::::::', address_book_id);
+      console.log('new address::::::::', newAddress.toJSON());
+
+      // after validation of key existence, use `.save()` for employing it.
+      if (!address_book_id) {
+        const savedNewAddress = await newAddress.save();
+        console.log('[after saving] new address::::::::', newAddress.toJSON());
+      }
+
       // if finished payment process,
       // update Order table coresponding its order status
       const updatedOrderRaws = await Order.update({
-        address_book_id: newAddress.id,
+        address_book_id: address_book_id || newAddress.id,
         is_cart: false,
         purchased_at: new Date()
       }, {
@@ -31,7 +38,7 @@ module.exports = {
           is_cart: true
         }
       });
-      console.log('updatedAddressBookId::::::::', updatedOrderRaws);
+      console.log('updated order raws::::::::', updatedOrderRaws);
       
       res.send({ status: 200, message: 'Successfully made your order. Delivery in process' });
       // [doing] test code for using set menthod for updating
@@ -52,28 +59,29 @@ module.exports = {
     
   },
   
-  show: async (req, res) => {
+  showAddress: async (req, res) => {
     
     try {
       const user_id = req.params.id;
-      const { order_id, address, postal_code, contact } = req.query;
 
       // checking existing user's menu from the cart
-      const recentAddress = await Address_book.findAll({
-        attributes: [ 'address', 'postal_code', 'contact' ],
+      const listAddress = await Address_book.findAll({
+        attributes: [ 'id', 'address', 'postal_code', 'contact' ],
         include: {
           model: Order,
-          // attributes: [ 'purchased_at' ],
-          // attributes: [],
+          attributes: [],
           where: {
             user_id: user_id,
             is_cart: false
-          }
+          },
         },
-        order: [Address_book.associations.Orders, 'id', 'DESC'],
-        limit: 5
+        order: [ [Address_book.associations.Orders, 'purchased_at', 'DESC'] ],
+        raw: true,
+        nest: true
       });
 
+      // show only 5 recent address orderd by purchased_at date.
+      const recentAddress = listAddress.slice(0,5);
       console.log('recent address::::::::', recentAddress);
  
       res.status(200).send({ recent_address: recentAddress });

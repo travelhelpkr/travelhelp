@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(600)
       },
       name_en: {
         type: Sequelize.STRING
