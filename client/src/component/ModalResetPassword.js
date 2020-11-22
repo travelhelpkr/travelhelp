@@ -37,7 +37,6 @@ function ResestPassword(props) {
        }
     })
     .then(res => {
-      console.log('res:', res);
       if(res.data.status === 409) {
         inputEmail('');
         setOauthUser(true);
