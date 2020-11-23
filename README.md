@@ -20,18 +20,19 @@ nodeJS v14.15.0 (nvm v0.36.0)
 npm v6.14.8
 mysql(AWS RDS) ^8.0.20
 ```
+dependencies can be checked from `server/package.json` and `client/package.json`
 
 ### Config information
 You need 4 config environments information. (these files listed on `.gitignore` for the security issue)
 - AWS RDS information  `/server/.env`
   - includes:
   ```
-  MYSQL_USER_NAME="(your username)"
-  MYSQL_PASSWORD="(your password)"
-  MYSQL_DATABASE="(your database name)"
-  MYSQL_HOST="(your databse host location)"
-  MYSQL_PORT="(your database port)"
-  SQL_DIALECT="mysql"
+  DB_USER_NAME="(your username)"
+  DB_PASSWORD="(your password)"
+  DB_NAME="(your database name)"
+  DB_HOST="(your databse host location)"
+  DB_PORT="(your database port)"
+  DB_DIALECT="mysql"
     
   SESSION_SECRET="(your secret keyword)"
     
@@ -52,6 +53,7 @@ You need 4 config environments information. (these files listed on `.gitignore` 
 - Channel Talk API Keys  `/client/src/config/channelTalk.json`
 
 ## Built With
+* [JavaScript, ES9](http://ecma-international.org/ecma-262/9.0/index.html) - Language
 * [React](https://reactjs.org/) - Frontend, framework
 * [NodeJS](https://nodejs.org/en) - Backend, server
 * [Express](https://expressjs.com/) - Backend, server
