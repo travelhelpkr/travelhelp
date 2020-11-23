@@ -3,30 +3,30 @@ require('dotenv').config();
 const env = process.env;
 
 const development = {
-  username: env.username,
-  password: env.password,
-  database: env.database,
-  host: env.host,
-  port: env.port,
-  dialect: env.dialect
+  username: env.DB_USER_NAME,
+  password: env.DB_PASSWORD,
+  database: env.DB_DATABASE,
+  host: env.DB_HOST,
+  port: env.DB_PORT,
+  dialect: env.DB_DIALECT
 };
 
 const test = {
-  username: env.username,
-  password: env.password,
-  database: env.database,
-  host: env.host,
-  port: env.port,
-  dialect: env.dialect
+  username: env.DB_USER_NAME,
+  password: env.DB_PASSWORD,
+  database: env.DB_DATABASE,
+  host: env.DB_HOST,
+  port: env.DB_PORT,
+  dialect: env.DB_DIALECT
 };
 
 const production = {
-  username: env.username,
-  password: env.password,
-  database: env.database,
-  host: env.host,
-  port: env.port,
-  dialect: env.dialect
+  username: env.DB_USER_NAME,
+  password: env.DB_PASSWORD,
+  database: env.DB_DATABASE,
+  host: env.DB_HOST,
+  port: env.DB_PORT,
+  dialect: env.DB_DIALECT
 };
 
 module.exports = { development, test, production };

@@ -36,7 +36,7 @@ module.exports = {
       }
       else {
         // generate token for verifying user email. available for 24 hours.
-        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60 * 24 });
+        const generatedAuthToken = jwt.sign({ email: email }, process.env.SESSION_SECRET, { expiresIn: 60 * 60 * 24 });
         // make a new user on the db
         const newUser = await User.create({
           email: email,

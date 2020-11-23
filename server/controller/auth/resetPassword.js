@@ -48,7 +48,7 @@ module.exports = {
       }
       else {
         // generate token for verifying user email. available for an hour.
-        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60});
+        const generatedAuthToken = jwt.sign({ email: email }, process.env.SESSION_SECRET, { expiresIn: 60 * 60});
         console.log('token: ', generatedAuthToken);
         const smtpTransporter = nodemailer.createTransport({
           service: 'gmail',
@@ -109,7 +109,7 @@ If you didn’t mean to reset your password, then you can just ignore this email
     try {
       // decode token's value from the URI's query string.
       // expected prints: { email: value, iat:time , exp:time }
-      const decodedToken = jwt.verify(req.query.token, process.env.secret);
+      const decodedToken = jwt.verify(req.query.token, process.env.SESSION_SECRET);
       console.log('token: ', decodedToken);
       // check db has email(the decoded token) on the db
       const userData = await User.findOne({

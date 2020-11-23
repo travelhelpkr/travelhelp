@@ -8,6 +8,8 @@ const userRouter = require('./router/userRouter');
 const authRouter = require('./router/authRouter');
 const foodRouter = require('./router/foodRouter');
 const passport = require('passport');
+const env = process.env.NODE_ENV || 'development';
+const config = require('./config/config.js')[env];
 const port = process.env.SERVER_PORT || 3355;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -21,20 +23,13 @@ app.use(cors({
 }));
 
 // declare env variable for managing session
-const env = process.env;
-const options = {
-  host: env.host,
-  port: env.port,
-  user: env.username,
-  password: env.password,
-  database: env.database
-}
+const options = config
 const sessionStorage = new mysqlStore(options);
 
 // mysql session managing
 app.use(
   session({
-    secret: env.secret,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: sessionStorage,

@@ -49,7 +49,7 @@ module.exports = () => {
         return cb(null, userData);
       }
       else {
-        const hash_password = await bcrypt.hash(process.env.secret, 10);
+        const hash_password = await bcrypt.hash(process.env.SESSION_SECRET, 10);
         const newUser = await User.create({
           email: email,
           password: hash_password,

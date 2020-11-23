@@ -34,7 +34,7 @@ module.exports = {
       }
       else {
         // generate token for verifying user email. available for 24 hours.
-        const generatedAuthToken = jwt.sign({ email: email }, process.env.secret, { expiresIn: 60 * 60 * 24 });
+        const generatedAuthToken = jwt.sign({ email: email }, process.env.SESSION_SECRET, { expiresIn: 60 * 60 * 24 });
         
         const smtpTransporter = nodemailer.createTransport({
           service: 'gmail',
@@ -98,7 +98,7 @@ If you have any problems, please contact us: (attatch channel.io link)`
     try {
       // decode token's value from the URI's query string.
       // expected prints: { email: value, iat:time , exp:time }
-      const decodedToken = jwt.verify(req.query.token, process.env.secret);
+      const decodedToken = jwt.verify(req.query.token, process.env.SESSION_SECRET);
       console.log('token: ', decodedToken);
       // check db has email(the decoded token) on the db
       const updatedUser = await User.update({
