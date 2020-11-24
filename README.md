@@ -16,7 +16,7 @@
 
 ### Versions
 ```
-nodeJS v14.15.0 (nvm v0.36.0)
+nodeJS v14.15.1 (nvm v0.37.0)
 npm v6.14.8
 mysql(AWS RDS) ^8.0.20
 ```
