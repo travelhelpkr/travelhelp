@@ -26,14 +26,14 @@ function Signin(props) {
   // signin handler
   const handleLoginBtn = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3355/users/signin', {
+    axios.post('https://travelhelp.kr/api/users/signin', {
       email: email,
       password: password
     }, {
       withCredentials: true,
     }, {
       headers: { 
-        'Access-Control-Allow-Origin': 'http://localhost:3355',
+        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
        }
     })
     .then(res => {
@@ -64,13 +64,13 @@ function Signin(props) {
       <div className='content'>
         {/* social signin */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
+          <a href='https://travelhelp.kr/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signin.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
+          <a href='https://travelhelp.kr/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
         </div>
 
         {/* or */}
