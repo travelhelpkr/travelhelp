@@ -24,7 +24,7 @@ function ModalChicken(props) {
     e.preventDefault();
     if(window.sessionStorage.getItem('id')) {
       if(type) {
-        axios.post('http://localhost:3355/foods/cart', {
+        axios.post('https://travelhelp.kr/api/foods/cart', {
           user_id: window.sessionStorage.getItem('id'),
           menu_id: infoMenuId,
           option_id: type
@@ -32,7 +32,7 @@ function ModalChicken(props) {
           withCredentials: true,
         }, {
           headers: { 
-            'Access-Control-Allow-Origin': 'http://localhost:3355',
+            'Access-Control-Allow-Origin': 'https://travelhelp.kr',
             }
         })
         .then(res => {

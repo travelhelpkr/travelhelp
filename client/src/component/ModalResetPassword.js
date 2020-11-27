@@ -27,13 +27,13 @@ function ResestPassword(props) {
   // reset password handler
   const handleResetPasswordBtn = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3355/auth/resetPassword', {
+    axios.post('https://travelhelp.kr/api/auth/resetPassword', {
       email: email
     },{
       withCredentials: true,
     }, {
       headers: { 
-        'Access-Control-Allow-Origin': 'http://localhost:3355',
+        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
        }
     })
     .then(res => {

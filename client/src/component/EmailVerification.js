@@ -16,13 +16,13 @@ function EmailVerification(props) {
   // resend Email btn handler
   const handleResendBtn = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3355/auth/email', {
+    axios.post('https://travelhelp.kr/api/auth/email', {
       email: window.sessionStorage.getItem('email')
     }, {
       withCredentials: true,
     }, {
       headers: { 
-        'Access-Control-Allow-Origin': 'http://localhost:3355',
+        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
        }
     })
     .then(() => setAlert(true));
