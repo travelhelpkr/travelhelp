@@ -9,7 +9,7 @@ function VerifyEmail() {
 
   // send token to server
   useEffect(() => {
-    axios.get('http://localhost:3355/auth/email', {
+    axios.get('https://travelhelp.kr/api/auth/email', {
       params: {
         token: url.searchParams.get('token') 
       }
