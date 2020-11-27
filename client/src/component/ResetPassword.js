@@ -22,7 +22,7 @@ function ResetPassword(props) {
 
   // send token value with uri to the server
   useEffect(() => {
-    axios.get('https://travelhelp.kr/api/auth/password', {
+    axios.get('/api/auth/password', {
       params: {
         token: url.searchParams.get('token') 
       }
@@ -46,7 +46,7 @@ function ResetPassword(props) {
   const resetPasswordHandler = (e) => {
     e.preventDefault();
     if(password === confirmPassword) {
-      axios.post('https://travelhelp.kr/api/auth/password', {
+      axios.post('/api/auth/password', {
         email: email,
         password: password
       })

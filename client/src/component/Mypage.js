@@ -19,7 +19,7 @@ function Mypage(props) {
 
   // get order history
   useEffect(() => {
-    axios.get(`https://travelhelp.kr/api/users/mypage/${window.sessionStorage.getItem('id')}`)
+    axios.get(`/api/users/mypage/${window.sessionStorage.getItem('id')}`)
     .then(res => {
       console.log('res:', res.data.order_history);
       setOrderHistory(res.data.order_history);
@@ -28,7 +28,7 @@ function Mypage(props) {
 
   // handle sign out
   const signoutHandler = () => {
-    axios.post('https://travelhelp.kr/api/users/signout', {
+    axios.post('/api/users/signout', {
       language: window.localStorage.getItem('i18nextLng')
     },{
       withCredentials: true,

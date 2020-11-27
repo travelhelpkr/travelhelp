@@ -27,7 +27,7 @@ function ResestPassword(props) {
   // reset password handler
   const handleResetPasswordBtn = (e) => {
     e.preventDefault();
-    axios.post('https://travelhelp.kr/api/auth/resetPassword', {
+    axios.post('/api/auth/resetPassword', {
       email: email
     },{
       withCredentials: true,

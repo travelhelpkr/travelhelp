@@ -44,7 +44,7 @@ function Cart(props) {
 
   // get cart information
   useEffect(() => {
-    axios.get(`https://travelhelp.kr/api/foods/cart/${window.sessionStorage.getItem('id')}`)
+    axios.get(`/api/foods/cart/${window.sessionStorage.getItem('id')}`)
     .then(res => {
       if(res.data.cart) {
         setEmptyCart(false);
@@ -62,7 +62,7 @@ function Cart(props) {
 
   // get recent address
   useEffect(() => {
-    axios.get(`https://travelhelp.kr/api/foods/order/${window.sessionStorage.getItem('id')}`)
+    axios.get(`/api/foods/order/${window.sessionStorage.getItem('id')}`)
     .then(res => {
       setAddressArray(res.data.recent_address);
     })
@@ -92,7 +92,7 @@ function Cart(props) {
     e.preventDefault();
     if(sum >= restaurant.minimum_price) {
       if(addressId) {
-        axios.post(`https://travelhelp.kr/api/foods/order/${window.sessionStorage.getItem('id')}`, {
+        axios.post(`/api/foods/order/${window.sessionStorage.getItem('id')}`, {
         address_book_id: addressId
         })
         .then(() => {
@@ -102,7 +102,7 @@ function Cart(props) {
       } else {
         if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
           setWrongAddress(false);
-          axios.post(`https://travelhelp.kr/api/foods/order/${window.sessionStorage.getItem('id')}`, {
+          axios.post(`/api/foods/order/${window.sessionStorage.getItem('id')}`, {
             postal_code: inputPostalCode,
             address: inputAddress,
             contact: inputContact
@@ -174,7 +174,7 @@ function Cart(props) {
                   </div>
                   <div className='menuPrice'>{new Intl.NumberFormat().format(Number((menu.Menu.price + menu.Option.price)))}</div>
                   <select className='menuQuantity' defaultValue={menu.quantity} onChange={e => {
-                    axios.put('https://travelhelp.kr/api/foods/cart', {
+                    axios.put('/api/foods/cart', {
                       order_id: orderId,
                       menu_id: menu.Menu.id,
                       option_id: menu.Option.id,
@@ -192,7 +192,7 @@ function Cart(props) {
                   </select>
                   <div className='menuTotalPrice'>{new Intl.NumberFormat().format(Number(((menu.Menu.price + menu.Option.price) * menu.quantity)))}₩</div>
                   <div className='deleteMenu' onClick={() => {
-                    axios.delete('https://travelhelp.kr/api/foods/cart', {
+                    axios.delete('/api/foods/cart', {
                       params: {
                         order_id: orderId,
                         menu_id: menu.Menu.id,

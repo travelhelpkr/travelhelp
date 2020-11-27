@@ -26,7 +26,7 @@ function Signin(props) {
   // signin handler
   const handleLoginBtn = (e) => {
     e.preventDefault();
-    axios.post('https://travelhelp.kr/api/users/signin', {
+    axios.post('/api/users/signin', {
       email: email,
       password: password
     }, {
@@ -64,13 +64,13 @@ function Signin(props) {
       <div className='content'>
         {/* social signin */}
         <div className='signupBtn'>
-          <a href='https://travelhelp.kr/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
+          <a href='/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signin.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='https://travelhelp.kr/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
+          <a href='/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
         </div>
 
         {/* or */}
