@@ -31,7 +31,7 @@ const options = {
   user: env.DB_USER_NAME,
   password: env.DB_PASSWORD,
   database: env.DB_DATABASE,
-  dialect: mysql
+  // dialect: mysql
 }
 const sessionStorage = new mysqlStore(options);
 
