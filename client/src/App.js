@@ -135,7 +135,7 @@ function App(props) {
         <FormatQuoteRoundedIcon />
       </button>
       <ChannelTalk 
-        pluginKey={config.web.pluginKey}
+        pluginKey={process.env.REACT_APP_CHANNELTALK_KEY}
         locale="en"
         userId={userId}
         profile={profile}
