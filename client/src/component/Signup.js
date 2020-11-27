@@ -57,7 +57,7 @@ function SignupEmail({ history }) {
   const signUpBtnHandler = (e) => {
     e.preventDefault();
     if (validateEmail(email) && (password === confirmPassword) && (name !== '') && (policy !== '')) {
-      axios.post('https://travelhelp.kr/api/users/signup', {
+      axios.post('/api/users/signup', {
         email: email,
         password: password,
         name: name,
@@ -89,13 +89,13 @@ function SignupEmail({ history }) {
       <div className='content'>
         {/* social signup */}
         <div className='signupBtn'>
-          <a href='https://travelhelp.kr/api/auth/google' className='btn googleBtn'>{t('signup.google')}</a>
+          <a href='/api/auth/google' className='btn googleBtn'>{t('signup.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signup.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='https://travelhelp.kr/api/auth/line' className='btn lineBtn'>{t('signup.line')}</a>
+          <a href='/api/auth/line' className='btn lineBtn'>{t('signup.line')}</a>
         </div>
 
         {/* or */}

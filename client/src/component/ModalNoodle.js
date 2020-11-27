@@ -24,7 +24,7 @@ function ModalNoodle(props) {
     e.preventDefault();
     if(window.sessionStorage.getItem('id')) {
       if(infoMenuId <= 24) {
-        axios.post('https://travelhelp.kr/api/foods/cart', {
+        axios.post('/api/foods/cart', {
           user_id: window.sessionStorage.getItem('id'),
           menu_id: infoMenuId,
           option_id: null
@@ -49,7 +49,7 @@ function ModalNoodle(props) {
           }
         })
       } else if(infoMenuId < 25 || type) {
-        axios.post('https://travelhelp.kr/api/foods/cart', {
+        axios.post('/api/foods/cart', {
           user_id: window.sessionStorage.getItem('id'),
           menu_id: infoMenuId,
           option_id: type

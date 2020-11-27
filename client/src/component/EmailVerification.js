@@ -16,7 +16,7 @@ function EmailVerification(props) {
   // resend Email btn handler
   const handleResendBtn = (e) => {
     e.preventDefault();
-    axios.post('https://travelhelp.kr/api/auth/email', {
+    axios.post('/api/auth/email', {
       email: window.sessionStorage.getItem('email')
     }, {
       withCredentials: true,
