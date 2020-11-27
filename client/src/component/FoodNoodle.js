@@ -50,7 +50,7 @@ function FoodNoodle(props) {
 
   // get restaurant menus
   useEffect(() => {
-    axios.get('https://travelhelp.kr/api/foods/menu', 
+    axios.get('/api/foods/menu', 
     {
       params: {
         restaurant_id : 2

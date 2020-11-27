@@ -24,7 +24,7 @@ function ModalChicken(props) {
     e.preventDefault();
     if(window.sessionStorage.getItem('id')) {
       if(type) {
-        axios.post('https://travelhelp.kr/api/foods/cart', {
+        axios.post('/api/foods/cart', {
           user_id: window.sessionStorage.getItem('id'),
           menu_id: infoMenuId,
           option_id: type

@@ -131,7 +131,7 @@ function App(props) {
       </BrowserRouter>
 
       {/* Setting of Channel Talk */}
-      <button className="channelTalkIcon"onClick={() => ChannelTalk.show()}>
+      <button className="channelTalkIcon" onClick={() => ChannelTalk.show()}>
         <FormatQuoteRoundedIcon />
       </button>
       <ChannelTalk 
