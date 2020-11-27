@@ -20,7 +20,7 @@ module.exports = () => {
   passport.use(new LineStrategy({
     channelID: credentials.web.channelID,
     channelSecret: credentials.web.channelSecret,
-    callbackURL: credentials.web.callbackURL,
+    callbackURL: credentials.web.callbackURL[0], // localhost: [1], production: [0]
     scope: ['profile', 'openid', 'email'],
     botPrompt: 'normal'
   },

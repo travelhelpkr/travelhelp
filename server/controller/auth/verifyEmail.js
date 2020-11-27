@@ -30,7 +30,7 @@ module.exports = {
       
       // redirect user into sigin page in case user email already verified or user access this page without email. such as directly approach with the url.
       if (newUser === null || newUser.dataValues.is_email_verified) {
-        res.redirect(403, 'http://localhost:5533/user/signin');
+        res.redirect(403, 'https://travelhelp.kr/user/signin');
       }
       else {
         // generate token for verifying user email. available for 24 hours.
@@ -60,9 +60,9 @@ module.exports = {
           
 To activate your TravelHelp account, we just need yo verify your email address:        
           
-http://localhost:5533/user/verifyEmail/?token=${generatedAuthToken}
+https://travelhelp.kr/user/verifyEmail/?token=${generatedAuthToken}
           
-This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(http://localhost:5533/user/signin) by trying to sign in again with your email address.
+This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(https://travelhelp.kr/user/signin) by trying to sign in again with your email address.
           
 If you have any problems, please contact us: (attatch channel.io link)`
         }

@@ -17,24 +17,24 @@ authRouter.post('/password', resetPassword.updatePassword);
 // google
 passportGoogle();
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-authRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:5533/user/signin' })
+authRouter.get('/google/callback', passport.authenticate('google', { failureRedirect: 'https://travelhelp.kr/user/signin' })
 , (req, res) => {
   // defined variables will be tossed to the cookie of the browser
   const { id, name, email, oauth_provider, language } = req.session.passport.user;
   res.cookie('user', { id, name, email, oauth_provider, language });
-  res.redirect('http://localhost:5533');
+  res.redirect('https://travelhelp.kr/');
 }
 );  
 
 // line
 passportLine();
 authRouter.get('/line', passport.authenticate('line'));
-authRouter.get('/line/callback', passport.authenticate('line', { failureRedirect: 'http://localhost:5533/user/signin' })
+authRouter.get('/line/callback', passport.authenticate('line', { failureRedirect: 'https://travelhelp.kr/user/signin' })
 , (req, res) => {
   // defined variables will be tossed to the cookie of the browser
     const { id, name, email, oauth_provider, language } = req.session.passport.user;
     res.cookie('user', { id, name, email, oauth_provider, language });
-    res.redirect('http://localhost:5533');
+    res.redirect('https://travelhelp.kr/');
   }
 )
 

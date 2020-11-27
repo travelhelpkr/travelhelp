@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(cors({
-  origin: "http://localhost:5533",
+  origin: "https://travelhelp.kr",
   credentials: true
 }));
 
@@ -49,18 +49,18 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 // routing
-app.use('/users', userRouter);
-app.use('/auth', authRouter);
-app.use('/foods', foodRouter);
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/foods', foodRouter);
 
 app.get('/', (req, res) => {
-  console.log('session: ', req.session);
-  console.log('cookies: ', req.cookies);
+  // console.log('session: ', req.session);
+  // console.log('cookies: ', req.cookies);
   res.send('welcome to the travel help!');
 })
 
 app.listen(port, () => {
-  console.log(`Server listening on localhost:${port}`);
+  console.log(`Server listening on port:${port}`);
 });
 
 module.exports = app;
