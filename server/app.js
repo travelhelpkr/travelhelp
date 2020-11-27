@@ -1,5 +1,6 @@
 const app = require('express')();
 const session = require('express-session');
+const mysql = require('mysql2');
 const mysqlStore = require('express-mysql-session')(session);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
