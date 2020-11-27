@@ -18,8 +18,7 @@ module.exports = () => {
   passport.use(new GoogleStrategy({
     clientID: credentials.web.client_id,
     clientSecret: credentials.web.client_secret,
-    // localhost: [1], production: [0]
-    callbackURL: credentials.web.redirect_uris[1]
+    callbackURL: credentials.web.redirect_uris[0] // localhost: [1], production: [0]
   },
   async (accessToken, refreshToken, profile, cb) => {
     // console.log('accessToken: ', accessToken);
