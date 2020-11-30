@@ -3,6 +3,8 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const credentials = require('../../config/google.json');
 const bcrypt = require('bcrypt');
+const env = process.env.NODE_ENV || 'production';
+const config = require(__dirname + '/../../config/config.js')[env];
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
@@ -18,7 +20,7 @@ module.exports = () => {
   passport.use(new GoogleStrategy({
     clientID: credentials.web.client_id,
     clientSecret: credentials.web.client_secret,
-    callbackURL: credentials.web.redirect_uris[0] // localhost: [1], production: [0]
+    callbackURL: credentials.web.redirect_uris[config.oauth_env] // localhost: [1], production: [0]
   },
   async (accessToken, refreshToken, profile, cb) => {
     // console.log('accessToken: ', accessToken);

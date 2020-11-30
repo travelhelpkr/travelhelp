@@ -8,7 +8,7 @@ const userRouter = require('./router/userRouter');
 const authRouter = require('./router/authRouter');
 const foodRouter = require('./router/foodRouter');
 const passport = require('passport');
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'production';
 const config = require('./config/config.js')[env];
 const port = process.env.SERVER_PORT || 8080;
 const dotenv = require('dotenv');
@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(cors({
-  origin: "https://travelhelp.kr",
+  origin: config.client_url,
   credentials: true
 }));
 

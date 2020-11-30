@@ -141,6 +141,7 @@
   "modalCart.option": "Please choose the option.",
   "modalCart.addToCart": "Successfully added to the cart.",
   "modalCart.already": "The menu is already in the cart.",
+  "modalCart.goToMenu": "Go To Menu",
   "modalCart.goToCart": "Go To Cart",
   "modalCart.signinFirst": "Please Sign In first!",
   "modalCart.signin": "Go To Sign In",
