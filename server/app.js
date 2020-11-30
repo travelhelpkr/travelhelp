@@ -11,7 +11,7 @@ const foodRouter = require('./router/foodRouter');
 const passport = require('passport');
 // const env = process.env.NODE_ENV || 'development';
 // const config = require('./config/config.js')[env];
-const port = process.env.SERVER_PORT || 3355;
+const port = process.env.SERVER_PORT || 8080;
 const dotenv = require('dotenv');
 dotenv.config();
 
