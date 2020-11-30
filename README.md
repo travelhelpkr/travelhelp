@@ -36,8 +36,6 @@ You need 4 config environments information. (these files listed on `.gitignore` 
     
   SESSION_SECRET="(your secret keyword)"
     
-  SERVER_PORT="(your nodejs server port)" 
-    
   NODEMAILER_USER="(your available gmail id)"
   NODEMAILER_PASS="(your gmail password)"
   ```
@@ -51,6 +49,19 @@ You need 4 config environments information. (these files listed on `.gitignore` 
 - Line Oauth Client API Keys  `/server/config/line.json`
   - [line developer console](https://developers.line.biz/en/services/line-login/)
 - Channel Talk API Keys  `/client/src/config/channelTalk.json`
+
+### NPM scripts (from `/server/package.json`)
+* `npm start`: It will trigger nodemon & express server from 8080 port
+* `npm dev`: It will trigger nodemon & express server from 3355 port under development environmnet
+* `npm test`: It will trigger nodemon & express server from 3355 port under test case environmnet
+* `npm prod`: It will trigger nodemon & express server from 3355 port under production environment
+* `npm deploy`: It deploys(sync) current folder(`travelhelp/server`) into the specified AWS S3. It requires `aws cli` for using `aws` command.
+* available environment variables
+```
+NODE_ENV=(development or test or production)
+default value is 'development'. You can chek its configuration from `/server/app.js` and `/server/models/index.js`
+SERVER_PORT=(your nodejs server port)
+```
 
 ## Built With
 * [JavaScript, ES9](http://ecma-international.org/ecma-262/9.0/index.html) - Language

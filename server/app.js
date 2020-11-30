@@ -1,5 +1,6 @@
 const app = require('express')();
 const session = require('express-session');
+const mysql = require('mysql');
 const mysqlStore = require('express-mysql-session')(session);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -8,9 +9,9 @@ const userRouter = require('./router/userRouter');
 const authRouter = require('./router/authRouter');
 const foodRouter = require('./router/foodRouter');
 const passport = require('passport');
-const env = process.env.NODE_ENV || 'development';
-const config = require('./config/config.js')[env];
-const port = process.env.SERVER_PORT || 3355;
+// const env = process.env.NODE_ENV || 'development';
+// const config = require('./config/config.js')[env];
+const port = process.env.SERVER_PORT || 8080;
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -23,13 +24,21 @@ app.use(cors({
 }));
 
 // declare env variable for managing session
-const options = config
+const env = process.env;
+const options = {
+  host: env.DB_HOST,
+  port: env.DB_PORT,
+  user: env.DB_USER_NAME,
+  password: env.DB_PASSWORD,
+  database: env.DB_DATABASE,
+  // dialect: mysql
+}
 const sessionStorage = new mysqlStore(options);
 
 // mysql session managing
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    secret: env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store: sessionStorage,

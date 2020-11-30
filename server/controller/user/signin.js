@@ -30,7 +30,7 @@ module.exports = {
       
       // check req.body.email exists on db
       if (!userData) {
-        res.status(404).send({ message: 'You need to sign up first.' });
+        res.send({ status: 404, message: 'You need to sign up first.' });
       }
       // redirect user to email verification page when email is not verified
       else if (userData && !userData.dataValues.is_email_verified) {

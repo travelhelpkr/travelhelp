@@ -30,6 +30,8 @@
   "signin.gotoSignUp": "まだ身分証明書をお持ちでない方は",
   "signin.or": "または",
   "signin.wrongInfo": "Eメールアドレスまたはパスワードが一致しません。",
+  "signin.signup": "最初にサインアップする必要があります！",
+  "signin.gotoSignUp2": "サインアップに移動",
   "nav.mypage": "私の",
   "mypage.title": "マイページ",
   "mypage.userInfoTitle": "ユーザー情報",
