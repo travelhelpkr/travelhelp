@@ -1,6 +1,8 @@
 const { User } = require('../../models');
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
+const env = process.env.NODE_ENV || 'production';
+const config = require(__dirname + '/../../config/config.js')[env];
 
 /*
 1. check query string from the received uri
@@ -30,7 +32,7 @@ module.exports = {
       
       // redirect user into sigin page in case user email already verified or user access this page without email. such as directly approach with the url.
       if (newUser === null || newUser.dataValues.is_email_verified) {
-        res.redirect(403, 'https://travelhelp.kr/user/signin');
+        res.redirect(403, `${config.client_url}/user/signin`);
       }
       else {
         // generate token for verifying user email. available for 24 hours.
@@ -60,9 +62,9 @@ module.exports = {
           
 To activate your TravelHelp account, we just need yo verify your email address:        
           
-https://travelhelp.kr/user/verifyEmail/?token=${generatedAuthToken}
+${config.client_url}/user/verifyEmail/?token=${generatedAuthToken}
           
-This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(https://travelhelp.kr/user/signin) by trying to sign in again with your email address.
+This link will only be valid for 24 hours. If it expires, you can resend it from the sign in page(${config.client_url}/user/signin) by trying to sign in again with your email address.
           
 If you have any problems, please contact us: (attatch channel.io link)`
         }
