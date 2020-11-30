@@ -91,6 +91,11 @@ function Signin(props) {
         {/* signin btn */}
         <button className='signupSubmitBtn' onClick={handleLoginBtn}>{t('signin.signin')}</button>
         
+        {/* 404 alert */}
+        <div className={noUserAlert ? 'signupAlert' : 'none'}>
+          <span>{t('signin.signup')}</span>
+        </div>
+        
         {/* find password */}
         <div className='gotoSignIn forgotPassword' onClick={e => {
           e.preventDefault();
@@ -102,11 +107,6 @@ function Signin(props) {
         {/* go to signup */}
         <div className='gotoSignIn'>
           <a href='/user/signup'>{t('signin.gotoSignUp')}</a>
-        </div>
-        {/* 404 alert */}
-        <div className={noUserAlert ? 'signupAlert' : 'none'}>
-          <span>{t('signin.signup')}</span>
-          <span className='goToSignUp'><a href='/user/signup'>{t('signin.gotoSignUp2')}</a></span>
         </div>
 
         {/* forgot password modal */}
