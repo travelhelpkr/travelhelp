@@ -8,14 +8,14 @@ import translationZh from './translation.zh';
 import translationJa from './translation.ja';
 
 const resources = {
-    en: {
-        translation: translationEn
-    },
-    zh: {
-        translation: translationZh
-    },
-    ja: {
-      translation: translationJa
+  zh: {
+    translation: translationZh
+  },
+  ja: {
+    translation: translationJa
+  },
+  en: {
+    translation: translationEn
   }
 };
 
@@ -25,7 +25,7 @@ i18n
     .use(Cache)
     .init({
         resources,
-        // lng: "en",
+        // lng: 'en',
         fallbackLng: 'en',
         keySeparator: false, 
         interpolation: {
