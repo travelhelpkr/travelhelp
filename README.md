@@ -48,7 +48,8 @@ You need 4 config environments information. (these files listed on `.gitignore` 
   - [google cloud platform](https://console.cloud.google.com/apis/credentials/oauthclient)
 - Line Oauth Client API Keys  `/server/config/line.json`
   - [line developer console](https://developers.line.biz/en/services/line-login/)
-- Channel Talk API Keys  `/client/src/config/channelTalk.json`
+- Channel Talk API Keys  `/client/.env`
+  - [channel developer guides](https://developers.channel.io/docs)
 
 ### NPM scripts (from `/server/package.json`)
 - `npm start`: It will trigger nodemon & express server from 8080 port
@@ -59,14 +60,13 @@ You need 4 config environments information. (these files listed on `.gitignore` 
 - `npm invalidate`: It purges cache from the CDN of the AWS cloudfront. You may need to invalidate after updating static files for updating caches. It requires `aws cli` for using `aws` command. And it also requires AWS IAM permission for the AWS CloudFront.
 - available environment variables
   - `NODE_ENV=`
-  - `development` / `test` / `production` available
-    - you should update `/server/config/config.js` for custom environment configuration setting
-    - default value is `development`
-    - You can check related configurations from `/server/app.js` and `/server/models/index.js`
+    - `development` / `test` / `production` available
+      - you should update `/server/config/config.js` for custom environment configuration setting
+      - if you don't set anything, the default value is `production`
+      - You can check its related configurations from `/server/app.js` and `/server/models/index.js`
   - `SERVER_PORT=`
-    - your nodejs server port
+    - your express server port
     - default value is `8080`
-```
 
 ## Built With
 * [JavaScript, ES9](http://ecma-international.org/ecma-262/9.0/index.html) - Language
