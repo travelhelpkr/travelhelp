@@ -142,6 +142,7 @@
   "modalCart.addToCart": "カートに正常に追加されました。",
   "modalCart.already": "メニューはすでにカートに入っています。",
   "modalCart.goToMenu": "メニューに移動",
+  "modalCart.goToCart": "カートに移動",
   "modalCart.signinFirst": "最初にサインインしてください！",
   "modalCart.signin": "サインインに移動",
   "modalCart.onlySame": "同じレストランのメニューのみ追加できます。",
