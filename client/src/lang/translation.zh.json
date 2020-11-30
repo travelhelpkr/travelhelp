@@ -30,6 +30,8 @@
   "signin.gotoSignUp": "如果你还没有身份证",
   "signin.or": "或",
   "signin.wrongInfo": "电邮地址或密码不匹配。",
+  "signin.signup": "您需要先注册！",
+  "signin.gotoSignUp2": "前往注册",
   "nav.mypage": "我的",
   "mypage.title": "我的书页",
   "mypage.userInfoTitle": "用户资料",

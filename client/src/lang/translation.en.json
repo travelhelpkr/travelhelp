@@ -30,6 +30,8 @@
   "signin.gotoSignUp": "If you don't have an ID yet",
   "signin.or": "OR",
   "signin.wrongInfo": "The email address or password is not match.",
+  "signin.signup": "You need to Sign Up first!",
+  "signin.gotoSignUp2": "Go to SignUp",
   "nav.mypage": "My",
   "mypage.title": "My Page",
   "mypage.userInfoTitle": "User Information",

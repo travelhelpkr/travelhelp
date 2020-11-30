@@ -16,6 +16,7 @@ function Signin(props) {
   
   // failure of signin
   const [failAlert, setFailAlert] = useState(false);
+  const [noUserAlert, setNoUserAlert] = useState(false);
 
   // open modal
   const [isOpen, setModal] = useState(false);
@@ -40,6 +41,8 @@ function Signin(props) {
       if(res.data.status === 403) {
         window.sessionStorage.setItem('email', email);
         window.location = '/user/emailVerified';
+      } else if(res.data.status === 404) {
+        setNoUserAlert(true);
       } else {
         window.localStorage.setItem('i18nextLng', res.data.language);
         window.sessionStorage.setItem('id', res.data.id);
@@ -100,7 +103,11 @@ function Signin(props) {
         <div className='gotoSignIn'>
           <a href='/user/signup'>{t('signin.gotoSignUp')}</a>
         </div>
-        
+        {/* 404 alert */}
+        <div className={noUserAlert ? 'signupAlert' : 'none'}>
+          <span>{t('signin.signup')}</span>
+          <span className='goToSignUp'><a href='/user/signup'>{t('signin.gotoSignUp2')}</a></span>
+        </div>
 
         {/* forgot password modal */}
         <ModalResetPassword isOpen={isOpen} setModal={setModal} />
