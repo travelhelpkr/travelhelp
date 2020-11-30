@@ -1,7 +1,7 @@
 {
   "name": "travelhelp-server",
   "version": "0.1.0",
-  "description": "Concierge service for the foreign travelers in Korea.",
+  "description": "Concierge service for foreign travelers in Korea.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",

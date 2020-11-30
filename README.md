@@ -76,7 +76,7 @@ SERVER_PORT=(your nodejs server port)
   - Released
   
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the ISC License.
 
 ## Contributors
 * **[Brother Kim](https://github.com/imbrok)**
