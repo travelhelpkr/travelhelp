@@ -1,6 +1,5 @@
 const app = require('express')();
 const session = require('express-session');
-// const mysql = require('mysql');
 const mysqlStore = require('express-mysql-session')(session);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -29,8 +28,7 @@ const options = {
   port: config.port,
   user: config.username,
   password: config.password,
-  database: config.database,
-  // dialect: config.dialect
+  database: config.database
 }
 const sessionStorage = new mysqlStore(options);
 

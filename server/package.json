@@ -8,7 +8,8 @@
     "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.js",
     "test": "NODE_ENV=test SERVER_PORT=3355 nodemon app.js",
     "prod": "NODE_ENV=production nodemon app.js",
-    "deploy": "aws s3 sync . s3://travelhelp-server/server --delete"
+    "deploy": "aws s3 sync . s3://travelhelp-server/server --delete",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E3DD2MDGVAYOWG --paths / '/*'"
   },
   "repository": {
     "type": "git",
