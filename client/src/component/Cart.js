@@ -294,7 +294,7 @@ function Cart(props) {
       {/* alert when cart is empty */}
       <div className={emptyCart? 'emptyAlert' : 'none'}>
         <span className='noMenu'>{t('cart.empty')}</span>
-        <span className='goToCart'><a href='/user/cart'>{t('modalCart.goToCart')}</a></span>
+        <span className='goToCart'><a href='#' onClick={goBackHandler}>{t('modalCart.goToMenu')}</a></span>
       </div>
 
     </div>

@@ -141,7 +141,7 @@
   "modalCart.option": "请选择选项。",
   "modalCart.addToCart": "已成功添加到购物车。",
   "modalCart.already": "菜单已经在购物车中。",
-  "modalCart.goToCart": "去购物车",
+  "modalCart.goToMenu": "转到菜单",
   "modalCart.signinFirst": "请先登录！",
   "modalCart.signin": "前往登入",
   "modalCart.onlySame": "只能添加同一家餐厅的菜单。",
