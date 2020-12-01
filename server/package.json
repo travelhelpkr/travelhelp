@@ -1,20 +1,21 @@
 {
-  "name": "travelhelp",
-  "version": "1.0.0",
-  "description": "This is sort of concierge service for the foreign travelers in Korea.",
+  "name": "travelhelp-server",
+  "version": "0.1.0",
+  "description": "Concierge service for foreign travelers in Korea.",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "dev": "nodemon app.js",
-    "test": "NODE_ENV=test nodemon app.js",
+    "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.js",
+    "test": "NODE_ENV=test SERVER_PORT=3355 nodemon app.js",
     "prod": "NODE_ENV=production nodemon app.js",
-    "test_default": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "aws s3 sync . s3://travelhelp-server/server --delete",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E3DD2MDGVAYOWG --paths / '/*'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/imbrok/travelhelp.git"
   },
-  "author": "",
+  "author": "Bro & Ryn",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/imbrok/travelhelp/issues"

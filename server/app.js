@@ -8,9 +8,9 @@ const userRouter = require('./router/userRouter');
 const authRouter = require('./router/authRouter');
 const foodRouter = require('./router/foodRouter');
 const passport = require('passport');
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'production';
 const config = require('./config/config.js')[env];
-const port = process.env.SERVER_PORT || 3355;
+const port = process.env.SERVER_PORT || 8080;
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -18,12 +18,18 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(require('body-parser').urlencoded({extended: true}));
 app.use(cors({
-  origin: "http://localhost:5533",
+  origin: config.client_url,
   credentials: true
 }));
 
 // declare env variable for managing session
-const options = config
+const options = {
+  host: config.host,
+  port: config.port,
+  user: config.username,
+  password: config.password,
+  database: config.database
+}
 const sessionStorage = new mysqlStore(options);
 
 // mysql session managing
@@ -49,18 +55,18 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 // routing
-app.use('/users', userRouter);
-app.use('/auth', authRouter);
-app.use('/foods', foodRouter);
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/foods', foodRouter);
 
 app.get('/', (req, res) => {
-  console.log('session: ', req.session);
-  console.log('cookies: ', req.cookies);
+  // console.log('session: ', req.session);
+  // console.log('cookies: ', req.cookies);
   res.send('welcome to the travel help!');
 })
 
 app.listen(port, () => {
-  console.log(`Server listening on localhost:${port}`);
+  console.log(`Server listening on port:${port}`);
 });
 
 module.exports = app;

@@ -19,7 +19,7 @@ function Mypage(props) {
 
   // get order history
   useEffect(() => {
-    axios.get(`http://localhost:3355/users/mypage/${window.sessionStorage.getItem('id')}`)
+    axios.get(`/api/users/mypage/${window.sessionStorage.getItem('id')}`)
     .then(res => {
       console.log('res:', res.data.order_history);
       setOrderHistory(res.data.order_history);
@@ -28,13 +28,13 @@ function Mypage(props) {
 
   // handle sign out
   const signoutHandler = () => {
-    axios.post('http://localhost:3355/users/signout', {
+    axios.post('/api/users/signout', {
       language: window.localStorage.getItem('i18nextLng')
     },{
       withCredentials: true,
     }, {
       headers: { 
-        'Access-Control-Allow-Origin': 'http://localhost:3355',
+        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
        }
     })
       .then(res => {

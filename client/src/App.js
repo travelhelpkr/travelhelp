@@ -18,7 +18,7 @@ import FoodChicken from './component/FoodChicken';
 import FoodNoodle from './component/FoodNoodle';
 import Cart from './component/Cart';
 import VerifyEmail from './component/VerifyEmail';
-import config from './config/channelTalk.json';
+// import config from './config/channelTalk.json';
 import FormatQuoteRoundedIcon from '@material-ui/icons/FormatQuoteRounded';
 import './App.scss';
 
@@ -131,11 +131,11 @@ function App(props) {
       </BrowserRouter>
 
       {/* Setting of Channel Talk */}
-      <button className="channelTalkIcon"onClick={() => ChannelTalk.show()}>
+      <button className="channelTalkIcon" onClick={() => ChannelTalk.show()}>
         <FormatQuoteRoundedIcon />
       </button>
       <ChannelTalk 
-        pluginKey={config.web.pluginKey}
+        pluginKey={process.env.REACT_APP_CHANNELTALK_KEY}
         locale="en"
         userId={userId}
         profile={profile}

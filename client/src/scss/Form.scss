@@ -99,7 +99,8 @@
         background-color:  rgb(1, 1, 37);
         &:hover {
           cursor: pointer;
-          opacity: 85%;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
           font-weight: 600;
         }
       }
@@ -111,6 +112,26 @@
             font-weight: 600;
           }
         }
+      }
+      .signupAlert {
+        padding-bottom: 10px;
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        margin-bottom: 1em;
+        .goToSignUp {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .none {
+        display: none;
       }
       .forgotPassword {
         margin-bottom: 1em;
@@ -226,9 +247,30 @@
         background-color:  rgb(1, 1, 37);
         &:hover {
           cursor: pointer;
-          opacity: 85%;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
           font-weight: 600;
         }
+      }
+      .signupAlert {
+        padding-bottom: 10px;
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        margin-bottom: 1em;
+        .goToSignUp {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 1em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .none {
+        display: none;
       }
       .gotoSignIn {
         margin-bottom: 4em;
@@ -353,9 +395,30 @@
         background-color:  rgb(1, 1, 37);
         &:hover {
           cursor: pointer;
-          opacity: 85%;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
           font-weight: 600;
         }
+      }
+      .signupAlert {
+        padding-bottom: 10px;
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        margin-bottom: 1em;
+        .goToSignUp {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 0.9em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .none {
+        display: none;
       }
       .gotoSignIn {
         margin-bottom: 2em;
@@ -483,9 +546,30 @@
         background-color:  rgb(1, 1, 37);
         &:hover {
           cursor: pointer;
-          opacity: 85%;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
           font-weight: 600;
         }
+      }
+      .signupAlert {
+        padding-bottom: 10px;
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        margin-bottom: 1em;
+        .goToSignUp {
+          a {
+            padding-left: 10px;
+            color: rgb(1, 1, 37);
+            font-weight: 500;
+            font-size: 0.95em;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .none {
+        display: none;
       }
       .gotoSignIn {
         margin-bottom: 1.5em;

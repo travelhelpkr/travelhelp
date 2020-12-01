@@ -48,7 +48,7 @@ function FoodChicken(props) {
 
   // get restaurant menus
   useEffect(() => {
-    axios.get('http://localhost:3355/foods/menu', 
+    axios.get('/api/foods/menu', 
     {
       params: {
         restaurant_id : 1

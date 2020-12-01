@@ -2,6 +2,8 @@ const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const env = process.env.NODE_ENV || 'production';
+const config = require(__dirname + '/../../config/config.js')[env];
 
 /*
 1. if email not exists
@@ -74,7 +76,7 @@ module.exports = {
           
 You told us you forgot your password. If you really did, click this link to choose a new one:        
           
-http://localhost:5533/user/resetPassword/?token=${generatedAuthToken}
+${config.client_url}/user/resetPassword/?token=${generatedAuthToken}
           
 This link will only be valid for an hour.
 

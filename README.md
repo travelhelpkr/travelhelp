@@ -18,9 +18,9 @@
 ```
 nodeJS v14.15.1 (nvm v0.37.0)
 npm v6.14.8
-mysql(AWS RDS) ^8.0.20
+mysql(AWS RDS) ^8.0.21
 ```
-dependencies can be checked from `server/package.json` and `client/package.json`
+other dependencies can be checked from `server/package.json` and `client/package.json`
 
 ### Config information
 You need 4 config environments information. (these files listed on `.gitignore` for the security issue)
@@ -36,8 +36,6 @@ You need 4 config environments information. (these files listed on `.gitignore` 
     
   SESSION_SECRET="(your secret keyword)"
     
-  SERVER_PORT="(your nodejs server port)" 
-    
   NODEMAILER_USER="(your available gmail id)"
   NODEMAILER_PASS="(your gmail password)"
   ```
@@ -50,7 +48,25 @@ You need 4 config environments information. (these files listed on `.gitignore` 
   - [google cloud platform](https://console.cloud.google.com/apis/credentials/oauthclient)
 - Line Oauth Client API Keys  `/server/config/line.json`
   - [line developer console](https://developers.line.biz/en/services/line-login/)
-- Channel Talk API Keys  `/client/src/config/channelTalk.json`
+- Channel Talk API Keys  `/client/.env`
+  - [channel developer guides](https://developers.channel.io/docs)
+
+### NPM scripts (from `/server/package.json`)
+- `npm start`: It will trigger nodemon & express server from 8080 port
+- `npm dev`: It will trigger nodemon & express server from 3355 port under development environmnet
+- `npm test`: It will trigger nodemon & express server from 3355 port under test case environmnet
+- `npm prod`: It will trigger nodemon & express server from 3355 port under production environment
+- `npm deploy`: It deploys(sync) current folder(`travelhelp/server`) into the specified AWS S3. It requires `aws cli` for using `aws` command. And it also requires AWS IAM permission for the AWS S3.
+- `npm invalidate`: It purges cache from the CDN of the AWS cloudfront. You may need to invalidate after updating static files for updating caches. It requires `aws cli` for using `aws` command. And it also requires AWS IAM permission for the AWS CloudFront.
+- available environment variables
+  - `NODE_ENV=`
+    - `development` / `test` / `production` available
+      - you should update `/server/config/config.js` for custom environment configuration setting
+      - if you don't set anything, the default value is `production`
+      - You can check its related configurations from `/server/app.js` and `/server/models/index.js`
+  - `SERVER_PORT=`
+    - your express server port
+    - default value is `8080`
 
 ## Built With
 * [JavaScript, ES9](http://ecma-international.org/ecma-262/9.0/index.html) - Language
@@ -65,7 +81,7 @@ You need 4 config environments information. (these files listed on `.gitignore` 
   - Released
   
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the ISC License.
 
 ## Contributors
 * **[Brother Kim](https://github.com/imbrok)**

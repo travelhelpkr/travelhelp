@@ -16,6 +16,7 @@ function Signin(props) {
   
   // failure of signin
   const [failAlert, setFailAlert] = useState(false);
+  const [noUserAlert, setNoUserAlert] = useState(false);
 
   // open modal
   const [isOpen, setModal] = useState(false);
@@ -26,20 +27,22 @@ function Signin(props) {
   // signin handler
   const handleLoginBtn = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3355/users/signin', {
+    axios.post('/api/users/signin', {
       email: email,
       password: password
     }, {
       withCredentials: true,
     }, {
       headers: { 
-        'Access-Control-Allow-Origin': 'http://localhost:3355',
+        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
        }
     })
     .then(res => {
       if(res.data.status === 403) {
         window.sessionStorage.setItem('email', email);
         window.location = '/user/emailVerified';
+      } else if(res.data.status === 404) {
+        setNoUserAlert(true);
       } else {
         window.localStorage.setItem('i18nextLng', res.data.language);
         window.sessionStorage.setItem('id', res.data.id);
@@ -64,13 +67,13 @@ function Signin(props) {
       <div className='content'>
         {/* social signin */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
+          <a href='/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signin.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
+          <a href='/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
         </div>
 
         {/* or */}
@@ -88,6 +91,11 @@ function Signin(props) {
         {/* signin btn */}
         <button className='signupSubmitBtn' onClick={handleLoginBtn}>{t('signin.signin')}</button>
         
+        {/* 404 alert */}
+        <div className={noUserAlert ? 'signupAlert' : 'none'}>
+          <span>{t('signin.signup')}</span>
+        </div>
+        
         {/* find password */}
         <div className='gotoSignIn forgotPassword' onClick={e => {
           e.preventDefault();
@@ -100,7 +108,6 @@ function Signin(props) {
         <div className='gotoSignIn'>
           <a href='/user/signup'>{t('signin.gotoSignUp')}</a>
         </div>
-        
 
         {/* forgot password modal */}
         <ModalResetPassword isOpen={isOpen} setModal={setModal} />
