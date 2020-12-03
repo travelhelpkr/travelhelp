@@ -1,0 +1,1460 @@
+@import '../mixin';
+
+@include desktop-large {
+  .background {
+    .header {
+      width: 60em;
+      margin: auto;
+      .backBtn {
+        float: left;
+        border: none;
+        background: transparent;
+        .MuiSvgIcon-root {
+          font-size: 3.5em;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .h1 {
+        font-size: 2.1em;
+        margin: 1.5em;
+        color: rgb(1, 1, 37);
+      }
+    }
+    .cartTable {
+      width: 60em;
+      margin: auto;
+      text-align: center;
+      .tableHead {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 1em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuInfo {
+          float: left;
+          width: 40em;
+        }
+      }
+      .chickenCart {
+        font-weight: 600;
+        border-bottom: 1px solid #ebebeb;
+        .neneChicken {
+          font-size: 1.3em;
+          float: left;
+          width: 30em;
+          text-align: left;
+          padding: 20px 0 20px 20px;
+        }
+        .minPrice {
+          font-size: 1em;
+          padding: 20px 0;
+          span {
+            font-size: 1.1em;
+            padding-left: 10px;
+            color: rgb(183, 60, 3);
+          }
+        }
+      }
+      .eachMenuInfo {
+        padding-left: 0px;
+        margin: 5px 0;
+        li {
+          display: block;
+          margin-top: 10px;
+          list-style: none;
+          height: 4.5em;
+          .menuImage {
+            padding-left: 15px;
+            float: left;
+            width: 5.5em;
+            img {
+              width: 5.5em;
+              height: auto;
+            }
+          }
+          .menuInfo {
+            width: 28em;
+            margin-left: 25px;
+            float: left;
+            text-align: left;
+            font-size: 1em;
+            font-weight: 500;
+            padding-top: 8px;
+            .menuType {
+              padding-top: 5px;
+              font-weight: 400;
+              font-size: 0.9em;
+            }
+            .none {
+              display: none;
+            }
+          }
+          .menuPrice {
+            width: 4em;
+            float: left;
+            padding-top: 20px;
+            font-size: 1em;
+          }
+          .menuQuantity {
+            width: 4em;
+            font-size: 1em;
+            padding: 2px 5px;
+            margin: 15px 0 0 45px;
+            float: left;
+            border: 1px solid #ccc;
+            border-radius: 1px;
+            background-color: transparent;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .menuTotalPrice {
+            width: 6em;
+            margin-left: 25px;
+            float: left;
+            padding-top: 18px;
+            font-size: 1.1em;
+            font-weight: 500;
+          }
+          .deleteMenu {
+            width: 3em;
+            margin-left: 20px;
+            float: left;
+            padding-top: 15px;
+            .MuiSvgIcon-root {
+              font-size: 1.7em;
+              color: rgb(1, 1, 37);
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .summaryInfo {
+        clear: both;
+        height: 2em;
+        padding: 25px 0 25px 30px;
+        background-color: #f6f6f8;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuTotalPriceSum {
+          float: left;
+          .priceSum1 {
+            font-size: 1em;
+          }
+          .priceSum2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1.2em;
+          }
+        }
+        .plus {
+          padding-left: 10px;
+          float: left;
+          font-size: 1.5em;
+          font-weight: 300;
+        }
+        .deliveryFee {
+          padding-left: 10px;
+          float: left;
+          .delivery1 {
+            font-size: 1em;
+          }
+          .delivery2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1.2em;
+          }
+        }
+        .equal {
+          padding: 0 0 0 10px;
+          float: left;
+          font-size: 1.5em;
+          font-weight: 300;
+        }
+        .totalPrice {
+          padding-left: 10px;
+          float: left;
+          .total1 {
+            font-size: 1em;
+          }
+          .total2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1.2em;
+          }
+        }
+        .minimumAlert {
+          text-align: left;
+          padding: 4px 20px;
+          clear: both;
+          color: rgb(190, 23, 11);
+          font-size: 0.95em;
+        }
+        .none {
+          display: none;
+        }
+      }
+    }
+    .deliveryInfo {
+      width: 60em;
+      margin: 40px auto 120px;
+      text-align: center;
+      .deliveryHeader {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 1em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .addressInput {
+        width: 32.7em;
+        margin: 25px auto;
+        .address {
+          margin-bottom: 20px;
+          font-size: 1em;
+          font-weight: 600;
+        }
+        .choose {
+          padding: 9px 0 9px 12px;
+          font-size: 0.9em;
+          display: block;
+          width: 36.2em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .recentAddress {
+          padding: 8px 0 8px 12px;
+          font-size: 0.9em;
+          display: block;
+          width: 36.2em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .or {
+          font-size: 0.9em;
+          font-weight: 500;
+          margin: 10px 0;
+        }
+        .inputaddress {
+          font-size: 0.9em;
+          clear: both;
+          margin-top: 5px;
+          display: block;
+          width: 35.3em;
+          padding: 8px 0 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .myself {
+          padding: 9px 0 9px 12px;
+          font-size: 0.9em;
+          display: block;
+          width: 36.2em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.95em;
+          width: 30em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
+      }
+      .blank {
+        background-color: #f6f6f8;
+        padding: 5px 0;
+        font-size: 1em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 20px;
+      }
+      .paymentBtn {
+        width: 15em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 1em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
+          font-weight: 600;
+        }
+      }
+      .successPaymentAlert {
+        padding-top: 13px;
+        color: rgb(5, 202, 71);
+        font-size: 1em;
+        width: 19em;
+        margin: auto;
+        font-weight: 500;
+        .iconText {
+          width: 12em;
+          margin: 0 auto 3px;
+          .checkIcon {
+            margin: auto;
+            .MuiSvgIcon-root {
+              font-size: 1.2em;
+              float: left;
+            }
+          }
+          .checkText1 {
+            margin: auto;
+          }
+        }
+        .checkText2 {
+          width: 19em;
+          margin: auto;
+        }
+      }
+      .minimumAlert {
+        padding-top: 13px;
+        color: rgb(190, 23, 11);
+        font-size: 1em;
+        width: 19em;
+        margin: auto;
+        font-weight: 500;
+      }
+      .none {
+        display: none;
+      }
+    }
+    .emptyAlert {
+      padding-top: 50px;
+      color: rgb(190, 23, 11);
+      font-size: 1.2em;
+      width: 30em;
+      margin: 5px auto 0;
+      font-weight: 500;
+      text-align: center;
+      .goToCart {
+        a {
+          padding-left: 10px;
+          color: rgb(1, 1, 37);
+          font-weight: 500;
+          font-size: 1em;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  } 
+}
+
+@include desktop-small {
+  .background {
+    .header {
+      width: 55em;
+      margin: auto;
+      .backBtn {
+        float: left;
+        border: none;
+        background: transparent;
+        .MuiSvgIcon-root {
+          font-size: 3em;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .h1 {
+        font-size: 2em;
+        margin: 1.5em;
+        color: rgb(1, 1, 37);
+      }
+    }
+    .cartTable {
+      width: 55em;
+      margin: auto;
+      text-align: center;
+      .tableHead {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuInfo {
+          float: left;
+          width: 40em;
+        }
+      }
+      .chickenCart {
+        font-weight: 600;
+        border-bottom: 1px solid #ebebeb;
+        .neneChicken {
+          font-size: 1.2em;
+          float: left;
+          width: 30em;
+          text-align: left;
+          padding: 20px 0 20px 20px;
+        }
+        .minPrice {
+          font-size: 0.9em;
+          padding: 20px 0;
+          span {
+            font-size: 1.1em;
+            padding-left: 10px;
+            color: rgb(183, 60, 3);
+          }
+        }
+      }
+      .eachMenuInfo {
+        padding-left: 0px;
+        margin: 5px 0;
+        li {
+          display: block;
+          margin-top: 10px;
+          list-style: none;
+          height: 4em;
+          .menuImage {
+            padding-left: 15px;
+            float: left;
+            width: 5em;
+            img {
+              width: 5em;
+              height: auto;
+            }
+          }
+          .menuInfo {
+            width: 28em;
+            margin-left: 20px;
+            float: left;
+            text-align: left;
+            font-size: 0.9em;
+            font-weight: 500;
+            padding-top: 9px;
+            .menuType {
+              padding-top: 5px;
+              font-weight: 400;
+              font-size: 0.9em;
+            }
+            .none {
+              display: none;
+            }
+          }
+          .menuPrice {
+            width: 4em;
+            float: left;
+            padding-top: 15px;
+            font-size: 0.9em;
+          }
+          .menuQuantity {
+            width: 3.5em;
+            margin: 13px 0 0 30px;
+            float: left;
+            border: 1px solid #ccc;
+            border-radius: 1px;
+            background-color: transparent;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .menuTotalPrice {
+            width: 5.5em;
+            margin-left: 50px;
+            float: left;
+            padding-top: 13px;
+            font-size: 1.1em;
+            font-weight: 500;
+          }
+          .deleteMenu {
+            width: 3em;
+            margin-left: 20px;
+            float: left;
+            padding-top: 10px;
+            .MuiSvgIcon-root {
+              color: rgb(1, 1, 37);
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .summaryInfo {
+        height: 1.6em;
+        clear: both;
+        padding: 20px 0 20px 30px;
+        background-color: #f6f6f8;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuTotalPriceSum {
+          float: left;
+          .priceSum1 {
+            font-size: 0.9em;
+          }
+          .priceSum2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1.1em;
+          }
+        }
+        .plus {
+          padding-left: 10px;
+          float: left;
+          font-size: 1.4em;
+          font-weight: 300;
+        }
+        .deliveryFee {
+          padding-left: 10px;
+          float: left;
+          .delivery1 {
+            font-size: 0.9em;
+          }
+          .delivery2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1.1em;
+          }
+        }
+        .equal {
+          padding-left: 10px;
+          float: left;
+          font-size: 1.4em;
+          font-weight: 300;
+        }
+        .totalPrice {
+          padding-left: 10px;
+          float: left;
+          .total1 {
+            font-size: 0.9em;
+          }
+          .total2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1.1em;
+          }
+        }
+        .minimumAlert {
+          text-align: left;
+          padding: 0 20px;
+          clear: both;
+          color: rgb(190, 23, 11);
+          font-size: 0.9em;
+        }
+        .none {
+          display: none;
+        }
+      }
+    }
+    .deliveryInfo {
+      width: 55em;
+      margin: 40px auto 120px;
+      text-align: center;
+      .deliveryHeader {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .addressInput {
+        width: 31em;
+        margin: 25px auto;
+        .address {
+          margin-bottom: 20px;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .choose {
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          display: block;
+          width: 36.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .recentAddress {
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          display: block;
+          width: 36.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .or {
+          font-size: 0.85em;
+          font-weight: 500;
+          margin: 10px 0;
+        }
+        .inputaddress {
+          font-size: 0.85em;
+          clear: both;
+          margin-top: 5px;
+          display: block;
+          width: 35.3em;
+          padding: 8px 0 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .myself {
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          display: block;
+          width: 36.3em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.9em;
+          width: 30em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
+      }
+      .blank {
+        background-color: #f6f6f8;
+        padding: 2px 0;
+        font-size: 1em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 20px;
+      }
+      .paymentBtn {
+        width: 15em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
+          font-weight: 600;
+        }
+      }
+      .successPaymentAlert {
+        padding-top: 13px;
+        color: rgb(5, 202, 71);
+        font-size: 0.95em;
+        width: 18em;
+        margin: auto;
+        font-weight: 500;
+        .iconText {
+          width: 12em;
+          margin: 0 auto 3px;
+          .checkIcon {
+            margin: auto;
+            .MuiSvgIcon-root {
+              font-size: 1.2em;
+              float: left;
+            }
+          }
+          .checkText1 {
+            margin: auto;
+          }
+        }
+        .checkText2 {
+          width: 18em;
+          margin: auto;
+        }
+      }
+      .minimumAlert {
+        padding-top: 13px;
+        color: rgb(190, 23, 11);
+        font-size: 0.95em;
+        width: 18em;
+        margin: auto;
+        font-weight: 500;
+      }
+      .none {
+        display: none;
+      }
+    }
+    .emptyAlert {
+      padding-top: 50px;
+      color: rgb(190, 23, 11);
+      font-size: 1.1em;
+      width: 30em;
+      margin: 5px auto 0;
+      font-weight: 500;
+      text-align: center;
+      .goToCart {
+        a {
+          padding-left: 10px;
+          color: rgb(1, 1, 37);
+          font-weight: 500;
+          font-size: 1em;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  } 
+}
+
+@include tablet {
+  .background {
+    .header {
+      width: 44em;
+      margin: auto;
+      .backBtn {
+        float: left;
+        border: none;
+        background: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.8em;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .h1 {
+        font-size: 1.7em;
+        margin: 1.2em;
+        color: rgb(1, 1, 37);
+      }
+    }
+    .cartTable {
+      width: 44em;
+      margin: auto;
+      text-align: center;
+      .tableHead {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuInfo {
+          float: left;
+          width: 35em;
+        }
+      }
+      .chickenCart {
+        font-weight: 600;
+        border-bottom: 1px solid #ebebeb;
+        .neneChicken {
+          font-size: 1.1em;
+          float: left;
+          width: 24em;
+          text-align: left;
+          padding: 20px 0 20px 20px;
+        }
+        .minPrice {
+          font-size: 0.9em;
+          padding: 20px 0;
+          span {
+            font-size: 1em;
+            padding-left: 10px;
+            color: rgb(183, 60, 3);
+          }
+        }
+      }
+      .eachMenuInfo {
+        padding-left: 0px;
+        margin: 5px 0;
+        li {
+          display: block;
+          margin-top: 5px;
+          list-style: none;
+          height: 3.7em;
+          .menuImage {
+            padding-left: 5px;
+            float: left;
+            width: 4.5em;
+            img {
+              width: 4.5em;
+              height: auto;
+            }
+          }
+          .menuInfo {
+            width: 23em;
+            margin-left: 10px;
+            float: left;
+            text-align: left;
+            font-size: 0.85em;
+            font-weight: 500;
+            padding-top: 5px;
+            .menuType {
+              padding-top: 5px;
+              font-weight: 400;
+              font-size: 0.9em;
+            }
+            .none {
+              display: none;
+            }
+          }
+          .menuPrice {
+            width: 4em;
+            float: left;
+            padding-top: 20px;
+            font-size: 0.85em;
+          }
+          .menuQuantity {
+            width: 3em;
+            margin: 18px 0 0 15px;
+            float: left;
+            border: 1px solid #ccc;
+            border-radius: 1px;
+            background-color: transparent;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .menuTotalPrice {
+            width: 5em;
+            margin-left: 40px;
+            float: left;
+            padding-top: 18px;
+            font-size: 1em;
+            font-weight: 500;
+          }
+          .deleteMenu {
+            width: 2.5em;
+            margin-left: 20px;
+            float: left;
+            padding-top: 15px;
+            .MuiSvgIcon-root {
+              color: rgb(1, 1, 37);
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .summaryInfo {
+        height: 1.5em;
+        clear: both;
+        padding: 20px 0 20px 30px;
+        background-color: #f6f6f8;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuTotalPriceSum {
+          float: left;
+          .priceSum1 {
+            font-size: 0.85em;
+          }
+          .priceSum2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1em;
+          }
+        }
+        .plus {
+          padding-left: 10px;
+          float: left;
+          font-size: 1.3em;
+          font-weight: 300;
+        }
+        .deliveryFee {
+          padding-left: 10px;
+          float: left;
+          .delivery1 {
+            font-size: 0.85em;
+          }
+          .delivery2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1em;
+          }
+        }
+        .equal {
+          padding-left: 10px;
+          float: left;
+          font-size: 1.3em;
+          font-weight: 300;
+        }
+        .totalPrice {
+          padding-left: 10px;
+          float: left;
+          .total1 {
+            font-size: 0.85em;
+          }
+          .total2 {
+            font-weight: 600;
+            padding-left: 10px;
+            font-size: 1em;
+          }
+        }
+        .minimumAlert {
+          text-align: left;
+          padding: 0px 20px;
+          clear: both;
+          color: rgb(190, 23, 11);
+          font-size: 0.85em;
+        }
+        .none {
+          display: none;
+        }
+      }
+    }
+    .deliveryInfo {
+      width: 44em;
+      margin: 40px auto 120px;
+      text-align: center;
+      .deliveryHeader {
+        background-color: #f6f6f8;
+        padding: 10px 0;
+        font-size: 0.9em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .addressInput {
+        width: 31em;
+        margin: 25px auto;
+        .address {
+          margin-bottom: 20px;
+          font-size: 0.95em;
+          font-weight: 600;
+        }
+        .recentAddress {
+          display: block;
+          width: 36.3em;
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .choose {
+          display: block;
+          width: 36.3em;
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .or {
+          font-size: 0.85em;
+          font-weight: 500;
+          margin: 10px 0;
+        }
+        .inputaddress {
+          font-size: 0.85em;
+          clear: both;
+          margin-top: 5px;
+          display: block;
+          width: 35.3em;
+          padding: 8px 0 8px 12px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .myself {
+          display: block;
+          width: 36.3em;
+          padding: 8px 0 8px 12px;
+          font-size: 0.85em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.8em;
+          width: 30em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
+      }
+      .blank {
+        background-color: #f6f6f8;
+        padding: 2px 0;
+        font-size: 1em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 20px;
+      }
+      .paymentBtn {
+        width: 15em;
+        padding: 10px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
+          font-weight: 600;
+        }
+      }
+      .successPaymentAlert {
+        padding-top: 13px;
+        color: rgb(5, 202, 71);
+        font-size: 0.9em;
+        width: 18em;
+        margin: auto;
+        font-weight: 500;
+        .iconText {
+          width: 12em;
+          margin: 0 auto 3px;
+          .checkIcon {
+            margin: auto;
+            .MuiSvgIcon-root {
+              font-size: 1.2em;
+              float: left;
+            }
+          }
+          .checkText1 {
+            margin: auto;
+          }
+        }
+        .checkText2 {
+          width: 18em;
+          margin: auto;
+        }
+      }
+      .minimumAlert {
+        padding-top: 13px;
+        color: rgb(190, 23, 11);
+        font-size: 0.9em;
+        width: 18em;
+        margin: auto;
+        font-weight: 500;
+      }
+      .none {
+        display: none;
+      }
+    }
+    .emptyAlert {
+      padding-top: 50px;
+      color: rgb(190, 23, 11);
+      font-size: 1em;
+      width: 30em;
+      margin: 5px auto 0;
+      font-weight: 500;
+      text-align: center;
+      .goToCart {
+        a {
+          padding-left: 10px;
+          color: rgb(1, 1, 37);
+          font-weight: 500;
+          font-size: 1em;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  .background {
+    .header {
+      width: 22em;
+      margin: auto;
+      .backBtn {
+        float: left;
+        border: none;
+        background: transparent;
+        .MuiSvgIcon-root {
+          font-size: 2.1em;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .h1 {
+        font-size: 1.5em;
+        margin: 1em;
+        color: rgb(1, 1, 37);
+      }
+    }
+    .cartTable {
+      width: 22em;
+      margin: auto;
+      text-align: center;
+      .tableHead {
+        background-color: #f6f6f8;
+        padding: 8px 0;
+        font-size: 0.8em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuInfo {
+          float: left;
+          width: 18em;
+        }
+      }
+      .chickenCart {
+        font-weight: 600;
+        border-bottom: 1px solid #ebebeb;
+        height: 3.5em;
+        width: 22em;
+        .neneChicken {
+          font-size: 0.8em;
+          float: left;
+          width: 12em;
+          text-align: left;
+          padding: 15px;
+        }
+        .minPrice {
+          width: 13em;
+          margin: auto;
+          float: left;
+          font-size: 0.8em;
+          padding: 15px 0;
+          span {
+            font-size: 0.9em;
+            padding-left: 5px;
+            color: rgb(183, 60, 3);
+          }
+        }
+      }
+      .eachMenuInfo {
+        padding-left: 0px;
+        margin: 10px 0;
+        li {
+          display: block;
+          margin: 5px 0;
+          list-style: none;
+          height: 5em;
+          .menuImage {
+            margin-top: 5px;
+            float: left;
+            width: 3em;
+            border: 1px solid #f3f3f3;
+            img {
+              width: 3em;
+              height: auto;
+            }
+          }
+          .menuInfo {
+            border-top: 1px solid #f3f3f3;
+            width: 23.5em;
+            margin-left: 10px;
+            float: left;
+            text-align: left;
+            font-size: 0.75em;
+            font-weight: 500;
+            padding-top: 8px;
+            .menuType {
+              padding-top: 3px;
+              font-weight: 400;
+              font-size: 0.9em;
+            }
+          }
+          .menuPrice {
+            width: 4em;
+            text-align: left;
+            margin-left: 62px;
+            clear: both;
+            float: left;
+            padding-top: 10px;
+            font-size: 0.8em;
+          }
+          .menuQuantity {
+            width: 3em;
+            font-size: 0.8em;
+            margin: 8px 0 0 10px;
+            float: left;
+            border: 1px solid #ccc;
+            border-radius: 1px;
+            background-color: transparent;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+          .menuTotalPrice {
+            width: 5em;
+            margin-left: 50px;
+            float: left;
+            padding-top: 8px;
+            font-size: 0.9em;
+            font-weight: 500;
+          }
+          .deleteMenu {
+            width: 2.5em;
+            margin-left: 20px;
+            float: left;
+            padding-top: 5px;
+            .MuiSvgIcon-root {
+              color: rgb(1, 1, 37);
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .summaryInfo {
+        height: 2em;
+        clear: both;
+        padding: 10px 0 10px 10px;
+        background-color: #f6f6f8;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        .menuTotalPriceSum {
+          float: left;
+          .priceSum1 {
+            font-size: 0.75em;
+          }
+          .priceSum2 {
+            font-weight: 600;
+            padding-left: 5px;
+            font-size: 0.9em;
+          }
+        }
+        .plus {
+          padding-left: 5px;
+          float: left;
+          font-size: 1em;
+          font-weight: 300;
+        }
+        .deliveryFee {
+          padding-left: 5px;
+          float: left;
+          .delivery1 {
+            font-size: 0.75em;
+          }
+          .delivery2 {
+            font-weight: 600;
+            padding-left: 5px;
+            font-size: 0.9em;
+          }
+        }
+        .equal {
+          padding-left: 5px;
+          float: left;
+          font-size: 1em;
+          font-weight: 300;
+        }
+        .totalPrice {
+          padding-left: 5px;
+          float: left;
+          .total1 {
+            font-size: 0.75em;
+          }
+          .total2 {
+            font-weight: 600;
+            padding-left: 5px;
+            font-size: 0.9em;
+          }
+        }
+        .minimumAlert {
+          text-align: left;
+          padding: 3px 20px;
+          clear: both;
+          color: rgb(190, 23, 11);
+          font-size: 0.75em;
+        }
+        .none {
+          display: none;
+        }
+      }
+    }
+    .deliveryInfo {
+      width: 22em;
+      margin: 30px auto 60px;
+      text-align: center;
+      .deliveryHeader {
+        background-color: #f6f6f8;
+        padding: 8px 0;
+        font-size: 0.8em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+      }
+      .addressInput {
+        width: 22em;
+        margin: 15px auto;
+        .address {
+          margin-bottom: 15px;
+          font-size: 0.85em;
+          font-weight: 600;
+        }
+        .choose {
+          display: block;
+          width: 27.6em;
+          padding: 6px 0 6px 8px;
+          font-size: 0.8em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .recentAddress {
+          display: block;
+          width: 27.6em;
+          padding: 6px 0 6px 8px;
+          font-size: 0.8em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .or {
+          font-size: 0.8em;
+          font-weight: 500;
+          margin: 10px 0;
+        }
+        .inputaddress {
+          font-size: 0.8em;
+          clear: both;
+          margin-top: 5px;
+          display: block;
+          width: 26.8em;
+          padding: 6px 0 6px 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+        .myself {
+          display: block;
+          width: 27.6em;
+          padding: 6px 0 6px 8px;
+          font-size: 0.8em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: transparent;
+          &:hover {
+            cursor: pointer;
+            font-weight: 500;
+          }
+        }
+        .wrongAddressAlert {
+          color: rgb(190, 23, 11);
+          font-size: 0.8em;
+          width: 22em;
+          margin: 5px auto 0;
+          font-weight: 500;
+        }
+      }
+      .blank {
+        background-color: #f6f6f8;
+        padding: 2px 0;
+        font-size: 1em;
+        font-weight: 600;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 20px;
+      }
+      .paymentBtn {
+        width: 15em;
+        padding: 8px 0;
+        border-radius: 4px;
+        font-size: 0.9em;
+        color: white;
+        background-color:  rgb(1, 1, 37);
+        &:hover {
+          cursor: pointer;
+          // opacity: 85%;
+          background-color:  rgba(1, 1, 37, 0.85);
+          font-weight: 600;
+        }
+      }
+      .successPaymentAlert {
+        padding-top: 10px;
+        color: rgb(5, 202, 71);
+        font-size: 0.85em;
+        width: 18em;
+        margin: auto;
+        font-weight: 500;
+        .iconText {
+          width: 12em;
+          margin: 0 auto 3px;
+          .checkIcon {
+            margin: auto;
+            .MuiSvgIcon-root {
+              font-size: 1.2em;
+              float: left;
+            }
+          }
+          .checkText1 {
+            margin: auto;
+          }
+        }
+        .checkText2 {
+          width: 18em;
+          margin: auto;
+        }
+      }
+      .minimumAlert {
+        padding-top: 10px;
+        color: rgb(190, 23, 11);
+        font-size: 0.85em;
+        width: 18em;
+        margin: auto;
+        font-weight: 500;
+      }
+      .none {
+        display: none;
+      }
+    }
+    .emptyAlert {
+      padding-top: 50px;
+      color: rgb(190, 23, 11);
+      font-size: 0.95em;
+      width: 22em;
+      margin: 5px auto 0;
+      font-weight: 500;
+      text-align: center;
+      .goToCart {
+        a {
+          padding-left: 10px;
+          color: rgb(1, 1, 37);
+          font-weight: 500;
+          font-size: 1em;
+          &:hover {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
