@@ -22,18 +22,18 @@ import VerifyEmail from './component/VerifyEmail';
 import FormatQuoteRoundedIcon from '@material-ui/icons/FormatQuoteRounded';
 import './App.scss';
 
-function App(props) {
+function App() {
 
   // setting of Channel Talk
-  const onTalkError = React.useCallback(err => {
+  const onTalkError = React.useCallback<(err: any) => void>(err => {
     console.log('Error:', err);
   }, []);
 
   // user state
-  const [isLogin, setIsLogin] = useState(false);
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-  const [userId, setUserId] = useState('')
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [userId, setUserId] = useState<string>('')
 
   // user profile for ChannelTalk
   const profile = { name: name, email: email }
@@ -42,9 +42,9 @@ function App(props) {
   useEffect(() => {
     if(window.sessionStorage.getItem('name')) {
       setIsLogin(true);
-      setUserId(window.sessionStorage.getItem('id'));
-      setEmail(window.sessionStorage.getItem('email'));
-      setName(window.sessionStorage.getItem('name'));
+      setUserId(window.sessionStorage.getItem('id')!);
+      setEmail(window.sessionStorage.getItem('email')!);
+      setName(window.sessionStorage.getItem('name')!);
     }
   },[])
   
@@ -52,14 +52,14 @@ function App(props) {
   useEffect(() => {
     if(Cookies.get('user')) {
       // get userCookie obj when oAuth sign in through federation login
-      const userCookie = JSON.parse(Cookies.get('user').slice(Cookies.get('user').indexOf('{')));
+      const userCookie = JSON.parse(Cookies.get('user')!.slice(Cookies.get('user')!.indexOf('{')));
       window.sessionStorage.setItem('id', userCookie.id);
       window.sessionStorage.setItem('email', userCookie.email);
       window.sessionStorage.setItem('name', userCookie.name);
       setIsLogin(true);
-      setUserId(window.sessionStorage.getItem('id'));
-      setEmail(window.sessionStorage.getItem('email'));
-      setName(window.sessionStorage.getItem('name'));
+      setUserId(window.sessionStorage.getItem('id')!);
+      setEmail(window.sessionStorage.getItem('email')!);
+      setName(window.sessionStorage.getItem('name')!);
     }
   },[])
 

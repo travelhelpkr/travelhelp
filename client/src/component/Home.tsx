@@ -12,7 +12,7 @@ function Home() {
     <div className='background'>
       
       {/* nav-select language btn */}
-      <select className='languageBtn' onChange={(e) => i18n.changeLanguage(e.target.value)} >
+      <select className='languageBtn' onChange={(e: React.ChangeEvent<HTMLSelectElement>) => i18n.changeLanguage(e.target.value)} >
         <option value=''>Language</option>
         <option value='en'>English</option>
         <option value='zh'>中文</option>
