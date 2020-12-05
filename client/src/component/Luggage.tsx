@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import '../scss/Luggage.scss';
 import size_guideline from '../img/size_guideline.jpg';
+import '../scss/Luggage.scss';
 
 function Luggage() {
 
