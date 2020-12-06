@@ -30,7 +30,7 @@ interface IProps {
   setUserId: string
 }
 
-const App: React.FC<RouteComponentProps<IProps>> = () => {
+const App: React.FC<RouteComponentProps<IProps>> = (props) => {
 
   // setting of Channel Talk
   const onTalkError = React.useCallback<(err: any) => void>(err => {
