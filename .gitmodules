@@ -1,0 +1,3 @@
+[submodule ".github/travelhelp.wiki"]
+	path = .github/travelhelp.wiki
+	url = https://github.com/travelhelpkr/travelhelp.wiki.git
