@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { RouteComponentProps } from '@reach/router';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { ChannelTalk } from 'react-channel-plugin';
 import Cookies from 'js-cookie';
@@ -22,7 +23,14 @@ import VerifyEmail from './component/VerifyEmail';
 import FormatQuoteRoundedIcon from '@material-ui/icons/FormatQuoteRounded';
 import './App.scss';
 
-function App() {
+interface IProps {
+  setIsLogin: boolean,
+  setEmail: string,
+  setName: string,
+  setUserId: string
+}
+
+const App: React.FC<RouteComponentProps<IProps>> = () => {
 
   // setting of Channel Talk
   const onTalkError = React.useCallback<(err: any) => void>(err => {
@@ -84,7 +92,7 @@ function App() {
             if(window.sessionStorage.getItem('id')){
               return <Redirect to='/' />
             } else {
-              return <Signin isLogin={isLogin} setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
+              return <Signin setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} />
             }
           }} />
           <Route path='/user/signup' render={() => {
