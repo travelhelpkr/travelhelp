@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../scss/Nav.scss';
 
-function NavMypage(props) {
+function NavSignin() {
 
   // change language handler
   const { t } = useTranslation();
@@ -15,11 +15,11 @@ function NavMypage(props) {
         <a href='/' className='homeTitle'>Travel Help</a>
 
         {/* nav-sign in btn */}
-        <a href='/user/mypage' className='signInBtn'>{t('nav.mypage')}</a>
+        <a href='/user/signin' className='signInBtn'>{t('home.signin')}</a>
       </div>
 
     </div>
   )
 }
 
-export default NavMypage; 
+export default NavSignin; 
