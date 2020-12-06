@@ -1,41 +1,49 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CloseIcon from '@material-ui/icons/Close';
 import axios from 'axios';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/Modal.scss';
 
-function ResestPassword(props) {
+interface IPropsResestPassword {
+  isOpen: boolean,
+  setModal: any
+}
+
+const ResestPassword: React.FC<IPropsResestPassword> = (props) => {
 
   // get from each menu
   const { isOpen, setModal } = props;
 
   // input state of user information for signin
-  const [email, inputEmail] = useState('');
+  const [email, inputEmail] = useState<string>('');
 
   // failure of signin
-  const [oauthUser, setOauthUser] = useState(false);
-  const [failAlertSignUp, setFailAlertSignUp] = useState(false);
-  const [failAlertVerification, setFailAlertVerification] = useState(false);
+  const [oauthUser, setOauthUser] = useState<boolean>(false);
+  const [failAlertSignUp, setFailAlertSignUp] = useState<boolean>(false);
+  const [failAlertVerification, setFailAlertVerification] = useState<boolean>(false);
 
   // success of send email
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState<boolean>(false);
 
   // change language handler
   const { t } = useTranslation();
 
   // reset password handler
-  const handleResetPasswordBtn = (e) => {
+  const handleResetPasswordBtn = (e: any) => {
     e.preventDefault();
     axios.post('/api/auth/resetPassword', {
       email: email
     },{
       withCredentials: true,
-    }, {
-      headers: { 
-        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
-       }
-    })
+    },
+    // {
+    //   headers: { 
+    //     'Access-Control-Allow-Origin': 'https://travelhelp.kr',
+    //    }
+    // }
+    )
     .then(res => {
       if(res.data.status === 409) {
         inputEmail('');
@@ -72,7 +80,7 @@ function ResestPassword(props) {
       <div className='modalContentPassword'>
 
         {/* close modal */}
-        <button className='modalCloseBtn' onClick={e => {
+        <button className='modalCloseBtn' onClick={(e: any) => {
           e.preventDefault();
           setModal(!isOpen);
         }}><CloseIcon /></button>
@@ -83,7 +91,7 @@ function ResestPassword(props) {
           <div className='step1'>{t('resetPassword.step1')}</div>
           <div className='emailAddress'>{t('resetPassword.email')}</div>
           <form>
-            <input className='emailInput' type='text' name='email' onChange={(e) => inputEmail(e.target.value)} placeholder={t('signin.email')} label='Email Address' />
+            <input className='emailInput' type='text' name='email' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputEmail(e.target.value)} placeholder={t('signin.email')} />
           </form>
           <button className='resetPasswordBtn' onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
           
