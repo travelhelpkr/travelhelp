@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import '../scss/Rental.scss';
 import wifi from '../img/wifi.png';
 import luggageScale from '../img/luggageScale.png';
 import adaptor from '../img/adaptor.png';
 import chargingCable from '../img/chargingCable.png';
+import '../scss/Rental.scss';
 
 function Taxi() {
 
