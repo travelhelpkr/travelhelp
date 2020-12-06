@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { ChannelTalk } from 'react-channel-plugin';
 import Cookies from 'js-cookie';
@@ -18,7 +19,6 @@ import FoodChicken from './component/FoodChicken';
 import FoodNoodle from './component/FoodNoodle';
 import Cart from './component/Cart';
 import VerifyEmail from './component/VerifyEmail';
-// import config from './config/channelTalk.json';
 import FormatQuoteRoundedIcon from '@material-ui/icons/FormatQuoteRounded';
 import './App.scss';
 
