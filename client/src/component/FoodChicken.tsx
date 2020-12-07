@@ -1,49 +1,48 @@
-import React, { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import noodleImg from '../img/new_banner_bn.png';
+import chickenImg from '../img/new_banner_CK.png';
 import cartWhite from '../img/cart_white.png';
 import cartNavy from '../img/cart_navy.png';
-import ModalNoodle from './ModalNoodle';
+import ModalChicken from './ModalChicken';
 import ModalSignin from './ModalSignin';
-import '../scss/FoodNoodle.scss';
+import '../scss/FoodChicken.scss';
 
-function FoodNoodle(props) {
-  
+function FoodChicken(props: any) {
+
   // userId props for modal
   const { userId } = props;
 
   // close modal status
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   // menu of restaurant
-  const [menu, setMenu] = useState(null);
+  const [menu, setMenu] = useState<any>('');
 
   // information of restaurant
-  const [information, setInformation] = useState(null);
+  const [information, setInformation] = useState<any>('');
 
   // open modal
-  const [isOpen, setModal] = useState(false);
-  const [isSignin, setIsSignin] = useState(false);
+  const [isOpen, setModal] = useState<boolean>(false);
+  const [isSignin, setIsSignin] = useState<boolean>(false);
 
-  // ModalNoodle information
-  const [menuId, setMenuId] = useState('');
-  const [image, setImage] = useState('');
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-  const [optionName1, setOptionName1] = useState('');
-  const [optionName2, setOptionName2] = useState('');
-  const [optionPrice2, setOptionPrice2] = useState('');
-  const [optionName3, setOptionName3] = useState('');
-  const [optionPrice3, setOptionPrice3] = useState('');
+  // modal information
+  const [menuId, setMenuId] = useState<number>(0);
+  const [image, setImage] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [price, setPrice] = useState<number>(0);
+  const [description, setDescription] = useState<string>('');
+  const [optionName1, setOptionName1] = useState<string>('');
+  const [optionName2, setOptionName2] = useState<string>('');
+  const [optionPrice2, setOptionPrice2] = useState<number>(0);
 
   // modal Alert
-  const [success, setSuccess] = useState(false);
-  const [failure, setFailure] = useState(false);
-  const [optionError, setOptionError] = useState(false);
-  const [otherRestaurant, setOtherRestaurant] = useState(false);
+  const [success, setSuccess] = useState<boolean>(false);
+  const [failure, setFailure] = useState<boolean>(false);
+  const [optionError, setOptionError] = useState<boolean>(false);
+  const [otherRestaurant, setOtherRestaurant] = useState<boolean>(false);
 
   // change language
   const { t } = useTranslation();
@@ -53,7 +52,7 @@ function FoodNoodle(props) {
     axios.get('/api/foods/menu', 
     {
       params: {
-        restaurant_id : 2
+        restaurant_id : 1
       }
     })
     .then(res => {
@@ -76,9 +75,9 @@ function FoodNoodle(props) {
   }, []);
 
   // close modal when clicked outside
-  const handleClickOutside = (e) => {
+  const handleClickOutside = (e: any) => {
     if (ref.current && !ref.current.contains(e.target)) {
-      if (e.path[0].className !== 'openModalNoodle') return;
+      if (e.path[0].className !== 'openModalChicken') return;
       else if(e.path[0].className === 'modalCloseBtn') {
         setModal(false);
         setSuccess(false);
@@ -97,9 +96,9 @@ function FoodNoodle(props) {
   };
 
   // check signin status when user clicked cart icon on Nav bar
-  const checkSigninStatus = (e) => {
+  const checkSigninStatus = (e: React.MouseEvent<HTMLButtonElement>) => {
     if(window.sessionStorage.getItem('id')) {
-      window.location = '/user/cart';
+      window.location.href = '/user/cart';
     } else {
       e.preventDefault();
       setIsSignin(!isSignin);
@@ -109,24 +108,25 @@ function FoodNoodle(props) {
   return(
   <div>
     {/* cart icon */}
-    <div className='cartIconNoodle'>
+    <div className='cartIcon'>
       <button className='cartIconBtn' onClick={checkSigninStatus}><img src={cartWhite} alt='cartIconBtn'/></button>
     </div>
 
     {/* choose restaurants btn */}
-    <div className='restaurantNoodle'>
-      <div className='chicken'>
+    <div className='restaurantsChicken'>
+      <div className='chickenSelected'>
         <a href='/help/foodDelivery/chicken'>{t('food.chicken')}</a>
       </div>
-      <div className='noodleSelected'>
+      <div className='noodle'>
         <a href='/help/foodDelivery/noodle'>{t('food.noodle')}</a>
       </div>
     </div>
+
     <div className='menuContent'>
 
       {/* banner img */}
       <div className='banner'>
-        <img src={noodleImg} alt='banner'/>
+        <img src={chickenImg} alt='banner'/>
       </div>
 
       {/* restaurant information */}
@@ -166,15 +166,16 @@ function FoodNoodle(props) {
             </div>
           </div>
           : <div></div>
-        }
+        }       
       </div>
 
       {/* menu list */}
       <ul>
         {
-          menu && menu.map(menu => {
+          menu && menu.map((menu: any) => {
+            console.log('options:', menu.Options[0].name_en);
             return(
-              <div key={menu.id} ref={ref} className='menuLi' onClick={e => {
+              <div key={menu.id} ref={ref} className='menuLi' onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 e.preventDefault();
                 setModal(!isOpen);
                 setMenuId(menu.id);
@@ -196,46 +197,23 @@ function FoodNoodle(props) {
                   ? menu.description_zh
                   : menu.description_ja
                 );
-
-                menu.Options[0] ? 
-                  setOptionName1(
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? menu.Options[0].name_en
-                    :
-                    window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? menu.Options[0].name_zh
-                    : menu.Options[0].name_ja
-                  )
+                setOptionName1(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.Options[0].name_en
                   :
-                  setOptionName1('')
-                
-                menu.Options[1] ? 
-                  setOptionName2(
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? menu.Options[1].name_en
-                    :
-                    window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? menu.Options[1].name_zh
-                    : menu.Options[1].name_ja
-                  )
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.Options[0].name_zh
+                  : menu.Options[0].name_ja
+                );
+                setOptionName2(
+                  window.localStorage.getItem('i18nextLng') === 'en'
+                  ? menu.Options[1].name_en
                   :
-                  setOptionName2('')
-
-                menu.Options[2] ? setOptionPrice2(menu.Options[1].price) : setOptionPrice2('')
-                
-                menu.Options[2] ? 
-                  setOptionName3(
-                    window.localStorage.getItem('i18nextLng') === 'en'
-                    ? menu.Options[2].name_en
-                    :
-                    window.localStorage.getItem('i18nextLng') === 'zh'
-                    ? menu.Options[2].name_zh
-                    : menu.Options[2].name_ja
-                  )
-                  :
-                  setOptionName3('')
-
-                menu.Options[2] ? setOptionPrice3(menu.Options[2].price) : setOptionPrice3('')
+                  window.localStorage.getItem('i18nextLng') === 'zh'
+                  ? menu.Options[1].name_zh
+                  : menu.Options[1].name_ja
+                );
+                setOptionPrice2(menu.Options[1].price);
               }}>
                 <li key={menu.id}>
                   <img src={menu.image} alt='menuImage'/>
@@ -257,15 +235,16 @@ function FoodNoodle(props) {
           })
         }
       </ul>
-      
+
       {/* chicken modal */}
-      <ModalNoodle isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} infoOptionName3={optionName3} infoOptionPrice3={optionPrice3} userId={userId} setSuccess={setSuccess} success={success} setFailure={setFailure} failure={failure} setOptionError={setOptionError} optionError={optionError} setOtherRestaurant={setOtherRestaurant} otherRestaurant={otherRestaurant} />
+      <ModalChicken isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} userId={userId}  setSuccess={setSuccess} success={success} setFailure={setFailure} failure={failure} setOptionError={setOptionError} optionError={optionError} setOtherRestaurant={setOtherRestaurant} otherRestaurant={otherRestaurant} />
 
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />
     </div>
   </div>
+
   )
 }
 
-export default withRouter(FoodNoodle); 
+export default withRouter(FoodChicken); 

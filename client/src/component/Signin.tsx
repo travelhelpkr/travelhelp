@@ -26,7 +26,7 @@ function Signin(props: any) {
   const { t } = useTranslation();
 
   // signin handler
-  const handleLoginBtn = (e: any) => {
+  const handleLoginBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios.post('/api/users/signin', {
       email: email,

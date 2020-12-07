@@ -55,7 +55,7 @@ function Signup() {
   }
 
   // signup btn handler
-  const signUpBtnHandler = (e: any) => {
+  const signUpBtnHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (validateEmail(email) && (password === confirmPassword) && (name !== '') && (policy !== '')) {
       axios.post('/api/users/signup', {
@@ -120,7 +120,7 @@ function Signup() {
           
           <div className='signupCheckBox'>
             <input name='policy' onChange={onChangeHandler} type='checkbox'></input>
-            <label htmlFor='policy' onClick={(e: any) => {
+            <label htmlFor='policy' onClick={(e: React.MouseEvent<HTMLLabelElement>) => {
               e.preventDefault();
               setModal(!isOpen);
             }}>{t('signup.policy')}

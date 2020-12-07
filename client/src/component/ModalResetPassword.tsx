@@ -31,7 +31,7 @@ const ResestPassword: React.FC<IPropsResestPassword> = (props) => {
   const { t } = useTranslation();
 
   // reset password handler
-  const handleResetPasswordBtn = (e: any) => {
+  const handleResetPasswordBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios.post('/api/auth/resetPassword', {
       email: email
@@ -80,7 +80,7 @@ const ResestPassword: React.FC<IPropsResestPassword> = (props) => {
       <div className='modalContentPassword'>
 
         {/* close modal */}
-        <button className='modalCloseBtn' onClick={(e: any) => {
+        <button className='modalCloseBtn' onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           setModal(!isOpen);
         }}><CloseIcon /></button>

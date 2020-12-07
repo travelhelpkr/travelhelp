@@ -29,7 +29,8 @@ interface IProps {
   setName: string,
   setUserId: string,
   email: string,
-  name: string
+  name: string,
+  userId: number
 }
 
 const App: React.FC<RouteComponentProps<IProps>> = (props) => {
