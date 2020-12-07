@@ -115,7 +115,7 @@ const App: React.FC<RouteComponentProps<IProps>> = (props) => {
             return <ResetPassword />
           }} />
           <Route path='/user/cart' render={() => {
-            return <Cart userId={userId} />
+            return <Cart />
           }} />
           <Route path='/user/verifyEmail' render={() => {
             return <VerifyEmail />

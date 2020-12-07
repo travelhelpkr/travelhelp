@@ -237,7 +237,7 @@ function FoodChicken(props: any) {
       </ul>
 
       {/* chicken modal */}
-      <ModalChicken isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} userId={userId}  setSuccess={setSuccess} success={success} setFailure={setFailure} failure={failure} setOptionError={setOptionError} optionError={optionError} setOtherRestaurant={setOtherRestaurant} otherRestaurant={otherRestaurant} />
+      <ModalChicken isOpen={isOpen} setModal={setModal} infoMenuId={menuId} infoImage={image} infoName={name} infoPrice={price} infoDescription={description} infoOptionName1={optionName1} infoOptionName2={optionName2} infoOptionPrice2={optionPrice2} setSuccess={setSuccess} success={success} setFailure={setFailure} failure={failure} setOptionError={setOptionError} optionError={optionError} setOtherRestaurant={setOtherRestaurant} otherRestaurant={otherRestaurant} />
 
       {/* signin modal */}
       <ModalSignin isSignin={isSignin} setIsSignin={setIsSignin} />
