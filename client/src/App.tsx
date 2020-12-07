@@ -27,7 +27,9 @@ interface IProps {
   setIsLogin: boolean,
   setEmail: string,
   setName: string,
-  setUserId: string
+  setUserId: string,
+  email: string,
+  name: string
 }
 
 const App: React.FC<RouteComponentProps<IProps>> = (props) => {
