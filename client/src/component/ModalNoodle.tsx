@@ -1,11 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/Modal.scss';
 
-function ModalNoodle(props) {
+interface IPropsModalNoodle {
+  isOpen: boolean,
+  setModal: any,
+  infoMenuId: number,
+  infoImage: string,
+  infoName: string,
+  infoPrice: number
+  infoDescription: string,
+  infoOptionName1: string,
+  infoOptionName2: string,
+  infoOptionPrice2: number,
+  infoOptionName3: string,
+  infoOptionPrice3: number,
+  setSuccess: any,
+  success: boolean,
+  setFailure: any,
+  failure: boolean,
+  setOptionError: any,
+  optionError: boolean,
+  setOtherRestaurant: any,
+  otherRestaurant: boolean
+}
+
+const ModalNoodle: React.FC<IPropsModalNoodle> = (props) => {
 
   // get from each menu
   const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, infoOptionName3, infoOptionPrice3, setSuccess, success, setFailure, failure, setOptionError , optionError, setOtherRestaurant, otherRestaurant } = props;
@@ -14,13 +38,13 @@ function ModalNoodle(props) {
   const { t } = useTranslation();
 
   // choose size of menu
-  const [type, setType] = useState('');
+  const [type, setType] = useState<string>('');
 
   // alert after add to cart btn
-  const [isSignin, setIsSignin] = useState(false);
+  const [isSignin, setIsSignin] = useState<boolean>(false);
 
   // add to cart btn handler
-  const addToCartHandler = (e) => {
+  const addToCartHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(window.sessionStorage.getItem('id')) {
       if(infoMenuId <= 24) {
@@ -30,11 +54,13 @@ function ModalNoodle(props) {
           option_id: null
         }, {
           withCredentials: true,
-        }, {
-          headers: { 
-            'Access-Control-Allow-Origin': 'https://travelhelp.kr',
-            }
-        })
+        }, 
+        // {
+        //   headers: { 
+        //     'Access-Control-Allow-Origin': 'https://travelhelp.kr',
+        //     }
+        // }
+        )
         .then(res => {
           if(res.data.status === 409 && res.data.conflict === true) {
             setOtherRestaurant(true);
@@ -55,11 +81,13 @@ function ModalNoodle(props) {
           option_id: type
         }, {
           withCredentials: true,
-        }, {
-          headers: { 
-            'Access-Control-Allow-Origin': 'https://travelhelp.kr',
-            }
-        })
+        }, 
+        // {
+        //   headers: { 
+        //     'Access-Control-Allow-Origin': 'https://travelhelp.kr',
+        //     }
+        // }
+        )
         .then(res => {
           if(res.data.status === 409 && res.data.conflict === true) {
             setOtherRestaurant(true);
@@ -89,7 +117,7 @@ function ModalNoodle(props) {
       <div className='modalContent'>
 
         {/* close modal */}
-        <button className='modalCloseBtn' onClick={e => {
+        <button className='modalCloseBtn' onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           setModal(!isOpen);
           setSuccess(false);
@@ -115,7 +143,7 @@ function ModalNoodle(props) {
         {/* choose size of menu */}
         <div className={infoMenuId < 25 ? 'option0': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} *</div>
-          <select className='selectBox' defaultValue={1} onChange={e => setType(e.target.value)}>
+          <select className='selectBox' defaultValue={1} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}>
             <option value='1'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
             <option value='8'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
@@ -125,7 +153,7 @@ function ModalNoodle(props) {
 
         <div className={infoMenuId === 25 ? 'option1': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} *</div>
-          <select className='selectBox' defaultValue={1} onChange={e => setType(e.target.value)}>
+          <select className='selectBox' defaultValue={1} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}>
             <option value='1'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
             <option value='8'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>
@@ -135,7 +163,7 @@ function ModalNoodle(props) {
 
         <div className={infoMenuId >= 26 ? 'option2': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} *</div>
-          <select className='selectBox' defaultValue={1} onChange={e => setType(e.target.value)}>
+          <select className='selectBox' defaultValue={1} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}>
             <option value='1'>{infoOptionName1}/{infoOptionName2}/{infoOptionName3} ({t('modalChicken.required')})</option>
             <option value='7'>{infoOptionName1}</option>
             <option value='10'>{infoOptionName2} (+{infoOptionPrice2.toLocaleString()}₩)</option>

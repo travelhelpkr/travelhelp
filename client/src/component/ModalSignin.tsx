@@ -1,9 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import CloseIcon from '@material-ui/icons/Close';
 import '../scss/Modal.scss';
 
-function ModalSignin(props) {
+interface IPropsModalSignin {
+  isSignin: boolean,
+  setIsSignin: any
+}
+
+const ModalSignin: React.FC<IPropsModalSignin> = (props) => {
 
   // get signin status
   const { isSignin, setIsSignin } = props;
@@ -12,9 +17,9 @@ function ModalSignin(props) {
   const { t } = useTranslation();
 
   // go to signin page
-  const goToSigninHandler = (e) => {
+  const goToSigninHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    window.location = '/user/signin'
+    window.location.href = '/user/signin'
   }
 
   return(
@@ -22,7 +27,7 @@ function ModalSignin(props) {
       <div className='signinModalContent'>
 
         {/* close modal */}
-        <button className='closeBtn' onClick={e => {
+        <button className='closeBtn' onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           setIsSignin(!isSignin);
         }}><CloseIcon /></button>

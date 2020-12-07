@@ -85,8 +85,10 @@ function Mypage(props: any) {
             {
               orderHistory && orderHistory.map((order: any)=> {
                 console.log("order:", order);
-                const menuPrice = order.Menus.map((menu: any) => (menu.quantity * (menu.Menu.price + menu.Option.price)) + menu.Restaurant.delivery_fee);
-                const menuPriceSum = menuPrice.reduce((acc: number, cur: number) => acc + cur);
+                const menuPrice = order.Menus.map((menu: any) => (menu.quantity * (menu.Menu.price + menu.Option.price)));
+                const menuDeliverFee = order.Menus.map((menu: any) => menu.Restaurant.delivery_fee);
+                console.log("menuDeliverFee", menuDeliverFee);
+                const menuPriceSum = menuPrice.reduce((acc: number, cur: number) => acc + cur) + menuDeliverFee[0];
                 console.log("menuPriceSum:", menuPriceSum)
                 return(
                   <li key={order.id} className='orderlist'>

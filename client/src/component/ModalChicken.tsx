@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/Modal.scss';
 
-function ModalChicken(props) {
+interface IPropsModalChicken {
+  isOpen: boolean,
+  setModal: any,
+  infoMenuId: number,
+  infoImage: string,
+  infoName: string,
+  infoPrice: number
+  infoDescription: string,
+  infoOptionName1: string,
+  infoOptionName2: string,
+  infoOptionPrice2: number,
+  setSuccess: any,
+  success: boolean,
+  setFailure: any,
+  failure: boolean,
+  setOptionError: any,
+  optionError: boolean,
+  setOtherRestaurant: any,
+  otherRestaurant: boolean
+}
+
+const ModalChicken: React.FC<IPropsModalChicken> = (props) => {
 
   // get from each menu
   const { isOpen, setModal, infoMenuId, infoImage, infoName, infoPrice, infoDescription, infoOptionName1, infoOptionName2, infoOptionPrice2, setSuccess, success, setFailure, failure, setOptionError , optionError, setOtherRestaurant, otherRestaurant  } = props;
@@ -14,13 +36,13 @@ function ModalChicken(props) {
   const { t } = useTranslation();
 
   // choose bone or boneless state
-  const [type, setType] = useState('');
+  const [type, setType] = useState<string>('');
 
   // alert after add to cart btn
-  const [isSignin, setIsSignin] = useState(false);
+  const [isSignin, setIsSignin] = useState<boolean>(false);
 
   // add to cart btn handler
-  const addToCartHandler = (e) => {
+  const addToCartHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(window.sessionStorage.getItem('id')) {
       if(type) {
@@ -30,11 +52,13 @@ function ModalChicken(props) {
           option_id: type
         }, {
           withCredentials: true,
-        }, {
-          headers: { 
-            'Access-Control-Allow-Origin': 'https://travelhelp.kr',
-            }
-        })
+        }, 
+        // {
+        //   headers: { 
+        //     'Access-Control-Allow-Origin': 'https://travelhelp.kr',
+        //     }
+        // }
+        )
         .then(res => {
           if(res.data.status === 409 && res.data.conflict === true) {
             setOtherRestaurant(true);
@@ -64,7 +88,7 @@ function ModalChicken(props) {
       <div className='modalContent'>
 
         {/* close modal */}
-        <button className='modalCloseBtn' onClick={e => {
+        <button className='modalCloseBtn' onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           setModal(!isOpen);
           setSuccess(false);
@@ -90,7 +114,7 @@ function ModalChicken(props) {
         {/* choose bone or boneless */}
         <div className={infoMenuId < 12 ? 'option1': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
-          <select className='selectBox' onChange={e => setType(e.target.value)}>
+          <select className='selectBox' onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}>
             <option value='1'>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
             <option value='2'>{infoOptionName1}</option>
             <option value='3'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
@@ -99,7 +123,7 @@ function ModalChicken(props) {
 
         <div className={infoMenuId >= 12 ? 'option2': 'none'}>
           <div className='selectTitle'>{infoOptionName1}/{infoOptionName2} *</div>
-          <select className='selectBox' onChange={e => setType(e.target.value)}>
+          <select className='selectBox' onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setType(e.target.value)}>
             <option value='1'>{infoOptionName1}/{infoOptionName2} ({t('modalChicken.required')})</option>
             <option value='2'>{infoOptionName1}</option>
             <option value='6'>{infoOptionName2} (+{infoOptionPrice2}₩)</option>
