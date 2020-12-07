@@ -18,7 +18,7 @@ const Policy: React.FC<IPropsPolicy> = (props) => {
       <div className='modalContentPolicy'>
 
         {/* close btn */}
-        <button className='modalCloseBtn' onClick={(e: any) => {
+        <button className='modalCloseBtn' onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.preventDefault();
             setModal(!isOpen);
           }}><CloseIcon />
