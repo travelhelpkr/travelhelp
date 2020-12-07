@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/EmailVerification.scss';
 
-function EmailVerification(props) {
+function EmailVerification() {
 
   // change language handler
   const { t } = useTranslation();
 
   // success of resend email
-  const [alert, setAlert] = useState(false);
+  const [alert, setAlert] = useState<boolean>(false);
 
   // resend Email btn handler
-  const handleResendBtn = (e) => {
+  const handleResendBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios.post('/api/auth/email', {
       email: window.sessionStorage.getItem('email')
     }, {
       withCredentials: true,
-    }, {
-      headers: { 
-        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
-       }
-    })
+    }, 
+    // {
+    //   headers: { 
+    //     'Access-Control-Allow-Origin': 'https://travelhelp.kr',
+    //    }
+    // }
+    )
     .then(() => setAlert(true));
   }
 
