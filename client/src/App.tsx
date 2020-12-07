@@ -120,7 +120,7 @@ const App: React.FC<RouteComponentProps<IProps>> = (props) => {
             return <VerifyEmail />
           }} />
           <Route path='/help/foodDelivery' render={() => {
-            return <FoodDelivery userId={userId} />
+            return <FoodDelivery />
           }} />
           <Route path='/help/foodDelivery/chicken' render={() => {
             return <FoodChicken userId={userId} />
