@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
@@ -14,7 +15,7 @@ function VerifyEmail() {
         token: url.searchParams.get('token') 
       }
     })
-    .then(() => window.location = '/user/signin');
+    .then(() => window.location.href = '/user/signin');
   })
 
   return(

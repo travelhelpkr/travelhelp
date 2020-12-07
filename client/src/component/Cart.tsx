@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { RouterProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -7,7 +9,11 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/Cart.scss'; 
 
-function Cart(props) {
+interface IPropsCart {
+  history: RouterProps['history'];
+}
+
+const Cart: React.FC<IPropsCart> = (props) => {
 
   const { history } = props;
 
@@ -15,32 +21,32 @@ function Cart(props) {
   const { t } = useTranslation();
   
   // cart information
-  const [cart, setCart] = useState('');
-  const [orderId, setOrderId] = useState('');
-  const [restaurant, setRestaurant] = useState('');
-  const [sum, setSum] = useState('');
+  const [cart, setCart] = useState<any>('');
+  const [orderId, setOrderId] = useState<number>(0);
+  const [restaurant, setRestaurant] = useState<any>('');
+  const [sum, setSum] = useState<number>(0);
 
   // delivery Address information
-  const [inputPostalCode, setInputPostalCode] = useState('');
-  const [inputAddress, setInputAddress] = useState('');
-  const [inputContact, setInputContact] = useState('');
-  const [addressArray, setAddressArray] = useState('');
-  const [addressId, setAddressId] = useState('');
+  const [inputPostalCode, setInputPostalCode] = useState<string>('');
+  const [inputAddress, setInputAddress] = useState<string>('');
+  const [inputContact, setInputContact] = useState<string>('');
+  const [addressArray, setAddressArray] = useState<any>('');
+  const [addressId, setAddressId] = useState<string>('');
 
   // alert delivery information
-  const [wrongAddress, setWrongAddress] = useState(false);
+  const [wrongAddress, setWrongAddress] = useState<boolean>(false);
 
   // alert minimum price
-  const [minimumPrice, setMinimumPrice] = useState(false);
+  const [minimumPrice, setMinimumPrice] = useState<boolean>(false);
 
   // payment success alert
-  const [successAlert, setSuccessAlert] = useState(false);
+  const [successAlert, setSuccessAlert] = useState<boolean>(false);
 
   // empty cart alert
-  const [emptyCart, setEmptyCart] = useState(false);
+  const [emptyCart, setEmptyCart] = useState<boolean>(false);
 
   // delivery method alert
-  const [selectAddress, setSelectAddress] = useState(false);
+  const [selectAddress, setSelectAddress] = useState<boolean>(false);
 
   // get cart information
   useEffect(() => {
@@ -51,8 +57,8 @@ function Cart(props) {
         setCart(res.data.cart);
         setOrderId(res.data.cart[0].Order.id);
         setRestaurant(res.data.restaurant);
-        const menuPrice = res.data.cart.map(menu => menu.quantity * (menu.Menu.price + menu.Option.price));
-        const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
+        const menuPrice = res.data.cart.map((menu: any) => menu.quantity * (menu.Menu.price + menu.Option.price));
+        const menuPriceSum = menuPrice.reduce((acc: number, cur: number) => acc + cur);
         setSum(menuPriceSum);
       } else {
         setEmptyCart(true);
@@ -74,7 +80,7 @@ function Cart(props) {
   }
 
   // address onChange handler
-  const addressOnChangeHandler = (e) => {
+  const addressOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(e.target.name === 'postalCode') {
       setInputPostalCode(e.target.value);
       setSelectAddress(false);
@@ -88,7 +94,7 @@ function Cart(props) {
   }
 
   // pay btn handler
-  const payBtnHandler = (e) => {
+  const payBtnHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(sum >= restaurant.minimum_price) {
       if(addressId) {
@@ -97,7 +103,7 @@ function Cart(props) {
         })
         .then(() => {
           setSuccessAlert(true);
-          setTimeout(function(){ window.location = '/user/mypage' }, 3000);
+          setTimeout(function(){ window.location.href = '/user/mypage' }, 3000);
         })
       } else {
         if(inputPostalCode !== '' && inputAddress !== '' && inputContact !== '') {
@@ -109,7 +115,7 @@ function Cart(props) {
           })
           .then(() => {
             setSuccessAlert(true);
-            setTimeout(function(){ window.location = '/user/mypage' }, 5000);
+            setTimeout(function(){ window.location.href = '/user/mypage' }, 5000);
           })
         } else {
           setWrongAddress(true);
@@ -145,7 +151,7 @@ function Cart(props) {
 
         {/* chicken menu delivery info */}
         <ul className='eachMenuInfo'>
-          { cart && cart.map((menu, index) => {
+          { cart && cart.map((menu: any, index: number) => {
               console.log('menu:', menu);
               return(
                 <li key={index}>
@@ -173,7 +179,7 @@ function Cart(props) {
                     </div>
                   </div>
                   <div className='menuPrice'>{new Intl.NumberFormat().format(Number((menu.Menu.price + menu.Option.price)))}</div>
-                  <select className='menuQuantity' defaultValue={menu.quantity} onChange={e => {
+                  <select className='menuQuantity' defaultValue={menu.quantity} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                     axios.put('/api/foods/cart', {
                       order_id: orderId,
                       menu_id: menu.Menu.id,
@@ -181,7 +187,7 @@ function Cart(props) {
                       quantity: e.target.value
                     })
                     .then(() => {
-                      window.location = '/user/cart';
+                      window.location.href = '/user/cart';
                     })
                   }}>
                     <option value='1'>1</option>
@@ -199,7 +205,7 @@ function Cart(props) {
                         option_id: menu.Option.id
                       }
                     })
-                    .then(() => window.location = '/user/cart')
+                    .then(() => window.location.href = '/user/cart')
                   }}><DeleteForeverIcon /></div>
                 </li>
               )
@@ -239,12 +245,12 @@ function Cart(props) {
           {/* select recent address */}
 
           <button className={selectAddress? 'none' : 'choose'} onClick={() => setSelectAddress(true)}>{t('order.choose')}</button>
-          <select className={selectAddress? 'recentAddress' : 'none' } onChange={e => {
+          <select className={selectAddress? 'recentAddress' : 'none' } onChange={(e: React.ChangeEvent<HTMLSelectElement>)=> {
             console.log("e.target.value", e.target.value)
             setAddressId(e.target.value);
             setSelectAddress(true);
           }}>
-            { addressArray && addressArray.map(address => {
+            { addressArray && addressArray.map((address: any) => {
                 return(
                   <option key={address.id} value={address.id}>
                     {address.postal_code + ')'} {address.address} {' / ' + address.contact}
@@ -259,9 +265,9 @@ function Cart(props) {
           
           {/* input address form */}
           <form className={selectAddress? 'none' : 'inputForm'} >
-            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} label='Postal Code' onChange={addressOnChangeHandler} />
-            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} label='Delivery Address' onChange={addressOnChangeHandler} />
-            <input className='inputaddress contact' type='number' name='contact' placeholder={t('order.contact')} label='Contact Number' onChange={addressOnChangeHandler} />
+            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} onChange={addressOnChangeHandler} />
+            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} onChange={addressOnChangeHandler} />
+            <input className='inputaddress contact' type='number' name='contact' placeholder={t('order.contact')} onChange={addressOnChangeHandler} />
           </form>
 
           <button className={selectAddress? 'myself' : 'none'} onClick={() => setSelectAddress(false)}>{t('order.myself')}</button>

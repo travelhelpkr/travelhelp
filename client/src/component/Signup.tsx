@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import Policy from './Policy';
 import '../scss/Form.scss';
 
-function SignupEmail({ history }) {
+function Signup() {
 
   // change language handler
   const { t } = useTranslation();
 
   // state of user information for signup
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [name, setName] = useState('');
-  const [policy, setPolicy] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [policy, setPolicy] = useState<string>('');
 
   // failure of signup
-  const [wrongEmail, setWrongEmail] = useState(false);
-  const [wrongPassword, setWrongPassword] = useState(false);
-  const [wrongName, setWrongName] = useState(false);
-  const [wrongPolicy, setWrongPolicy] = useState(false);
-  const [existEmail, setExistEmail] = useState(false);
+  const [wrongEmail, setWrongEmail] = useState<boolean>(false);
+  const [wrongPassword, setWrongPassword] = useState<boolean>(false);
+  const [wrongName, setWrongName] = useState<boolean>(false);
+  const [wrongPolicy, setWrongPolicy] = useState<boolean>(false);
+  const [existEmail, setExistEmail] = useState<boolean>(false);
 
   // open modal
-  const [isOpen, setModal] = useState(false);
+  const [isOpen, setModal] = useState<boolean>(false);
 
   // form input change handler
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(e.target.name === 'email') {
       setEmail(e.target.value);
     } else if(e.target.name === 'password') {
@@ -44,7 +45,7 @@ function SignupEmail({ history }) {
 
 
   // validateEmail handler
-  const validateEmail = (text) => {
+  const validateEmail = (text: string) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(text) === false) {
       return false;
@@ -54,7 +55,7 @@ function SignupEmail({ history }) {
   }
 
   // signup btn handler
-  const signUpBtnHandler = (e) => {
+  const signUpBtnHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (validateEmail(email) && (password === confirmPassword) && (name !== '') && (policy !== '')) {
       axios.post('/api/users/signup', {
@@ -69,7 +70,7 @@ function SignupEmail({ history }) {
           setExistEmail(true);
         } else {
           window.sessionStorage.setItem('email', email);
-          window.location = '/user/emailVerified';
+          window.location.href = '/user/emailVerified';
         }
       });
     }
@@ -89,13 +90,13 @@ function SignupEmail({ history }) {
       <div className='content'>
         {/* social signup */}
         <div className='signupBtn'>
-          <a href='/api/auth/google' className='btn googleBtn'>{t('signup.google')}</a>
+          <a href='http://localhost:3355/api/auth/google' className='btn googleBtn'>{t('signup.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signup.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='/api/auth/line' className='btn lineBtn'>{t('signup.line')}</a>
+          <a href='http://localhost:3355/api/auth/line' className='btn lineBtn'>{t('signup.line')}</a>
         </div>
 
         {/* or */}
@@ -105,21 +106,21 @@ function SignupEmail({ history }) {
 
         {/* email signup */}
         <form className='signupForm'>
-          <input className='signupInput' type='text' name='email' onChange={onChangeHandler} placeholder={t('signup.email')} label='Email Address' />
+          <input className='signupInput' type='text' name='email' onChange={onChangeHandler} placeholder={t('signup.email')} />
           <div className={wrongEmail ? 'alert' : 'none'}>{t('signup.wrongEmail')}</div>
           <div className={existEmail ? 'alert' : 'none'}>{t('signup.existEmail')}</div>
 
-          <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} label='Password' />
+          <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} />
 
-          <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} label='Confirm Password' />
+          <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} />
           <div className={wrongPassword ? 'alert' : 'none'}>{t('signup.wrongPassword')}</div>
           
-          <input className='signupInput' type='text' name='name' onChange={onChangeHandler} placeholder={t('signup.name')} label='Name' />
+          <input className='signupInput' type='text' name='name' onChange={onChangeHandler} placeholder={t('signup.name')} />
           <div className={wrongName ? 'alert' : 'none'}>{t('signup.wrongName')}</div>
           
           <div className='signupCheckBox'>
             <input name='policy' onChange={onChangeHandler} type='checkbox'></input>
-            <label htmlFor='policy' onClick={e => {
+            <label htmlFor='policy' onClick={(e: React.MouseEvent<HTMLLabelElement>) => {
               e.preventDefault();
               setModal(!isOpen);
             }}>{t('signup.policy')}
@@ -143,4 +144,4 @@ function SignupEmail({ history }) {
   )
 }
 
-export default withRouter(SignupEmail);
+export default withRouter(Signup);

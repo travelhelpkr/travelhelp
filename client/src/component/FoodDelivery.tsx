@@ -1,17 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import FoodChicken from './FoodChicken';
 import FoodNoodle from './FoodNoodle';
 import '../scss/FoodChicken.scss';
 
-function FoodDelivery(props) {
+function FoodDelivery() {
 
   return(
     <div className='background'>
 
       {/* choose restaurants btn */}
       {
-        props.location.pathname === '/help/foodDelivery/noodle'
+        window.location.pathname === '/help/foodDelivery/noodle'
         ? <FoodNoodle />
         : <FoodChicken />
       }

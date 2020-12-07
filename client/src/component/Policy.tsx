@@ -1,8 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import '../scss/Modal.scss';
 
-function Policy(props) {
+interface IPropsPolicy {
+  isOpen: boolean,
+  setModal: any
+}
+
+const Policy: React.FC<IPropsPolicy> = (props) => {
 
   // get policy modal
   const { isOpen, setModal } = props;
@@ -13,7 +18,7 @@ function Policy(props) {
       <div className='modalContentPolicy'>
 
         {/* close btn */}
-        <button className='modalCloseBtn' onClick={e => {
+        <button className='modalCloseBtn' onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             e.preventDefault();
             setModal(!isOpen);
           }}><CloseIcon />

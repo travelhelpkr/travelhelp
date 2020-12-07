@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { RouteComponentProps } from '@reach/router';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { ChannelTalk } from 'react-channel-plugin';
 import Cookies from 'js-cookie';
@@ -18,11 +20,20 @@ import FoodChicken from './component/FoodChicken';
 import FoodNoodle from './component/FoodNoodle';
 import Cart from './component/Cart';
 import VerifyEmail from './component/VerifyEmail';
-// import config from './config/channelTalk.json';
 import FormatQuoteRoundedIcon from '@material-ui/icons/FormatQuoteRounded';
 import './App.scss';
 
-function App() {
+interface IProps {
+  setIsLogin: boolean,
+  setEmail: string,
+  setName: string,
+  setUserId: string,
+  email: string,
+  name: string,
+  userId: number
+}
+
+const App: React.FC<RouteComponentProps<IProps>> = (props) => {
 
   // setting of Channel Talk
   const onTalkError = React.useCallback<(err: any) => void>(err => {
@@ -84,7 +95,7 @@ function App() {
             if(window.sessionStorage.getItem('id')){
               return <Redirect to='/' />
             } else {
-              return <Signin isLogin={isLogin} setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} userId={userId}/>
+              return <Signin setIsLogin={setIsLogin} setEmail={setEmail} setName={setName} setUserId={setUserId} />
             }
           }} />
           <Route path='/user/signup' render={() => {
@@ -104,13 +115,13 @@ function App() {
             return <ResetPassword />
           }} />
           <Route path='/user/cart' render={() => {
-            return <Cart userId={userId} />
+            return <Cart />
           }} />
           <Route path='/user/verifyEmail' render={() => {
             return <VerifyEmail />
           }} />
           <Route path='/help/foodDelivery' render={() => {
-            return <FoodDelivery userId={userId} />
+            return <FoodDelivery />
           }} />
           <Route path='/help/foodDelivery/chicken' render={() => {
             return <FoodChicken userId={userId} />

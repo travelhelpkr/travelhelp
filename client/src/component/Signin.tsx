@@ -1,46 +1,49 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import ModalResetPassword from './ModalResetPassword';
 import '../scss/Form.scss';
 
-function Signin(props) {
+function Signin(props: any) {
 
   // login state props
   const { setIsLogin, setEmail, setName, setUserId } = props;
   
   // input state of user information for signin
-  const [email, inputEmail] = useState('');
-  const [password, inputPassword] = useState('');
+  const [email, inputEmail] = useState<string>('');
+  const [password, inputPassword] = useState<string>('');
   
   // failure of signin
-  const [failAlert, setFailAlert] = useState(false);
-  const [noUserAlert, setNoUserAlert] = useState(false);
+  const [failAlert, setFailAlert] = useState<boolean>(false);
+  const [noUserAlert, setNoUserAlert] = useState<boolean>(false);
 
   // open modal
-  const [isOpen, setModal] = useState(false);
+  const [isOpen, setModal] = useState<boolean>(false);
   
   // change language handler
   const { t } = useTranslation();
 
   // signin handler
-  const handleLoginBtn = (e) => {
+  const handleLoginBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     axios.post('/api/users/signin', {
       email: email,
       password: password
     }, {
       withCredentials: true,
-    }, {
-      headers: { 
-        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
-       }
-    })
+    }, 
+    // {
+    //   headers: { 
+    //     'Access-Control-Allow-Origin': 'http://localhost:3355',
+    //    }
+    // }
+    )
     .then(res => {
       if(res.data.status === 403) {
         window.sessionStorage.setItem('email', email);
-        window.location = '/user/emailVerified';
+        window.location.href = '/user/emailVerified';
       } else if(res.data.status === 404) {
         setNoUserAlert(true);
       } else {
@@ -67,13 +70,13 @@ function Signin(props) {
       <div className='content'>
         {/* social signin */}
         <div className='signupBtn'>
-          <a href='/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
+          <a href='http://localhost:3355/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signin.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
+          <a href='http://localhost:3355/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
         </div>
 
         {/* or */}
@@ -83,8 +86,8 @@ function Signin(props) {
 
         {/* email signin */}
         <form className='signupForm'>
-          <input className='signupInput' type='text' name='email' onChange={(e) => inputEmail(e.target.value)} placeholder={t('signin.email')} label='Email Address' />
-          <input className='signupInput' type='password' name='password' onChange={(e) => inputPassword(e.target.value)} placeholder={t('signin.password')} label='Password' />
+          <input className='signupInput' type='text' name='email' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputEmail(e.target.value)} placeholder={t('signin.email')} />
+          <input className='signupInput' type='password' name='password' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputPassword(e.target.value)} placeholder={t('signin.password')} />
           <div className={failAlert ? 'alert' : 'none'}>{t('signin.wrongInfo')}</div>
         </form>
 
@@ -97,7 +100,7 @@ function Signin(props) {
         </div>
         
         {/* find password */}
-        <div className='gotoSignIn forgotPassword' onClick={e => {
+        <div className='gotoSignIn forgotPassword' onClick={(e: React.MouseEvent<HTMLDivElement>) => {
           e.preventDefault();
           setModal(!isOpen);
         }}>

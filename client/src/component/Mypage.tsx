@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -6,7 +7,7 @@ import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined'
 import AlternateEmailOutlinedIcon from '@material-ui/icons/AlternateEmailOutlined';
 import '../scss/Mypage.scss';
 
-function Mypage(props) {
+function Mypage(props: any) {
 
   // props
   const { email, name, setIsLogin, setEmail, setName } = props;
@@ -15,7 +16,7 @@ function Mypage(props) {
   const { t } = useTranslation();
 
   // user order history state
-  const [orderHistory, setOrderHistory] = useState('');
+  const [orderHistory, setOrderHistory] = useState<any>('');
 
   // get order history
   useEffect(() => {
@@ -32,11 +33,13 @@ function Mypage(props) {
       language: window.localStorage.getItem('i18nextLng')
     },{
       withCredentials: true,
-    }, {
-      headers: { 
-        'Access-Control-Allow-Origin': 'https://travelhelp.kr',
-       }
-    })
+    }, 
+    // {
+    //   headers: { 
+    //     'Access-Control-Allow-Origin': 'https://travelhelp.kr',
+    //    }
+    // }
+    )
       .then(res => {
         console.log('res:', res);
         setIsLogin(false);
@@ -44,7 +47,7 @@ function Mypage(props) {
         setName('');
         window.sessionStorage.clear();
       })
-      .then(() => window.location = '/')
+      .then(() => window.location.href = '/')
   }
 
   return(
@@ -80,10 +83,12 @@ function Mypage(props) {
           {/* order lists */}
           <ul className='orderLists'>
             {
-              orderHistory && orderHistory.map(order => {
+              orderHistory && orderHistory.map((order: any)=> {
                 console.log("order:", order);
-                const menuPrice = order.Menus.map(menu => (menu.quantity * (menu.Menu.price + menu.Option.price)) + menu.Restaurant.delivery_fee);
-                const menuPriceSum = menuPrice.reduce((acc, cur) => acc + cur);
+                const menuPrice = order.Menus.map((menu: any) => (menu.quantity * (menu.Menu.price + menu.Option.price)));
+                const menuDeliverFee = order.Menus.map((menu: any) => menu.Restaurant.delivery_fee);
+                console.log("menuDeliverFee", menuDeliverFee);
+                const menuPriceSum = menuPrice.reduce((acc: number, cur: number) => acc + cur) + menuDeliverFee[0];
                 console.log("menuPriceSum:", menuPriceSum)
                 return(
                   <li key={order.id} className='orderlist'>
@@ -92,7 +97,7 @@ function Mypage(props) {
                     {/* menu lists */}
                     <ul className='menuLists'>
                       {
-                        order.Menus && order.Menus.map((menu,index) => {
+                        order.Menus && order.Menus.map((menu: any, index: number) => {
                           console.log("menu:", menu.Menu.price);
                           return(
                             <li key={index} className='menuList'>
