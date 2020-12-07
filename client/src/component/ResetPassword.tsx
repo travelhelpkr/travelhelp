@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import '../scss/ResetPassword.scss';
 
-function ResetPassword(props) {
+function ResetPassword() {
 
   // change language handler
   const { t } = useTranslation();
@@ -13,12 +14,12 @@ function ResetPassword(props) {
   const url = new URL(window.location.href);
 
   // input state of user password for reset password
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
 
   // check password and confirm password
-  const [wrongPassword, setWrongPassword] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState<boolean>(false);
 
   // send token value with uri to the server
   useEffect(() => {
@@ -34,7 +35,7 @@ function ResetPassword(props) {
   })
 
   // form input change handler
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if(e.target.name === 'password') {
       setPassword(e.target.value);
     } else if(e.target.name === 'confirmPassword') {
@@ -43,14 +44,14 @@ function ResetPassword(props) {
   }
 
   // reset password handler
-  const resetPasswordHandler = (e) => {
+  const resetPasswordHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if(password === confirmPassword) {
       axios.post('/api/auth/password', {
         email: email,
         password: password
       })
-      .then(() => window.location = '/user/signin')
+      .then(() => window.location.href = '/user/signin')
     }
     else {
       ((password === confirmPassword) && password !== '') ? setWrongPassword(false) : setWrongPassword(true);
@@ -69,9 +70,9 @@ function ResetPassword(props) {
           </div>
           <form>
             <div className='inputTitle'>{t('resetPassword.newPassword')}</div>
-            <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} label='Password' />
+            <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} />
             <div className='inputTitle'>{t('resetPassword.confirmPassword')}</div>
-            <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} label='Confirm Password' />
+            <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} />
           </form>
           <div className={wrongPassword ? 'passwordAlert' : 'none'}>{t('signup.wrongPassword')}</div>
           
