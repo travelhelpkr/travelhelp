@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import size_guideline from '../img/size_guideline.jpg';
 import '../scss/Luggage.scss';
@@ -32,24 +31,24 @@ function Luggage() {
           <tbody>
             <tr className='secondRow'>
               <td className='firstColumn priceTableSecondColumn'>{t('luggage.small')}(~19 inch)</td>
-              <td className='priceTableSecondRowPrice1'>2,000</td>
-              <td className='priceTableSecondRowPrice2'>3,000</td>
-              <td className='priceTableSecondRowPrice3'>4,000</td>
-              <td className='priceTableSecondRowPrice4'>4,000+3,000*{t('luggage.day')}</td>
+              <td className='priceTableSecondRowPrice'>2,000</td>
+              <td className='priceTableSecondRowPrice'>3,000</td>
+              <td className='priceTableSecondRowPrice'>4,000</td>
+              <td className='priceTableSecondRowPrice'>4,000+3,000*{t('luggage.day')}</td>
             </tr>
             <tr className='thirdRow'>
               <td className='firstColumn priceTableThirdColumn'>{t('luggage.medium')}(20~29 inch)</td>
-              <td className='priceTableThirdRowPrice1'>3,000</td>
-              <td className='priceTableThirdRowPrice2'>4,500</td>
-              <td className='priceTableThirdRowPrice3'>6,000</td>
-              <td className='priceTableThirdRowPrice4'>6,000+4,000*{t('luggage.day')}</td>
+              <td className='priceTableThirdRowPrice'>3,000</td>
+              <td className='priceTableThirdRowPrice'>4,500</td>
+              <td className='priceTableThirdRowPrice'>6,000</td>
+              <td className='priceTableThirdRowPrice'>6,000+4,000*{t('luggage.day')}</td>
             </tr>
             <tr className='fourthRow'>
               <td className='firstColumn priceTableFourthColumn'>{t('luggage.large')}(30 inch ~)</td>
-              <td className='priceTableFourthRowPrice1'>4,000</td>
-              <td className='priceTableFourthRowPrice2'>6,000</td>
-              <td className='priceTableFourthRowPrice3'>8,000</td>
-              <td className='priceTableFourthRowPrice4'>8,000+5,000*{t('luggage.day')}</td>
+              <td className='priceTableFourthRowPrice'>4,000</td>
+              <td className='priceTableFourthRowPrice'>6,000</td>
+              <td className='priceTableFourthRowPrice'>8,000</td>
+              <td className='priceTableFourthRowPrice'>8,000+5,000*{t('luggage.day')}</td>
             </tr>
           </tbody>
         </table>
@@ -115,4 +114,4 @@ function Luggage() {
   )
 }
 
-export default withRouter(Luggage);
+export default Luggage;
