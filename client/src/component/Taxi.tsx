@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../scss/Taxi.scss';
 
@@ -21,12 +20,12 @@ function Taxi() {
         <div className='contentTitleAlert'>{t('taxi.bookingAlert')}</div>
         <div className='contentDetail'>{t('taxi.bookingDetail')}</div>
         <ul className='bookingList'>
-          <li>{t('taxi.bookingInfo1')}</li>
-          <li>{t('taxi.bookingInfo2')}</li>
-          <li>{t('taxi.bookingInfo3')}</li>
-          <li>{t('taxi.bookingInfo4')}</li>
-          <li>{t('taxi.bookingInfo5')}</li>
-          <li>{t('taxi.bookingInfo6')}</li>
+          <li className='bookingListInfo'>{t('taxi.bookingInfo1')}</li>
+          <li className='bookingListInfo'>{t('taxi.bookingInfo2')}</li>
+          <li className='bookingListInfo'>{t('taxi.bookingInfo3')}</li>
+          <li className='bookingListInfo'>{t('taxi.bookingInfo4')}</li>
+          <li className='bookingListInfo'>{t('taxi.bookingInfo5')}</li>
+          <li className='bookingListInfo'>{t('taxi.bookingInfo6')}</li>
         </ul>
       </div>
 
@@ -34,71 +33,75 @@ function Taxi() {
       <div className='contentTable'>
         <div className='tableTitle'>{t('taxi.tableTitleICN')}</div>
         <table className='priceTable'>
-          <tr className='firstRow'>
-            <td>{t('taxi.pickUpTIme')}</td>
-            <td>{t('taxi.seat')}</td>
-            <td>{t('taxi.rate')}</td>
-            <td>{t('taxi.discount')}</td>
-          </tr>
-          <tr>
-            <td className='firstColumn'>11:00 - 14:00</td>
-            <td>6 / 6</td>
-            <td>80,000</td>
-            <td>70,000</td>
-          </tr>
-          <tr>
-            <td className='firstColumn'>05:00 - 10:30 / 14:30 - 22:30</td>
-            <td>6 / 6</td>
-            <td>95,000</td>
-            <td>85,000</td>
-          </tr>
-          <tr>
-            <td className='firstColumn'>23:00 - 04:30</td>
-            <td>6 / 6</td>
-            <td>100,000</td>
-            <td>90,000</td>
-          </tr>
+          <thead>
+            <tr className='firstRow'>
+              <td className='tableICNThead1'>{t('taxi.pickUpTIme')}</td>
+              <td className='tableICNThead2'>{t('taxi.seat')}</td>
+              <td className='tableICNThead3'>{t('taxi.rate')}</td>
+              <td className='tableICNThead4'>{t('taxi.discount')}</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className='firstColumn tableICNSecondColumn'>11:00 - 14:00</td>
+              <td className='tableICNSecondRowPrice'>6 / 6</td>
+              <td className='tableICNSecondRowPrice'>80,000</td>
+              <td className='tableICNSecondRowPrice'>70,000</td>
+            </tr>
+            <tr>
+              <td className='firstColumn tableICNThirdColumn'>05:00 - 10:30 / 14:30 - 22:30</td>
+              <td className='tableICNThirdRowPrice'>6 / 6</td>
+              <td className='tableICNThirdRowPrice'>95,000</td>
+              <td className='tableICNThirdRowPrice'>85,000</td>
+            </tr>
+            <tr>
+              <td className='firstColumn tableICNFourthColumn'>23:00 - 04:30</td>
+              <td className='tableICNFourthRowPrice'>6 / 6</td>
+              <td className='tableICNFourthRowPrice'>100,000</td>
+              <td className='tableICNFourthRowPrice'>90,000</td>
+            </tr>
+          </tbody>
         </table>
 
       {/* price list - GMP airport */}
         <div className='tableTitleGMP'>{t('taxi.tableTitleGMP')}</div>
         <table className='priceTable'>
           <tr className='firstRow'>
-            <td>{t('taxi.pickUpTIme')}</td>
-            <td>{t('taxi.seat')}</td>
-            <td>{t('taxi.rate')}</td>
-            <td>{t('taxi.discount')}</td>
+            <td className='tableGMPThead1'>{t('taxi.pickUpTIme')}</td>
+            <td className='tableGMPThead2'>{t('taxi.seat')}</td>
+            <td className='tableGMPThead3'>{t('taxi.rate')}</td>
+            <td className='tableGMPThead4'>{t('taxi.discount')}</td>
           </tr>
           <tr>
-            <td className='firstColumn'>11:00 - 14:00</td>
-            <td>6 / 6</td>
-            <td>60,000</td>
-            <td>52,000</td>
+            <td className='firstColumn tableGMPSecondColumn'>11:00 - 14:00</td>
+            <td className='tableGMPSecondRowPrice'>6 / 6</td>
+            <td className='tableGMPSecondRowPrice'>60,000</td>
+            <td className='tableGMPSecondRowPrice'>52,000</td>
           </tr>
           <tr>
-            <td className='firstColumn'>05:00 - 10:30 / 14:30 - 22:30</td>
-            <td>6 / 6</td>
-            <td>75,000</td>
-            <td>65,000</td>
+            <td className='firstColumn tableGMPThirdColumn'>05:00 - 10:30 / 14:30 - 22:30</td>
+            <td className='tableGMPThirdRowPrice'>6 / 6</td>
+            <td className='tableGMPThirdRowPrice'>75,000</td>
+            <td className='tableGMPThirdRowPrice'>65,000</td>
           </tr>
           <tr>
-            <td className='firstColumn'>23:00 - 04:30</td>
-            <td>6 / 6</td>
-            <td>85,000</td>
-            <td>75,000</td>
+            <td className='firstColumn tableGMPFourthColumn'>23:00 - 04:30</td>
+            <td className='tableGMPFourthRowPrice'>6 / 6</td>
+            <td className='tableGMPFourthRowPrice'>85,000</td>
+            <td className='tableGMPFourthRowPrice'>75,000</td>
           </tr>
         </table>
         <ul className='priceInfo'>
-          <li>{t('taxi.priceInfo1')}</li>
-          <li>{t('taxi.priceInfo2')}</li>
-          <li>{t('taxi.priceInfo3')}</li>
-          <li>{t('taxi.priceInfo4')}</li>
-          <li>{t('taxi.priceInfo5')}</li>
-          <li>{t('taxi.priceInfo6')}</li>
+          <li className='priceInfoList'>{t('taxi.priceInfo1')}</li>
+          <li className='priceInfoList'>{t('taxi.priceInfo2')}</li>
+          <li className='priceInfoList'>{t('taxi.priceInfo3')}</li>
+          <li className='priceInfoList'>{t('taxi.priceInfo4')}</li>
+          <li className='priceInfoList'>{t('taxi.priceInfo5')}</li>
+          <li className='priceInfoList'>{t('taxi.priceInfo6')}</li>
         </ul>
       </div>
     </div>
   )
 }
 
-export default withRouter(Taxi);
+export default Taxi;
