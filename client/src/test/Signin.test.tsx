@@ -116,7 +116,7 @@ describe('Find password and go to signup', () => {
     await fireEvent.click(findPasswordBtn);
     await expect(renderComponent.getAllByText('signin.forgotPassword')[1]).toBeInTheDocument();
   });
-  it(`Checks redirect url when clicked 'If you don't have an ID yet'`, () => {
+  it(`Checks redirect url when clicked 'signin.gotoSignUp'`, () => {
     const renderComponent = render(<Signin />);
     const goToSignupBtn = renderComponent.getByText('signin.gotoSignUp').getAttribute('href');
     expect(goToSignupBtn).toBe('/user/signup');
