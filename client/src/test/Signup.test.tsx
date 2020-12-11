@@ -4,14 +4,6 @@ import MockAdapter from 'axios-mock-adapter';
 import axios from "axios";
 import Signup from '../component/Signup';
 
-const mock = new MockAdapter(axios, { onNoMatch: "throwException" });
-
-beforeAll(() => {
-  mock.reset();
-});
-
-afterEach(cleanup);
-
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({t: (key: any) => key})
 }));
