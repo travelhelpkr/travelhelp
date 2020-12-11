@@ -91,7 +91,7 @@ const ResestPassword: React.FC<IPropsResestPassword> = (props) => {
           <div className='step1'>{t('resetPassword.step1')}</div>
           <div className='emailAddress'>{t('resetPassword.email')}</div>
           <form>
-            <input className='emailInput' type='text' name='email' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputEmail(e.target.value)} placeholder={t('signin.email')} />
+            <input value={email} className='emailInput' type='text' name='email' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputEmail(e.target.value)} placeholder={t('signin.email')} aria-label='emailAddress'/>
           </form>
           <button className='resetPasswordBtn' onClick={handleResetPasswordBtn}>{t('resetPassword.btn')}</button>
           
