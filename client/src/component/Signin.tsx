@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import ModalResetPassword from './ModalResetPassword';
@@ -42,11 +41,14 @@ function Signin(props: any) {
     )
     .then(res => {
       if(res.data.status === 403) {
+        console.log("not invalid");
         window.sessionStorage.setItem('email', email);
         window.location.href = '/user/emailVerified';
       } else if(res.data.status === 404) {
+        console.log("not found");
         setNoUserAlert(true);
       } else {
+        console.log("successfully signed in");
         window.localStorage.setItem('i18nextLng', res.data.language);
         window.sessionStorage.setItem('id', res.data.id);
         window.sessionStorage.setItem('email', res.data.email);
@@ -86,8 +88,8 @@ function Signin(props: any) {
 
         {/* email signin */}
         <form className='signupForm'>
-          <input className='signupInput' type='text' name='email' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputEmail(e.target.value)} placeholder={t('signin.email')} />
-          <input className='signupInput' type='password' name='password' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputPassword(e.target.value)} placeholder={t('signin.password')} />
+          <input value={email} className='signupInput' type='text' name='email' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputEmail(e.target.value)} placeholder={t('signin.email')} aria-label='emailAddressInput' />
+          <input value={password} className='signupInput' type='password' name='password' onChange={(e: React.ChangeEvent<HTMLInputElement>) => inputPassword(e.target.value)} placeholder={t('signin.password')} aria-label='passwordInput' />
           <div className={failAlert ? 'alert' : 'none'}>{t('signin.wrongInfo')}</div>
         </form>
 
@@ -120,4 +122,4 @@ function Signin(props: any) {
   )
 }
 
-export default withRouter(Signin);
+export default Signin;
