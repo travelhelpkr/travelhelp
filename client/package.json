@@ -60,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.19.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0"
   }
