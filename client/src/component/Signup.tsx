@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import Policy from './Policy';
@@ -106,20 +105,20 @@ function Signup() {
 
         {/* email signup */}
         <form className='signupForm'>
-          <input className='signupInput' type='text' name='email' onChange={onChangeHandler} placeholder={t('signup.email')} />
+          <input value={email} className='signupInput' type='text' name='email' onChange={onChangeHandler} placeholder={t('signup.email')} aria-label='emailAddressInput'/>
           <div className={wrongEmail ? 'alert' : 'none'}>{t('signup.wrongEmail')}</div>
           <div className={existEmail ? 'alert' : 'none'}>{t('signup.existEmail')}</div>
 
-          <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} />
+          <input value={password} className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} aria-label='passwordInput' />
 
-          <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} />
+          <input value={confirmPassword} className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} aria-label='confirmPasswordInput' />
           <div className={wrongPassword ? 'alert' : 'none'}>{t('signup.wrongPassword')}</div>
           
-          <input className='signupInput' type='text' name='name' onChange={onChangeHandler} placeholder={t('signup.name')} />
+          <input value={name} className='signupInput' type='text' name='name' onChange={onChangeHandler} placeholder={t('signup.name')} aria-label='nameInput'/>
           <div className={wrongName ? 'alert' : 'none'}>{t('signup.wrongName')}</div>
           
           <div className='signupCheckBox'>
-            <input name='policy' onChange={onChangeHandler} type='checkbox'></input>
+            <input value={policy} name='policy' onChange={onChangeHandler} type='checkbox' aria-label='policyInput'></input>
             <label htmlFor='policy' onClick={(e: React.MouseEvent<HTMLLabelElement>) => {
               e.preventDefault();
               setModal(!isOpen);
@@ -144,4 +143,4 @@ function Signup() {
   )
 }
 
-export default withRouter(Signup);
+export default Signup;
