@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
 import FoodChicken from './FoodChicken';
 import FoodNoodle from './FoodNoodle';
 import '../scss/FoodChicken.scss';
@@ -19,4 +18,4 @@ function FoodDelivery() {
   )
 }
 
-export default withRouter(FoodDelivery);
+export default FoodDelivery;
