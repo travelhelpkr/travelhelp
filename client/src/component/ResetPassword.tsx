@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import '../scss/ResetPassword.scss';
@@ -70,9 +69,9 @@ function ResetPassword() {
           </div>
           <form>
             <div className='inputTitle'>{t('resetPassword.newPassword')}</div>
-            <input className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} />
+            <input value={password} className='signupInput' type='password' name='password' onChange={onChangeHandler} placeholder={t('signup.password')} />
             <div className='inputTitle'>{t('resetPassword.confirmPassword')}</div>
-            <input className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} />
+            <input value={confirmPassword} className='signupInput' type='password' name='confirmPassword' onChange={onChangeHandler} placeholder={t('signup.confirmPassword')} />
           </form>
           <div className={wrongPassword ? 'passwordAlert' : 'none'}>{t('signup.wrongPassword')}</div>
           
@@ -83,4 +82,4 @@ function ResetPassword() {
   )
 }
 
-export default withRouter(ResetPassword); 
+export default ResetPassword; 
