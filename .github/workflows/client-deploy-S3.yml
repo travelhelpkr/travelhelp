@@ -5,8 +5,12 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
+    paths:
+      - 'client/**'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'client/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,12 +21,26 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    # Set default path for this "build" job
+    defaults:
+      run:
+        working-directory: ./client
+
+    # Specifying the Node version
+    strategy:
+      matrix:
+        node-version: [14.15.x]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source code
         uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
 
       # caching node modules
       - name: Cache node modules
@@ -33,20 +51,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies
+      - name: Clean install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Deploy
+      - name: Deploy on S3 & purge from cloudfront
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
           aws s3 sync \
             --region ap-northeast-2 \
             --delete \
-            client/build s3://travelhelp-source
-             
-            
+            build s3://travelhelp-source
+          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
