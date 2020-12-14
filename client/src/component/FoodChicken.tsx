@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import chickenImg from '../img/new_banner_CK.png';
@@ -247,4 +246,4 @@ function FoodChicken(props: any) {
   )
 }
 
-export default withRouter(FoodChicken); 
+export default FoodChicken; 

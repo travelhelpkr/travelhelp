@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import noodleImg from '../img/new_banner_bn.png';
@@ -269,4 +268,4 @@ function FoodNoodle(props: any) {
   )
 }
 
-export default withRouter(FoodNoodle); 
+export default FoodNoodle; 
