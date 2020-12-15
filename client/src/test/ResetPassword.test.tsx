@@ -20,6 +20,7 @@ describe('Form of user information', () => {
   })
   it('has input titles', () => {
     const { getByText } = render(<ResetPassword />);
+    
     expect(getByText('resetPassword.newPassword')).toBeInTheDocument();
     expect(getByText('resetPassword.confirmPassword')).toBeInTheDocument();
   })
@@ -27,6 +28,7 @@ describe('Form of user information', () => {
     const { getByPlaceholderText } = render(<ResetPassword />);
     const inputNewPassword = getByPlaceholderText('signup.password');
     const inputConfirmNewPassword = getByPlaceholderText('signup.confirmPassword');
+
     expect(inputNewPassword).toBeTruthy();
     expect(inputConfirmNewPassword).toBeTruthy();
   })
@@ -34,6 +36,7 @@ describe('Form of user information', () => {
     const { getByPlaceholderText } = render(<ResetPassword />);
     const inputNewPassword = getByPlaceholderText('signup.password');
     const inputConfirmNewPassword = getByPlaceholderText('signup.confirmPassword');
+
     fireEvent.change(inputNewPassword, {
       target: {
         value: '1234'

@@ -17,7 +17,7 @@ const setup = (props = {}) => {
 };
 
 describe('Modal close button', () => {
-  it('Closes modal when close btn is clicked', () => {
+  it('closes modal when close btn is clicked', () => {
     const { getByRole } = setup();
     const closeBtn = getByRole('button', { name: '' });
 

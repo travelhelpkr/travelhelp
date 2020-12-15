@@ -7,45 +7,45 @@ jest.mock('react-i18next', () => ({
 }));
 
 describe('Title and descriptions', () => {
-  it(`Title should be 'taxi.title'`, () => {
-    const renderComponent = render(<Taxi />);
-    expect(renderComponent.getByText('taxi.title')).toBeInTheDocument();
+  it(`has title of 'taxi.title'`, () => {
+    const { getByText } = render(<Taxi />);
+    expect(getByText('taxi.title')).toBeInTheDocument();
   });
-  it(`Description should be 'taxi.description1'`, () => {
-    const renderComponent = render(<Taxi />);
-    expect(renderComponent.getByText('taxi.description1')).toBeInTheDocument();
+  it(`has description of 'taxi.description1'`, () => {
+    const { getByText } = render(<Taxi />);
+    expect(getByText('taxi.description1')).toBeInTheDocument();
   });
-  it(`Description should be 'luggage.description2'`, () => {
-    const renderComponent = render(<Taxi />);
-    expect(renderComponent.getByText('taxi.description2')).toBeInTheDocument();
+  it(`has description of 'luggage.description2'`, () => {
+    const { getByText } = render(<Taxi />);
+    expect(getByText('taxi.description2')).toBeInTheDocument();
   });
 })
 
 describe('Contents of booking', () => {
-  it('Content title should be rendered', () => {
-    const renderComponent = render(<Taxi />);
-    expect(renderComponent.getByText('taxi.booking')).toBeInTheDocument();
+  it('renders title', () => {
+    const { getByText } = render(<Taxi />);
+    expect(getByText('taxi.booking')).toBeInTheDocument();
   })
-  it('Caution of booking should be rendred', () => {
-    const renderComponent = render(<Taxi />);
-    expect(renderComponent.getByText('taxi.bookingAlert')).toBeInTheDocument();
+  it('renders caution of booking', () => {
+    const { getByText } = render(<Taxi />);
+    expect(getByText('taxi.bookingAlert')).toBeInTheDocument();
   })
-  it('Description of booking should be rendered', () => {
-    const renderComponent = render(<Taxi />);
-    expect(renderComponent.getByText('taxi.bookingDetail')).toBeInTheDocument();
+  it('renders description of booking', () => {
+    const { getByText } = render(<Taxi />);
+    expect(getByText('taxi.bookingDetail')).toBeInTheDocument();
   })
-  it('6 Lists of the booking method should be rendered', () => {
+  it('renders 6 lists of the booking method', () => {
     const { container } = render(<Taxi />);
     expect(container.querySelectorAll('.bookingListInfo').length).toEqual(6);
   })
 })
 
 describe('Table Titles', () => {
-  it('ICN Table title should be rendered', () => {
+  it('renders ICN table title', () => {
     render(<Taxi />);
     expect(document.querySelector('.tableTitle')?.textContent).toBe('taxi.tableTitleICN');
   })
-  it('GMP Discount Table title should be rendered', () => {
+  it('renders GMP discount Table title', () => {
     render(<Taxi />);
     expect(document.querySelector('.tableTitleGMP')?.textContent).toBe('taxi.tableTitleGMP');
   })
@@ -86,20 +86,20 @@ describe('Contents of ICN Table', () => {
       </tbody>
     </table>
   }
-  it('table head title', () => {
+  it('has table head title', () => {
     render(<Taxi />);
     expect(document.querySelector('.tableICNThead1')?.textContent).toBe('taxi.pickUpTIme');
     expect(document.querySelector('.tableICNThead2')?.textContent).toBe('taxi.seat');
     expect(document.querySelector('.tableICNThead3')?.textContent).toBe('taxi.rate');
     expect(document.querySelector('.tableICNThead4')?.textContent).toBe('taxi.discount');
   })
-  it('Every heads of the columns in the price table should be rendered', () => {
+  it('has every heads of the columns in the price table', () => {
     render(<Taxi />);
     expect(document.querySelector('.tableICNSecondColumn')?.textContent).toBe('11:00 - 14:00');
     expect(document.querySelector('.tableICNThirdColumn')?.textContent).toBe('05:00 - 10:30 / 14:30 - 22:30');
     expect(document.querySelector('.tableICNFourthColumn')?.textContent).toBe('23:00 - 04:30');
   })
-  it('Every rows in the price table should be rendered', () => {
+  it('renders every rows in the price table', () => {
     render(<Taxi {...prices}/>);
     expect(document.querySelectorAll('.tableICNSecondRowPrice')).toBeTruthy();
     expect(document.querySelectorAll('.tableICNSecondRowPrice').length).toBe(3);
@@ -145,20 +145,20 @@ describe('Contents of GMP Table', () => {
       </tbody>
     </table>
   }
-  it('table head title', () => {
+  it('has table head title', () => {
     render(<Taxi />);
     expect(document.querySelector('.tableGMPThead1')?.textContent).toBe('taxi.pickUpTIme');
     expect(document.querySelector('.tableGMPThead2')?.textContent).toBe('taxi.seat');
     expect(document.querySelector('.tableGMPThead3')?.textContent).toBe('taxi.rate');
     expect(document.querySelector('.tableGMPThead4')?.textContent).toBe('taxi.discount');
   })
-  it('Every heads of the columns in the price table should be rendered', () => {
+  it('has every heads of the columns in the price table', () => {
     render(<Taxi />);
     expect(document.querySelector('.tableGMPSecondColumn')?.textContent).toBe('11:00 - 14:00');
     expect(document.querySelector('.tableGMPThirdColumn')?.textContent).toBe('05:00 - 10:30 / 14:30 - 22:30');
     expect(document.querySelector('.tableGMPFourthColumn')?.textContent).toBe('23:00 - 04:30');
   })
-  it('Every rows in the price table should be rendered', () => {
+  it('has every rows in the price table', () => {
     render(<Taxi {...prices}/>);
     expect(document.querySelectorAll('.tableGMPSecondRowPrice')).toBeTruthy();
     expect(document.querySelectorAll('.tableGMPSecondRowPrice').length).toBe(3);
@@ -170,7 +170,7 @@ describe('Contents of GMP Table', () => {
 })
 
 describe('Price Information Lists', () => {
-  it('6 Lists of price information should be rendered', () => {
+  it('has 6 lists of price information should be rendered', () => {
     const { container } = render(<Taxi />);
     expect(container.querySelectorAll('.priceInfoList').length).toEqual(6);
   })
