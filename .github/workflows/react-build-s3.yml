@@ -44,6 +44,7 @@ jobs:
       # caching node modules
       - name: Cache node modules
         uses: actions/cache@v2
+        id: cache
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: ~/.npm
@@ -52,6 +53,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Clean install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build
