@@ -59,16 +59,9 @@ jobs:
       - name: Build
         run: npm run build --if-present
         env:
+          REACT_APP_CHANNELTALK_KEY: ${{ secrets.REACT_APP_CHANNELTALK_KEY }}
+          REACT_APP_CHANNELTALK_SECRET: ${{ secrets.REACT_APP_CHANNELTALK_SECRET }}
           CI: false
-          
-      # Making the .env file
-      - name: Make .env file
-        uses: SpicyPizza/create-envfile@v1.0
-        with:
-          envkey_REACT_APP_CHANNELTALK_KEY: ${{ secrets.REACT_APP_CHANNELTALK_KEY }}
-          envkey_REACT_APP_CHANNELTALK_SECRET: ${{ secrets.REACT_APP_CHANNELTALK_SECRET }}
-          directory: build
-          file_name: .env
 
       - name: Deploy on S3 & purge from cloudfront
         env:
