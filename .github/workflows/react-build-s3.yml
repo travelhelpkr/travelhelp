@@ -69,4 +69,4 @@ jobs:
             --region ap-northeast-2 \
             --delete \
             build s3://travelhelp-dev
-          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+#          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
