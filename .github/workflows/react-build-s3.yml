@@ -50,15 +50,14 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-#            ${{ runner.OS }}-
 
       - name: Clean install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build --if-present
-#         env:
-#           CI: false
+        env:
+          CI: false
 
       - name: Deploy on S3 & purge from cloudfront
         env:
