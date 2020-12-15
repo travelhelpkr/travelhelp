@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
-import { RouterProps } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -9,13 +8,9 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import '../scss/Cart.scss'; 
 
-interface IPropsCart {
-  history: RouterProps['history'];
-}
+function Cart () {
 
-const Cart: React.FC<IPropsCart> = (props) => {
-
-  const { history } = props;
+  const history = useHistory();
 
   // change language handler
   const { t } = useTranslation();
@@ -155,7 +150,7 @@ const Cart: React.FC<IPropsCart> = (props) => {
               console.log('menu:', menu);
               return(
                 <li key={index}>
-                  <div className='menuImage'><img src={menu.Menu.image} alt='menuImage'/></div>
+                  <div className='menuImage'><img src={menu.Menu.image} alt='menuImage' className='menuImg'/></div>
                   <div className='menuInfo'>
                     <div className='menuName'>
                       {
@@ -265,9 +260,9 @@ const Cart: React.FC<IPropsCart> = (props) => {
           
           {/* input address form */}
           <form className={selectAddress? 'none' : 'inputForm'} >
-            <input className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} onChange={addressOnChangeHandler} />
-            <input className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} onChange={addressOnChangeHandler} />
-            <input className='inputaddress contact' type='number' name='contact' placeholder={t('order.contact')} onChange={addressOnChangeHandler} />
+            <input value={inputPostalCode} className='inputaddress postalCode' type='number' name='postalCode' placeholder={t('order.postalCode')} onChange={addressOnChangeHandler} />
+            <input value={inputAddress} className='inputaddress deliveryAddress' type='text' name='address' placeholder={t('order.deliveryAddress')} onChange={addressOnChangeHandler} />
+            <input value={inputContact} className='inputaddress contact' type='number' name='contact' placeholder={t('order.contact')} onChange={addressOnChangeHandler} />
           </form>
 
           <button className={selectAddress? 'myself' : 'none'} onClick={() => setSelectAddress(false)}>{t('order.myself')}</button>
@@ -308,4 +303,4 @@ const Cart: React.FC<IPropsCart> = (props) => {
 
 }
 
-export default withRouter(Cart); 
+export default Cart; 
