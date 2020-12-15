@@ -67,7 +67,7 @@ jobs:
         with:
           envkey_REACT_APP_CHANNELTALK_KEY: ${{ secrets.REACT_APP_CHANNELTALK_KEY }}
           envkey_REACT_APP_CHANNELTALK_SECRET: ${{ secrets.REACT_APP_CHANNELTALK_SECRET }}
-          directory: <build>
+#           directory: ./client/build
           file_name: .env
 
       - name: Deploy on S3 & purge from cloudfront
