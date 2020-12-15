@@ -35,7 +35,7 @@ const setup = (props = {}) => {
 };
 
 describe('Modal close button', () => {
-  it('Closes modal when close btn is clicked', () => {
+  it('closes modal when close btn is clicked', () => {
     const { getByRole } = setup();
     const closeBtn = getByRole('button', { name: '' });
 
@@ -81,7 +81,7 @@ describe('Select box', () => {
     expect(option1).not.toBeInTheDocument();
     expect(option2).not.toBeInTheDocument();
   })
-  it('option has select box', () => {
+  it('has select box of menu option', () => {
     const { container } = setup();
     const selectBox = container.querySelector('select');
 
