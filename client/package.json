@@ -38,7 +38,7 @@
   "scripts": {
     "start": "PORT=5533 react-scripts start",
     "build": "webpack",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -60,6 +60,7 @@
     ]
   },
   "devDependencies": {
+    "axios-mock-adapter": "^1.19.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^4.2.0"
   }

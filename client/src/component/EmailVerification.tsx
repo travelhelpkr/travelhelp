@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
@@ -51,4 +50,4 @@ function EmailVerification() {
   )
 }
 
-export default withRouter(EmailVerification); 
+export default EmailVerification; 

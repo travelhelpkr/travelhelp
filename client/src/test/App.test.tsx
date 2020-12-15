@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 
 it('checks the channelTalk button clicked', () => {
-  const utils = render(<App />);
-  utils.container.getElementsByClassName("channelTalkIcon");
+  const { getByRole } = render(<App />);
+  const button = getByRole('button', { name: '' });
+
+  fireEvent.click(button);
 });
