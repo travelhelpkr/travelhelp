@@ -37,6 +37,9 @@ jobs:
           fi
 
   # Push docker image to GitHub Container Registry
+  # Login to AWS EC2 server
+  # Pull docker image from GitHub Container Registry
+  # Run docker image
   # See also https://docs.docker.com/docker-hub/builds/
   push:
     # Ensure test job passes before pushing image.
@@ -55,6 +58,13 @@ jobs:
       - name: Log into GitHub Container Registry
         # TODO: Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
 
       - name: Push image
         run: |
@@ -77,24 +87,7 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-
-  # Login to AWS EC2 server
-  # Pull docker image from GitHub Container Registry
-  # Run docker image
-  deploy:
-    needs: push
-    name: Deploy
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-northeast-2
-
-    - name: 
+          
+      - name: Pull image from EC2 server
+        run: |
+          aws 
