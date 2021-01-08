@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  app:
+    image: node:14-alpine
+    command: sh -c "npm ci && npm run dev"
+    ports:
+      - 5555:3355
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on: 
+      - mysql
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: travelhelp
+
+  mysql:
+    image: mysql:8.0.21
+    volumes:
+      - travelhelp-mysql-data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: travelhelp
+
+volumes:
+  travelhelp-mysql-data:

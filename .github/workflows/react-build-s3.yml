@@ -54,6 +54,7 @@ jobs:
       - name: Build
         run: npm run build --if-present
         env:
+          # Environment variables for channeltalk. Webpack will contain those information when bundling.
           REACT_APP_CHANNELTALK_KEY: ${{ secrets.REACT_APP_CHANNELTALK_KEY }}
           REACT_APP_CHANNELTALK_SECRET: ${{ secrets.REACT_APP_CHANNELTALK_SECRET }}
           CI: false
