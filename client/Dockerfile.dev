@@ -2,12 +2,10 @@ FROM node:14-alpine
 
 WORKDIR /app
 
-# ENV PATH /app/node_modules/.bin:$PATH
-
 COPY package*.json ./
 RUN npm install --silent
 
 COPY . .
 
+ENV PATH=/app/node_modules/.bin:$PATH
 CMD ["npm", "run", "dev"]
-
