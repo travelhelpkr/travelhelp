@@ -6,13 +6,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    ports:
+      - "5533:5533"
     volumes:
       - /app/node_modules
       - .:/app
-    ports:
-      - "5533:5533"
-    # environment:
-    #   - NODE_ENV=development
+    command: sh -c "npm run dev"
+    environment:
+      - COMPOSE_PROJECT_NAME: travelhelp-dev
+      - NODE_ENV: development
     # stdin_open: true
     # tty: true
   test:
