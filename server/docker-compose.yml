@@ -14,7 +14,11 @@ services:
       - ./:/app # sync local `pwd` with docker container's `/app` path
     command: sh -c "npm run dev"
 
-    # Envs also can be defined in .env file. Use "" for strings in this case.
+    # By default, the `docker-compose` command will look for a file named `.env` in the directory
+    # By passing the file as an argument, you can store it anywhere and name it appropriately
+    # Example: `docker-compose --env-file ./config/.env.dev up`
+    # Check details on docker compose official docs: https://docs.docker.com/compose/environment-variables/
+    # So, if you defined below envs in `.env` file, you don't need these envs from this yaml file.
     # environment:
     #   DEV_DB_HOST: mysql
     #   DEV_DB_USER_NAME: root
