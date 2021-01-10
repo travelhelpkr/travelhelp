@@ -32,10 +32,10 @@ services:
     ports:
       - 8855:3306 # expose this port for accessing locally with the datagrip
     volumes:
-      - travelhelp-mysql-data:/var/lib/mysql # mounting docker volume
+      - mysql-data:/var/lib/mysql # mounting docker volume
     environment: 
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: travelhelp
 
 volumes:
-  travelhelp-mysql-data: # mysql db will be managed by docker volume
+  mysql-data: # mysql db will be managed by docker volume
