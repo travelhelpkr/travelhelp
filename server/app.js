@@ -60,7 +60,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/foods', foodRouter);
 
 app.get('/', (req, res) => {
-  // console.log('session: ', req.session);
+  // console.log('sessison: ', req.session);
   // console.log('cookies: ', req.cookies);
   res.send('welcome to the travel help!');
 })

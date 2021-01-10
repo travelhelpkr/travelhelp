@@ -1,0 +1,11 @@
+FROM node:14-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci --silent
+
+# docker-compose will replace below steps instead.
+# COPY . .
+# CMD ["npm", "run", "dev"]
