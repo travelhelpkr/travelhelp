@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  app:
+    depends_on: 
+      - mysql
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5555:3355
+    volumes:
+      - /app/node_modules # exlude node_modules
+      - ./:/app # sync local `pwd` with docker container's `/app` path
+    command: sh -c "npm run dev"
+
+    # Envs also can be defined in .env file. Use "" for strings in this case.
+    # environment:
+    #   DEV_DB_HOST: mysql
+    #   DEV_DB_USER_NAME: root
+    #   DEV_DB_PASSWORD: secret
+    #   DEV_DB_DATABASE: travelhelp
+    #   DEV_DB_PORT: 3306  # should use 3306 for internal networking (not 8855)
+    #   DEV_DB_DIALECT: mysql
+
+  mysql:
+    image: mysql:8.0.21
+    ports:
+      - 8855:3306 # expose this port for accessing locally with the datagrip
+    volumes:
+      - travelhelp-mysql-data:/var/lib/mysql # mounting docker volume
+    environment: 
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: travelhelp
+
+volumes:
+  travelhelp-mysql-data: # mysql db will be managed by docker volume
