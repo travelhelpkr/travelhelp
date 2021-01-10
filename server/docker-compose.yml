@@ -11,7 +11,7 @@ services:
       - 5555:3355
     volumes:
       - /app/node_modules # exlude node_modules
-      - ./:/app # sync local `pwd` with docker container's `/app` path
+      - ./:/app # mounting local `pwd` with docker container's `/app` path
     command: sh -c "npm run dev"
 
     # By default, the `docker-compose` command will look for a file named `.env` in the directory

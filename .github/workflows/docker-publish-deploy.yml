@@ -2,14 +2,14 @@ name: Docker
 
 on:
   push:
-    # Publish `main` as Docker `latest` image.
+    # Publish `main` `dev` as Docker `latest` image.
     branches:
       - dev
       - main
 
     # Publish `v1.2.3` tags as releases.
-    # tags:
-    #   - v*
+    tags:
+      - v*
 
   # Run tests for any PRs.
   # pull_request:
@@ -48,7 +48,7 @@ jobs:
   push:
     # Ensure test job passes before pushing image.
     # needs: test
-    name: Push
+    name: Push a docker image to the Github Container Registry
 
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
@@ -74,7 +74,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-2
 
-      - name: Push image
+      - name: Push to Github Container Registry
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
 
