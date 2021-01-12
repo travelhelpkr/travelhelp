@@ -24,12 +24,24 @@
 #    and best practices on handling the access key credentials.
 
 on:
-  push:
-    branches: 
-      - main
-  pull_request:
-    branches:
-      - main
+  # Temporarily comment out this action since the Container Orchestration seems to be heavy for this "travelhelp" project.
+  # So we decide to employ the AWS Codedepoly instead of ECS.
+  # Correspondingly the private repository shouldn't be the ECR, so we replaced it with the Github Container Repository(Beta), cheaper than ECR.
+  # push:
+  #   branches: 
+  #     - main
+  #   paths:
+  #     - 'server/**'
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'server/**'
+  #   types:
+  #     - synchronize
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 name: Deploy to Amazon ECS
 

@@ -14,12 +14,14 @@ on:
       - main
     paths:
       - 'client/**'
+    types:
+      - synchronize
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  build:
+  build and deploy:
     runs-on: ubuntu-latest
     # Set default path for this "build" job.
     defaults:
@@ -51,7 +53,7 @@ jobs:
       - name: Clean install dependencies
         # this installation step can be skipped when a cache hit occurs on the key.
         # if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: npm ci --silent --only=production
 
       - name: Build
         run: npm run build --if-present
@@ -62,7 +64,9 @@ jobs:
           CI: false
 
       # - name: Test
-      #   run: npm run test
+      #   run: |
+      #     npx server -s -d -C build
+      #     npx test
 
       - name: Deploy on S3 & purge from cloudfront
         env:

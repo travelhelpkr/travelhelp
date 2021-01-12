@@ -1,18 +1,22 @@
-name: Docker Publish
+name: Docker Publish on Github Container Registry
 
 on:
   push:
-    # Publish `main` `dev` as Docker `latest` image.
     branches:
       - dev
       - main
-
-    # Publish `v1.2.3` tags as releases.
+    paths:
+      - 'server/**'
+    # Sequence of patterns matched against refs/tags
     tags:
       - v*
 
   # Run tests for any PRs.
   # pull_request:
+  #   paths:
+  #     - 'server/**'
+  #   types:
+  #     - synchronize
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -60,19 +64,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build image
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: ap-northeast-2
+
+      - name: Build a docker image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into GitHub Container Registry
         # TODO: Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
 
       - name: Push to Github Container Registry
         run: |
