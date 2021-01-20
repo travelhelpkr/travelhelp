@@ -4,7 +4,7 @@
   "description": "Concierge service for foreign travelers in Korea.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.js",
     "test": "NODE_ENV=test SERVER_PORT=3355 nodemon app.js",
     "prod": "NODE_ENV=production node app.js",
