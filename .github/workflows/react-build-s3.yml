@@ -3,19 +3,19 @@ name: React Production Build
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches:
-      - main
-    paths:
-      - 'client/**'
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'client/**'
 
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'client/**'
-    types:
-      - synchronize
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'client/**'
+  #   types:
+  #     - synchronize
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -52,7 +52,7 @@ jobs:
 
       - name: Clean install dependencies
         # this installation step can be skipped when a cache hit occurs on the key.
-        # if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --silent --only=production
 
       - name: Build

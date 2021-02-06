@@ -30,7 +30,7 @@ module.exports = () => {
       // console.log('accessToken: ', accessToken);
       // console.log('refreshToken: ', refreshToken);
       // console.log('profile:', profile);
-      // console.log('params:', params.id_token);
+      console.log('params:', params.id_token);
       // should be applied after permission of Line Corp.
       const { email } = jwt.decode(params.id_token);
       // profile.email = email;

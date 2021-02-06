@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.js",
-    "test": "NODE_ENV=test SERVER_PORT=3355 nodemon app.js",
+    "test": "NODE_ENV=test SERVER_PORT=3355 mocha",
     "prod": "NODE_ENV=production node app.js",
     "deploy": "aws s3 sync . s3://travelhelp-server/server --delete",
     "invalidate": "aws cloudfront create-invalidation --distribution-id E3DD2MDGVAYOWG --paths / '/*'"
