@@ -74,13 +74,13 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: ${{ env.ECS_TASK_DEFINITION }}
-        container-name: $CONTAINER_NAME
-        image: $IMAGE_ID
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ env.IMAGE_ID }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: $ECS_SERVICE
-        cluster: $ECS_CLUSTER
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
         wait-for-service-stability: true
