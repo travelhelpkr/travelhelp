@@ -34,8 +34,6 @@ const options = {
   connectionLimit: 10
 }
 
-
-
 // connecting an existing mysql pool(created by sequelize)
 const connection = mysql.createPool(options);
 const sessionStorage = new MySQLStore(options, connection);
