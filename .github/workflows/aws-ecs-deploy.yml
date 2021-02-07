@@ -1,3 +1,10 @@
+## (2021-02) We applied ECS on our project again but still not using ECR.
+## So this actions file will remain as a history for reference.
+
+## (2020-12) Temporarily comment out this action since the Container Orchestration seems to be heavy for this "travelhelp" project.
+## So we decide to employ the AWS Codedepoly instead of ECS.
+## Correspondingly the private repository shouldn't be the ECR, so we replaced it with the Github Container Repository(Beta), cheaper than ECR.
+
 # This workflow will build and push a new container image to Amazon ECR,
 # and then will deploy a new task definition to Amazon ECS, when a release is created
 #
@@ -23,10 +30,9 @@
 #    See the documentation for each action used below for the recommended IAM policies for this IAM user,
 #    and best practices on handling the access key credentials.
 
+name: Deploy to Amazon ECS with ECR
+
 on:
-  # Temporarily comment out this action since the Container Orchestration seems to be heavy for this "travelhelp" project.
-  # So we decide to employ the AWS Codedepoly instead of ECS.
-  # Correspondingly the private repository shouldn't be the ECR, so we replaced it with the Github Container Repository(Beta), cheaper than ECR.
   # push:
   #   branches: 
   #     - main
@@ -43,7 +49,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-name: Deploy to Amazon ECS
+env:
+  ECR_REPOSITORY: travelhelp                   # set this to your Amazon ECR repository name
+  ECS_SERVICE: travelhelp-ecs-service          # set this to your Amazon ECS service name
+  ECS_CLUSTER: travelhelp-cluster              # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: task-definition.json    # set this to the path to your Amazon ECS task definition file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: travelhelp-ghcr              # set this to the name of the container in the containerDefinitions section of your task definition
 
 jobs:
   deploy:
@@ -69,28 +80,29 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: travelhelp
+        ECR_REPOSITORY: $ECR_REPOSITORY
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
+        # Build a docker container and push it to ECR so that it can be deployed to ECS.
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
+        # using output or env. choose one. if you choose env, you can use the 'image' by using ${{ env.image }}
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
+        
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: task-definition.json
-        container-name: travelhelp-container
+        task-definition: $ECS_TASK_DEFINITION
+        container-name: $CONTAINER_NAME
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: travelhelp-ecs-service
-        cluster: travelhelp-cluster
+        service: $ECS_SERVICE
+        cluster: $ECS_CLUSTER
         wait-for-service-stability: true

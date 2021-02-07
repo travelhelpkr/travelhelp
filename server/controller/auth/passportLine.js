@@ -20,8 +20,8 @@ module.exports = () => {
   })
 
   passport.use(new LineStrategy({
-    channelID: credentials.web.channelID,
-    channelSecret: credentials.web.channelSecret,
+    channelID: process.env.LINE_CHANNEL_ID,
+    channelSecret: process.env.LINE_CHANNEL_SECRET,
     callbackURL: credentials.web.callbackURL[config.oauth_env], // localhost: [1], production: [0]
     scope: ['profile', 'openid', 'email'],
     botPrompt: 'normal'
