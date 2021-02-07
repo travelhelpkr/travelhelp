@@ -111,13 +111,13 @@ jobs:
         run: |
           echo IMAGE_DIGEST=${{ steps.docker_build.outputs.digest }}
 
-          IMAGE_SHA=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          IMAGE_BASE=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
 
           # Change all uppercase to lowercase
-          IMAGE_SHA=$(echo $IMAGE_SHA | tr '[A-Z]' '[a-z]')
+          IMAGE_BASE=$(echo $IMAGE_BASE | tr '[A-Z]' '[a-z]')
 
           # Get the image name with the sha value
-          IMAGE_SHA=$IMAGE_SHA:${{ steps.docker_build.outputs.digest }}
+          IMAGE_SHA=$IMAGE_BASE@${{ steps.docker_build.outputs.digest }}
 
           echo IMAGE_SHA=$IMAGE_SHA
 
