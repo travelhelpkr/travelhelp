@@ -117,8 +117,10 @@ jobs:
           # Get SHA256 value of the image
           echo SHA_VALUE=${{ steps.docker_build.outputs.digest }}
 
+          echo IMAGE_ID_SHA=$IMAGE_ID_SHA:$SHA_VALUE
+
           # Set IMAGE_ID_SHA as an output
-          echo "::set-output name=image_id_sha::$IMAGE_ID_SHA:$SHA_VALUE"
+          echo "::set-output name=image_id_sha::$IMAGE_ID_SHA"
 
   CD:
     # Ensure CI job passes before CD job.
