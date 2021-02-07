@@ -53,7 +53,7 @@ jobs:
     name: Push a docker image to the Github Container Registry
 
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    # if: github.event_name == 'push'
     # Set default path for this job
     defaults:
       run:
