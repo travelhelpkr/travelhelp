@@ -55,8 +55,13 @@ jobs:
       #     context: ./server
       #     file: ./server/Dockerfile
       #     target: test
-      - name: Get Version Name
+      - name: Get Image ID (for docker tag)
         run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
@@ -66,7 +71,10 @@ jobs:
           # Use Docker `latest` tag convention on "main" branch. Others will remain.
           [ "$VERSION" == "main" ] && VERSION=latest
 
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          echo "IMAGE_ID=$IMAGE_ID:$VERSION" >> $GITHUB_ENV
 
       - name: Build and push
         id: docker_build
@@ -76,7 +84,7 @@ jobs:
           context: ./server
           file: ./server/Dockerfile
           push: true
-          tags:  ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          tags:  ${{ env.IMAGE_ID }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
