@@ -1,0 +1,158 @@
+name: CI/CD with GHCR
+
+on:
+  # push:
+  #   branches:
+  #     - main
+  #   tags:
+  #     - v*
+  #   paths:
+  #     - 'server/**'
+
+  # Run tests for any PRs.
+  # pull_request:
+  #   paths:
+  #     - 'server/**'
+  #   types:
+  #     - synchronize
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: travelhelp
+  ECS_SERVICE: travelhelp-ecs-service          # set this to your Amazon ECS service name
+  ECS_CLUSTER: travelhelp-ecs                  # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION: ./server/task-definition.json  # set this to the path to your Amazon ECS task definition file, e.g. .aws/task-definition.json
+  CONTAINER_NAME: imbrok-ghcr                  # set this to the name of the container in the containerDefinitions section of your task definition
+
+# Set default path for entire jobs
+defaults:
+  run:
+    working-directory: ./server
+
+jobs:
+
+  CI:
+    name: Continuous integration
+    runs-on: ubuntu-latest
+
+    steps:    
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      # - name: Test
+      #   id: docker_test
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     builder: ${{ steps.buildx.outputs.name }}
+      #     context: ./server
+      #     file: ./server/Dockerfile
+      #     target: test
+
+      - name: Get Image ID (for docker tag)
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention on "main" branch. Others will remain.
+          [ "$VERSION" == "main" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          # Set IMAGE_ID as an env variable
+          echo "IMAGE_ID=$IMAGE_ID:$VERSION" >> $GITHUB_ENV
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: ./server
+          file: ./server/Dockerfile
+          push: true
+          tags:  ${{ env.IMAGE_ID }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+
+      - name: Image digest & get image's sha value for deploy work.
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Get SHA256 value of the image
+          echo SHA_VALUE=${{ steps.docker_build.outputs.digest }}
+
+          # Set IMAGE_ID_SHA as an env variable
+          echo "IMAGE_ID_SHA=$IMAGE_ID:$SHA_VALUE" >> $GITHUB_ENV
+
+  CD:
+    # Ensure CI job passes before CD job.
+    needs: CI
+
+    name: continuous Delivery & Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.CR_PAT }}
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ env.IMAGE_ID_SHA }}
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
