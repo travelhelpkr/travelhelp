@@ -109,15 +109,17 @@ jobs:
       - name: Image digest & get image's sha value for deploy work.
         id: image_digest
         run: |
+          echo ${{ steps.docker_build.outputs.digest }}
+
           IMAGE_ID_SHA=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
 
           # Change all uppercase to lowercase
           IMAGE_ID_SHA=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          # Get SHA256 value of the image
-          echo SHA_VALUE=${{ steps.docker_build.outputs.digest }}
+          # Get the image name with the sha value
+          IMAGE_ID_SHA=$IMAGE_ID_SHA:${{ steps.docker_build.outputs.digest }}
 
-          echo IMAGE_ID_SHA=$IMAGE_ID_SHA:$SHA_VALUE
+          echo IMAGE_ID_SHA=$IMAGE_ID_SHA
 
           # Set IMAGE_ID_SHA as an output
           echo "::set-output name=image_id_sha::$IMAGE_ID_SHA"
