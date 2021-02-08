@@ -90,8 +90,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
-          context: ./server
-          file: ./server/Dockerfile
+          context: ./
+          file: ./Dockerfile
           push: true
           tags:  ${{ env.IMAGE_ID }}
           cache-from: type=local,src=/tmp/.buildx-cache
