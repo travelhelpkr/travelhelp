@@ -50,7 +50,7 @@ on:
   #     - synchronize
     
   # Allows you to run this workflow manually from the Actions tab
-  # workflow_dispatch:
+  workflow_dispatch:
 
 env:
   ECR_REPOSITORY: travelhelp                     # set this to your Amazon ECR repository name
