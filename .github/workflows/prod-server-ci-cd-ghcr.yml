@@ -1,4 +1,4 @@
-name: Server/CI&CD with GHCR
+name: Prod/Server/CI&CD with GHCR
 
 on:
   # push:

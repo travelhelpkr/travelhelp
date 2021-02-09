@@ -1,20 +1,18 @@
-name: Server/CI to GHCR
+name: Stage/Server/CI to GHCR
 
 on:
   push:
     branches:
-      - dev
+      - release
     paths:
       - 'server/**'
 
-  # Run tests for PRs after PR confirmation.
-  pull_request:
-    branches:
-      - dev
-    paths:
-      - 'server/**'
-    types:
-      - synchronize
+  # Run tests for all PRs after the PR confirmation.
+  # pull_request:
+  #   paths:
+  #     - 'server/**'
+  #   types:
+  #     - synchronize
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -65,6 +63,7 @@ jobs:
       #     target: test
 
       - name: Get Image ID (for docker tag)
+        if: github.event_name != 'pull_request'
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
 
@@ -87,6 +86,7 @@ jobs:
 
       - name: Build and push
         id: docker_build
+        if: github.event_name != 'pull_request'
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.buildx.outputs.name }}
@@ -98,4 +98,6 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: |
+        echo Digest=${{ steps.docker_build.outputs.digest }}
+        echo Github-SHA=${{ github.sha }}
