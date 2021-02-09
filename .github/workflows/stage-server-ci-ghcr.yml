@@ -100,4 +100,4 @@ jobs:
       - name: Image digest
         run: |
         echo Digest=${{ steps.docker_build.outputs.digest }}
-        echo SHA_VALUE=${{ github.sha }}
+        echo SHAVAL=${{ github.sha }}
