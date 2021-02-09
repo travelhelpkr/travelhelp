@@ -3,11 +3,11 @@ name: Client/React Production Build to S3
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - 'client/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'client/**'
 
   # pull_request:
   #   branches:
