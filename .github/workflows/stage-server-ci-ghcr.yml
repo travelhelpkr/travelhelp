@@ -19,6 +19,7 @@ on:
 
 env:
   IMAGE_NAME: travelhelp
+  CHECK: ${{ github.sha }}
 
 jobs:
 
@@ -100,4 +101,4 @@ jobs:
       - name: Image digest
         run: |
         echo Digest=${{ steps.docker_build.outputs.digest }}
-        echo SHAVAL=${{ github.sha }}
+        echo $CHECK
