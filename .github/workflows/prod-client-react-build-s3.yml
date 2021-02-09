@@ -1,4 +1,4 @@
-name: React Production Build
+name: Prod/Client/React Build to S3
 
 # Controls when the action will run. 
 on:
@@ -6,20 +6,24 @@ on:
   push:
     branches:
       - main
+    tags:
+      - v*
     paths:
       - 'client/**'
 
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'client/**'
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'client/**'
+  #   types:
+  #     - synchronize
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  build:
+  build and deploy:
     runs-on: ubuntu-latest
     # Set default path for this "build" job.
     defaults:
@@ -48,15 +52,28 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Clean install dependencies
-        run: npm ci
+      - name: (without cache) Clean install dependencies
+        # this installation step can be skipped when a cache-hit occurs on the key.
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci --silent --only=production
+
+      - name: (with cache)Install dependencies
+        # this installation step will be done only in case the cache-hit occurs.
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: npm install --silent --only=production
 
       - name: Build
         run: npm run build --if-present
         env:
+          # Environment variables for channeltalk. Webpack will contain those information when bundling.
           REACT_APP_CHANNELTALK_KEY: ${{ secrets.REACT_APP_CHANNELTALK_KEY }}
           REACT_APP_CHANNELTALK_SECRET: ${{ secrets.REACT_APP_CHANNELTALK_SECRET }}
           CI: false
+
+      # - name: Test
+      #   run: |
+      #     npx server -s -d -C build
+      #     npx test
 
       - name: Deploy on S3 & purge from cloudfront
         env:
@@ -69,3 +86,5 @@ jobs:
             --delete \
             build s3://travelhelp-dev
           aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+# to do: build / test / deploy 단계로 나누기. artifact를 이용하거나 output을 이용해서 build 단계에서 나온 build 폴더를 각 jobs에서 활용.

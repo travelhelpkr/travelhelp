@@ -1,0 +1,105 @@
+## !! Deprecated from this project !!
+## Old version of CI without cache and actions libraries.
+
+# See also https://docs.docker.com/docker-hub/builds/
+
+name: (Deprecated)Server/CI to GHCR
+
+on:
+  push:
+    branches:
+      - deprecated
+    tags:
+      - v*
+    paths:
+      - 'server/**'
+
+  # Run tests for any PRs.
+  # pull_request:
+  #   paths:
+  #     - 'server/**'
+  #   types:
+  #     - synchronize
+
+  # Allows you to run this workflow manually from the Actions tab
+  # workflow_dispatch:
+
+env:
+  IMAGE_NAME: travelhelp
+
+jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  # test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Run tests
+  #       env:
+  #         DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
+  #         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  #         DB_DATABASE: travelhelp
+  #         DB_HOST: ${{ secrets.DB_HOST }}
+  #         DB_PORT: ${{ secrets.DB_PORT }}
+  #         DB_DIALECT: mysql
+  #         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+  #         NODEMAILER_USER: ${{ secrets.NODEMAILER_USER }}
+  #         NODEMAILER_PASS: ${{ secrets.NODEMAILER_PASS }}
+  #       run: |
+  #         if [ -f docker-compose.test.yml ]; then
+  #           docker-compose --file docker-compose.test.yml build
+  #           docker-compose --file docker-compose.test.yml run sut
+  #         else
+  #           docker build . --file Dockerfile
+  #         fi
+
+  push:
+    # Ensure test job passes before pushing image.
+    # needs: test
+    
+    name: Push a docker image to the Github Container Registry
+
+    runs-on: ubuntu-latest
+    
+    # if: github.event_name == 'push'
+
+    # Set default path for this job
+    defaults:
+      run:
+        working-directory: ./server
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log into GitHub Container Registry
+        # TODO: Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
+        run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.repository_owner }} --password-stdin
+
+      - name: Build a docker image
+        # build && cache from the most recent docker image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --cache-from ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+      - name: Push to Github Container Registry
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention on "main" branch. Others will remain.
+          [ "$VERSION" == "main" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION

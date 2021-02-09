@@ -1,0 +1,5 @@
+apps:
+  - name: travelhelp-app
+    script: ./app.js
+    # watch: true # Under the `pm2-dev` runtime, watch & restart function automatically applied. 
+    
