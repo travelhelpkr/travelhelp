@@ -1,0 +1,6 @@
+apps:
+  - name: travelhelp-app
+    script: ./app.js
+    exec_mode: cluster
+    instances: max
+    

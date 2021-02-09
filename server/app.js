@@ -1,6 +1,7 @@
 const app = require('express')();
+const mysql = require('mysql2/promise');
 const session = require('express-session');
-const mysqlStore = require('express-mysql-session')(session);
+const MySQLStore = require('express-mysql-session')(session);
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -22,15 +23,20 @@ app.use(cors({
   credentials: true
 }));
 
-// declare env variable for managing session
+// configurations for session storage && connection pool on mysql
 const options = {
   host: config.host,
   port: config.port,
   user: config.username,
   password: config.password,
-  database: config.database
+  database: config.database,
+  // number of connections when creating a connection pool
+  connectionLimit: 10
 }
-const sessionStorage = new mysqlStore(options);
+
+// connecting an existing mysql pool(created by sequelize)
+const connection = mysql.createPool(options);
+const sessionStorage = new MySQLStore(options, connection);
 
 // mysql session managing
 app.use(
@@ -49,8 +55,8 @@ app.use(
     }
   })
 );
-
-// passport
+  
+  // passport
 app.use(passport.initialize());
 app.use(passport.session())
 

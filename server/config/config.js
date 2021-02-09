@@ -9,6 +9,12 @@ const development = {
   host: env.DEV_DB_HOST,
   port: env.DEV_DB_PORT,
   dialect: env.DEV_DB_DIALECT,
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
   client_url: "http://localhost:5533",
   oauth_env: 1 // localhost: [1], production: [0]
 };
@@ -20,6 +26,12 @@ const test = {
   host: env.TEST_DB_HOST,
   port: env.TEST_DB_PORT,
   dialect: env.TEST_DB_DIALECT,
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
   client_url: "http://localhost:5533",
   oauth_env: 1 // localhost: [1], production: [0]
 };
@@ -31,6 +43,12 @@ const production = {
   host: env.DB_HOST,
   port: env.DB_PORT,
   dialect: env.DB_DIALECT,
+  pool: {
+    max: 10,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
   client_url: "https://travelhelp.kr",
   oauth_env: 0 // localhost: [1], production: [0]
 };

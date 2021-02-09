@@ -3,7 +3,8 @@ FROM node:14-alpine
 WORKDIR /app
 
 # Set node environment to production
-ENV NODE_ENV production
+ENV NODE_ENV test
+ENV SERVER_PORT 3355
 
 # Update the system
 RUN apk --no-cache -U upgrade
@@ -19,6 +20,6 @@ RUN npm ci --slient --only=production
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3355
 
 CMD ["pm2-runtime", "ecosystem.config.yml"]

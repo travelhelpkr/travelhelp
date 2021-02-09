@@ -1,0 +1,130 @@
+name: Stage/Server/CI to GHCR
+
+on:
+  push:
+    branches:
+      - release
+    paths:
+      - 'server/**'
+
+  # Run tests for all PRs after the PR confirmation.
+  # pull_request:
+  #   paths:
+  #     - 'server/**'
+  #   types:
+  #     - synchronize
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: travelhelp
+
+jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  # TEST:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Run tests
+  #       env:
+  #         DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
+  #         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  #         DB_DATABASE: travelhelp
+  #         DB_HOST: ${{ secrets.DB_HOST }}
+  #         DB_PORT: ${{ secrets.DB_PORT }}
+  #         DB_DIALECT: mysql
+  #         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+  #         NODEMAILER_USER: ${{ secrets.NODEMAILER_USER }}
+  #         NODEMAILER_PASS: ${{ secrets.NODEMAILER_PASS }}
+  #       run: |
+  #         if [ -f docker-compose.test.yml ]; then
+  #           docker-compose --file docker-compose.test.yml build
+  #           docker-compose --file docker-compose.test.yml run sut
+  #         else
+  #           docker build . --file Dockerfile
+  #         fi
+
+  CI:
+    # Ensure test job passes before pushing image.
+    # needs: TEST
+    runs-on: ubuntu-latest
+
+    # Set default path for this job
+    defaults:
+      run:
+        working-directory: ./server
+
+    steps:    
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+
+      # - name: Test
+      #   id: docker_test
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     builder: ${{ steps.buildx.outputs.name }}
+      #     context: ./server
+      #     file: ./server/Dockerfile
+      #     target: test
+
+      - name: Get Image ID (for docker tag)
+        if: github.event_name != 'pull_request'
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Strip "v" prefix from tag name
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+
+          # Use Docker `latest` tag convention on "main" branch. Others will remain.
+          [ "$VERSION" == "main" ] && VERSION=latest
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          echo "IMAGE_ID=$IMAGE_ID:$VERSION" >> $GITHUB_ENV
+
+      - name: Build and push
+        id: docker_build
+        if: github.event_name != 'pull_request'
+        uses: docker/build-push-action@v2
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          context: ./server
+          file: ./server/Dockerfile
+          push: true
+          tags:  ${{ env.IMAGE_ID }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
