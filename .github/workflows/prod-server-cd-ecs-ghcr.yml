@@ -20,19 +20,6 @@
 name: Prod/Server/CD to ECS with GHCR
 
 on:
-  # push:
-  #   branches: 
-  #     - main
-  #   paths:
-  #     - 'server/**'
-  # pull_request:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - 'server/**'
-  #   types:
-  #     - synchronize
-    
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

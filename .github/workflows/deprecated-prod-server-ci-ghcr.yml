@@ -1,18 +1,9 @@
 ## !! Deprecated from this project !!
 ## Old version of CI without cache and actions libraries.
 
-# CI
-# Test
-# Build & Push docker image to GitHub Container Registry
-
-# CD
-# Login with AWS CLI
-# Pull docker image from GitHub Container Registry
-# Run docker image from ECS or AutoScalingGroup
-
 # See also https://docs.docker.com/docker-hub/builds/
 
-name: (Deprecated) Server/CI to GHCR
+name: (Deprecated)Server/CI to GHCR
 
 on:
   # push:
@@ -32,7 +23,7 @@ on:
   #     - synchronize
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 env:
   IMAGE_NAME: travelhelp

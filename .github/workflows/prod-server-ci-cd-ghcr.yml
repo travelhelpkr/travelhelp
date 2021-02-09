@@ -1,20 +1,13 @@
 name: Prod/Server/CI&CD with GHCR
 
 on:
-  # push:
-  #   branches:
-  #     - main
-  #   tags:
-  #     - v*
-  #   paths:
-  #     - 'server/**'
-
-  # Run tests for any PRs.
-  # pull_request:
-  #   paths:
-  #     - 'server/**'
-  #   types:
-  #     - synchronize
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+    paths:
+      - 'server/**'
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,8 +25,37 @@ defaults:
     working-directory: ./server
 
 jobs:
+  # Run tests.
+  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  # TEST:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Run tests
+  #       env:
+  #         DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
+  #         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  #         DB_DATABASE: travelhelp
+  #         DB_HOST: ${{ secrets.DB_HOST }}
+  #         DB_PORT: ${{ secrets.DB_PORT }}
+  #         DB_DIALECT: mysql
+  #         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+  #         NODEMAILER_USER: ${{ secrets.NODEMAILER_USER }}
+  #         NODEMAILER_PASS: ${{ secrets.NODEMAILER_PASS }}
+  #       run: |
+  #         if [ -f docker-compose.test.yml ]; then
+  #           docker-compose --file docker-compose.test.yml build
+  #           docker-compose --file docker-compose.test.yml run sut
+  #         else
+  #           docker build . --file Dockerfile
+  #         fi
 
   CI:
+    # Ensure test job passes before pushing image.
+    # needs: TEST
     name: Continuous Integration
     runs-on: ubuntu-latest
 

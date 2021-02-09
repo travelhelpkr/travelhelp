@@ -1,4 +1,4 @@
-name: Prod/Client/React Production Build to S3
+name: Prod/Client/React Build to S3
 
 # Controls when the action will run. 
 on:
