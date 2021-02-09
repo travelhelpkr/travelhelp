@@ -12,7 +12,7 @@
 
 # See also https://docs.docker.com/docker-hub/builds/
 
-name: (Deprecated) CI to Github Container Registry
+name: (Deprecated) Server/CI to GHCR
 
 on:
   # push:

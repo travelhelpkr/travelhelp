@@ -1,4 +1,4 @@
-name: Server/CI to Github Container Registry
+name: Server/CI to GHCR
 
 on:
   push:
