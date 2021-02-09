@@ -33,13 +33,13 @@
 name: (Deprecated)Server/CD to ECS with ECR
 
 on:
-  # push:
-  #   branches: 
-  #     - main
-  #   tags:
-  #     - v*
-  #   paths:
-  #     - 'server/**'
+  push:
+    branches: 
+      - deprecated
+    tags:
+      - v*
+    paths:
+      - 'server/**'
   
   # pull_request:
   #   branches:
@@ -50,7 +50,7 @@ on:
   #     - synchronize
     
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 env:
   ECR_REPOSITORY: travelhelp                     # set this to your Amazon ECR repository name

@@ -6,14 +6,13 @@
 name: (Deprecated)Server/CI to GHCR
 
 on:
-  # push:
-  #   branches:
-  #     - dev
-  #     - main
-  #   tags:
-  #     - v*
-  #   paths:
-  #     - 'server/**'
+  push:
+    branches:
+      - deprecated
+    tags:
+      - v*
+    paths:
+      - 'server/**'
 
   # Run tests for any PRs.
   # pull_request:
@@ -23,7 +22,7 @@ on:
   #     - synchronize
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 env:
   IMAGE_NAME: travelhelp
