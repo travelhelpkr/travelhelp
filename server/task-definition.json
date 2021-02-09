@@ -107,7 +107,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "imbrok-ghcr"
+      "name": "travelhelp-app"
     }
   ],
   "placementConstraints": [],

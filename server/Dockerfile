@@ -1,7 +1,5 @@
 FROM node:14-alpine
 
-# Github Actions recommend to not use the WORKDIR.
-# See details here: https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/dockerfile-support-for-github-actions#workdir
 WORKDIR /app
 
 # Set node environment to production

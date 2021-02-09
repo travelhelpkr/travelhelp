@@ -1,4 +1,4 @@
-name: React Production Build
+name: Client/React Production Build
 
 # Controls when the action will run. 
 on:
@@ -50,10 +50,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Clean install dependencies
-        # this installation step can be skipped when a cache hit occurs on the key.
+      - name: (without cache) Clean install dependencies
+        # this installation step can be skipped when a cache-hit occurs on the key.
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci --silent --only=production
+
+      - name: (with cache)Install dependencies
+        # this installation step will be done only in case the cache-hit occurs.
+        if: steps.cache.outputs.cache-hit == 'true'
+        run: npm install --silent --only=production
 
       - name: Build
         run: npm run build --if-present
