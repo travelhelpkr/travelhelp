@@ -99,6 +99,4 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Image digest
-        run: |
-        echo Digest=${{ steps.docker_build.outputs.digest }}
-        echo $CHECK
+        run: echo ${{ steps.docker_build.outputs.digest }}
