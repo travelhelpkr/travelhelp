@@ -1,13 +1,11 @@
-name: Prod/Client/React Build to S3
+name: Stage/Client/React Build to S3
 
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches:
-      - main
-    tags:
-      - v*
+      - release
     paths:
       - 'client/**'
 
@@ -84,7 +82,7 @@ jobs:
           aws s3 sync \
             --region ap-northeast-2 \
             --delete \
-            build s3://travelhelp-source
-          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+            build s3://test.travelhelp.kr
+          # aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
 # to do: build / test / deploy 단계로 나누기. artifact를 이용하거나 output을 이용해서 build 단계에서 나온 build 폴더를 각 jobs에서 활용.
