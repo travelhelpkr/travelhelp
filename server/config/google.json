@@ -1,0 +1,10 @@
+{
+  "web": {
+    "project_id":"travel-help-295014",
+    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+    "token_uri":"https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+    "redirect_uris":["https://travelhelp.kr/api/auth/google/callback","http://localhost:3355/api/auth/google/callback"],
+    "javascript_origins":["https://travelhelp.kr","http://localhost:3355","http://localhost:5533"]
+  }
+}

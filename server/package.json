@@ -1,12 +1,12 @@
 {
   "name": "travelhelp-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Concierge service for foreign travelers in Korea.",
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.js",
-    "test": "NODE_ENV=test SERVER_PORT=3355 nodemon app.js",
+    "test": "NODE_ENV=test SERVER_PORT=3355 mocha",
     "prod": "NODE_ENV=production node app.js",
     "deploy": "aws s3 sync . s3://travelhelp-server/server --delete",
     "invalidate": "aws cloudfront create-invalidation --distribution-id E3DD2MDGVAYOWG --paths / '/*'"
@@ -34,7 +34,6 @@
     "express-mysql-session": "^2.1.5",
     "express-session": "^1.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.4.14",
     "passport": "^0.4.1",

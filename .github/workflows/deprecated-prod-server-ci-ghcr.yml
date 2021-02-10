@@ -1,10 +1,24 @@
+<<<<<<< HEAD:.github/workflows/docker-publish-deploy.yml
 name: Docker Publish on Github Container Registry
+=======
+## !! Deprecated from this project !!
+## Old version of CI without cache and actions libraries.
+
+# See also https://docs.docker.com/docker-hub/builds/
+
+name: (Deprecated)Server/CI to GHCR
+>>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-ci-ghcr.yml
 
 on:
   push:
     branches:
+<<<<<<< HEAD:.github/workflows/docker-publish-deploy.yml
       - dev
       - main
+=======
+      - deprecated
+      # - main
+>>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-ci-ghcr.yml
     tags:
       - v*
     paths:
@@ -18,10 +32,9 @@ on:
   #     - synchronize
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 env:
-  # TODO: Change variable to your image's name.
   IMAGE_NAME: travelhelp
 
 jobs:
@@ -35,6 +48,16 @@ jobs:
   #     - uses: actions/checkout@v2
 
   #     - name: Run tests
+  #       env:
+  #         DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
+  #         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  #         DB_DATABASE: travelhelp
+  #         DB_HOST: ${{ secrets.DB_HOST }}
+  #         DB_PORT: ${{ secrets.DB_PORT }}
+  #         DB_DIALECT: mysql
+  #         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+  #         NODEMAILER_USER: ${{ secrets.NODEMAILER_USER }}
+  #         NODEMAILER_PASS: ${{ secrets.NODEMAILER_PASS }}
   #       run: |
   #         if [ -f docker-compose.test.yml ]; then
   #           docker-compose --file docker-compose.test.yml build
@@ -43,18 +66,16 @@ jobs:
   #           docker build . --file Dockerfile
   #         fi
 
-  # Push docker image to GitHub Container Registry
-  # Login to AWS EC2 server
-  # Pull docker image from GitHub Container Registry
-  # Run docker image
-  # See also https://docs.docker.com/docker-hub/builds/
   push:
     # Ensure test job passes before pushing image.
     # needs: test
+    
     name: Push a docker image to the Github Container Registry
 
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    
+    # if: github.event_name == 'push'
+
     # Set default path for this job
     defaults:
       run:
@@ -63,6 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+<<<<<<< HEAD:.github/workflows/docker-publish-deploy.yml
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with:
@@ -83,16 +105,24 @@ jobs:
         #   NODEMAILER_PASS: ${{ secrets.NODEMAILER_PASS }}
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
+=======
+>>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-ci-ghcr.yml
       - name: Log into GitHub Container Registry
         # TODO: Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
+<<<<<<< HEAD:.github/workflows/docker-publish-deploy.yml
         # another ghcr login method
         # uses: docker/login-action@v1
         # with:
         # registry: ghcr.io
         #   username: ${{ github.repository_owner }}
         #   password: ${{ secrets.CR_PAT }}
+=======
+      - name: Build a docker image
+        # build && cache from the most recent docker image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --cache-from ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+>>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-ci-ghcr.yml
 
       - name: Push to Github Container Registry
         run: |
@@ -107,7 +137,7 @@ jobs:
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
 
-          # Use Docker `latest` tag convention
+          # Use Docker `latest` tag convention on "main" branch. Others will remain.
           [ "$VERSION" == "main" ] && VERSION=latest
 
           echo IMAGE_ID=$IMAGE_ID

@@ -18,8 +18,8 @@ module.exports = () => {
   });
 
   passport.use(new GoogleStrategy({
-    clientID: credentials.web.client_id,
-    clientSecret: credentials.web.client_secret,
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: credentials.web.redirect_uris[config.oauth_env] // localhost: [1], production: [0]
   },
   async (accessToken, refreshToken, profile, cb) => {

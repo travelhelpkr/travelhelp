@@ -1,0 +1,126 @@
+{
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::153040926030:role/ecsTaskExecutionRoleWithSecretsManagerFullAccess",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": null,
+      "environmentFiles": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/travelhelp-stage",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "entryPoint": null,
+      "portMappings": [
+        {
+          "hostPort": 0,
+          "protocol": "tcp",
+          "containerPort": 3355
+        }
+      ],
+      "command": null,
+      "linuxParameters": null,
+      "cpu": 0,
+      "environment": [
+        {
+          "name": "COMPOSE_PROJECT_NAME",
+          "value": "travelhelp-stage"
+        }
+      ],
+      "resourceRequirements": null,
+      "ulimits": null,
+      "repositoryCredentials": {
+        "credentialsParameter": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a"
+      },
+      "dnsServers": null,
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:TEST_DB_DATABASE::",
+          "name": "TEST_DB_DATABASE"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:TEST_DB_DIALECT::",
+          "name": "TEST_DB_DIALECT"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:TEST_DB_HOST::",
+          "name": "TEST_DB_HOST"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:TEST_DB_PASSWORD::",
+          "name": "TEST_DB_PASSWORD"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:TEST_DB_PORT::",
+          "name": "TEST_DB_PORT"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:TEST_DB_USER_NAME::",
+          "name": "TEST_DB_USER_NAME"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:GOOGLE_CLIENT_ID::",
+          "name": "GOOGLE_CLIENT_ID"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:GOOGLE_CLIENT_SECRET::",
+          "name": "GOOGLE_CLIENT_SECRET"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:LINE_CHANNEL_ID::",
+          "name": "LINE_CHANNEL_ID"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:LINE_CHANNEL_SECRET::",
+          "name": "LINE_CHANNEL_SECRET"
+        },
+        {
+          "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:153040926030:secret:prod/travelhelp/env-XMIF9a:SESSION_SECRET::",
+          "name": "SESSION_SECRET"
+        }
+      ],
+      "dockerSecurityOptions": null,
+      "memory": null,
+      "memoryReservation": 128,
+      "volumesFrom": [],
+      "stopTimeout": 30,
+      "image": "ghcr.io/travelhelpkr/travelhelp:stage",
+      "startTimeout": 30,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": null,
+      "hostname": null,
+      "extraHosts": null,
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": null,
+      "systemControls": null,
+      "privileged": null,
+      "name": "travelhelp-stage"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": null,
+  "taskRoleArn": "arn:aws:iam::153040926030:role/ecsTaskExecutionRoleWithSecretsManagerFullAccess",
+  "family": "travelhelp-stage",
+  "pidMode": null,
+  "requiresCompatibilities": [
+    "EC2"
+  ],
+  "networkMode": "bridge",
+  "cpu": null,
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": []
+}

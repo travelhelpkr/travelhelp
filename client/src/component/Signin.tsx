@@ -72,13 +72,13 @@ function Signin(props: any) {
       <div className='content'>
         {/* social signin */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
+          <a href='https://travelhelp.kr/api/auth/google' className='btn googleBtn'>{t('signin.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signin.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
+          <a href='https://travelhelp.kr/api/auth/line' className='btn lineBtn'>{t('signin.line')}</a>
         </div>
 
         {/* or */}
