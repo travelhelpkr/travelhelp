@@ -89,13 +89,13 @@ function Signup() {
       <div className='content'>
         {/* social signup */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/api/auth/google' className='btn googleBtn'>{t('signup.google')}</a>
+          <a href='https://travelhelp.kr/api/auth/google' className='btn googleBtn'>{t('signup.google')}</a>
         </div>
         {/* <div className='signupBtn'>
           <a href='/user/signupwithemail' className='btn wechatBtn'>{t('signup.wechat')}</a>
         </div> */}
         <div className='signupBtn'>
-          <a href='http://localhost:3355/api/auth/line' className='btn lineBtn'>{t('signup.line')}</a>
+          <a href='https://travelhelp.kr/api/auth/line' className='btn lineBtn'>{t('signup.line')}</a>
         </div>
 
         {/* or */}
