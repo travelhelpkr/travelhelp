@@ -75,13 +75,45 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+<<<<<<< HEAD:.github/workflows/docker-publish-deploy.yml
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: ap-northeast-2
+
+      - name: Build a docker image
+        # env:
+        #   DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
+        #   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        #   DB_DATABASE: travelhelp
+        #   DB_HOST: ${{ secrets.DB_HOST }}
+        #   DB_PORT: ${{ secrets.DB_PORT }}
+        #   DB_DIALECT: mysql
+        #   SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+        #   NODEMAILER_USER: ${{ secrets.NODEMAILER_USER }}
+        #   NODEMAILER_PASS: ${{ secrets.NODEMAILER_PASS }}
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+=======
+>>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-ci-ghcr.yml
       - name: Log into GitHub Container Registry
         # TODO: Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.repository_owner }} --password-stdin
 
+<<<<<<< HEAD:.github/workflows/docker-publish-deploy.yml
+        # another ghcr login method
+        # uses: docker/login-action@v1
+        # with:
+        # registry: ghcr.io
+        #   username: ${{ github.repository_owner }}
+        #   password: ${{ secrets.CR_PAT }}
+=======
       - name: Build a docker image
         # build && cache from the most recent docker image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --cache-from ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+>>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-ci-ghcr.yml
 
       - name: Push to Github Container Registry
         run: |
