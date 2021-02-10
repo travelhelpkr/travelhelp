@@ -124,8 +124,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/foods', foodRouter);
 
 app.get('/', (req, res) => {
-  // console.log('sessison: ', req.session);
-  // console.log('cookies: ', req.cookies);
+  //  console.log('sessison: ', req.session);
+  //  console.log('cookies: ', req.cookies);
   res.send('welcome to the travel help!');
 })
 
