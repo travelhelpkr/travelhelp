@@ -21,7 +21,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build and deploy:
+  Build-Deploy:
     runs-on: ubuntu-latest
     # Set default path for this "build" job.
     defaults:
@@ -77,12 +77,12 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID_STAGE }}
         run: |
           aws s3 sync \
             --region ap-northeast-2 \
             --delete \
             build s3://test.travelhelp.kr
-          # aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
 # to do: build / test / deploy 단계로 나누기. artifact를 이용하거나 output을 이용해서 build 단계에서 나온 build 폴더를 각 jobs에서 활용.
