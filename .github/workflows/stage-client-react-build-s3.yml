@@ -83,6 +83,6 @@ jobs:
             --region ap-northeast-2 \
             --delete \
             build s3://test.travelhelp.kr
-          # aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+          aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
 # to do: build / test / deploy 단계로 나누기. artifact를 이용하거나 output을 이용해서 build 단계에서 나온 build 폴더를 각 jobs에서 활용.
