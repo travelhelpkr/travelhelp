@@ -1,3 +1,5 @@
+## This `docker-compose.dev` version use `nodemon` for developing.
+
 version: "3.8"
 
 services:
@@ -8,10 +10,10 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - 5555:3355
+      - 3355:3355
     volumes:
       - /app/node_modules # exlude node_modules
-      - ./:/app # mounting local `pwd` with docker container's `/app` path
+      - ./:/app # mounting local `cwd` with docker container's `/app` path
     command: sh -c "npm run dev"
 
     # By default, the `docker-compose` command will look for a file named `.env` in the directory
@@ -20,7 +22,7 @@ services:
     # Check details on docker compose official docs: https://docs.docker.com/compose/environment-variables/
     # So, if you defined below envs in `.env` file, you don't need these envs from this yaml file.
     # environment:
-    #   DEV_DB_HOST: mysql
+    #   DEV_DB_HOST: mysql # db host should be a db service name defined on docker-compose file.
     #   DEV_DB_USER_NAME: root
     #   DEV_DB_PASSWORD: secret
     #   DEV_DB_DATABASE: travelhelp
@@ -30,7 +32,8 @@ services:
   mysql:
     image: mysql:8.0.21
     ports:
-      - 8855:3306 # expose this port for accessing locally with the datagrip
+      - 8855:3306 # expose this 8855 port for accessing from local host(with the datagrip).
+      # you still can access to this mysql with the 3306 port internally(on the same docker network).
     volumes:
       - mysql-data:/var/lib/mysql # mounting docker volume
     environment: 

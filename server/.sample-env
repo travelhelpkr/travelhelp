@@ -1,0 +1,37 @@
+# this file includes sample `.env` variables.
+# you need to change this file name into `.env` or `.env.dev` or `.env.test` depends on your configuration.
+# you also need to change values into your own.
+
+# dev settings under the docker-compose environment
+# development db envs
+DEV_DB_USER_NAME=bar
+DEV_DB_PASSWORD=yoursecret!@#$%&123456
+DEV_DB_DATABASE=travelhelp
+# db host should be a db service name defined on docker-compose file.
+DEV_DB_HOST=mysql
+DEV_DB_PORT=2306
+DEV_DB_DIALECT=mysql
+
+# test db envs
+TEST_DB_USER_NAME=foobar
+TEST_DB_PASSWORD=yoursecret!@123456
+TEST_DB_DATABASE=travelhelp-test
+TEST_DB_HOST=rds.yourDB.ap-northeast-2.rds.amazonaws.com
+TEST_DB_PORT=2206
+TEST_DB_DIALECT=mysql
+
+# production db envs
+DB_USER_NAME=foo
+DB_PASSWORD=yoursecret!@123456
+DB_DATABASE=travelhelp
+DB_HOST=rds.yourDB.ap-northeast-2.rds.amazonaws.com
+DB_PORT=3306
+DB_DIALECT=mysql
+
+# this will set a default name of the docker-compose
+COMPOSE_PROJECT_NAME=travelhelp
+
+SESSION_SECRET=yourCUSTOMsecret!@
+
+NODEMAILER_USER=your@email.com
+NODEMAILER_PASS=yourCUSTOMsecret!@

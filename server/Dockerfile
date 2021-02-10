@@ -15,11 +15,23 @@ FROM node:14-alpine
 #   NODEMAILER_USER: ${{ secrets.NODEMAILER_USER }}
 #   NODEMAILER_PASS:
 
+# Set node environment to production
+ENV NODE_ENV production
+
+# Update the system
+RUN apk --no-cache -U upgrade
+
+# Install pm2
+RUN npm install pm2@latest -g
+
 COPY package*.json ./
 
-# install only dependencies, and not devDependencies, regardless of the value of the NODE_ENV environment variable.
-RUN npm ci --slient --only=production \
-    && npm install pm2 -g
+# By adding `only production` option, install only production dependencies, regardless of the value of the NODE_ENV environment variable.
+# npm ci will remove the existing npm_modules.
+RUN npm ci --slient --only=production
 
 COPY . .
-CMD ["pm2-runtime", "app.js"]
+
+EXPOSE 8080
+
+CMD ["pm2-runtime", "ecosystem.config.yml"]
