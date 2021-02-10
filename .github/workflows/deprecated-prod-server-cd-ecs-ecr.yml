@@ -33,16 +33,6 @@
 name: (Deprecated)Server/CD to ECS with ECR
 
 on:
-<<<<<<< HEAD:.github/workflows/aws-ecs-deploy.yml
-  # Temporarily comment out this action since the Container Orchestration seems to be heavy for this "travelhelp" project.
-  # So we decide to employ the AWS Codedepoly instead of ECS.
-  # Correspondingly the private repository shouldn't be the ECR, so we replaced it with the Github Container Repository(Beta), cheaper than ECR.
-  # push:
-  #   branches: 
-  #     - main
-  #   paths:
-  #     - 'server/**'
-=======
   push:
     branches: 
       - deprecated
@@ -52,7 +42,6 @@ on:
     paths:
       - 'server/**'
   
->>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-cd-ecs-ecr.yml
   # pull_request:
   #   branches:
   #     - main
@@ -62,11 +51,7 @@ on:
   #     - synchronize
     
   # Allows you to run this workflow manually from the Actions tab
-<<<<<<< HEAD:.github/workflows/aws-ecs-deploy.yml
-  workflow_dispatch:
-=======
   # workflow_dispatch:
->>>>>>> 3349e19f91279df03128afe49e5f4208559b3f8d:.github/workflows/deprecated-prod-server-cd-ecs-ecr.yml
 
 env:
   ECR_REPOSITORY: travelhelp                     # set this to your Amazon ECR repository name
