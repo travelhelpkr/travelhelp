@@ -32,8 +32,8 @@ const test = {
     acquire: 30000,
     idle: 10000
   },
-  client_url: "http://localhost:5533",
-  oauth_env: 1 // localhost: [1], production: [0]
+  client_url: "https://test.travelhelp.kr",
+  oauth_env: 0 // localhost: [1], production: [0]
 };
 
 const production = {
