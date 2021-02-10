@@ -21,7 +21,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build and deploy:
+  Build-Deploy:
     runs-on: ubuntu-latest
     # Set default path for this "build" job.
     defaults:
