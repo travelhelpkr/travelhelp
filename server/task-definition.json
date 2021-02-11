@@ -87,7 +87,7 @@
       ],
       "dockerSecurityOptions": null,
       "memory": null,
-      "memoryReservation": 256,
+      "memoryReservation": 128,
       "volumesFrom": [],
       "stopTimeout": 30,
       "image": "ghcr.io/imbrok/travelhelp:latest",
