@@ -1,0 +1,5 @@
+{
+  "web": {
+    "callbackURL": ["https://travelhelp.kr/api/auth/line/callback", "http://localhost:3355/api/auth/line/callback"]
+  }
+}

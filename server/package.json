@@ -1,13 +1,13 @@
 {
   "name": "travelhelp-server",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Concierge service for foreign travelers in Korea.",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.js",
-    "test": "NODE_ENV=test SERVER_PORT=3355 nodemon app.js",
-    "prod": "NODE_ENV=production nodemon app.js",
+    "test": "NODE_ENV=test SERVER_PORT=3355 mocha",
+    "prod": "NODE_ENV=production node app.js",
     "deploy": "aws s3 sync . s3://travelhelp-server/server --delete",
     "invalidate": "aws cloudfront create-invalidation --distribution-id E3DD2MDGVAYOWG --paths / '/*'"
   },
@@ -22,25 +22,24 @@
   },
   "homepage": "https://github.com/imbrok/travelhelp#readme",
   "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-mysql-session": "^2.1.4",
+    "express-mysql-session": "^2.1.5",
     "express-session": "^1.17.1",
-    "mysql": "^2.18.1",
+    "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
-    "nodemon": "^2.0.6",
+    "nodemailer": "^6.4.14",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
     "passport-line-auth": "^0.2.9",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"
-  },
-  "dependencies": {
-    "jsonwebtoken": "^8.5.1",
-    "nodemailer": "^6.4.14"
   }
 }

@@ -1,5 +1,4 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import '../scss/Home.scss';
 
@@ -14,9 +13,9 @@ function Home() {
       {/* nav-select language btn */}
       <select className='languageBtn' onChange={(e: React.ChangeEvent<HTMLSelectElement>) => i18n.changeLanguage(e.target.value)} >
         <option value=''>Language</option>
-        <option value='en'>English</option>
-        <option value='zh'>中文</option>
-        <option value='ja'>日本語</option>
+        <option className='selectLanguage' value='en'>English</option>
+        <option className='selectLanguage' value='zh'>中文</option>
+        <option className='selectLanguage' value='ja'>日本語</option>
       </select>
 
       {/* Body - travel help menu */}
@@ -46,4 +45,4 @@ function Home() {
   )
 }
 
-export default withRouter(Home);
+export default Home;
