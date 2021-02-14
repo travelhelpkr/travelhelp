@@ -15,6 +15,7 @@ const development = {
     acquire: 30000,
     idle: 10000
   },
+  sessionSecret: env.SESSION_SECRET,
   client_url: "http://localhost:5533",
   oauth_env: 1 // localhost: [1], production: [0]
 };
@@ -32,6 +33,7 @@ const test = {
     acquire: 30000,
     idle: 10000
   },
+  sessionSecret: env.SESSION_SECRET,
   client_url: "https://test.travelhelp.kr",
   oauth_env: 0 // localhost: [1], production: [0]
 };
@@ -49,6 +51,7 @@ const production = {
     acquire: 30000,
     idle: 10000
   },
+  sessionSecret: env.SESSION_SECRET,
   client_url: "https://travelhelp.kr",
   oauth_env: 0 // localhost: [1], production: [0]
 };
