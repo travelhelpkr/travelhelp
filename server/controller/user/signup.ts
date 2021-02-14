@@ -1,30 +1,19 @@
-const { User } = require('../../models');
-const bcrypt = require('bcrypt');
-const nodemailer = require('nodemailer');
-const jwt = require('jsonwebtoken');
-const env = process.env.NODE_ENV || 'production';
-const config = require(__dirname + '/../../config/config.js')[env];
+import { Request, Response } from 'express';
+import { User } from '../../models';
+import bcrypt from 'bcrypt';
+import nodemailer from 'nodemailer';
+import jwt from 'jsonwebtoken';
 
-/*
-1. check req.body.email exists on db
-  1. if exist
-    1. res 409 err
-  2. if no matches
-    1. put req.body datas on db
-      1. encrypt password before putting it on db
-      2. res 201 ok
-    2. send verification email to the user_email
-*/
+const env: string = process.env.NODE_ENV || 'production';
+const config: any = require(__dirname + '/../../config/config.js')[env];
 
-module.exports = {
-  askSignup: async (req, res) => {
+const askSignup: Function = async (req: Request, res: Response) => {
 
     try {
-      const { email, password, name, is_policy_agreed, language } = req.body;
-      const hash_password = await bcrypt.hash(password, 10);
+      const { email, password, name, is_policy_agreed, language }: { email: string, password: string, name: string, is_policy_agreed: boolean, language: string  } = req.body;
       
       // check db has req.body.email
-      const userData = await User.findOne({
+      const userData: JSON = await User.findOne({
         where: {
           email: email
         }
@@ -37,10 +26,11 @@ module.exports = {
         });
       }
       else {
+        const hash_password: string = await bcrypt.hash(password, 10);
         // generate token for verifying user email. available for 24 hours.
-        const generatedAuthToken = jwt.sign({ email: email }, process.env.SESSION_SECRET, { expiresIn: 60 * 60 * 24 });
+        const generatedAuthToken: string = jwt.sign({ email: email }, config.sessionSecret, { expiresIn: 60 * 60 * 24 });
         // make a new user on the db
-        const newUser = await User.create({
+        const newUser: any = await User.create({
           email: email,
           password: hash_password,
           name: name,
@@ -48,7 +38,7 @@ module.exports = {
           last_visited_at: new Date(),
           language: language
         })
-        const smtpTransporter = nodemailer.createTransport({
+        const smtpTransporter: any = nodemailer.createTransport({
           service: 'gmail',
           host: 'smtp.gmail.com',
           // if port is 587 or 25, secure should be false. Or if port is 465, secure should be true.
@@ -64,11 +54,11 @@ module.exports = {
           }
         });
   
-        const mailOptions = {
+        const mailOptions: { from: string, to: string, subject: string, text: string } = {
           from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
-          to: newUser.dataValues.email,
+          to: newUser.email,
           subject: "Verify your TravelHelp account",
-          text: `Almost done, ${newUser.dataValues.name}!
+          text: `Almost done, ${newUser.name}!
           
 To activate your TravelHelp account, we just need yo verify your email address:        
           
@@ -79,7 +69,7 @@ This link will only be valid for 24 hours. If it expires, you can resend it from
 If you have any problems, please contact us: (attatch channel.io link)`
         }
   
-        smtpTransporter.sendMail(mailOptions, (error, info) => {
+        smtpTransporter.sendMail(mailOptions, (error: any, info: any) => {
           if(error) {
             console.log('error message: ', error);
             res.send({message: 'err'});
@@ -93,7 +83,7 @@ If you have any problems, please contact us: (attatch channel.io link)`
         });
       }
     }
-    catch (err) {
+    catch (err: any) {
       // response err to the client
       res.status(err.status || 500).json({
         message: err.message || 'Server does not response.',
@@ -105,4 +95,6 @@ If you have any problems, please contact us: (attatch channel.io link)`
     }
     
   }
-};
+
+
+export { askSignup }
