@@ -2,10 +2,11 @@ name: Prod/Server/CI&CD with GHCR
 
 on:
   push:
-    branches:
-      - main
+    # unexpected runs. this tags option shouldn't work seperately.
     tags:
       - v*
+    branches:
+      - main
     paths:
       - 'server/**'
   

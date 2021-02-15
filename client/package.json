@@ -1,6 +1,6 @@
 {
   "name": "travelhelp",
-  "version": "0.1.0",
+  "version": "0.3.3",
   "private": true,
   "proxy": "http://localhost:3355",
   "dependencies": {
@@ -37,7 +37,9 @@
     "start": "PORT=5533 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "aws s3 sync ./build s3://test.travelhelp.kr --delete",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E3DD2MDGVAYOWG --paths / '/*'"
   },
   "eslintConfig": {
     "extends": [
