@@ -21,7 +21,8 @@ services:
     # Example: `docker-compose --env-file ./config/.env.dev up`
     # Check details on docker compose official docs: https://docs.docker.com/compose/environment-variables/
     # So, if you defined below envs in `.env` file, you don't need these envs from this yaml file.
-    # environment:
+    environment:
+      COMPOSE_PROJECT_NAME: travelhelp-dev
     #   DEV_DB_HOST: mysql # db host should be a db service name defined on docker-compose file.
     #   DEV_DB_USER_NAME: root
     #   DEV_DB_PASSWORD: secret

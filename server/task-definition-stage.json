@@ -25,12 +25,7 @@
       "command": null,
       "linuxParameters": null,
       "cpu": 0,
-      "environment": [
-        {
-          "name": "COMPOSE_PROJECT_NAME",
-          "value": "travelhelp-stage"
-        }
-      ],
+      "environment": null,
       "resourceRequirements": null,
       "ulimits": null,
       "repositoryCredentials": {

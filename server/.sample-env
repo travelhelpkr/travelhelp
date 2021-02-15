@@ -1,37 +1,45 @@
 # this file includes sample `.env` variables.
 # you need to change this file name into `.env` or `.env.dev` or `.env.test` depends on your configuration.
-# you also need to change values into your own.
+# you also need to replace values with your own.
 
 # dev settings under the docker-compose environment
-# development db envs
-DEV_DB_USER_NAME=bar
-DEV_DB_PASSWORD=yoursecret!@#$%&123456
+# development DB envs (on mysql in Docker container)
+DEV_DB_USER_NAME=foo
+DEV_DB_PASSWORD=yourPassword
 DEV_DB_DATABASE=travelhelp
 # db host should be a db service name defined on docker-compose file.
 DEV_DB_HOST=mysql
-DEV_DB_PORT=2306
+DEV_DB_PORT=3306
 DEV_DB_DIALECT=mysql
 
 # test db envs
-TEST_DB_USER_NAME=foobar
-TEST_DB_PASSWORD=yoursecret!@123456
+TEST_DB_USER_NAME=bar
+TEST_DB_PASSWORD=yourPassword
 TEST_DB_DATABASE=travelhelp-test
-TEST_DB_HOST=rds.yourDB.ap-northeast-2.rds.amazonaws.com
+TEST_DB_HOST=rds.yourDB.ap-region.rds.amazonaws.com
 TEST_DB_PORT=2206
 TEST_DB_DIALECT=mysql
 
 # production db envs
-DB_USER_NAME=foo
-DB_PASSWORD=yoursecret!@123456
+DB_USER_NAME=foobar
+DB_PASSWORD=yourPassword
 DB_DATABASE=travelhelp
-DB_HOST=rds.yourDB.ap-northeast-2.rds.amazonaws.com
+DB_HOST=rds.yourDB.ap-region.rds.amazonaws.com
 DB_PORT=3306
 DB_DIALECT=mysql
 
-# this will set a default name of the docker-compose
-COMPOSE_PROJECT_NAME=travelhelp
+# secret values for google oauth
+GOOGLE_CLIENT_ID=yourClientID
+GOOGLE_CLIENT_SECRET=yourSecret
 
-SESSION_SECRET=yourCUSTOMsecret!@
+# secret values for line oauth
+LINE_CHANNEL_ID=yourChannelID
+LINE_CHANNEL_SECRET=yourSecret
 
+SESSION_SECRET=yourCUSTOMsecret
+
+# NOTE: NODEMAILER by gmail id requires security setting.
+# "less secure" setting from your account, and "CAPTCHA Enable". Additionally, if your gmail account protected by 2FA, you should create an "Application Specific".
+# check this out from [the official document of NODEMAILER](https://nodemailer.com/usage/using-gmail)
 NODEMAILER_USER=your@email.com
-NODEMAILER_PASS=yourCUSTOMsecret!@
+NODEMAILER_PASS=yourPassword
