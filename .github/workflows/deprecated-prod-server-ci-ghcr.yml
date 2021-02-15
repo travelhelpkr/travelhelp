@@ -10,8 +10,6 @@ on:
     branches:
       - deprecated
       # - main
-    tags:
-      - v*
     paths:
       - 'server/**'
 
