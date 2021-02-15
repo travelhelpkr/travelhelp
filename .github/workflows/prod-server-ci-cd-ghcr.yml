@@ -5,8 +5,8 @@ on:
     # unexpected runs. this tags option shouldn't work seperately.
     tags:
       - v*
-    branches:
-      - main
+    # branches:
+    #   - main
     paths:
       - 'server/**'
   
