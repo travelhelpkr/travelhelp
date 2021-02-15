@@ -1,6 +1,6 @@
 # Travel Help
 
-### (deprecated) "Credit card payment" no longer available from Nov/2020. The [eximbay](The https://www.eximbay.com/index.do) contraction had been expired.
+### (deprecated) "Credit card payment" no longer available from Nov/2020. The [eximbay](https://www.eximbay.com/index.do) contraction had been expired.
 ### (deprecated) "Automation chatting bot service" no longer available from Nov/2020. The [Channel talk](https://channel.io) service subscription had been expired.
 
 #### *'Multilanguage(EN|CN|JP)'* and *'Responsive'* Website Concierge service for the foreign travelers in Korea.
