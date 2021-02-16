@@ -24,9 +24,6 @@ const env: string = process.env.NODE_ENV || 'production';
 const config: any = require('./config/config.js')[env];
 
 const port: string | number = process.env.SERVER_PORT || 8080;
-interface SessionKeys {
-  secret: any
-}
 
 const MySQLStore: any = expressMysqlSession(expressSession);
 
