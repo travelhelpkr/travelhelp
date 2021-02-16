@@ -62,14 +62,6 @@ You can also check detail explanation for settings from `.sample-env`
 - `npm deploy`: It deploys(sync with delete option) `/client/build` folder into the specified AWS S3. `aws` command requires `aws cli`. And it also requires the AWS credential with proper IAM permission for the AWS S3.
 - `npm invalidate`: It purges all(`/*`) caches from the CDN(AWS cloudfront). You may need to invalidate after updating static files for updating caches. It requires `aws cli` for using `aws` command. And it also requires AWS credential with proper IAM permission for the AWS CloudFront.
 
-## Built With
-* [JavaScript, ES9](http://ecma-international.org/ecma-262/9.0/index.html) - Language
-* [React](https://reactjs.org/) - Frontend, framework
-* [NodeJS](https://nodejs.org/en) - Backend, server
-* [Express](https://expressjs.com/) - Backend, server
-* [Mysql](https://www.mysql.com/) - Backend, DB
-* [Sequelize](https://sequelize.org/master) - Backend, ORM
-
 ## Versioning
 - 0.3.3 | Feb/11/2021
   - MSA settings, now server runs on docker container environment
