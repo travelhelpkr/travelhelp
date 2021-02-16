@@ -4,10 +4,11 @@ name: Prod/Client/React Build to S3
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches:
-      - main
+    # unexpected runs. this tags option shouldn't work seperately.
     tags:
       - v*
+    # branches:
+    #   - main
     paths:
       - 'client/**'
 

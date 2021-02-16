@@ -1,9 +1,14 @@
 {
   "name": "travelhelp-server",
+<<<<<<< HEAD
   "version": "0.4.0",
+=======
+  "version": "0.3.4",
+>>>>>>> dev
   "description": "Concierge service for foreign travelers in Korea.",
   "main": "app.ts",
   "scripts": {
+<<<<<<< HEAD
     "start": "NODE_ENV=production node app.ts",
     "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.ts",
     "test": "NODE_ENV=test SERVER_PORT=3355 mocha",
@@ -11,17 +16,23 @@
     "build": "tsc -p .",
     "deploy": "aws s3 sync . s3://travelhelp-server/server --delete",
     "invalidate": "aws cloudfront create-invalidation --distribution-id E3DD2MDGVAYOWG --paths / '/*'"
+=======
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development SERVER_PORT=3355 nodemon app.js",
+    "prod": "NODE_ENV=production node app.js",
+    "test": "NODE_ENV=test SERVER_PORT=3355 mocha"
+>>>>>>> dev
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/imbrok/travelhelp.git"
+    "url": "https://github.com/travelhelpkr/travelhelp.git"
   },
   "author": "Bro & Ryn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/imbrok/travelhelp/issues"
+    "url": "https://github.com/travelhelpkr/travelhelp/issues"
   },
-  "homepage": "https://github.com/imbrok/travelhelp#readme",
+  "homepage": "https://github.com/travelhelpkr/travelhelp#readme",
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.19.0",
