@@ -1,13 +1,15 @@
 # Travel Help
 
-### (deprecated) "Credit card payment" no longer available from Nov/2020. The [eximbay](https://www.eximbay.com/index.do) contraction had been expired.
-### (deprecated) "Automation chatting bot service" no longer available from Nov/2020. The [Channel talk](https://channel.io) service subscription had been expired.
+#### (deprecated) "Credit card payment" no longer available from Nov/2020. The [eximbay](https://www.eximbay.com/index.do) contraction had been expired.
+#### (deprecated) "Automation chatting bot service" no longer available from Nov/2020. The [Channel talk](https://channel.io) service subscription had been expired.
 
 #### *'Multilanguage(EN|CN|JP)'* and *'Responsive'* Website Concierge service for the foreign travelers in Korea.
 
 <img src="https://user-images.githubusercontent.com/66960200/99899105-0141f000-2cea-11eb-94f8-d33fadd7e266.png" alt="1" width="90%"/>
 
 ## Getting Started
+
+### [Travel Help Wiki(link)](https://github.com/travelhelpkr/travelhelp/wiki)
 
 ### Prerequisites
 - Client: `Create React App`
