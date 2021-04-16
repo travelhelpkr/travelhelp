@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
+
 import { Menu, Order, Order_menu, Restaurant, Option } from '../../models';
 
 // update user's db with selected menu
-const add = async (req: Request, res: Response) => {
+export const add = async (req: Request, res: Response) => {
 
   try {
     const { user_id, menu_id, option_id }: { user_id: number, menu_id: number, option_id: number} = req.body;
@@ -81,7 +82,7 @@ const add = async (req: Request, res: Response) => {
   
 }
 
-const show = async (req: Request, res: Response) => {
+export const show = async (req: Request, res: Response) => {
   
   try {
     const user_id: string = req.params.id;
@@ -145,7 +146,7 @@ const show = async (req: Request, res: Response) => {
 
 }
 
-const update = async (req: Request, res: Response) => {
+export const update = async (req: Request, res: Response) => {
 
   try {
     const { order_id, menu_id, option_id, quantity }: { order_id: number, menu_id: number, option_id: number, quantity: number } = req.body;
@@ -172,7 +173,7 @@ const update = async (req: Request, res: Response) => {
   }
 }
 
-const remove = async (req: any, res: Response) => {
+export const remove = async (req: any, res: Response) => {
 
   try {
     const { order_id, menu_id, option_id }: { order_id: number, menu_id: number, option_id: number } = req.query;
@@ -224,5 +225,3 @@ const remove = async (req: any, res: Response) => {
   }
 
 }
-
-export { add, show, update, remove }

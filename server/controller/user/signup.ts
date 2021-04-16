@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
-import { User } from '../../models';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import jwt from 'jsonwebtoken';
 
+import { User } from '../../models';
+
 const env: string = process.env.NODE_ENV || 'production';
 const config: any = require(__dirname + '/../../config/config.js')[env];
 
-const askSignup: Function = async (req: Request, res: Response) => {
+export const askSignup = async (req: Request, res: Response) => {
 
   try {
     const { email, password, name, is_policy_agreed, language }: { email: string, password: string, name: string, is_policy_agreed: boolean, language: string  } = req.body;
@@ -30,7 +31,7 @@ const askSignup: Function = async (req: Request, res: Response) => {
       // generate token for verifying user email. available for 24 hours.
       const generatedAuthToken: string = jwt.sign({ email: email }, config.sessionSecret, { expiresIn: 60 * 60 * 24 });
       // make a new user on the db
-      const newUser: any = await User.create({
+      const newUser = await User.create({
         email: email,
         password: hash_password,
         name: name,
@@ -38,7 +39,7 @@ const askSignup: Function = async (req: Request, res: Response) => {
         last_visited_at: new Date(),
         language: language
       })
-      const smtpTransporter: any = nodemailer.createTransport({
+      const smtpTransporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
         // if port is 587 or 25, secure should be false. Or if port is 465, secure should be true.
@@ -69,7 +70,7 @@ This link will only be valid for 24 hours. If it expires, you can resend it from
 If you have any problems, please contact us: (attatch channel.io link)`
       }
 
-      smtpTransporter.sendMail(mailOptions, (error: any, info: any) => {
+      smtpTransporter.sendMail(mailOptions, (error, info) => {
         if(error) {
           console.log('error message: ', error);
           res.send({message: 'err'});
@@ -83,7 +84,7 @@ If you have any problems, please contact us: (attatch channel.io link)`
       });
     }
   }
-  catch (err: any) {
+  catch (err) {
     // response err to the client
     res.status(err.status || 500).json({
       message: err.message || 'Server does not response.',
@@ -95,6 +96,3 @@ If you have any problems, please contact us: (attatch channel.io link)`
   }
   
 }
-
-
-export { askSignup }

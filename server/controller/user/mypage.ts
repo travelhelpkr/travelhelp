@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+
 import { sequelize, Address_book, Order, Restaurant, Menu, Option, Order_menu } from '../../models';
 
 // update user's db with selected menu
-const orderHistory = async (req: Request, res:Response) => {
+export const orderHistory = async (req: Request, res: Response) => {
+
   try {
     const user_id: string = req.params.id;
 
@@ -23,7 +25,7 @@ const orderHistory = async (req: Request, res:Response) => {
     });
     
     // extracting `id` array from `Order` table through orderHistory
-    const orderIdList = orderHistory.map((order : { id: number }) => order.id);
+    const orderIdList = orderHistory.map((order: { id: number }) => order.id);
     
     // empty array for containing values from below iterator function
     const menusByOrderId = [];
@@ -72,6 +74,5 @@ const orderHistory = async (req: Request, res:Response) => {
       stack: err.stack
     });  
   }
-}
 
-export { orderHistory }
+}
