@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import { User } from '../../models';
 
 /*
@@ -7,7 +8,8 @@ import { User } from '../../models';
 3. destroy user's session
 */
 
-const leaveService = async (req:Request, res:Response) => {
+export const leaveService = async (req: Request, res: Response) => {
+
   try {
     const { language }: { language: string } = req.body;
     // check user has signed in. else case? do nothing.
@@ -68,6 +70,5 @@ const leaveService = async (req:Request, res:Response) => {
       stack: err.stack
     });
   }
-}
 
-export { leaveService }
+}

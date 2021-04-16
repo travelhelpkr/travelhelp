@@ -10,7 +10,7 @@ foodRouter.get('/menu', menu.get);
 foodRouter.post('/cart', cart.add);
 foodRouter.get('/cart/:id', cart.show);
 foodRouter.put('/cart', cart.update);
-foodRouter.delete('/cart', cart.delete);
+foodRouter.delete('/cart', cart.remove);
 
 foodRouter.post('/order/:id', order.addOrder);
 foodRouter.get('/order/:id', order.showAddress);

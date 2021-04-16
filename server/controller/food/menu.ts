@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
+
 import { Menu, Restaurant, Option } from '../../models';
 
-const get = async (req:Request, res:Response) => {
+export const get = async (req: Request, res: Response) => {
+
   try {
     // check restaurant id
     const restaurant_id: any = req.query.restaurant_id;
@@ -50,7 +52,6 @@ const get = async (req:Request, res:Response) => {
   
 }
 
-export { get }
 
 /*
 below code has left here for just reference.

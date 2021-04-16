@@ -1,11 +1,13 @@
 import { Request, Response } from 'express';
+
 import { Address_book, Order } from '../../models';
 
 // update user's db with selected menu
-const addOrder = async (req:Request, res:Response) => {
+export const addOrder = async (req: Request, res: Response) => {
+
   try {
     const user_id: string = req.params.id;
-    const { address_book_id, address, postal_code, contact }: { address_book_id: number, address: string, postal_code: String, contact: string } = req.body;
+    const { address_book_id, address, postal_code, contact }: { address_book_id: number, address: string, postal_code: string, contact: string } = req.body;
 
     // after clicking 'paynow' button,
     // build new values on the addressbook db
@@ -55,9 +57,11 @@ const addOrder = async (req:Request, res:Response) => {
       stack: err.stack
     });  
   }
+
 }
 
-const showAddress = async (req:Request, res:Response) => {
+export const showAddress = async (req: Request, res: Response) => {
+
   try {
     const user_id: string = req.params.id;
 
@@ -89,7 +93,6 @@ const showAddress = async (req:Request, res:Response) => {
       message: err.message || 'Server does not response.',
       stack: err.stack
     });
-  }  
-}
+  }
 
-export { addOrder, showAddress }
+}

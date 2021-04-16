@@ -1,14 +1,15 @@
 import { Request, Response } from 'express';
-import { User } from '../../models';
 import bcrypt from 'bcrypt';
 
-const askSignin: Function = async (req: Request, res: Response) => {
+import { User } from '../../models';
+
+export const askSignin = async (req: Request, res: Response) => {
 
   try {
     const { email, password }: { email: string, password: string } = req.body;
 
     // bring the user information with req.body.email
-    const userData: any = await User.findOne({
+    const userData = await User.findOne({
       where: {
         email: email
       }
@@ -24,10 +25,10 @@ const askSignin: Function = async (req: Request, res: Response) => {
     }
     else {
       // compare req.body.password && hashed password from db
-      bcrypt.compare(password, userData.password, (err: any, result: any) => {
+      bcrypt.compare(password, userData.password, (err, result) => {
         // catch err or wrong password, 
         if (err || !result) { 
-          console.log('Error from password: ', err);
+          // console.log('Error from password: ', err);
           res.status(401).send({ message: 'Wrong password.' });
         }
         else {
@@ -46,8 +47,8 @@ const askSignin: Function = async (req: Request, res: Response) => {
 
           // excutes this callback after saving the session
           req.session.save(() => {
-            console.log('current session ID: ', req.session.id);
-            console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
+            // console.log('current session ID: ', req.session.id);
+            // console.log(`${req.session.user_name} visited Travel Help ${req.session.visit_count} times`)
 
             // update last visited time & visit count on users table from the db
             User.update({
@@ -71,7 +72,7 @@ const askSignin: Function = async (req: Request, res: Response) => {
       });
     }
   }
-  catch (err: any) {
+  catch (err) {
     // response err to the client
     res.status(err.status || 500).json({
       message: err.message || 'Server does not response.',
@@ -80,5 +81,3 @@ const askSignin: Function = async (req: Request, res: Response) => {
   }
   
 }
-
-export { askSignin }
