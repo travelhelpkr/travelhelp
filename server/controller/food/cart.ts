@@ -173,10 +173,10 @@ export const update = async (req: Request, res: Response) => {
   }
 }
 
-export const remove = async (req: any, res: Response) => {
+export const remove = async (req: Request, res: Response) => {
 
   try {
-    const { order_id, menu_id, option_id }: { order_id: number, menu_id: number, option_id: number } = req.query;
+    const { order_id, menu_id, option_id }: { order_id: number, menu_id: number, option_id: number } = req.query as any;
 
     const deletedRow = await Order_menu.destroy({
       where: {
