@@ -1,35 +1,25 @@
-import express, { Request, Response } from 'express';
-import * as dotenv from 'dotenv';
+import express from 'express';
+import dotenv from 'dotenv';
 import mysql from 'mysql2/promise';
-// import * as expressSession from 'express-session';
 import * as expressSession from 'express-session';
 import expressMysqlSession from 'express-mysql-session';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-// import * as userRouter from './router/userRouter';
-// import * as authRouter from './router/authRouter';
-// import * as foodRouter from './router/foodRouter';
-const userRouter = require('./router/userRouter');
-const authRouter = require('./router/authRouter');
-const foodRouter = require('./router/foodRouter');
 import passport from 'passport';
-// import config from './config/config.ts';
+
+import { Router } from './router';
 
 dotenv.config();
-const app = express();
+const app: express.Application = express();
 
 const env: string = process.env.NODE_ENV || 'production';
-// const config: any = config[any];
 const config: any = require('./config/config.js')[env];
-
 const port: string | number = process.env.SERVER_PORT || 8080;
-
 const MySQLStore: any = expressMysqlSession(expressSession);
 
 app.use(cookieParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(cors({
   origin: config.client_url,
   credentials: true
@@ -73,11 +63,11 @@ app.use(passport.initialize());
 app.use(passport.session())
 
 // routing
-app.use('/api/users', userRouter);
-app.use('/api/auth', authRouter);
-app.use('/api/foods', foodRouter);
+app.use('/api/users', Router.userRouter);
+app.use('/api/auth', Router.authRouter);
+app.use('/api/foods', Router.foodRouter);
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req: express.Request, res: express.Response) => {
   //  console.log('sessison: ', req.session);
   //  console.log('cookies: ', req.cookies);
   res.send('welcome to the travel help!');
@@ -87,4 +77,4 @@ app.listen(port, () => {
   console.log(`Server listening on port:${port}`);
 });
 
-module.exports = app;
+export default app;

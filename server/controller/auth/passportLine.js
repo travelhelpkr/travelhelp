@@ -9,6 +9,7 @@ const config = require(__dirname + '/../../config/config.js')[env];
 
 
 module.exports = () => {
+
   passport.serializeUser((user, cb) => {
     // console.log("serializeUser:", user)
     cb(null, user);
@@ -30,7 +31,7 @@ module.exports = () => {
       // console.log('accessToken: ', accessToken);
       // console.log('refreshToken: ', refreshToken);
       // console.log('profile:', profile);
-      console.log('params:', params.id_token);
+      // console.log('params:', params.id_token);
       // should be applied after permission of Line Corp.
       const { email } = jwt.decode(params.id_token);
       // profile.email = email;
@@ -65,4 +66,5 @@ module.exports = () => {
       }
     }
   ))
+
 }
