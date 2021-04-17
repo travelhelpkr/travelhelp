@@ -2,8 +2,8 @@ const express = require('express');
 const passport = require('passport');
 const verifyEmail = require('../controller/auth/verifyEmail');
 const resetPassword = require('../controller/auth/resetPassword');
-const passportGoogle = require('../controller/auth/passportGoogle.js');
-const passportLine = require('../controller/auth/passportLine.js');
+const passportGoogle = require('../controller/auth/passportGoogle').google();
+const passportLine = require('../controller/auth/passportLine');
 const env = process.env.NODE_ENV || 'production';
 const config = require(__dirname + '/../config/config.js')[env];
 
