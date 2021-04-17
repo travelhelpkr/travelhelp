@@ -40,4 +40,4 @@ authRouter.get('/line/callback', passport.authenticate('line', { failureRedirect
   res.redirect(`${config.client_url}`);
 } );
 
-module.exports = authRouter;
+export default authRouter;
