@@ -17,19 +17,19 @@ export const google = () => {
 
   passport.deserializeUser((user, done) => {
     // console.log("deserializeUser:", user)
-    done(null, user);
+    done(null, user as Express.User);
   });
 
   passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    clientID: process.env.GOOGLE_CLIENT_ID as string,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     callbackURL: credentials.web.redirect_uris[config.oauth_env] // localhost: [1], production: [0]
   },
   async (accessToken, refreshToken, profile, cb) => {
     // console.log('accessToken: ', accessToken);
     // console.log('refreshToken: ', refreshToken);
     // console.log('profile: ', profile);
-    const email: string = profile.emails[0].value;
+    const email: string = profile.emails![0].value;
     const name: string = profile.displayName;
     const userData = await User.findOne({ where: { email: email } });
 
