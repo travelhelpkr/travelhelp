@@ -1,12 +1,15 @@
-const { User } = require('../../models');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const credentials = require('../../config/google.json');
-const bcrypt = require('bcrypt');
-const env = process.env.NODE_ENV || 'production';
-const config = require(__dirname + '/../../config/config.js')[env];
+import passport from 'passport';
+import { OAuth2Strategy as GoogleStrategy } from 'passport-google-oauth';
+import bcrypt from 'bcrypt';
 
-module.exports = () => {
+import { User } from '../../models';
+
+const env: string = process.env.NODE_ENV || 'production';
+const credentials: any = require('../../config/google.json');
+const config: any = require(__dirname + '/../../config/config.js')[env];
+
+export const google = () => {
+
   passport.serializeUser((user, done) => {
     // console.log("serializeUser:", user)
     done(null, user);
@@ -14,20 +17,20 @@ module.exports = () => {
 
   passport.deserializeUser((user, done) => {
     // console.log("deserializeUser:", user)
-    done(null, user);
+    done(null, user as Express.User);
   });
 
   passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    clientID: process.env.GOOGLE_CLIENT_ID as string,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     callbackURL: credentials.web.redirect_uris[config.oauth_env] // localhost: [1], production: [0]
   },
   async (accessToken, refreshToken, profile, cb) => {
     // console.log('accessToken: ', accessToken);
     // console.log('refreshToken: ', refreshToken);
     // console.log('profile: ', profile);
-    const email = profile.emails[0].value;
-    const name = profile.displayName;
+    const email: string = profile.emails![0].value;
+    const name: string = profile.displayName;
     const userData = await User.findOne({ where: { email: email } });
 
     // if user email already been occuipied by local signup method
@@ -59,4 +62,5 @@ module.exports = () => {
       return cb(null, newUser);
     }
   }));
+
 }

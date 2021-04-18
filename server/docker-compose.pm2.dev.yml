@@ -21,8 +21,8 @@ services:
     # Example: `docker-compose --env-file ./config/.env.dev up`
     # Check details on docker compose official docs: https://docs.docker.com/compose/environment-variables/
     # So, if you defined below envs in `.env` file, you don't need these envs from this yaml file.
-    environment:
-      COMPOSE_PROJECT_NAME: travelhelp-dev
+    # environment:
+    #   COMPOSE_PROJECT_NAME: travelhelp-dev  # This env won't work from docker-compose as expected, setting the default project name. Name it from the `.env` file instead.
     #   DEV_DB_HOST: mysql # db host should be a db service name defined on docker-compose file.
     #   DEV_DB_USER_NAME: root
     #   DEV_DB_PASSWORD: secret
@@ -33,13 +33,17 @@ services:
   mysql:
     image: mysql:8.0.21
     ports:
-      - 8855:3306 # expose this 8855 port for accessing from local host(with the datagrip).
+      - 8855:3306 # exposed this 8855 port for accessing from the localhost(with the datagrip app).
       # you still can access to this mysql with the 3306 port internally(on the same docker network).
     volumes:
       - mysql-data:/var/lib/mysql # mounting docker volume
     environment: 
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: travelhelp
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE # added it to prevent from `mbind: Operation not permitted` warning message when accessing MySQL DB through DataGrip app.
+                  # check details from this link: https://stackoverflow.com/questions/55559386/how-to-fix-mbind-operation-not-permitted-in-mysql-error-log
+                  # As it always do, if you want to apply the new compose setting as expected, it requires re-compose up after down the existing docker container.
 
 volumes:
   mysql-data: # mysql db will be managed by docker volume
