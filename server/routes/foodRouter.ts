@@ -1,8 +1,8 @@
-import express from 'express';
+import { Router } from 'express';
 
 import { Food } from '../controller/food';
 
-const foodRouter = express.Router();
+export const foodRouter = Router();
 
 foodRouter.get('/menu', Food.get);
 
@@ -13,5 +13,3 @@ foodRouter.delete('/cart', Food.remove);
 
 foodRouter.post('/order/:id', Food.addOrder);
 foodRouter.get('/order/:id', Food.showAddress);
-
-export default foodRouter;
