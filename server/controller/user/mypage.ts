@@ -6,7 +6,7 @@ import { sequelize, Address_book, Order, Restaurant, Menu, Option, Order_menu } 
 export const orderHistory = async (req: Request, res: Response) => {
 
   try {
-    const user_id: string = req.params.id;
+    const user_id: number = <unknown>req.params.id as number;
 
     // find all order history about the user
     const orderHistory = await Order.findAll({
@@ -28,7 +28,7 @@ export const orderHistory = async (req: Request, res: Response) => {
     const orderIdList = orderHistory.map((order: { id: number }) => order.id);
     
     // empty array for containing values from below iterator function
-    const menusByOrderId = [];
+    const menusByOrderId: string[] = [];
 
     // find menus by `Order` table's `id' obtained by orderIdList
     for(let i: number = 0; i < orderIdList.length; i++) {
