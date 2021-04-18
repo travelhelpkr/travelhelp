@@ -6,7 +6,7 @@ export const get = async (req: Request, res: Response) => {
 
   try {
     // check restaurant id
-    const restaurant_id: any = req.query.restaurant_id;
+    const restaurant_id: number = <unknown>req.query.restaurant_id as number;
     
     // restaurant information for sending
     const selectedRestaurant = await Restaurant.findOne({

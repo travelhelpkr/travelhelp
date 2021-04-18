@@ -37,7 +37,7 @@ export const resendEmail = async (req: Request, res: Response) => {
     }
     else {
       // generate token for verifying user email. available for 24 hours.
-      const generatedAuthToken: string = jwt.sign({ email: email }, process.env.SESSION_SECRET, { expiresIn: 60 * 60 * 24 });
+      const generatedAuthToken: string = jwt.sign({ email: email }, process.env.SESSION_SECRET as string, { expiresIn: 60 * 60 * 24 });
       
       const smtpTransporter = nodemailer.createTransport({
         service: 'gmail',
@@ -101,7 +101,7 @@ export const updateEmail = async (req: Request, res: Response) => {
   try {
     // decode token's value from the URI's query string.
     // expected prints: { email: value, iat:time , exp:time }
-    const decodedToken: any = jwt.verify(req.query.token as string, process.env.SESSION_SECRET);
+    const decodedToken: any = jwt.verify(req.query.token as string, process.env.SESSION_SECRET as string);
     // console.log('token: ', decodedToken);
     
     // check db has email(the decoded token) on the db
