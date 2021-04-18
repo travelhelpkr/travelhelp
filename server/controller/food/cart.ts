@@ -85,7 +85,7 @@ export const add = async (req: Request, res: Response) => {
 export const show = async (req: Request, res: Response) => {
   
   try {
-    const user_id: string = req.params.id;
+    const user_id: number = <unknown>req.params.id as number;
 
     const checkCartStatus = await Order.findOne({
       attributes: [ 'is_cart' ],

@@ -6,7 +6,7 @@ import { Address_book, Order } from '../../models';
 export const addOrder = async (req: Request, res: Response) => {
 
   try {
-    const user_id: string = req.params.id;
+    const user_id: number = <unknown>req.params.id as number;
     const { address_book_id, address, postal_code, contact }: { address_book_id: number, address: string, postal_code: string, contact: string } = req.body;
 
     // after clicking 'paynow' button,
@@ -63,7 +63,8 @@ export const addOrder = async (req: Request, res: Response) => {
 export const showAddress = async (req: Request, res: Response) => {
 
   try {
-    const user_id: string = req.params.id;
+    const user_id: number = <unknown>req.params.id as number;
+
 
     // checking existing user's menu from the cart
     const listAddress = await Address_book.findAll({
