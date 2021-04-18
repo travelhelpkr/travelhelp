@@ -1,6 +1,6 @@
 {
   "name": "travelhelp-server",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "description": "Concierge service for foreign travelers in Korea.",
   "main": "app.ts",
   "scripts": {
@@ -21,7 +21,6 @@
   "homepage": "https://github.com/travelhelpkr/travelhelp#readme",
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
-    "@types/body-parser": "^1.19.0",
     "@types/chai": "^4.2.15",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.10",
