@@ -12,7 +12,7 @@ describe('mypage', () => {
     .end((err: Error, res: request.Response) => {
       if(err) return done(err);
       expect(200);
-      expect(res.body.order_history).to.have.length(4);
+      expect(res.body.order_history).to.have.length(8);
       done();
     })
   })
@@ -45,7 +45,7 @@ describe('mypage', () => {
     .end((err: Error, res: request.Response) => {
       if(err) return done(err);
       expect(200);
-      expect(res.body.order_history[0].Menus).to.have.length(2);
+      expect(res.body.order_history[0].Menus).to.have.length(1);
       done();
     })
   })
