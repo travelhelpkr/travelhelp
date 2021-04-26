@@ -43,7 +43,8 @@ describe('signin', () => {
     })
     .end((err: any, res: request.Response) => {
       if(err) return done(err);
-      expect(res.status).to.equal(401);
+      // expect(401);
+      expect(res.status).to.equal(401); // same as just 401
       expect(res.body.message).to.equal('Wrong password.');
       done();
     })
@@ -59,9 +60,8 @@ describe('signin', () => {
     .end((err: Error, res: request.Response) => {
       if(err) return done(err);
       expect(200);
-      expect(res.body).has.all.keys([
-        'id', 'name', 'email', 'language',
-      ]);
+      // expect(res.body).to.all.keys('id', 'name', 'email', 'language');
+      expect(res.body).has.all.keys(['id', 'name', 'email', 'language']); // same as to.all
       done();
     })
   })
