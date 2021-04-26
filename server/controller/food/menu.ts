@@ -15,6 +15,7 @@ export const get = async (req: Request, res: Response) => {
         id: restaurant_id
       }
     });
+    // console.log('selectedRestaruant: ', selectedRestaurantObj);
 
     // get all menus matched with restaurant_id
     const foodMenu = await Menu.findAll({
@@ -30,16 +31,7 @@ export const get = async (req: Request, res: Response) => {
       }]
     });
 
-    const foodMenuArr = foodMenu.reduce((acc, cur) => {
-      let menu = cur.dataValues;
-      menu.Options = menu.Options.map(option => option.dataValues);
-      acc.push(menu);
-      return acc;
-    }, []);
-
-    // console.log('foodMenuArr: ', foodMenuArr);
-    // console.log('selectedRestaruant: ', selectedRestaurantObj);
-    res.status(200).send({ menu: foodMenuArr, restaurant: selectedRestaurant.toJSON() });
+    res.status(200).send({ menu: foodMenu, restaurant: selectedRestaurant.toJSON() });
 
   } 
   catch (err) {
@@ -92,7 +84,7 @@ if (user_id) {
         attributes: [ 'id' ],
         through: { attributes: [ menu_id ] },
         where: {
-          id: userCart.dataValues.id,
+          id: userCart.id,
           is_cart: true
         },
         require: false
@@ -110,4 +102,15 @@ if (user_id) {
     res.status(200).send({ menu: foodMenuArr, restaurant: selectedRestaurant.toJSON() });
   }
 }
+
+    // this won't be neccessary. just use "foodMenu".
+    // const foodMenuArr = foodMenu.reduce((acc, cur) => {
+    //   let menu = cur;
+    //   menu.Options = menu.Options.map(option => option.dataValues);
+    //   acc.push(menu);
+    //   return acc;
+    // }, []);
+
+    // console.log('foodMenuArr: ', foodMenuArr);
+
 */

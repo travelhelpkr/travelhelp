@@ -32,7 +32,7 @@ export const resendEmail = async (req: Request, res: Response) => {
     });
     
     // redirect user into sigin page in case user email already verified or user access this page without email. such as directly approach with the url.
-    if (newUser === null || newUser.dataValues.is_email_verified) {
+    if (newUser === null || newUser.is_email_verified) {
       res.redirect(403, `${config.client_url}/user/signin`);
     }
     else {
@@ -57,9 +57,9 @@ export const resendEmail = async (req: Request, res: Response) => {
       
       const mailOptions = {
         from: `"TravelHelp" <${process.env.NODEMAILER_USER}>`,
-        to: newUser.dataValues.email,
+        to: newUser.email,
         subject: "Verify your TravelHelp account",
-        text: `Almost done, ${newUser.dataValues.name}!
+        text: `Almost done, ${newUser.name}!
         
 To activate your TravelHelp account, we just need yo verify your email address:        
         
@@ -73,7 +73,7 @@ If you have any problems, please contact us: (attatch channel.io link)`
       smtpTransporter.sendMail(mailOptions, (error, info) => {
         if(error) {
           // console.log('error message: ', error);
-          res.send({message: 'err'});
+          res.send({ message: 'err' });
         }
         else {
           // console.log('Email sent: ', info.response);
