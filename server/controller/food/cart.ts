@@ -23,9 +23,6 @@ export const add = async (req: Request, res: Response) => {
 
     // if there is already some menu in the cart
     if (existingCartMenu) {
-      const existingRestaurantId: number = existingCartMenu.restaurant_id;
-      // console.log('restaurant id from the existing cart::::::::', existingRestaurantId);
-
       const targetMenu = await Menu.findOne({
         attributes: [ 'restaurant_id' ],
         where: {
@@ -34,8 +31,10 @@ export const add = async (req: Request, res: Response) => {
       });
       
       // checking request menu's restaurant id
-      const newRestaurantId: number = targetMenu.restaurant_id;
+      const newRestaurantId: number = await targetMenu.restaurant_id;
       // console.log('restaurant id from the request menu::::::::', newRestaurantId);
+      const existingRestaurantId: number = await existingCartMenu.restaurant_id;
+      // console.log('restaurant id from the existing cart::::::::', existingRestaurantId);
 
       // compare existing cart's restaurant id & newly requested menu's restaurant id
       if (existingRestaurantId !== newRestaurantId) {
