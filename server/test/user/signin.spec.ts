@@ -5,11 +5,12 @@ import request from 'supertest'
 const server = request.agent('http://localhost:3355');
 
 describe('signin', () => {
+
   it(`should respond with 'You need to sign up first.' and status 404 when there is no matching email`, (done) => {
     server
     .post('/api/users/signin')
     .send({
-      email: 'b@gmail.com'
+      email: 'bfdasdfasdf@gmail.com'
     })
     .end((err: Error, res: request.Response) => {
       if(err) return done(err);
@@ -18,11 +19,12 @@ describe('signin', () => {
       done();
     })
   })
+
   it(`should respond with 'You need to verify your email first' and status 403 when the email is not verified`, (done) => {
     server
     .post('/api/users/signin')
     .send({
-      email: 'bigeye3777@daum.net'
+      email: 'test@gmail.com'
     })
     .end((err: Error, res: request.Response) => {
       if(err) return done(err);
@@ -31,7 +33,8 @@ describe('signin', () => {
       done();
     })
   })
-  it(`should respond with 'Wrong password.' and status 401 when the password is wrong`, (done) =>{
+
+  it(`should respond with 'Wrong password.' and status 401 when the password is wrong`, (done) => {
     server
     .post('/api/users/signin')
     .send({
@@ -45,6 +48,7 @@ describe('signin', () => {
       done();
     })
   })
+
   it(`should respond with sending profile and status 200 when there is matching email&pw`, (done) => {
     server
     .post('/api/users/signin')
@@ -61,4 +65,5 @@ describe('signin', () => {
       done();
     })
   })
+
 })
