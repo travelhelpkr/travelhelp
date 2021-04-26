@@ -5,6 +5,7 @@ import request from 'supertest';
 const server = request.agent('http://localhost:3355'); // keep connection with the server with the agent
 
 describe('app', () => {
+
   it(`should respond with text message 'welcome to the Travel Help!'`, (done) => {
     server
     .get('/')
@@ -15,4 +16,5 @@ describe('app', () => {
       done();
     });
   })
+  
 });
