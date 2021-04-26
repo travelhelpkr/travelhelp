@@ -22,5 +22,16 @@ describe('order-add', () => {
       done();
     })
   })
-  
+
+  it(`should respond with 200 status and 5 arrays of order history information`, (done) => {
+    server
+    .get('/api/foods/order/4')
+    .end((err: Error, res: request.Response) => {
+      if(err) return done(err);
+      expect(200);
+      expect(res.body.recent_address).to.have.length(5);
+      done();
+    })
+  })
+
 })
