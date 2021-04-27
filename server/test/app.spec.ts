@@ -13,7 +13,7 @@ describe('app', () => {
       if(err) return done(err);
       expect(200);
       expect(res.text).to.equal('welcome to the Travel Help!');
-      done();
+      return done();
     });
   })
   

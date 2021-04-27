@@ -19,7 +19,7 @@ describe('order-add', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.message).to.equal('Successfully made your order. Delivery in process');
-      done();
+      return done();
     })
   })
 
@@ -30,7 +30,7 @@ describe('order-add', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.recent_address).to.have.length(5);
-      done();
+      return done();
     })
   })
 

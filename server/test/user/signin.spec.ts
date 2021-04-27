@@ -16,7 +16,7 @@ describe('signin', () => {
       if(err) return done(err);
       expect(res.body.status).to.equal(404);
       expect(res.body.message).to.equal('You need to sign up first.');
-      done();
+      return done();
     })
   })
 
@@ -30,7 +30,7 @@ describe('signin', () => {
       if(err) return done(err);
       expect(res.body.status).to.equal(403);
       expect(res.body.message).to.equal('You need to verify your email first');
-      done();
+      return done();
     })
   })
 
@@ -46,7 +46,7 @@ describe('signin', () => {
       // expect(401);
       expect(res.status).to.equal(401); // same as just 401
       expect(res.body.message).to.equal('Wrong password.');
-      done();
+      return done();
     })
   })
 
@@ -62,7 +62,7 @@ describe('signin', () => {
       expect(200);
       // expect(res.body).to.all.keys('id', 'name', 'email', 'language');
       expect(res.body).has.all.keys(['id', 'name', 'email', 'language']); // same as to.all
-      done();
+      return done();
     })
   })
 

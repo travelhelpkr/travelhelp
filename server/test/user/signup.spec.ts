@@ -16,7 +16,7 @@ describe('signup', () => {
       if(err) return done(err);
       expect(res.body.status).to.equal(409);
       expect(res.body.message).to.equal('User already existed.');
-      done();
+      return done();
     })
   })
 

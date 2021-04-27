@@ -14,7 +14,7 @@ describe('menu', () => {
       expect(200);
       expect(res.body.menu).to.have.length(16);
       expect(res.body).to.have.property('restaurant');
-      done();
+      return done();
     })
   })
 
@@ -25,7 +25,7 @@ describe('menu', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.menu[0]).to.all.keys('id', 'image', 'name_en', 'name_zh', 'name_ja', 'description_en', 'description_zh', 'description_ja', 'price', 'restaurant_id', 'Options');
-      done();
+      return done();
     })
   })
 
@@ -36,7 +36,7 @@ describe('menu', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.menu[0].Options).to.have.length(2);
-      done();
+      return done();
     })
   })
 
@@ -47,7 +47,7 @@ describe('menu', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.menu[0].Options[0]).to.all.keys('id', 'name_en', 'name_zh', 'name_ja', 'price');
-      done();
+      return done();
     })
   })
 
@@ -58,7 +58,7 @@ describe('menu', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.restaurant).to.all.keys('id', 'name_en', 'name_zh', 'name_ja', 'description_en', 'description_zh', 'description_ja', 'operation_hour', 'minimum_price', 'delivery_fee');
-      done();
+      return done();
     })
   })
   
