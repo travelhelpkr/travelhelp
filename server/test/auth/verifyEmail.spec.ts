@@ -15,9 +15,8 @@ describe('verifyEmail-resendEmail', () => {
     .end((err: Error, res: request.Response) => {
       if(err) return done(err);
       expect(403);
-      // expect('Location', '/user/signin');
-      expect(res.header.location).to.include('/user/signin'); // same with above 'Location' checking
-      done();
+      expect(res.header.location).to.include('/user/signin');
+      return done();
     })
   })
 

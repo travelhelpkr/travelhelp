@@ -18,7 +18,7 @@ describe('cart-add', () => {
       if(err) return done(err);
       expect(res.body.status).to.equal(200);
       expect(res.body.message).to.equal('menu added in user cart');
-      done();
+      return done();
     })
   })
 
@@ -34,7 +34,7 @@ describe('cart-add', () => {
       expect(res.body.status).to.equal(409);
       expect(res.body.conflict).to.equal(true);
       expect(res.body.message).to.equal('only same restaurant order is available');
-      done();
+      return done();
     })
   })
 
@@ -50,7 +50,7 @@ describe('cart-add', () => {
       if(err) return done(err);
       expect(res.body.status).to.equal(409);
       expect(res.body.message).to.equal('this menu already exists in the user cart');
-      done();
+      return done();
     })
   })
 
@@ -66,7 +66,7 @@ describe('cart-show', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.message).to.equal('empty cart');
-      done();
+      return done();
     })
   })
 
@@ -78,7 +78,7 @@ describe('cart-show', () => {
       expect(200);
       expect(res.body.cart).to.have.length(2);
       expect(res.body).to.have.property('restaurant');
-      done();
+      return done();
     })
   })
   
@@ -89,7 +89,7 @@ describe('cart-show', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.cart[0]).to.all.keys('quantity', 'Order', 'Menu', 'Option');
-      done();
+      return done();
     })
   })
 
@@ -100,7 +100,7 @@ describe('cart-show', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.cart[0].Order).to.all.keys('id');
-      done();
+      return done();
     })
   })
 
@@ -111,7 +111,7 @@ describe('cart-show', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.cart[0].Menu).to.all.keys('id', 'image', 'name_en', 'name_zh', 'name_ja', 'price', 'restaurant_id');
-      done();
+      return done();
     })
   })
 
@@ -122,7 +122,7 @@ describe('cart-show', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.cart[0].Option).to.all.keys('id', 'name_en', 'name_zh', 'name_ja', 'price');
-      done();
+      return done();
     })
   })
 
@@ -133,7 +133,7 @@ describe('cart-show', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.restaurant).to.all.keys('id', 'name_en', 'name_zh', 'name_ja', 'category_en', 'category_zh', 'category_ja', 'operation_hour', 'minimum_price', 'delivery_fee');
-      done();
+      return done();
     })
   })
 
@@ -155,7 +155,7 @@ describe('cart-update', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.message).to.equal('successfully updated menu quantity');
-      done();
+      return done();
     })
   })
 
@@ -171,7 +171,7 @@ describe('cart-delete', () => {
       if(err) return done(err);
       expect(200);
       expect(res.body.message).to.equal('successfully deleted the menu');
-      done();
+      return done();
     })
   })
 
