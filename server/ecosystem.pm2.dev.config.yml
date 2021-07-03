@@ -1,5 +1,10 @@
 apps:
   - name: travelhelp-app
-    script: ./app.js
+    # after compiling it requires js file.
+    # script: ./dist/app.js
+    
+    # without compiling, set interpreter as /ts-node for starting typescript file and with an argue ./app.ts
+    script: ./node_modules/.bin/ts-node
+    args: ./app.ts
     # watch: true # Under the `pm2-dev` runtime, watch & restart function automatically applied. 
     
