@@ -4,17 +4,21 @@ FROM node:14-alpine
 # See details here: https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/dockerfile-support-for-github-actions#workdir
 WORKDIR /app
 
-# Set node environment to development
-ENV NODE_ENV development
-ENV SERVER_PORT=3355
-
 # Update the system
 RUN apk --no-cache -U upgrade
+
+# Copy package.json & package-lock.json file
+COPY package*.json ./
 
 # Install pm2
 RUN npm install pm2@latest -g
 
-COPY package*.json ./
+RUN npm install --silent
 
 # By adding `only production` option, install only production dependencies, regardless of the value of the NODE_ENV environment variable.
-RUN npm install --silent --only=production
+# Once you install with only production npms, set the script file from './ecosystem.pm2.dev.config.yml' into app.js
+# RUN npm install --silent --only=production
+
+# Set node environment to development
+ENV NODE_ENV development
+ENV SERVER_PORT=3355
